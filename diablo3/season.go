@@ -1,15 +1,13 @@
 /*
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:45
- * @Last Modified by:   FuzzyStatic
- * @Last Modified time: 2018-01-07 12:38:45
+ * @Last Modified by: FuzzyStatic
+ * @Last Modified time: 2018-01-07 13:01:39
  */
 
 package diablo3
 
-import (
-	"encoding/json"
-)
+import "encoding/json"
 
 // Season structure
 type Season struct {

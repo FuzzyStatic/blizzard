@@ -1,15 +1,13 @@
 /*
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:39:13
- * @Last Modified by:   FuzzyStatic
- * @Last Modified time: 2018-01-07 12:39:13
+ * @Last Modified by: FuzzyStatic
+ * @Last Modified time: 2018-01-07 13:00:56
  */
 
 package diablo3
 
-import (
-	"encoding/json"
-)
+import "encoding/json"
 
 // EraIndex structure
 type EraIndex struct {
