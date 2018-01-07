@@ -1,8 +1,8 @@
 /*
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:06
- * @Last Modified by:   FuzzyStatic
- * @Last Modified time: 2018-01-07 12:38:06
+ * @Last Modified by: FuzzyStatic
+ * @Last Modified time: 2018-01-07 18:48:20
  */
 
 package worldofwarcraft
@@ -39,7 +39,7 @@ func init() {
 	)
 }
 
-func TestGetConnectedRealmIndexJSON(t *testing.T) {
+func TestGetConnectedRealmIndex(t *testing.T) {
 	var (
 		connectedRealmIndexJSON *[]byte
 		connectedRealmIndex     *ConnectedRealmIndex
@@ -58,4 +58,185 @@ func TestGetConnectedRealmIndexJSON(t *testing.T) {
 
 	fmt.Println(string(*connectedRealmIndexJSON))
 	fmt.Println(*connectedRealmIndex)
+}
+
+func TestGetConnectedRealm(t *testing.T) {
+	var (
+		connectedRealmJSON *[]byte
+		connectedRealm     *ConnectedRealm
+		err                error
+	)
+
+	connectedRealmJSON, err = w.GetConnectedRealmJSON(3729)
+	if err != nil {
+		t.Fail()
+	}
+
+	connectedRealm, err = w.GetConnectedRealm(3729)
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*connectedRealmJSON))
+	fmt.Println(*connectedRealm)
+}
+
+func TestGetMythicLeaderboardIndex(t *testing.T) {
+	var (
+		mythicLeaderboardIndexJSON *[]byte
+		mythicLeaderboardIndex     *MythicLeaderboardIndex
+		err                        error
+	)
+
+	mythicLeaderboardIndexJSON, err = w.GetMythicLeaderboardIndexJSON(3729)
+	if err != nil {
+		t.Fail()
+	}
+
+	mythicLeaderboardIndex, err = w.GetMythicLeaderboardIndex(3729)
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*mythicLeaderboardIndexJSON))
+	fmt.Println(*mythicLeaderboardIndex)
+}
+
+func TestGetMythicLeaderboard(t *testing.T) {
+	var (
+		mythicLeaderboardJSON *[]byte
+		mythicLeaderboard     *MythicLeaderboard
+		err                   error
+	)
+
+	mythicLeaderboardJSON, err = w.GetMythicLeaderboardJSON(3729, 198, 627)
+	if err != nil {
+		t.Fail()
+	}
+
+	mythicLeaderboard, err = w.GetMythicLeaderboard(3729, 198, 627)
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*mythicLeaderboardJSON))
+	fmt.Println(*mythicLeaderboard)
+}
+
+func TestGetRealmIndex(t *testing.T) {
+	var (
+		realmIndexJSON *[]byte
+		realmIndex     *RealmIndex
+		err            error
+	)
+
+	realmIndexJSON, err = w.GetRealmIndexJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	realmIndex, err = w.GetRealmIndex()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*realmIndexJSON))
+	fmt.Println(*realmIndex)
+}
+
+func TestGetRealm(t *testing.T) {
+	var (
+		realmJSON *[]byte
+		realm     *Realm
+		err       error
+	)
+
+	realmJSON, err = w.GetRealmJSON(59)
+	if err != nil {
+		t.Fail()
+	}
+
+	realm, err = w.GetRealm(59)
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*realmJSON))
+	fmt.Println(*realm)
+
+	realmJSON, err = w.GetRealmJSON("malganis")
+	if err != nil {
+		t.Fail()
+	}
+
+	realm, err = w.GetRealm("malganis")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*realmJSON))
+	fmt.Println(*realm)
+}
+
+func TestGetRegionIndex(t *testing.T) {
+	var (
+		regionIndexJSON *[]byte
+		regionIndex     *RegionIndex
+		err             error
+	)
+
+	regionIndexJSON, err = w.GetRegionIndexJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	regionIndex, err = w.GetRegionIndex()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*regionIndexJSON))
+	fmt.Println(*regionIndex)
+}
+
+func TestGetRegion(t *testing.T) {
+	var (
+		regionJSON *[]byte
+		region     *Region
+		err        error
+	)
+
+	regionJSON, err = w.GetRegionJSON(1)
+	if err != nil {
+		t.Fail()
+	}
+
+	region, err = w.GetRegion(1)
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*regionJSON))
+	fmt.Println(*region)
+}
+
+func TestGetTokenIndex(t *testing.T) {
+	var (
+		tokenIndexJSON *[]byte
+		tokenIndex     *TokenIndex
+		err            error
+	)
+
+	tokenIndexJSON, err = w.GetTokenIndexJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	tokenIndex, err = w.GetTokenIndex()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*tokenIndexJSON))
+	fmt.Println(*tokenIndex)
 }
