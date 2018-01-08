@@ -1,8 +1,8 @@
 /*
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:39:22
- * @Last Modified by:   FuzzyStatic
- * @Last Modified time: 2018-01-07 12:39:22
+ * @Last Modified by: FuzzyStatic
+ * @Last Modified time: 2018-01-07 21:08:17
  */
 
 package diablo3
@@ -186,11 +186,13 @@ func (d *Diablo3) GetEraIndex() (*EraIndex, error) {
 		err      error
 	)
 
-	if json, err = d.GetEraIndexJSON(); err != nil {
+	json, err = d.GetEraIndexJSON()
+	if err != nil {
 		return nil, err
 	}
 
-	if err = blizzard.GetStruct(json, &eraIndex); err != nil {
+	err = blizzard.GetStruct(json, &eraIndex)
+	if err != nil {
 		return nil, err
 	}
 
@@ -214,7 +216,8 @@ func (d *Diablo3) GetEraLeaderboardJSON(eraID int, groupPath string, hardcore bo
 
 	url = url + groupPath + "?access_token=" + d.Auth.AccessToken
 
-	if err = blizzard.GetURLBody(url, &json); err != nil {
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
 		return nil, errors.New(err.Error())
 	}
 
