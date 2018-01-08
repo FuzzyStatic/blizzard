@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:39:22
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-07 21:08:17
+ * @Last Modified time: 2018-01-07 22:14:45
  */
 
 package diablo3
@@ -288,8 +288,8 @@ func (d *Diablo3) GetEnchantressJSON() (*[]byte, error) {
 	return d.getFollowerJSON(enchantressPath)
 }
 
-// GetFollowerScoundrelJSON gets scoundrel follower information JSON
-func (d *Diablo3) GetFollowerScoundrelJSON() (*[]byte, error) {
+// GetScoundrelJSON gets scoundrel follower information JSON
+func (d *Diablo3) GetScoundrelJSON() (*[]byte, error) {
 	return d.getFollowerJSON(scoundrelPath)
 }
 
