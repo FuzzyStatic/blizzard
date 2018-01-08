@@ -20,7 +20,7 @@ w = New(
 
 ### Polling data
 
-Now you can poll data for the WorldOfWarcraft API. 
+Now you can poll data for the World of Warcraft API. 
 
 TODO
 * Add all calls

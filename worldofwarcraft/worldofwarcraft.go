@@ -2,13 +2,14 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:37:59
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-07 18:45:06
+ * @Last Modified time: 2018-01-07 21:55:31
  */
 
 package worldofwarcraft
 
 import (
 	"errors"
+	"fmt"
 	"go-blizzard/blizzard"
 	"strconv"
 )
@@ -84,11 +85,13 @@ func (w *WorldOfWarcraft) GetConnectedRealmIndex() (*ConnectedRealmIndex, error)
 		err                 error
 	)
 
-	if json, err = w.GetConnectedRealmIndexJSON(); err != nil {
+	json, err = w.GetConnectedRealmIndexJSON()
+	if err != nil {
 		return nil, err
 	}
 
-	if err = blizzard.GetStruct(json, &connectedRealmIndex); err != nil {
+	err = blizzard.GetStruct(json, &connectedRealmIndex)
+	if err != nil {
 		return nil, err
 	}
 
@@ -122,11 +125,13 @@ func (w *WorldOfWarcraft) GetConnectedRealm(connectRealmID int) (*ConnectedRealm
 		err            error
 	)
 
-	if json, err = w.GetConnectedRealmJSON(connectRealmID); err != nil {
+	json, err = w.GetConnectedRealmJSON(connectRealmID)
+	if err != nil {
 		return nil, err
 	}
 
-	if err = blizzard.GetStruct(json, &connectedRealm); err != nil {
+	err = blizzard.GetStruct(json, &connectedRealm)
+	if err != nil {
 		return nil, err
 	}
 
@@ -161,11 +166,13 @@ func (w *WorldOfWarcraft) GetMythicLeaderboardIndex(connectRealmID int) (*Mythic
 		err                    error
 	)
 
-	if json, err = w.GetMythicLeaderboardIndexJSON(connectRealmID); err != nil {
+	json, err = w.GetMythicLeaderboardIndexJSON(connectRealmID)
+	if err != nil {
 		return nil, err
 	}
 
-	if err = blizzard.GetStruct(json, &mythicLeaderboardIndex); err != nil {
+	err = blizzard.GetStruct(json, &mythicLeaderboardIndex)
+	if err != nil {
 		return nil, err
 	}
 
@@ -200,11 +207,13 @@ func (w *WorldOfWarcraft) GetMythicLeaderboard(connectRealmID, dungeonID, period
 		err               error
 	)
 
-	if json, err = w.GetMythicLeaderboardJSON(connectRealmID, dungeonID, period); err != nil {
+	json, err = w.GetMythicLeaderboardJSON(connectRealmID, dungeonID, period)
+	if err != nil {
 		return nil, err
 	}
 
-	if err = blizzard.GetStruct(json, &mythicLeaderboard); err != nil {
+	err = blizzard.GetStruct(json, &mythicLeaderboard)
+	if err != nil {
 		return nil, err
 	}
 
@@ -238,11 +247,13 @@ func (w *WorldOfWarcraft) GetRealmIndex() (*RealmIndex, error) {
 		err        error
 	)
 
-	if json, err = w.GetRealmIndexJSON(); err != nil {
+	json, err = w.GetRealmIndexJSON()
+	if err != nil {
 		return nil, err
 	}
 
-	if err = blizzard.GetStruct(json, &realmIndex); err != nil {
+	err = blizzard.GetStruct(json, &realmIndex)
+	if err != nil {
 		return nil, err
 	}
 
@@ -285,11 +296,13 @@ func (w *WorldOfWarcraft) GetRealm(realmID interface{}) (*Realm, error) {
 		err   error
 	)
 
-	if json, err = w.GetRealmJSON(realmID); err != nil {
+	json, err = w.GetRealmJSON(realmID)
+	if err != nil {
 		return nil, err
 	}
 
-	if err = blizzard.GetStruct(json, &realm); err != nil {
+	err = blizzard.GetStruct(json, &realm)
+	if err != nil {
 		return nil, err
 	}
 
@@ -323,11 +336,13 @@ func (w *WorldOfWarcraft) GetRegionIndex() (*RegionIndex, error) {
 		err         error
 	)
 
-	if json, err = w.GetRegionIndexJSON(); err != nil {
+	json, err = w.GetRegionIndexJSON()
+	if err != nil {
 		return nil, err
 	}
 
-	if err = blizzard.GetStruct(json, &regionIndex); err != nil {
+	err = blizzard.GetStruct(json, &regionIndex)
+	if err != nil {
 		return nil, err
 	}
 
@@ -361,11 +376,13 @@ func (w *WorldOfWarcraft) GetRegion(regionID int) (*Region, error) {
 		err    error
 	)
 
-	if json, err = w.GetRegionJSON(regionID); err != nil {
+	json, err = w.GetRegionJSON(regionID)
+	if err != nil {
 		return nil, err
 	}
 
-	if err = blizzard.GetStruct(json, &region); err != nil {
+	err = blizzard.GetStruct(json, &region)
+	if err != nil {
 		return nil, err
 	}
 
@@ -399,13 +416,214 @@ func (w *WorldOfWarcraft) GetTokenIndex() (*TokenIndex, error) {
 		err        error
 	)
 
-	if json, err = w.GetTokenIndexJSON(); err != nil {
+	json, err = w.GetTokenIndexJSON()
+	if err != nil {
 		return nil, err
 	}
 
-	if err = blizzard.GetStruct(json, &tokenIndex); err != nil {
+	err = blizzard.GetStruct(json, &tokenIndex)
+	if err != nil {
 		return nil, err
 	}
 
 	return &tokenIndex, nil
+}
+
+// GetAchievementJSON gets specified achievement JSON information
+func (w *WorldOfWarcraft) GetAchievementJSON(achievementID int) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + achievementPath + "/" + strconv.Itoa(achievementID) + "?" + localeQuery +
+		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	fmt.Println(url)
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetAchievement puts specified achievement information into Achievement structure
+func (w *WorldOfWarcraft) GetAchievement(achievementID int) (*Achievement, error) {
+	var (
+		achievement Achievement
+		json        *[]byte
+		err         error
+	)
+
+	json, err = w.GetAchievementJSON(achievementID)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &achievement)
+	if err != nil {
+		return nil, err
+	}
+
+	return &achievement, nil
+}
+
+// GetAuctionDataJSON gets auction data JSON information for realm
+func (w *WorldOfWarcraft) GetAuctionDataJSON(realmSlug string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + auctionDataPath + "/" + realmSlug + "?" + localeQuery +
+		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetAuctionData puts auction data information into AuctionData structure for realm
+func (w *WorldOfWarcraft) GetAuctionData(realmSlug string) (*AuctionData, error) {
+	var (
+		auctionData AuctionData
+		json        *[]byte
+		err         error
+	)
+
+	json, err = w.GetAuctionDataJSON(realmSlug)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &auctionData)
+	if err != nil {
+		return nil, err
+	}
+
+	return &auctionData, nil
+}
+
+// GetAuctions puts all auctions into array of Auctions structures for realm
+func (w *WorldOfWarcraft) GetAuctions(realmSlug string) ([]*Auctions, error) {
+	var (
+		auctionsArr []*Auctions
+		auctionData *AuctionData
+		err         error
+	)
+
+	auctionData, err = w.GetAuctionData(realmSlug)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, file := range auctionData.Files {
+		var (
+			json     []byte
+			auctions Auctions
+		)
+
+		err = blizzard.GetURLBody(file.URL, &json)
+		if err != nil {
+			return nil, errors.New(err.Error())
+		}
+
+		err = blizzard.GetStruct(&json, &auctions)
+		if err != nil {
+			return nil, err
+		}
+
+		auctionsArr = append(auctionsArr, &auctions)
+	}
+
+	return auctionsArr, err
+}
+
+// GetBossIndexJSON gets boss index JSON information
+func (w *WorldOfWarcraft) GetBossIndexJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + bossPath + "/?" + localeQuery + w.Locale + "&" + apiKeyQuery +
+		w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetBossIndex puts boss index information into RealmIndex structure
+func (w *WorldOfWarcraft) GetBossIndex() (*BossIndex, error) {
+	var (
+		bossIndex BossIndex
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetBossIndexJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &bossIndex)
+	if err != nil {
+		return nil, err
+	}
+
+	return &bossIndex, nil
+}
+
+// GetBossJSON gets specified boss JSON information
+func (w *WorldOfWarcraft) GetBossJSON(bossID int) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + bossPath + "/" + strconv.Itoa(bossID) + "?" + localeQuery +
+		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	fmt.Println(url)
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetBoss puts specified boss information into Boss structure
+func (w *WorldOfWarcraft) GetBoss(bossID int) (*Boss, error) {
+	var (
+		boss Boss
+		json *[]byte
+		err  error
+	)
+
+	json, err = w.GetBossJSON(bossID)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &boss)
+	if err != nil {
+		return nil, err
+	}
+
+	return &boss, nil
 }

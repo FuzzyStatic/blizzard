@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:06
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-07 18:48:20
+ * @Last Modified time: 2018-01-07 21:56:27
  */
 
 package worldofwarcraft
@@ -239,4 +239,104 @@ func TestGetTokenIndex(t *testing.T) {
 
 	fmt.Println(string(*tokenIndexJSON))
 	fmt.Println(*tokenIndex)
+}
+
+func TestGetAchievement(t *testing.T) {
+	var (
+		achievementJSON *[]byte
+		achievement     *Achievement
+		err             error
+	)
+
+	achievementJSON, err = w.GetAchievementJSON(2144)
+	if err != nil {
+		t.Fail()
+	}
+
+	achievement, err = w.GetAchievement(2144)
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*achievementJSON))
+	fmt.Println(*achievement)
+}
+
+func TestGetAuctionData(t *testing.T) {
+	var (
+		auctionDataJSON *[]byte
+		auctionData     *AuctionData
+		err             error
+	)
+
+	auctionDataJSON, err = w.GetAuctionDataJSON("malganis")
+	if err != nil {
+		t.Fail()
+	}
+
+	auctionData, err = w.GetAuctionData("malganis")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*auctionDataJSON))
+	fmt.Println(*auctionData)
+}
+
+func TestGetAuctions(t *testing.T) {
+	var (
+		auctionsArr []*Auctions
+		err         error
+	)
+
+	auctionsArr, err = w.GetAuctions("malganis")
+	if err != nil {
+		t.Fail()
+	}
+
+	for _, auctions := range auctionsArr {
+		fmt.Println(*auctions)
+	}
+}
+
+func TestGetBossIndex(t *testing.T) {
+	var (
+		bossIndexJSON *[]byte
+		bossIndex     *BossIndex
+		err           error
+	)
+
+	bossIndexJSON, err = w.GetBossIndexJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	bossIndex, err = w.GetBossIndex()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*bossIndexJSON))
+	fmt.Println(*bossIndex)
+}
+
+func TestGetBoss(t *testing.T) {
+	var (
+		bossJSON *[]byte
+		boss     *Boss
+		err      error
+	)
+
+	bossJSON, err = w.GetBossJSON(24723)
+	if err != nil {
+		t.Fail()
+	}
+
+	boss, err = w.GetBoss(24723)
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*bossJSON))
+	fmt.Println(*boss)
 }
