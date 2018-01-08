@@ -1,8 +1,8 @@
 /*
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:40:31
- * @Last Modified by:   FuzzyStatic
- * @Last Modified time: 2018-01-07 12:40:31
+ * @Last Modified by: FuzzyStatic
+ * @Last Modified time: 2018-01-07 21:30:03
  */
 
 package blizzard
@@ -29,7 +29,7 @@ func GetStruct(b *[]byte, v JSON) error {
 	return v.JSON2Struct(b)
 }
 
-// GetURLBody returns body of url
+// GetURLBody fills body of url
 func GetURLBody(url string, body *[]byte) error {
 	var (
 		req *http.Request
