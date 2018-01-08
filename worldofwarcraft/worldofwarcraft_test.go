@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:06
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-07 21:56:27
+ * @Last Modified time: 2018-01-07 22:53:35
  */
 
 package worldofwarcraft
@@ -339,4 +339,25 @@ func TestGetBoss(t *testing.T) {
 
 	fmt.Println(string(*bossJSON))
 	fmt.Println(*boss)
+}
+
+func TestGetChallengeRealmLeaderboard(t *testing.T) {
+	var (
+		challengeRealmLeaderboardJSON *[]byte
+		challengeRealmLeaderboard     *ChallengeRealmLeaderboard
+		err                           error
+	)
+
+	challengeRealmLeaderboardJSON, err = w.GetChallengeRealmLeaderboardJSON("malganis")
+	if err != nil {
+		t.Fail()
+	}
+
+	challengeRealmLeaderboard, err = w.GetChallengeRealmLeaderboard("malganis")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*challengeRealmLeaderboardJSON))
+	fmt.Println(*challengeRealmLeaderboard)
 }

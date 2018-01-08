@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:37:59
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-07 21:55:31
+ * @Last Modified time: 2018-01-07 22:54:12
  */
 
 package worldofwarcraft
@@ -597,8 +597,6 @@ func (w *WorldOfWarcraft) GetBossJSON(bossID int) (*[]byte, error) {
 	url = w.CommunityURL + bossPath + "/" + strconv.Itoa(bossID) + "?" + localeQuery +
 		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
 
-	fmt.Println(url)
-
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
 		return nil, errors.New(err.Error())
@@ -626,4 +624,44 @@ func (w *WorldOfWarcraft) GetBoss(bossID int) (*Boss, error) {
 	}
 
 	return &boss, nil
+}
+
+// GetChallengeRealmLeaderboardJSON gets specified challenge realm leaderboard JSON information
+func (w *WorldOfWarcraft) GetChallengeRealmLeaderboardJSON(realmSlug string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + challengePath + "/" + realmSlug + "?" + localeQuery + w.Locale +
+		"&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetChallengeRealmLeaderboard puts specified challenge realm leaderboard into ChallengeRealmLeaderboard structure
+func (w *WorldOfWarcraft) GetChallengeRealmLeaderboard(realmSlug string) (*ChallengeRealmLeaderboard, error) {
+	var (
+		challengeRealmLeaderboard ChallengeRealmLeaderboard
+		json                      *[]byte
+		err                       error
+	)
+
+	json, err = w.GetChallengeRealmLeaderboardJSON(realmSlug)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &challengeRealmLeaderboard)
+	if err != nil {
+		return nil, err
+	}
+
+	return &challengeRealmLeaderboard, nil
 }
