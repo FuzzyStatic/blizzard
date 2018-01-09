@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:37:59
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-08 21:07:51
+ * @Last Modified time: 2018-01-08 21:54:04
  */
 
 package worldofwarcraft
@@ -664,4 +664,44 @@ func (w *WorldOfWarcraft) GetChallengeRealmLeaderboard(realmSlug string) (*Chall
 	}
 
 	return &challengeRealmLeaderboard, nil
+}
+
+// GetChallengeRegionLeaderboardJSON gets specified challenge region leaderboard JSON information
+func (w *WorldOfWarcraft) GetChallengeRegionLeaderboardJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + challengePath + "/" + regionPath + "?" + localeQuery + w.Locale +
+		"&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetChallengeRegionLeaderboard puts specified challenge region leaderboard into ChallengeRegionLeaderboard structure
+func (w *WorldOfWarcraft) GetChallengeRegionLeaderboard() (*ChallengeRegionLeaderboard, error) {
+	var (
+		challengeRegionLeaderboard ChallengeRegionLeaderboard
+		json                       *[]byte
+		err                        error
+	)
+
+	json, err = w.GetChallengeRegionLeaderboardJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &challengeRegionLeaderboard)
+	if err != nil {
+		return nil, err
+	}
+
+	return &challengeRegionLeaderboard, nil
 }

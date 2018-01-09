@@ -2,14 +2,14 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:06
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-07 22:53:35
+ * @Last Modified time: 2018-01-08 21:53:23
  */
 
 package worldofwarcraft
 
 import (
 	"fmt"
-	"go-blizzard/blizzard"
+	"go-blizzard"
 	"testing"
 
 	"github.com/spf13/viper"
@@ -341,23 +341,23 @@ func TestGetBoss(t *testing.T) {
 	fmt.Println(*boss)
 }
 
-func TestGetChallengeRealmLeaderboard(t *testing.T) {
+func TestGetChallengeRegionLeaderboard(t *testing.T) {
 	var (
-		challengeRealmLeaderboardJSON *[]byte
-		challengeRealmLeaderboard     *ChallengeRealmLeaderboard
-		err                           error
+		challengeRegionLeaderboardJSON *[]byte
+		challengeRegionLeaderboard     *ChallengeRegionLeaderboard
+		err                            error
 	)
 
-	challengeRealmLeaderboardJSON, err = w.GetChallengeRealmLeaderboardJSON("malganis")
+	challengeRegionLeaderboardJSON, err = w.GetChallengeRegionLeaderboardJSON()
 	if err != nil {
 		t.Fail()
 	}
 
-	challengeRealmLeaderboard, err = w.GetChallengeRealmLeaderboard("malganis")
+	challengeRegionLeaderboard, err = w.GetChallengeRegionLeaderboard()
 	if err != nil {
 		t.Fail()
 	}
 
-	fmt.Println(string(*challengeRealmLeaderboardJSON))
-	fmt.Println(*challengeRealmLeaderboard)
+	fmt.Println(string(*challengeRegionLeaderboardJSON))
+	fmt.Println(*challengeRegionLeaderboard)
 }
