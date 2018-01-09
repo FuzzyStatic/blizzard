@@ -1,15 +1,15 @@
 /*
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:39:33
- * @Last Modified by:   FuzzyStatic
- * @Last Modified time: 2018-01-07 12:39:33
+ * @Last Modified by: FuzzyStatic
+ * @Last Modified time: 2018-01-08 21:53:47
  */
 
 package diablo3
 
 import (
 	"fmt"
-	"go-blizzard/blizzard"
+	"go-blizzard"
 	"testing"
 
 	"github.com/spf13/viper"
