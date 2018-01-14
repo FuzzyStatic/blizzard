@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:06
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-13 23:05:16
+ * @Last Modified time: 2018-01-14 18:27:04
  */
 
 package worldofwarcraft
@@ -784,14 +784,21 @@ func TestGetCharacterWithAudit(t *testing.T) {
 
 func TestGetCharacterWithAll(t *testing.T) {
 	var (
-		character *Character
-		err       error
+		characterJSON *[]byte
+		character     *Character
+		err           error
 	)
+
+	characterJSON, err = w.GetCharacterWithAllJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
 
 	character, err = w.GetCharacterWithAll("illidan", "flowbs")
 	if err != nil {
 		t.Fail()
 	}
 
+	fmt.Println(string(*characterJSON))
 	fmt.Println(*character)
 }

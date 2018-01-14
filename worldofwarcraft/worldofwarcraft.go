@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:37:59
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-13 23:04:01
+ * @Last Modified time: 2018-01-14 18:26:32
  */
 
 package worldofwarcraft
@@ -1506,218 +1506,44 @@ func (w *WorldOfWarcraft) GetCharacterWithAudit(realm, characterName string) (*C
 	return &character, nil
 }
 
+// GetCharacterWithAllJSON gets specified character with all fields JSON information
+func (w *WorldOfWarcraft) GetCharacterWithAllJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		achievementsField + "," + appearanceField + "," + feedField + "," + guildField + "," +
+		hunterPetsField + "," + itemsField + "," + mountsField + "," + petsField + "," +
+		petSlotsField + "," + professionsField + "," + progressionField + "," + pvpField + "," +
+		questsField + "," + reputationField + "," + statisticsField + "," + statsField + "," +
+		talentsField + "," + titlesField + "," + auditField + "&" + localeQuery + w.Locale + "&" +
+		apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
 // GetCharacterWithAll puts character info with all fields into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithAll(realm, characterName string) (*Character, error) {
 	var (
-		character    Character
-		achievements *[]byte
-		appearance   *[]byte
-		feed         *[]byte
-		guild        *[]byte
-		hunterPets   *[]byte
-		items        *[]byte
-		mounts       *[]byte
-		pets         *[]byte
-		petSlots     *[]byte
-		professions  *[]byte
-		progression  *[]byte
-		pvp          *[]byte
-		quests       *[]byte
-		reputation   *[]byte
-		statistics   *[]byte
-		stats        *[]byte
-		talents      *[]byte
-		titles       *[]byte
-		audit        *[]byte
-		err          error
+		character Character
+		json      *[]byte
+		err       error
 	)
 
-	achievements, err = w.GetCharacterWithAchievementsJSON(realm, characterName)
+	json, err = w.GetCharacterWithAllJSON(realm, characterName)
 	if err != nil {
 		return nil, err
 	}
 
-	err = blizzard.GetStruct(achievements, &character)
-	if err != nil {
-		return nil, err
-	}
-
-	appearance, err = w.GetCharacterWithAppearanceJSON(realm, characterName)
-	if err != nil {
-		return nil, err
-	}
-
-	err = blizzard.GetStruct(appearance, &character)
-	if err != nil {
-		return nil, err
-	}
-
-	feed, err = w.GetCharacterWithFeedJSON(realm, characterName)
-	if err != nil {
-		return nil, err
-	}
-
-	err = blizzard.GetStruct(feed, &character)
-	if err != nil {
-		return nil, err
-	}
-
-	guild, err = w.GetCharacterWithGuildJSON(realm, characterName)
-	if err != nil {
-		return nil, err
-	}
-
-	err = blizzard.GetStruct(guild, &character)
-	if err != nil {
-		return nil, err
-	}
-
-	hunterPets, err = w.GetCharacterWithHunterPetsJSON(realm, characterName)
-	if err != nil {
-		return nil, err
-	}
-
-	err = blizzard.GetStruct(hunterPets, &character)
-	if err != nil {
-		return nil, err
-	}
-
-	items, err = w.GetCharacterWithItemsJSON(realm, characterName)
-	if err != nil {
-		return nil, err
-	}
-
-	err = blizzard.GetStruct(items, &character)
-	if err != nil {
-		return nil, err
-	}
-
-	mounts, err = w.GetCharacterWithMountsJSON(realm, characterName)
-	if err != nil {
-		return nil, err
-	}
-
-	err = blizzard.GetStruct(mounts, &character)
-	if err != nil {
-		return nil, err
-	}
-
-	pets, err = w.GetCharacterWithPetsJSON(realm, characterName)
-	if err != nil {
-		return nil, err
-	}
-
-	err = blizzard.GetStruct(pets, &character)
-	if err != nil {
-		return nil, err
-	}
-
-	petSlots, err = w.GetCharacterWithPetSlotsJSON(realm, characterName)
-	if err != nil {
-		return nil, err
-	}
-
-	err = blizzard.GetStruct(petSlots, &character)
-	if err != nil {
-		return nil, err
-	}
-
-	professions, err = w.GetCharacterWithProfessionsJSON(realm, characterName)
-	if err != nil {
-		return nil, err
-	}
-
-	err = blizzard.GetStruct(professions, &character)
-	if err != nil {
-		return nil, err
-	}
-
-	progression, err = w.GetCharacterWithProgressionJSON(realm, characterName)
-	if err != nil {
-		return nil, err
-	}
-
-	err = blizzard.GetStruct(progression, &character)
-	if err != nil {
-		return nil, err
-	}
-
-	pvp, err = w.GetCharacterWithPVPJSON(realm, characterName)
-	if err != nil {
-		return nil, err
-	}
-
-	err = blizzard.GetStruct(pvp, &character)
-	if err != nil {
-		return nil, err
-	}
-
-	quests, err = w.GetCharacterWithQuestsJSON(realm, characterName)
-	if err != nil {
-		return nil, err
-	}
-
-	err = blizzard.GetStruct(quests, &character)
-	if err != nil {
-		return nil, err
-	}
-
-	reputation, err = w.GetCharacterWithReputationJSON(realm, characterName)
-	if err != nil {
-		return nil, err
-	}
-
-	err = blizzard.GetStruct(reputation, &character)
-	if err != nil {
-		return nil, err
-	}
-
-	statistics, err = w.GetCharacterWithStatisticsJSON(realm, characterName)
-	if err != nil {
-		return nil, err
-	}
-
-	err = blizzard.GetStruct(statistics, &character)
-	if err != nil {
-		return nil, err
-	}
-
-	stats, err = w.GetCharacterWithStatsJSON(realm, characterName)
-	if err != nil {
-		return nil, err
-	}
-
-	err = blizzard.GetStruct(stats, &character)
-	if err != nil {
-		return nil, err
-	}
-
-	talents, err = w.GetCharacterWithTalentsJSON(realm, characterName)
-	if err != nil {
-		return nil, err
-	}
-
-	err = blizzard.GetStruct(talents, &character)
-	if err != nil {
-		return nil, err
-	}
-
-	titles, err = w.GetCharacterWithTitlesJSON(realm, characterName)
-	if err != nil {
-		return nil, err
-	}
-
-	err = blizzard.GetStruct(titles, &character)
-	if err != nil {
-		return nil, err
-	}
-
-	audit, err = w.GetCharacterWithAuditJSON(realm, characterName)
-	if err != nil {
-		return nil, err
-	}
-
-	err = blizzard.GetStruct(audit, &character)
+	err = blizzard.GetStruct(json, &character)
 	if err != nil {
 		return nil, err
 	}
