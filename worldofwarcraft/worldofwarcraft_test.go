@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:06
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-08 21:53:23
+ * @Last Modified time: 2018-01-13 23:05:16
  */
 
 package worldofwarcraft
@@ -360,4 +360,438 @@ func TestGetChallengeRegionLeaderboard(t *testing.T) {
 
 	fmt.Println(string(*challengeRegionLeaderboardJSON))
 	fmt.Println(*challengeRegionLeaderboard)
+}
+
+func TestGetCharacter(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacter("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithAchievements(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterWithAchievementsJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacterWithAchievements("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithAppearance(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterWithAppearanceJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacterWithAppearance("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithFeed(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterWithFeedJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacterWithFeed("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithGuild(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterWithGuildJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacterWithGuild("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithHunterPets(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterWithHunterPetsJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacterWithHunterPets("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithItems(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterWithItemsJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacterWithItems("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithMounts(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterWithMountsJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacterWithMounts("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithPets(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterWithPetsJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacterWithPets("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithPetSlots(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterWithPetSlotsJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacterWithPetSlots("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithProfessions(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterWithProfessionsJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacterWithProfessions("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithProgression(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterWithProgressionJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacterWithProgression("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithPVP(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterWithPVPJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacterWithPVP("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithQuests(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterWithQuestsJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacterWithQuests("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithReputation(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterWithReputationJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacterWithReputation("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithStatistics(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterWithStatisticsJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacterWithStatistics("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithStats(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterWithStatsJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacterWithStats("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithTalents(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterWithTalentsJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacterWithTalents("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithTitles(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterWithTitlesJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacterWithTitles("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithAudit(t *testing.T) {
+	var (
+		characterJSON *[]byte
+		character     *Character
+		err           error
+	)
+
+	characterJSON, err = w.GetCharacterWithAuditJSON("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	character, err = w.GetCharacterWithAudit("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterJSON))
+	fmt.Println(*character)
+}
+
+func TestGetCharacterWithAll(t *testing.T) {
+	var (
+		character *Character
+		err       error
+	)
+
+	character, err = w.GetCharacterWithAll("illidan", "flowbs")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(*character)
 }

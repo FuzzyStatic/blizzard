@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-11 22:25:18
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-11 23:11:47
+ * @Last Modified time: 2018-01-13 22:21:43
  */
 
 package worldofwarcraft
@@ -24,12 +24,12 @@ type Character struct {
 	CalcClass         string `json:"calcClass"`
 	Faction           int    `json:"faction"`
 	Achievements      struct {
-		AchievementsCompleted          []int         `json:"achievementsCompleted"`
-		AchievementsCompletedTimestamp []int64       `json:"achievementsCompletedTimestamp"`
-		Criteria                       []int         `json:"criteria"`
-		CriteriaQuantity               []interface{} `json:"criteriaQuantity"`
-		CriteriaTimestamp              []int64       `json:"criteriaTimestamp"`
-		CriteriaCreated                []interface{} `json:"criteriaCreated"`
+		AchievementsCompleted          []int   `json:"achievementsCompleted"`
+		AchievementsCompletedTimestamp []int64 `json:"achievementsCompletedTimestamp"`
+		Criteria                       []int   `json:"criteria"`
+		CriteriaQuantity               []int64 `json:"criteriaQuantity"`
+		CriteriaTimestamp              []int64 `json:"criteriaTimestamp"`
+		CriteriaCreated                []int64 `json:"criteriaCreated"`
 	} `json:"achievements"`
 	Appearance struct {
 		FaceVariation        int   `json:"faceVariation"`
@@ -719,6 +719,288 @@ type Character struct {
 		Value    int    `json:"value"`
 		Max      int    `json:"max"`
 	} `json:"reputation"`
+	Statistics struct {
+		ID            int    `json:"id"`
+		Name          string `json:"name"`
+		SubCategories []struct {
+			ID         int    `json:"id"`
+			Name       string `json:"name"`
+			Statistics []struct {
+				ID          int    `json:"id"`
+				Name        string `json:"name"`
+				Quantity    int    `json:"quantity"`
+				LastUpdated int64  `json:"lastUpdated"`
+				Money       bool   `json:"money"`
+			} `json:"statistics"`
+			SubCategories []struct {
+				ID         int    `json:"id"`
+				Name       string `json:"name"`
+				Statistics []struct {
+					ID          int    `json:"id"`
+					Name        string `json:"name"`
+					Quantity    int    `json:"quantity"`
+					LastUpdated int64  `json:"lastUpdated"`
+					Money       bool   `json:"money"`
+					Highest     string `json:"highest,omitempty"`
+				} `json:"statistics"`
+			} `json:"subCategories,omitempty"`
+		} `json:"subCategories"`
+	} `json:"statistics"`
+	Stats struct {
+		Health                      int     `json:"health"`
+		PowerType                   string  `json:"powerType"`
+		Power                       int     `json:"power"`
+		Str                         int     `json:"str"`
+		Agi                         int     `json:"agi"`
+		Int                         int     `json:"int"`
+		Sta                         int     `json:"sta"`
+		SpeedRating                 float64 `json:"speedRating"`
+		SpeedRatingBonus            float64 `json:"speedRatingBonus"`
+		Crit                        float64 `json:"crit"`
+		CritRating                  int     `json:"critRating"`
+		Haste                       float64 `json:"haste"`
+		HasteRating                 int     `json:"hasteRating"`
+		HasteRatingPercent          float64 `json:"hasteRatingPercent"`
+		Mastery                     float64 `json:"mastery"`
+		MasteryRating               int     `json:"masteryRating"`
+		Leech                       float64 `json:"leech"`
+		LeechRating                 float64 `json:"leechRating"`
+		LeechRatingBonus            float64 `json:"leechRatingBonus"`
+		Versatility                 int     `json:"versatility"`
+		VersatilityDamageDoneBonus  float64 `json:"versatilityDamageDoneBonus"`
+		VersatilityHealingDoneBonus float64 `json:"versatilityHealingDoneBonus"`
+		VersatilityDamageTakenBonus float64 `json:"versatilityDamageTakenBonus"`
+		AvoidanceRating             float64 `json:"avoidanceRating"`
+		AvoidanceRatingBonus        float64 `json:"avoidanceRatingBonus"`
+		SpellPen                    int     `json:"spellPen"`
+		SpellCrit                   float64 `json:"spellCrit"`
+		SpellCritRating             int     `json:"spellCritRating"`
+		Mana5                       float64 `json:"mana5"`
+		Mana5Combat                 float64 `json:"mana5Combat"`
+		Armor                       int     `json:"armor"`
+		Dodge                       float64 `json:"dodge"`
+		DodgeRating                 int     `json:"dodgeRating"`
+		Parry                       float64 `json:"parry"`
+		ParryRating                 int     `json:"parryRating"`
+		Block                       float64 `json:"block"`
+		BlockRating                 int     `json:"blockRating"`
+		MainHandDmgMin              float64 `json:"mainHandDmgMin"`
+		MainHandDmgMax              float64 `json:"mainHandDmgMax"`
+		MainHandSpeed               float64 `json:"mainHandSpeed"`
+		MainHandDps                 float64 `json:"mainHandDps"`
+		OffHandDmgMin               float64 `json:"offHandDmgMin"`
+		OffHandDmgMax               float64 `json:"offHandDmgMax"`
+		OffHandSpeed                float64 `json:"offHandSpeed"`
+		OffHandDps                  float64 `json:"offHandDps"`
+		RangedDmgMin                float64 `json:"rangedDmgMin"`
+		RangedDmgMax                float64 `json:"rangedDmgMax"`
+		RangedSpeed                 float64 `json:"rangedSpeed"`
+		RangedDps                   float64 `json:"rangedDps"`
+	} `json:"stats"`
+	Talents []struct {
+		Selected bool `json:"selected,omitempty"`
+		Talents  []struct {
+			Tier   int `json:"tier"`
+			Column int `json:"column"`
+			Spell  struct {
+				ID          int    `json:"id"`
+				Name        string `json:"name"`
+				Icon        string `json:"icon"`
+				Description string `json:"description"`
+				Range       string `json:"range"`
+				PowerCost   string `json:"powerCost"`
+				CastTime    string `json:"castTime"`
+				Cooldown    string `json:"cooldown"`
+			} `json:"spell"`
+			Spec struct {
+				Name            string `json:"name"`
+				Role            string `json:"role"`
+				BackgroundImage string `json:"backgroundImage"`
+				Icon            string `json:"icon"`
+				Description     string `json:"description"`
+				Order           int    `json:"order"`
+			} `json:"spec,omitempty"`
+		} `json:"talents"`
+		Spec struct {
+			Name            string `json:"name"`
+			Role            string `json:"role"`
+			BackgroundImage string `json:"backgroundImage"`
+			Icon            string `json:"icon"`
+			Description     string `json:"description"`
+			Order           int    `json:"order"`
+		} `json:"spec,omitempty"`
+		CalcTalent string `json:"calcTalent"`
+		CalcSpec   string `json:"calcSpec"`
+	} `json:"talents"`
+	Titles []struct {
+		ID       int    `json:"id"`
+		Name     string `json:"name"`
+		Selected bool   `json:"selected,omitempty"`
+	} `json:"titles"`
+	Audit struct {
+		NumberOfIssues int `json:"numberOfIssues"`
+		Slots          struct {
+			Num2  int `json:"2"`
+			Num4  int `json:"4"`
+			Num5  int `json:"5"`
+			Num6  int `json:"6"`
+			Num7  int `json:"7"`
+			Num8  int `json:"8"`
+			Num9  int `json:"9"`
+			Num14 int `json:"14"`
+			Num15 int `json:"15"`
+			Num16 int `json:"16"`
+		} `json:"slots"`
+		EmptyGlyphSlots     int  `json:"emptyGlyphSlots"`
+		UnspentTalentPoints int  `json:"unspentTalentPoints"`
+		NoSpec              bool `json:"noSpec"`
+		UnenchantedItems    struct {
+			Num2  int `json:"2"`
+			Num4  int `json:"4"`
+			Num6  int `json:"6"`
+			Num7  int `json:"7"`
+			Num8  int `json:"8"`
+			Num9  int `json:"9"`
+			Num14 int `json:"14"`
+			Num15 int `json:"15"`
+			Num16 int `json:"16"`
+		} `json:"unenchantedItems"`
+		EmptySockets          int `json:"emptySockets"`
+		ItemsWithEmptySockets struct {
+			Num15 int `json:"15"`
+		} `json:"itemsWithEmptySockets"`
+		AppropriateArmorType   int `json:"appropriateArmorType"`
+		InappropriateArmorType struct {
+		} `json:"inappropriateArmorType"`
+		LowLevelItems struct {
+		} `json:"lowLevelItems"`
+		LowLevelThreshold   int `json:"lowLevelThreshold"`
+		MissingExtraSockets struct {
+			Num5 int `json:"5"`
+		} `json:"missingExtraSockets"`
+		RecommendedBeltBuckle struct {
+			ID          int           `json:"id"`
+			Description string        `json:"description"`
+			Name        string        `json:"name"`
+			Icon        string        `json:"icon"`
+			Stackable   int           `json:"stackable"`
+			ItemBind    int           `json:"itemBind"`
+			BonusStats  []interface{} `json:"bonusStats"`
+			ItemSpells  []struct {
+				SpellID int `json:"spellId"`
+				Spell   struct {
+					ID          int    `json:"id"`
+					Name        string `json:"name"`
+					Icon        string `json:"icon"`
+					Description string `json:"description"`
+					CastTime    string `json:"castTime"`
+				} `json:"spell"`
+				NCharges   int    `json:"nCharges"`
+				Consumable bool   `json:"consumable"`
+				CategoryID int    `json:"categoryId"`
+				Trigger    string `json:"trigger"`
+			} `json:"itemSpells"`
+			BuyPrice          int  `json:"buyPrice"`
+			ItemClass         int  `json:"itemClass"`
+			ItemSubClass      int  `json:"itemSubClass"`
+			ContainerSlots    int  `json:"containerSlots"`
+			InventoryType     int  `json:"inventoryType"`
+			Equippable        bool `json:"equippable"`
+			ItemLevel         int  `json:"itemLevel"`
+			MaxCount          int  `json:"maxCount"`
+			MaxDurability     int  `json:"maxDurability"`
+			MinFactionID      int  `json:"minFactionId"`
+			MinReputation     int  `json:"minReputation"`
+			Quality           int  `json:"quality"`
+			SellPrice         int  `json:"sellPrice"`
+			RequiredSkill     int  `json:"requiredSkill"`
+			RequiredLevel     int  `json:"requiredLevel"`
+			RequiredSkillRank int  `json:"requiredSkillRank"`
+			ItemSource        struct {
+				SourceID   int    `json:"sourceId"`
+				SourceType string `json:"sourceType"`
+			} `json:"itemSource"`
+			BaseArmor            int           `json:"baseArmor"`
+			HasSockets           bool          `json:"hasSockets"`
+			IsAuctionable        bool          `json:"isAuctionable"`
+			Armor                int           `json:"armor"`
+			DisplayInfoID        int           `json:"displayInfoId"`
+			NameDescription      string        `json:"nameDescription"`
+			NameDescriptionColor string        `json:"nameDescriptionColor"`
+			Upgradable           bool          `json:"upgradable"`
+			HeroicTooltip        bool          `json:"heroicTooltip"`
+			Context              string        `json:"context"`
+			BonusLists           []interface{} `json:"bonusLists"`
+			AvailableContexts    []string      `json:"availableContexts"`
+			BonusSummary         struct {
+				DefaultBonusLists []interface{} `json:"defaultBonusLists"`
+				ChanceBonusLists  []interface{} `json:"chanceBonusLists"`
+				BonusChances      []interface{} `json:"bonusChances"`
+			} `json:"bonusSummary"`
+			ArtifactID int `json:"artifactId"`
+		} `json:"recommendedBeltBuckle"`
+		MissingBlacksmithSockets struct {
+		} `json:"missingBlacksmithSockets"`
+		MissingEnchanterEnchants struct {
+		} `json:"missingEnchanterEnchants"`
+		MissingEngineerEnchants struct {
+			Num9  int `json:"9"`
+			Num14 int `json:"14"`
+		} `json:"missingEngineerEnchants"`
+		MissingScribeEnchants struct {
+		} `json:"missingScribeEnchants"`
+		NMissingJewelcrafterGems   int `json:"nMissingJewelcrafterGems"`
+		RecommendedJewelcrafterGem struct {
+			ID                int           `json:"id"`
+			Description       string        `json:"description"`
+			Name              string        `json:"name"`
+			Icon              string        `json:"icon"`
+			Stackable         int           `json:"stackable"`
+			ItemBind          int           `json:"itemBind"`
+			BonusStats        []interface{} `json:"bonusStats"`
+			ItemSpells        []interface{} `json:"itemSpells"`
+			BuyPrice          int           `json:"buyPrice"`
+			ItemClass         int           `json:"itemClass"`
+			ItemSubClass      int           `json:"itemSubClass"`
+			ContainerSlots    int           `json:"containerSlots"`
+			InventoryType     int           `json:"inventoryType"`
+			Equippable        bool          `json:"equippable"`
+			ItemLevel         int           `json:"itemLevel"`
+			MaxCount          int           `json:"maxCount"`
+			MaxDurability     int           `json:"maxDurability"`
+			MinFactionID      int           `json:"minFactionId"`
+			MinReputation     int           `json:"minReputation"`
+			Quality           int           `json:"quality"`
+			SellPrice         int           `json:"sellPrice"`
+			RequiredSkill     int           `json:"requiredSkill"`
+			RequiredLevel     int           `json:"requiredLevel"`
+			RequiredSkillRank int           `json:"requiredSkillRank"`
+			ItemSource        struct {
+				SourceID   int    `json:"sourceId"`
+				SourceType string `json:"sourceType"`
+			} `json:"itemSource"`
+			BaseArmor            int           `json:"baseArmor"`
+			HasSockets           bool          `json:"hasSockets"`
+			IsAuctionable        bool          `json:"isAuctionable"`
+			Armor                int           `json:"armor"`
+			DisplayInfoID        int           `json:"displayInfoId"`
+			NameDescription      string        `json:"nameDescription"`
+			NameDescriptionColor string        `json:"nameDescriptionColor"`
+			Upgradable           bool          `json:"upgradable"`
+			HeroicTooltip        bool          `json:"heroicTooltip"`
+			Context              string        `json:"context"`
+			BonusLists           []interface{} `json:"bonusLists"`
+			AvailableContexts    []string      `json:"availableContexts"`
+			BonusSummary         struct {
+				DefaultBonusLists []interface{} `json:"defaultBonusLists"`
+				ChanceBonusLists  []interface{} `json:"chanceBonusLists"`
+				BonusChances      []interface{} `json:"bonusChances"`
+			} `json:"bonusSummary"`
+			ArtifactID int `json:"artifactId"`
+		} `json:"recommendedJewelcrafterGem"`
+		MissingLeatherworkerEnchants struct {
+		} `json:"missingLeatherworkerEnchants"`
+	} `json:"audit"`
 	TotalHonorableKills int `json:"totalHonorableKills"`
 }
 

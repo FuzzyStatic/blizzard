@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:37:59
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-08 21:54:04
+ * @Last Modified time: 2018-01-13 23:04:01
  */
 
 package worldofwarcraft
@@ -704,4 +704,1023 @@ func (w *WorldOfWarcraft) GetChallengeRegionLeaderboard() (*ChallengeRegionLeade
 	}
 
 	return &challengeRegionLeaderboard, nil
+}
+
+// GetCharacterJSON gets specified character JSON information
+func (w *WorldOfWarcraft) GetCharacterJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + localeQuery +
+		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacter puts specified character info into Character structure
+func (w *WorldOfWarcraft) GetCharacter(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithAchievementsJSON gets specified character with achievements JSON information
+func (w *WorldOfWarcraft) GetCharacterWithAchievementsJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		achievementsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterWithAchievements puts character info with achievements into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithAchievements(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterWithAchievementsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithAppearanceJSON gets specified character with appearance JSON information
+func (w *WorldOfWarcraft) GetCharacterWithAppearanceJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		appearanceField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterWithAppearance puts character info with appearance into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithAppearance(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterWithAppearanceJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithFeedJSON gets specified character with feed JSON information
+func (w *WorldOfWarcraft) GetCharacterWithFeedJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		feedField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterWithFeed puts character info with feed into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithFeed(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterWithFeedJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithGuildJSON gets specified character with guild JSON information
+func (w *WorldOfWarcraft) GetCharacterWithGuildJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		guildField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterWithGuild puts character info with guild into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithGuild(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterWithGuildJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithHunterPetsJSON gets specified character with hunterPets JSON information
+func (w *WorldOfWarcraft) GetCharacterWithHunterPetsJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		hunterPetsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterWithHunterPets puts character info with hunterPets into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithHunterPets(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterWithHunterPetsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithItemsJSON gets specified character with items JSON information
+func (w *WorldOfWarcraft) GetCharacterWithItemsJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		itemsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterWithItems puts character info with items into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithItems(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterWithItemsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithMountsJSON gets specified character with mounts JSON information
+func (w *WorldOfWarcraft) GetCharacterWithMountsJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		mountsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterWithMounts puts character info with mounts into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithMounts(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterWithMountsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithPetsJSON gets specified character with pets JSON information
+func (w *WorldOfWarcraft) GetCharacterWithPetsJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		petsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterWithPets puts character info with pets into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithPets(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterWithPetsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithPetSlotsJSON gets specified character with petSlots JSON information
+func (w *WorldOfWarcraft) GetCharacterWithPetSlotsJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		petSlotsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterWithPetSlots puts character info with petSlots into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithPetSlots(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterWithPetSlotsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithProfessionsJSON gets specified character with professions JSON information
+func (w *WorldOfWarcraft) GetCharacterWithProfessionsJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		professionsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterWithProfessions puts character info with professions into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithProfessions(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterWithProfessionsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithProgressionJSON gets specified character with progression JSON information
+func (w *WorldOfWarcraft) GetCharacterWithProgressionJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		progressionField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterWithProgression puts character info with progression into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithProgression(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterWithProgressionJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithPVPJSON gets specified character with pvp JSON information
+func (w *WorldOfWarcraft) GetCharacterWithPVPJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		pvpField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterWithPVP puts character info with pvp into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithPVP(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterWithPVPJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithQuestsJSON gets specified character with quests JSON information
+func (w *WorldOfWarcraft) GetCharacterWithQuestsJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		questsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterWithQuests puts character info with quests into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithQuests(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterWithQuestsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithReputationJSON gets specified character with reputation JSON information
+func (w *WorldOfWarcraft) GetCharacterWithReputationJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		reputationField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterWithReputation puts character info with reputation into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithReputation(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterWithReputationJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithStatisticsJSON gets specified character with statistics JSON information
+func (w *WorldOfWarcraft) GetCharacterWithStatisticsJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		statisticsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterWithStatistics puts character info with statistics into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithStatistics(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterWithStatisticsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithStatsJSON gets specified character with stats JSON information
+func (w *WorldOfWarcraft) GetCharacterWithStatsJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		statsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterWithStats puts character info with stats into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithStats(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterWithStatsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithTalentsJSON gets specified character with talents JSON information
+func (w *WorldOfWarcraft) GetCharacterWithTalentsJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		talentsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterWithTalents puts character info with talents into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithTalents(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterWithTalentsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithTitlesJSON gets specified character with titles JSON information
+func (w *WorldOfWarcraft) GetCharacterWithTitlesJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		titlesField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterWithTitles puts character info with titles into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithTitles(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterWithTitlesJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithAuditJSON gets specified character with audit JSON information
+func (w *WorldOfWarcraft) GetCharacterWithAuditJSON(realm, characterName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
+		auditField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterWithAudit puts character info with audit into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithAudit(realm, characterName string) (*Character, error) {
+	var (
+		character Character
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetCharacterWithAuditJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
+}
+
+// GetCharacterWithAll puts character info with all fields into Character structure
+func (w *WorldOfWarcraft) GetCharacterWithAll(realm, characterName string) (*Character, error) {
+	var (
+		character    Character
+		achievements *[]byte
+		appearance   *[]byte
+		feed         *[]byte
+		guild        *[]byte
+		hunterPets   *[]byte
+		items        *[]byte
+		mounts       *[]byte
+		pets         *[]byte
+		petSlots     *[]byte
+		professions  *[]byte
+		progression  *[]byte
+		pvp          *[]byte
+		quests       *[]byte
+		reputation   *[]byte
+		statistics   *[]byte
+		stats        *[]byte
+		talents      *[]byte
+		titles       *[]byte
+		audit        *[]byte
+		err          error
+	)
+
+	achievements, err = w.GetCharacterWithAchievementsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(achievements, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	appearance, err = w.GetCharacterWithAppearanceJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(appearance, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	feed, err = w.GetCharacterWithFeedJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(feed, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	guild, err = w.GetCharacterWithGuildJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(guild, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	hunterPets, err = w.GetCharacterWithHunterPetsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(hunterPets, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	items, err = w.GetCharacterWithItemsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(items, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	mounts, err = w.GetCharacterWithMountsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(mounts, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	pets, err = w.GetCharacterWithPetsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(pets, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	petSlots, err = w.GetCharacterWithPetSlotsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(petSlots, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	professions, err = w.GetCharacterWithProfessionsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(professions, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	progression, err = w.GetCharacterWithProgressionJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(progression, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	pvp, err = w.GetCharacterWithPVPJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(pvp, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	quests, err = w.GetCharacterWithQuestsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(quests, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	reputation, err = w.GetCharacterWithReputationJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(reputation, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	statistics, err = w.GetCharacterWithStatisticsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(statistics, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	stats, err = w.GetCharacterWithStatsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(stats, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	talents, err = w.GetCharacterWithTalentsJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(talents, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	titles, err = w.GetCharacterWithTitlesJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(titles, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	audit, err = w.GetCharacterWithAuditJSON(realm, characterName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(audit, &character)
+	if err != nil {
+		return nil, err
+	}
+
+	return &character, nil
 }
