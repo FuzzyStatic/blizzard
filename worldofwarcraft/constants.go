@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:20
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-15 12:28:50
+ * @Last Modified time: 2018-01-15 12:58:09
  */
 
 package worldofwarcraft
@@ -32,6 +32,7 @@ const (
 	statsPath          = "/stats"
 	statusPath         = "/status"
 	tokenPath          = "/token"
+	zonePath           = "/zone"
 	accessTokenQuery   = "access_token="
 	apiKeyQuery        = "apikey="
 	breedIDQuery       = "breedId="

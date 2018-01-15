@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:06
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-15 12:34:34
+ * @Last Modified time: 2018-01-15 13:06:39
  */
 
 package worldofwarcraft
@@ -1242,4 +1242,46 @@ func TestGetSpell(t *testing.T) {
 
 	fmt.Println(string(*spellJSON))
 	fmt.Println(*spell)
+}
+
+func TestGetZoneIndex(t *testing.T) {
+	var (
+		zoneIndexJSON *[]byte
+		zoneIndex     *ZoneIndex
+		err           error
+	)
+
+	zoneIndexJSON, err = w.GetZoneIndexJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	zoneIndex, err = w.GetZoneIndex()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*zoneIndexJSON))
+	fmt.Println(*zoneIndex)
+}
+
+func TestGetZone(t *testing.T) {
+	var (
+		zoneJSON *[]byte
+		zone     *Zone
+		err      error
+	)
+
+	zoneJSON, err = w.GetZoneJSON(4131)
+	if err != nil {
+		t.Fail()
+	}
+
+	zone, err = w.GetZone(4131)
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*zoneJSON))
+	fmt.Println(*zone)
 }

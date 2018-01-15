@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:37:59
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-15 12:30:02
+ * @Last Modified time: 2018-01-15 13:05:44
  */
 
 // Package worldofwarcraft is a client library to use Blizzard World of Warcraft API calls.
@@ -10,7 +10,6 @@ package worldofwarcraft
 
 import (
 	"errors"
-	"fmt"
 	"strconv"
 
 	"github.com/FuzzyStatic/blizzard"
@@ -441,8 +440,6 @@ func (w *WorldOfWarcraft) GetAchievementJSON(achievementID int) (*[]byte, error)
 
 	url = w.CommunityURL + achievementPath + "/" + strconv.Itoa(achievementID) + "?" + localeQuery +
 		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
-
-	fmt.Println(url)
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
@@ -2392,4 +2389,84 @@ func (w *WorldOfWarcraft) GetSpell(spellID int) (*Spell, error) {
 	}
 
 	return &spell, nil
+}
+
+// GetZoneIndexJSON gets zone JSON information
+func (w *WorldOfWarcraft) GetZoneIndexJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + zonePath + "/?" + localeQuery + w.Locale + "&" + apiKeyQuery +
+		w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetZoneIndex puts zone info into ZoneIndex structure
+func (w *WorldOfWarcraft) GetZoneIndex() (*ZoneIndex, error) {
+	var (
+		zoneIndex ZoneIndex
+		json      *[]byte
+		err       error
+	)
+
+	json, err = w.GetZoneIndexJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &zoneIndex)
+	if err != nil {
+		return nil, err
+	}
+
+	return &zoneIndex, nil
+}
+
+// GetZoneJSON gets pet zone JSON information
+func (w *WorldOfWarcraft) GetZoneJSON(zoneID int) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + zonePath + "/" + strconv.Itoa(zoneID) + "?" + localeQuery +
+		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetZone puts pet zone info into Zone structure
+func (w *WorldOfWarcraft) GetZone(zoneID int) (*Zone, error) {
+	var (
+		zone Zone
+		json *[]byte
+		err  error
+	)
+
+	json, err = w.GetZoneJSON(zoneID)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &zone)
+	if err != nil {
+		return nil, err
+	}
+
+	return &zone, nil
 }
