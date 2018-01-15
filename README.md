@@ -4,7 +4,7 @@
 
 This is a Go client library for gathering Blizzard API game data.
 
-### Game APIs
+### Game Client Libraries
 
 [Diablo 3](https://github.com/FuzzyStatic/blizzard/tree/master/diablo3)
 
