@@ -2,17 +2,18 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:39:22
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-14 21:05:59
+ * @Last Modified time: 2018-01-14 21:09:01
  */
 
 // Package diablo3 is an API to use Blizzard Diablo 3 API calls.
 package diablo3
 
 import (
-	"blizzard"
 	"errors"
 	"strconv"
 	"strings"
+
+	"github.com/FuzzyStatic/blizzard"
 )
 
 // Diablo3 regional API URLs, locale, access token, api key
