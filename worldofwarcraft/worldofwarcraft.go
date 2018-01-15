@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:37:59
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-15 11:32:15
+ * @Last Modified time: 2018-01-15 12:30:02
  */
 
 // Package worldofwarcraft is a client library to use Blizzard World of Warcraft API calls.
@@ -1913,8 +1913,8 @@ func (w *WorldOfWarcraft) GetMountIndex() (*MountIndex, error) {
 	return &mountIndex, nil
 }
 
-// GetPetJSON gets pet JSON information
-func (w *WorldOfWarcraft) GetPetJSON() (*[]byte, error) {
+// GetPetIndexJSON gets pet JSON information
+func (w *WorldOfWarcraft) GetPetIndexJSON() (*[]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1931,25 +1931,25 @@ func (w *WorldOfWarcraft) GetPetJSON() (*[]byte, error) {
 	return &json, nil
 }
 
-// GetPet puts pet info into Pet structure
-func (w *WorldOfWarcraft) GetPet() (*Pet, error) {
+// GetPetIndex puts pet info into PetIndex structure
+func (w *WorldOfWarcraft) GetPetIndex() (*PetIndex, error) {
 	var (
-		pet  Pet
-		json *[]byte
-		err  error
+		petIndex PetIndex
+		json     *[]byte
+		err      error
 	)
 
-	json, err = w.GetPetJSON()
+	json, err = w.GetPetIndexJSON()
 	if err != nil {
 		return nil, err
 	}
 
-	err = blizzard.GetStruct(json, &pet)
+	err = blizzard.GetStruct(json, &petIndex)
 	if err != nil {
 		return nil, err
 	}
 
-	return &pet, nil
+	return &petIndex, nil
 }
 
 // GetPetAbilityJSON gets pet ability JSON information
@@ -2232,4 +2232,164 @@ func (w *WorldOfWarcraft) GetRBGLeaderboard() (*Leaderboard, error) {
 	}
 
 	return &leaderboard, nil
+}
+
+// GetQuestJSON gets pet quest JSON information
+func (w *WorldOfWarcraft) GetQuestJSON(questID int) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + questPath + "/" + strconv.Itoa(questID) + "?" + localeQuery +
+		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetQuest puts pet quest info into Quest structure
+func (w *WorldOfWarcraft) GetQuest(questID int) (*Quest, error) {
+	var (
+		quest Quest
+		json  *[]byte
+		err   error
+	)
+
+	json, err = w.GetQuestJSON(questID)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &quest)
+	if err != nil {
+		return nil, err
+	}
+
+	return &quest, nil
+}
+
+// GetRealmStatusJSON gets realm status JSON information
+func (w *WorldOfWarcraft) GetRealmStatusJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + realmPath + statusPath + "?" + localeQuery + w.Locale + "&" +
+		apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetRealmStatus puts realm status info into RealmStatus structure
+func (w *WorldOfWarcraft) GetRealmStatus() (*RealmStatus, error) {
+	var (
+		realmStatus RealmStatus
+		json        *[]byte
+		err         error
+	)
+
+	json, err = w.GetRealmStatusJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &realmStatus)
+	if err != nil {
+		return nil, err
+	}
+
+	return &realmStatus, nil
+}
+
+// GetRecipeJSON gets pet recipe JSON information
+func (w *WorldOfWarcraft) GetRecipeJSON(recipeID int) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + recipePath + "/" + strconv.Itoa(recipeID) + "?" + localeQuery +
+		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetRecipe puts pet recipe info into Recipe structure
+func (w *WorldOfWarcraft) GetRecipe(recipeID int) (*Recipe, error) {
+	var (
+		recipe Recipe
+		json   *[]byte
+		err    error
+	)
+
+	json, err = w.GetRecipeJSON(recipeID)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &recipe)
+	if err != nil {
+		return nil, err
+	}
+
+	return &recipe, nil
+}
+
+// GetSpellJSON gets pet spell JSON information
+func (w *WorldOfWarcraft) GetSpellJSON(spellID int) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + spellPath + "/" + strconv.Itoa(spellID) + "?" + localeQuery +
+		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetSpell puts pet spell info into Spell structure
+func (w *WorldOfWarcraft) GetSpell(spellID int) (*Spell, error) {
+	var (
+		spell Spell
+		json  *[]byte
+		err   error
+	)
+
+	json, err = w.GetSpellJSON(spellID)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &spell)
+	if err != nil {
+		return nil, err
+	}
+
+	return &spell, nil
 }

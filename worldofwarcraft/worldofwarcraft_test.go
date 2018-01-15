@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:06
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-15 11:32:31
+ * @Last Modified time: 2018-01-15 12:34:34
  */
 
 package worldofwarcraft
@@ -992,25 +992,25 @@ func TestGetMountIndex(t *testing.T) {
 	fmt.Println(*mountIndex)
 }
 
-func TestGetPet(t *testing.T) {
+func TestGetPetIndex(t *testing.T) {
 	var (
-		petJSON *[]byte
-		pet     *Pet
-		err     error
+		petIndexJSON *[]byte
+		petIndex     *PetIndex
+		err          error
 	)
 
-	petJSON, err = w.GetPetJSON()
+	petIndexJSON, err = w.GetPetIndexJSON()
 	if err != nil {
 		t.Fail()
 	}
 
-	pet, err = w.GetPet()
+	petIndex, err = w.GetPetIndex()
 	if err != nil {
 		t.Fail()
 	}
 
-	fmt.Println(string(*petJSON))
-	fmt.Println(*pet)
+	fmt.Println(string(*petIndexJSON))
+	fmt.Println(*petIndex)
 }
 
 func TestGetPetAbility(t *testing.T) {
@@ -1158,4 +1158,88 @@ func TestGetRBGLeaderboard(t *testing.T) {
 
 	fmt.Println(string(*leaderboardJSON))
 	fmt.Println(*leaderboard)
+}
+
+func TestGetQuest(t *testing.T) {
+	var (
+		questJSON *[]byte
+		quest     *Quest
+		err       error
+	)
+
+	questJSON, err = w.GetQuestJSON(13146)
+	if err != nil {
+		t.Fail()
+	}
+
+	quest, err = w.GetQuest(13146)
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*questJSON))
+	fmt.Println(*quest)
+}
+
+func TestGetRealmStatus(t *testing.T) {
+	var (
+		realmStatusJSON *[]byte
+		realmStatus     *RealmStatus
+		err             error
+	)
+
+	realmStatusJSON, err = w.GetRealmStatusJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	realmStatus, err = w.GetRealmStatus()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*realmStatusJSON))
+	fmt.Println(*realmStatus)
+}
+
+func TestGetRecipe(t *testing.T) {
+	var (
+		recipeJSON *[]byte
+		recipe     *Recipe
+		err        error
+	)
+
+	recipeJSON, err = w.GetRecipeJSON(33994)
+	if err != nil {
+		t.Fail()
+	}
+
+	recipe, err = w.GetRecipe(33994)
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*recipeJSON))
+	fmt.Println(*recipe)
+}
+
+func TestGetSpell(t *testing.T) {
+	var (
+		spellJSON *[]byte
+		spell     *Spell
+		err       error
+	)
+
+	spellJSON, err = w.GetSpellJSON(4900)
+	if err != nil {
+		t.Fail()
+	}
+
+	spell, err = w.GetSpell(4900)
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*spellJSON))
+	fmt.Println(*spell)
 }
