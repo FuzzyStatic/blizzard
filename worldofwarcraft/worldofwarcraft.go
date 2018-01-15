@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:37:59
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-14 18:26:32
+ * @Last Modified time: 2018-01-14 20:30:32
  */
 
 package worldofwarcraft
@@ -1549,4 +1549,245 @@ func (w *WorldOfWarcraft) GetCharacterWithAll(realm, characterName string) (*Cha
 	}
 
 	return &character, nil
+}
+
+// GetGuildJSON gets specified guild JSON information
+func (w *WorldOfWarcraft) GetGuildJSON(realm, guildName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + guildPath + "/" + realm + "/" + guildName + "?" + localeQuery +
+		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetGuild puts guild info into Guild structure
+func (w *WorldOfWarcraft) GetGuild(realm, guildName string) (*Guild, error) {
+	var (
+		guild Guild
+		json  *[]byte
+		err   error
+	)
+
+	json, err = w.GetGuildJSON(realm, guildName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &guild)
+	if err != nil {
+		return nil, err
+	}
+
+	return &guild, nil
+}
+
+// GetGuildWithMembersJSON gets specified guild with members JSON information
+func (w *WorldOfWarcraft) GetGuildWithMembersJSON(realm, guildName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + guildPath + "/" + realm + "/" + guildName + "?" + fieldsQuery +
+		membersField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetGuildWithMembers puts guild info with members into Guild structure
+func (w *WorldOfWarcraft) GetGuildWithMembers(realm, guildName string) (*Guild, error) {
+	var (
+		guild Guild
+		json  *[]byte
+		err   error
+	)
+
+	json, err = w.GetGuildWithMembersJSON(realm, guildName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &guild)
+	if err != nil {
+		return nil, err
+	}
+
+	return &guild, nil
+}
+
+// GetGuildWithAchievementsJSON gets specified guild with achievements JSON information
+func (w *WorldOfWarcraft) GetGuildWithAchievementsJSON(realm, guildName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + guildPath + "/" + realm + "/" + guildName + "?" + fieldsQuery +
+		achievementsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetGuildWithAchievements puts guild info with achievements into Guild structure
+func (w *WorldOfWarcraft) GetGuildWithAchievements(realm, guildName string) (*Guild, error) {
+	var (
+		guild Guild
+		json  *[]byte
+		err   error
+	)
+
+	json, err = w.GetGuildWithAchievementsJSON(realm, guildName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &guild)
+	if err != nil {
+		return nil, err
+	}
+
+	return &guild, nil
+}
+
+// GetGuildWithNewsJSON gets specified guild with news JSON information
+func (w *WorldOfWarcraft) GetGuildWithNewsJSON(realm, guildName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + guildPath + "/" + realm + "/" + guildName + "?" + fieldsQuery +
+		newsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetGuildWithNews puts guild info with news into Guild structure
+func (w *WorldOfWarcraft) GetGuildWithNews(realm, guildName string) (*Guild, error) {
+	var (
+		guild Guild
+		json  *[]byte
+		err   error
+	)
+
+	json, err = w.GetGuildWithNewsJSON(realm, guildName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &guild)
+	if err != nil {
+		return nil, err
+	}
+
+	return &guild, nil
+}
+
+// GetGuildWithChallengeJSON gets specified guild with challenge JSON information
+func (w *WorldOfWarcraft) GetGuildWithChallengeJSON(realm, guildName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + guildPath + "/" + realm + "/" + guildName + "?" + fieldsQuery +
+		challengeField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetGuildWithChallenge puts guild info with challenge into Guild structure
+func (w *WorldOfWarcraft) GetGuildWithChallenge(realm, guildName string) (*Guild, error) {
+	var (
+		guild Guild
+		json  *[]byte
+		err   error
+	)
+
+	json, err = w.GetGuildWithChallengeJSON(realm, guildName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &guild)
+	if err != nil {
+		return nil, err
+	}
+
+	return &guild, nil
+}
+
+// GetGuildWithAllJSON gets specified guild with all fields JSON information
+func (w *WorldOfWarcraft) GetGuildWithAllJSON(realm, guildName string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + guildPath + "/" + realm + "/" + guildName + "?" + fieldsQuery +
+		membersField + "," + achievementsField + "," + newsField + "," + challengeField + "&" +
+		localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetGuildWithAll puts guild info with all into Guild structure
+func (w *WorldOfWarcraft) GetGuildWithAll(realm, guildName string) (*Guild, error) {
+	var (
+		guild Guild
+		json  *[]byte
+		err   error
+	)
+
+	json, err = w.GetGuildWithAllJSON(realm, guildName)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &guild)
+	if err != nil {
+		return nil, err
+	}
+
+	return &guild, nil
 }

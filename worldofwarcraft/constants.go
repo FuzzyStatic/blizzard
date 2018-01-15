@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:20
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-13 22:47:15
+ * @Last Modified time: 2018-01-14 20:23:26
  */
 
 package worldofwarcraft
@@ -14,6 +14,7 @@ const (
 	challengePath      = "/challenge"
 	characterPath      = "/character"
 	connectedRealmPath = "/connected-realm"
+	guildPath          = "/guild"
 	mythicLeaderPath   = "/mythic-leaderboard"
 	periodPath         = "/period"
 	realmPath          = "/realm"
@@ -26,11 +27,15 @@ const (
 	localeQuery        = "locale="
 	achievementsField  = "achievements"
 	appearanceField    = "appearance"
+	auditField         = "audit"
+	challengeField     = "challenge"
 	feedField          = "feed"
 	guildField         = "guild"
 	hunterPetsField    = "hunterPets"
 	itemsField         = "items"
+	membersField       = "members"
 	mountsField        = "mounts"
+	newsField          = "news"
 	petsField          = "pets"
 	petSlotsField      = "petSlots"
 	professionsField   = "professions"
@@ -42,5 +47,4 @@ const (
 	statsField         = "stats"
 	talentsField       = "talents"
 	titlesField        = "titles"
-	auditField         = "audit"
 )

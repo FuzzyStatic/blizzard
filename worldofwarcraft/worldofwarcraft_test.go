@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:06
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-14 18:27:04
+ * @Last Modified time: 2018-01-14 20:32:19
  */
 
 package worldofwarcraft
@@ -801,4 +801,130 @@ func TestGetCharacterWithAll(t *testing.T) {
 
 	fmt.Println(string(*characterJSON))
 	fmt.Println(*character)
+}
+
+func TestGetGuild(t *testing.T) {
+	var (
+		guildJSON *[]byte
+		guild     *Guild
+		err       error
+	)
+
+	guildJSON, err = w.GetGuildJSON("illidan", "limit")
+	if err != nil {
+		t.Fail()
+	}
+
+	guild, err = w.GetGuild("illidan", "limit")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*guildJSON))
+	fmt.Println(*guild)
+}
+
+func TestGetGuildWithMembers(t *testing.T) {
+	var (
+		guildJSON *[]byte
+		guild     *Guild
+		err       error
+	)
+
+	guildJSON, err = w.GetGuildWithMembersJSON("illidan", "limit")
+	if err != nil {
+		t.Fail()
+	}
+
+	guild, err = w.GetGuildWithMembers("illidan", "limit")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*guildJSON))
+	fmt.Println(*guild)
+}
+
+func TestGetGuildWithAchievements(t *testing.T) {
+	var (
+		guildJSON *[]byte
+		guild     *Guild
+		err       error
+	)
+
+	guildJSON, err = w.GetGuildWithAchievementsJSON("illidan", "limit")
+	if err != nil {
+		t.Fail()
+	}
+
+	guild, err = w.GetGuildWithAchievements("illidan", "limit")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*guildJSON))
+	fmt.Println(*guild)
+}
+
+func TestGetGuildWithNews(t *testing.T) {
+	var (
+		guildJSON *[]byte
+		guild     *Guild
+		err       error
+	)
+
+	guildJSON, err = w.GetGuildWithNewsJSON("illidan", "limit")
+	if err != nil {
+		t.Fail()
+	}
+
+	guild, err = w.GetGuildWithNews("illidan", "limit")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*guildJSON))
+	fmt.Println(*guild)
+}
+
+func TestGetGuildWithChallenge(t *testing.T) {
+	var (
+		guildJSON *[]byte
+		guild     *Guild
+		err       error
+	)
+
+	guildJSON, err = w.GetGuildWithChallengeJSON("illidan", "limit")
+	if err != nil {
+		t.Fail()
+	}
+
+	guild, err = w.GetGuildWithChallenge("illidan", "limit")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*guildJSON))
+	fmt.Println(*guild)
+}
+
+func TestGetGuildWithAll(t *testing.T) {
+	var (
+		guildJSON *[]byte
+		guild     *Guild
+		err       error
+	)
+
+	guildJSON, err = w.GetGuildWithAllJSON("illidan", "limit")
+	if err != nil {
+		t.Fail()
+	}
+
+	guild, err = w.GetGuildWithAll("illidan", "limit")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*guildJSON))
+	fmt.Println(*guild)
 }
