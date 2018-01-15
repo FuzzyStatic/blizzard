@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:20
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-14 22:13:23
+ * @Last Modified time: 2018-01-15 10:48:42
  */
 
 package worldofwarcraft
@@ -17,6 +17,7 @@ const (
 	connectedRealmPath = "/connected-realm"
 	guildPath          = "/guild"
 	itemPath           = "/item"
+	leaderboardPath    = "/leaderboard"
 	mountPath          = "/mount"
 	mythicLeaderPath   = "/mythic-leaderboard"
 	periodPath         = "/period"

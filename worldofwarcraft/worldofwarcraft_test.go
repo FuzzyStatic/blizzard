@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:06
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-14 22:16:51
+ * @Last Modified time: 2018-01-15 11:32:31
  */
 
 package worldofwarcraft
@@ -1074,4 +1074,88 @@ func TestGetPetStats(t *testing.T) {
 
 	fmt.Println(string(*petStatsJSON))
 	fmt.Println(*petStats)
+}
+
+func TestGet2v2Leaderboard(t *testing.T) {
+	var (
+		leaderboardJSON *[]byte
+		leaderboard     *Leaderboard
+		err             error
+	)
+
+	leaderboardJSON, err = w.Get2v2LeaderboardJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	leaderboard, err = w.Get2v2Leaderboard()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*leaderboardJSON))
+	fmt.Println(*leaderboard)
+}
+
+func TestGet3v3Leaderboard(t *testing.T) {
+	var (
+		leaderboardJSON *[]byte
+		leaderboard     *Leaderboard
+		err             error
+	)
+
+	leaderboardJSON, err = w.Get3v3LeaderboardJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	leaderboard, err = w.Get3v3Leaderboard()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*leaderboardJSON))
+	fmt.Println(*leaderboard)
+}
+
+func TestGet5v5Leaderboard(t *testing.T) {
+	var (
+		leaderboardJSON *[]byte
+		leaderboard     *Leaderboard
+		err             error
+	)
+
+	leaderboardJSON, err = w.Get5v5LeaderboardJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	leaderboard, err = w.Get5v5Leaderboard()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*leaderboardJSON))
+	fmt.Println(*leaderboard)
+}
+
+func TestGetRBGLeaderboard(t *testing.T) {
+	var (
+		leaderboardJSON *[]byte
+		leaderboard     *Leaderboard
+		err             error
+	)
+
+	leaderboardJSON, err = w.GetRBGLeaderboardJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	leaderboard, err = w.GetRBGLeaderboard()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*leaderboardJSON))
+	fmt.Println(*leaderboard)
 }

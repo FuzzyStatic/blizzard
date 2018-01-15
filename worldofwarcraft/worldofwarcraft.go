@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:37:59
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-15 08:37:20
+ * @Last Modified time: 2018-01-15 11:32:15
  */
 
 // Package worldofwarcraft is a client library to use Blizzard World of Warcraft API calls.
@@ -2072,4 +2072,164 @@ func (w *WorldOfWarcraft) GetPetStats(speciesID, level, breedID, qualityID int) 
 	}
 
 	return &petStats, nil
+}
+
+// Get2v2LeaderboardJSON gets 2v2 PvP leaderboard JSON information
+func (w *WorldOfWarcraft) Get2v2LeaderboardJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + leaderboardPath + "/2v2?" + localeQuery + w.Locale + "&" +
+		apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// Get2v2Leaderboard puts 2v2 PvP leaderboard info into Leaderboard structure
+func (w *WorldOfWarcraft) Get2v2Leaderboard() (*Leaderboard, error) {
+	var (
+		leaderboard Leaderboard
+		json        *[]byte
+		err         error
+	)
+
+	json, err = w.Get2v2LeaderboardJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &leaderboard)
+	if err != nil {
+		return nil, err
+	}
+
+	return &leaderboard, nil
+}
+
+// Get3v3LeaderboardJSON gets 3v3 PvP leaderboard JSON information
+func (w *WorldOfWarcraft) Get3v3LeaderboardJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + leaderboardPath + "/3v3?" + localeQuery + w.Locale + "&" +
+		apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// Get3v3Leaderboard puts 3v3 PvP leaderboard info into Leaderboard structure
+func (w *WorldOfWarcraft) Get3v3Leaderboard() (*Leaderboard, error) {
+	var (
+		leaderboard Leaderboard
+		json        *[]byte
+		err         error
+	)
+
+	json, err = w.Get3v3LeaderboardJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &leaderboard)
+	if err != nil {
+		return nil, err
+	}
+
+	return &leaderboard, nil
+}
+
+// Get5v5LeaderboardJSON gets 5v5 PvP leaderboard JSON information
+func (w *WorldOfWarcraft) Get5v5LeaderboardJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + leaderboardPath + "/5v5?" + localeQuery + w.Locale + "&" +
+		apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// Get5v5Leaderboard puts 5v5 PvP leaderboard info into Leaderboard structure
+func (w *WorldOfWarcraft) Get5v5Leaderboard() (*Leaderboard, error) {
+	var (
+		leaderboard Leaderboard
+		json        *[]byte
+		err         error
+	)
+
+	json, err = w.Get5v5LeaderboardJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &leaderboard)
+	if err != nil {
+		return nil, err
+	}
+
+	return &leaderboard, nil
+}
+
+// GetRBGLeaderboardJSON gets RBG PvP leaderboard JSON information
+func (w *WorldOfWarcraft) GetRBGLeaderboardJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + leaderboardPath + "/rbg?" + localeQuery + w.Locale + "&" +
+		apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetRBGLeaderboard puts RBG PvP leaderboard info into Leaderboard structure
+func (w *WorldOfWarcraft) GetRBGLeaderboard() (*Leaderboard, error) {
+	var (
+		leaderboard Leaderboard
+		json        *[]byte
+		err         error
+	)
+
+	json, err = w.GetRBGLeaderboardJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &leaderboard)
+	if err != nil {
+		return nil, err
+	}
+
+	return &leaderboard, nil
 }
