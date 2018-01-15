@@ -1,5 +1,5 @@
 
-# go-blizzard/diablo3
+# blizzard/diablo3
 
 This is a Go client library for gathering Blizzard Diablo 3 API data.
 
