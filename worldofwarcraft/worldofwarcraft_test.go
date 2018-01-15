@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:06
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-14 20:32:19
+ * @Last Modified time: 2018-01-14 20:45:49
  */
 
 package worldofwarcraft
@@ -927,4 +927,46 @@ func TestGetGuildWithAll(t *testing.T) {
 
 	fmt.Println(string(*guildJSON))
 	fmt.Println(*guild)
+}
+
+func TestGetItem(t *testing.T) {
+	var (
+		itemJSON *[]byte
+		item     *Item
+		err      error
+	)
+
+	itemJSON, err = w.GetItemJSON(18803)
+	if err != nil {
+		t.Fail()
+	}
+
+	item, err = w.GetItem(18803)
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*itemJSON))
+	fmt.Println(*item)
+}
+
+func TestGetSet(t *testing.T) {
+	var (
+		setJSON *[]byte
+		set     *Set
+		err     error
+	)
+
+	setJSON, err = w.GetSetJSON(1060)
+	if err != nil {
+		t.Fail()
+	}
+
+	set, err = w.GetSet(1060)
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*setJSON))
+	fmt.Println(*set)
 }

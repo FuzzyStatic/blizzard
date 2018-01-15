@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:37:59
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-14 20:30:32
+ * @Last Modified time: 2018-01-14 20:46:16
  */
 
 package worldofwarcraft
@@ -1790,4 +1790,84 @@ func (w *WorldOfWarcraft) GetGuildWithAll(realm, guildName string) (*Guild, erro
 	}
 
 	return &guild, nil
+}
+
+// GetItemJSON gets specified item JSON information
+func (w *WorldOfWarcraft) GetItemJSON(itemID int) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + itemPath + "/" + strconv.Itoa(itemID) + "?" + localeQuery +
+		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetItem puts item info into Item structure
+func (w *WorldOfWarcraft) GetItem(itemID int) (*Item, error) {
+	var (
+		item Item
+		json *[]byte
+		err  error
+	)
+
+	json, err = w.GetItemJSON(itemID)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &item)
+	if err != nil {
+		return nil, err
+	}
+
+	return &item, nil
+}
+
+// GetSetJSON gets specified set JSON information
+func (w *WorldOfWarcraft) GetSetJSON(setID int) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + itemPath + setPath + "/" + strconv.Itoa(setID) + "?" +
+		localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetSet puts set info into Set structure
+func (w *WorldOfWarcraft) GetSet(setID int) (*Set, error) {
+	var (
+		set  Set
+		json *[]byte
+		err  error
+	)
+
+	json, err = w.GetSetJSON(setID)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &set)
+	if err != nil {
+		return nil, err
+	}
+
+	return &set, nil
 }
