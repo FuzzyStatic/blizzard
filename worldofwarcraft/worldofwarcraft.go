@@ -2,9 +2,10 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:37:59
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-14 21:01:54
+ * @Last Modified time: 2018-01-14 21:06:11
  */
 
+// Package worldofwarcraft is an API to use Blizzard World of Warcraft API calls.
 package worldofwarcraft
 
 import (
