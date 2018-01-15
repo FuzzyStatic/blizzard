@@ -2,16 +2,16 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:39:33
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-14 21:01:45
+ * @Last Modified time: 2018-01-14 21:18:01
  */
 
 package diablo3
 
 import (
-	"blizzard"
 	"fmt"
 	"testing"
 
+	"github.com/FuzzyStatic/blizzard"
 	"github.com/spf13/viper"
 )
 
