@@ -18,7 +18,7 @@ w = New(
 )
 ```
 
-### Polling data
+### Fetching data
 
 Now you can fetch data from the World of Warcraft API. 
 
