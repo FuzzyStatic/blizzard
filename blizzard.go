@@ -2,11 +2,11 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:40:31
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-14 20:51:09
+ * @Last Modified time: 2018-01-14 20:52:55
  */
 
 // Package blizzard is the top level API needed to use the
-// API calls for Blizzrd games within the subpackages
+// API calls for Blizzard games within the subpackages.
 package blizzard
 
 import (
