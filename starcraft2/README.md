@@ -1,4 +1,4 @@
-# go-blizzard/worldofwarcraft
+# blizzard/starcraft2
 
 This is a Go client library for gathering Blizzard Starcraft 2 API data.
 
