@@ -19,9 +19,9 @@ d = New(
 )
 ```
 
-### Polling data
+### Fetching data
 
-Now you can poll data for the Diablo 3 API. For example, you can get all the data for a specific season:
+Now you can fetch data from the Diablo 3 API. For example, you can get all the data for a specific season:
 
 ```go
 seasonIndex, err := d.GetSeasonIndex()
