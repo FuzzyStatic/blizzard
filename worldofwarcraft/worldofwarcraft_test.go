@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:06
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-14 21:17:51
+ * @Last Modified time: 2018-01-14 22:16:51
  */
 
 package worldofwarcraft
@@ -971,23 +971,107 @@ func TestGetSet(t *testing.T) {
 	fmt.Println(*set)
 }
 
-func TestGetMount(t *testing.T) {
+func TestGetMountIndex(t *testing.T) {
 	var (
-		mountJSON *[]byte
-		mount     *Mount
-		err       error
+		mountIndexJSON *[]byte
+		mountIndex     *MountIndex
+		err            error
 	)
 
-	mountJSON, err = w.GetMountJSON()
+	mountIndexJSON, err = w.GetMountIndexJSON()
 	if err != nil {
 		t.Fail()
 	}
 
-	mount, err = w.GetMount()
+	mountIndex, err = w.GetMountIndex()
 	if err != nil {
 		t.Fail()
 	}
 
-	fmt.Println(string(*mountJSON))
-	fmt.Println(*mount)
+	fmt.Println(string(*mountIndexJSON))
+	fmt.Println(*mountIndex)
+}
+
+func TestGetPet(t *testing.T) {
+	var (
+		petJSON *[]byte
+		pet     *Pet
+		err     error
+	)
+
+	petJSON, err = w.GetPetJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	pet, err = w.GetPet()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*petJSON))
+	fmt.Println(*pet)
+}
+
+func TestGetPetAbility(t *testing.T) {
+	var (
+		petAbilityJSON *[]byte
+		petAbility     *PetAbility
+		err            error
+	)
+
+	petAbilityJSON, err = w.GetPetAbilityJSON(640)
+	if err != nil {
+		t.Fail()
+	}
+
+	petAbility, err = w.GetPetAbility(640)
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*petAbilityJSON))
+	fmt.Println(*petAbility)
+}
+
+func TestGetPetSpecies(t *testing.T) {
+	var (
+		petSpeciesJSON *[]byte
+		petSpecies     *PetSpecies
+		err            error
+	)
+
+	petSpeciesJSON, err = w.GetPetSpeciesJSON(258)
+	if err != nil {
+		t.Fail()
+	}
+
+	petSpecies, err = w.GetPetSpecies(258)
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*petSpeciesJSON))
+	fmt.Println(*petSpecies)
+}
+
+func TestGetPetStats(t *testing.T) {
+	var (
+		petStatsJSON *[]byte
+		petStats     *PetStats
+		err          error
+	)
+
+	petStatsJSON, err = w.GetPetStatsJSON(258, 25, 5, 4)
+	if err != nil {
+		t.Fail()
+	}
+
+	petStats, err = w.GetPetStats(258, 25, 5, 4)
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*petStatsJSON))
+	fmt.Println(*petStats)
 }

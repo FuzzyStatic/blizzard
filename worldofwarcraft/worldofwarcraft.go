@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:37:59
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-14 21:13:40
+ * @Last Modified time: 2018-01-14 22:16:16
  */
 
 // Package worldofwarcraft is an API to use Blizzard World of Warcraft API calls.
@@ -1911,4 +1911,165 @@ func (w *WorldOfWarcraft) GetMountIndex() (*MountIndex, error) {
 	}
 
 	return &mountIndex, nil
+}
+
+// GetPetJSON gets pet JSON information
+func (w *WorldOfWarcraft) GetPetJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + petPath + "/?" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetPet puts pet info into Pet structure
+func (w *WorldOfWarcraft) GetPet() (*Pet, error) {
+	var (
+		pet  Pet
+		json *[]byte
+		err  error
+	)
+
+	json, err = w.GetPetJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &pet)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pet, nil
+}
+
+// GetPetAbilityJSON gets pet ability JSON information
+func (w *WorldOfWarcraft) GetPetAbilityJSON(abilityID int) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + petPath + abilityPath + "/" + strconv.Itoa(abilityID) + "?" +
+		localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetPetAbility puts pet ability info into PetAbility structure
+func (w *WorldOfWarcraft) GetPetAbility(abilityID int) (*PetAbility, error) {
+	var (
+		petAbility PetAbility
+		json       *[]byte
+		err        error
+	)
+
+	json, err = w.GetPetAbilityJSON(abilityID)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &petAbility)
+	if err != nil {
+		return nil, err
+	}
+
+	return &petAbility, nil
+}
+
+// GetPetSpeciesJSON gets pet species JSON information
+func (w *WorldOfWarcraft) GetPetSpeciesJSON(speciesID int) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + petPath + speciesPath + "/" + strconv.Itoa(speciesID) + "?" +
+		localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetPetSpecies puts pet species info into PetSpecies structure
+func (w *WorldOfWarcraft) GetPetSpecies(speciesID int) (*PetSpecies, error) {
+	var (
+		petSpecies PetSpecies
+		json       *[]byte
+		err        error
+	)
+
+	json, err = w.GetPetSpeciesJSON(speciesID)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &petSpecies)
+	if err != nil {
+		return nil, err
+	}
+
+	return &petSpecies, nil
+}
+
+// GetPetStatsJSON gets pet stats JSON information
+func (w *WorldOfWarcraft) GetPetStatsJSON(speciesID, level, breedID, qualityID int) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + petPath + statsPath + "/" + strconv.Itoa(speciesID) + "?" +
+		levelQuery + strconv.Itoa(level) + "&" + breedIDQuery + strconv.Itoa(breedID) + "&" +
+		qualityIDQuery + strconv.Itoa(qualityID) + "&" + localeQuery + w.Locale + "&" +
+		apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetPetStats puts pet stats info into PetStats structure
+func (w *WorldOfWarcraft) GetPetStats(speciesID, level, breedID, qualityID int) (*PetStats, error) {
+	var (
+		petStats PetStats
+		json     *[]byte
+		err      error
+	)
+
+	json, err = w.GetPetStatsJSON(speciesID, level, breedID, qualityID)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &petStats)
+	if err != nil {
+		return nil, err
+	}
+
+	return &petStats, nil
 }

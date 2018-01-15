@@ -2,12 +2,13 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:20
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-14 21:11:37
+ * @Last Modified time: 2018-01-14 22:13:23
  */
 
 package worldofwarcraft
 
 const (
+	abilityPath        = "/ability"
 	achievementPath    = "/achievement"
 	auctionDataPath    = "/auction/data"
 	bossPath           = "/boss"
@@ -19,15 +20,21 @@ const (
 	mountPath          = "/mount"
 	mythicLeaderPath   = "/mythic-leaderboard"
 	periodPath         = "/period"
+	petPath            = "/pet"
 	realmPath          = "/realm"
 	regionPath         = "/region"
+	statsPath          = "/stats"
 	setPath            = "/set"
+	speciesPath        = "/species"
 	tokenPath          = "/token"
 	accessTokenQuery   = "access_token="
 	apiKeyQuery        = "apikey="
+	breedIDQuery       = "breedId="
 	fieldsQuery        = "fields="
 	namespaceQuery     = "namespace="
+	levelQuery         = "level="
 	localeQuery        = "locale="
+	qualityIDQuery     = "qualityId="
 	achievementsField  = "achievements"
 	appearanceField    = "appearance"
 	auditField         = "audit"
