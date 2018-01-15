@@ -1,6 +1,6 @@
 # go-blizzard/worldofwarcraft
 
-This is a Go API for gathering World of Warcraft data.
+This is a Go client library for gathering Blizzard World of Warcraft API data.
 
 ### Getting started
 
@@ -24,4 +24,3 @@ Now you can poll data for the World of Warcraft API.
 
 TODO
 * Add all calls
-* Improved GoDoc documentation
