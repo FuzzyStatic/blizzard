@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:40:31
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-15 11:40:24
+ * @Last Modified time: 2018-01-15 12:40:07
  */
 
 // Package blizzard is the top level library needed to use the
@@ -41,18 +41,18 @@ func GetURLBody(url string, body *[]byte) error {
 
 	req, err = http.NewRequest("GET", url, nil)
 	if err != nil {
-		return errors.New(err.Error())
+		return err
 	}
 
 	res, err = http.DefaultClient.Do(req)
 	if err != nil {
-		return errors.New(err.Error())
+		return err
 	}
 
 	defer res.Body.Close()
 	*body, err = ioutil.ReadAll(res.Body)
 	if err != nil {
-		return errors.New(err.Error())
+		return err
 	}
 
 	switch res.StatusCode {
