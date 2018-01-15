@@ -2,14 +2,14 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:39:22
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-08 21:07:17
+ * @Last Modified time: 2018-01-14 21:01:38
  */
 
 package diablo3
 
 import (
+	"blizzard"
 	"errors"
-	"go-blizzard"
 	"strconv"
 	"strings"
 )

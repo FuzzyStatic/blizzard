@@ -2,14 +2,14 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:06
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-14 20:45:49
+ * @Last Modified time: 2018-01-14 21:01:51
  */
 
 package worldofwarcraft
 
 import (
+	"blizzard"
 	"fmt"
-	"go-blizzard"
 	"testing"
 
 	"github.com/spf13/viper"
