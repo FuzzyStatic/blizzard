@@ -2,16 +2,16 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:06
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-14 21:01:51
+ * @Last Modified time: 2018-01-14 21:17:51
  */
 
 package worldofwarcraft
 
 import (
-	"blizzard"
 	"fmt"
 	"testing"
 
+	"github.com/FuzzyStatic/blizzard"
 	"github.com/spf13/viper"
 )
 
@@ -969,4 +969,25 @@ func TestGetSet(t *testing.T) {
 
 	fmt.Println(string(*setJSON))
 	fmt.Println(*set)
+}
+
+func TestGetMount(t *testing.T) {
+	var (
+		mountJSON *[]byte
+		mount     *Mount
+		err       error
+	)
+
+	mountJSON, err = w.GetMountJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	mount, err = w.GetMount()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*mountJSON))
+	fmt.Println(*mount)
 }

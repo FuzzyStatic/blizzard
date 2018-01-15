@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:37:59
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-14 21:08:14
+ * @Last Modified time: 2018-01-14 21:13:40
  */
 
 // Package worldofwarcraft is an API to use Blizzard World of Warcraft API calls.
@@ -1872,4 +1872,43 @@ func (w *WorldOfWarcraft) GetSet(setID int) (*Set, error) {
 	}
 
 	return &set, nil
+}
+
+// GetMountIndexJSON gets mount JSON information
+func (w *WorldOfWarcraft) GetMountIndexJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + mountPath + "/?" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetMountIndex puts mount info into MountIndex structure
+func (w *WorldOfWarcraft) GetMountIndex() (*MountIndex, error) {
+	var (
+		mountIndex MountIndex
+		json       *[]byte
+		err        error
+	)
+
+	json, err = w.GetMountIndexJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &mountIndex)
+	if err != nil {
+		return nil, err
+	}
+
+	return &mountIndex, nil
 }
