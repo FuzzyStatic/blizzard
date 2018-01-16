@@ -26,7 +26,7 @@ Now you can fetch data from the Diablo 3 API. For example, you can get all the d
 ```go
 seasonIndex, err := d.GetSeasonIndex()
 if err != nil {
-  fmt.Println(err)
+	fmt.Println(err)
 }
 
 
@@ -52,9 +52,7 @@ fmt.Println(*seasonRift)
 or a player's profile:
 
 ```go
-battleTag := "FuzzyStatic#1384"
-
-profile, err := d.GetProfile(battleTag)
+profile, err := d.GetProfile("FuzzyStatic#1384")
 if err != nil {
   fmt.Println(err)
 }
