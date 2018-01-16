@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:37:59
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-15 13:05:44
+ * @Last Modified time: 2018-01-15 19:01:09
  */
 
 // Package worldofwarcraft is a client library to use Blizzard World of Warcraft API calls.
@@ -32,27 +32,27 @@ func New(auth blizzard.Auth, region blizzard.Region) *WorldOfWarcraft {
 	case blizzard.EU:
 		w.Locale = "en_GB"
 		w.Namespace = "dynamic-eu"
-		w.DataURL = "https://eu.api.battle.net/data/wow"
+		w.DataURL = "https://eu.api.battle.net/wow/data"
 		w.CommunityURL = "https://eu.api.battle.net/wow"
 	case blizzard.KR:
 		w.Locale = "ko_KR"
 		w.Namespace = "dynamic-kr"
-		w.DataURL = "https://kr.api.battle.net/data/wow"
+		w.DataURL = "https://kr.api.battle.net/wow/data"
 		w.CommunityURL = "https://kr.api.battle.net/wow"
 	case blizzard.TW:
 		w.Locale = "zh_TW"
 		w.Namespace = "dynamic-tw"
-		w.DataURL = "https://tw.api.battle.net/data/wow"
+		w.DataURL = "https://tw.api.battle.net/wow/data"
 		w.CommunityURL = "https://tw.api.battle.net/wow"
 	case blizzard.US:
 		w.Locale = "en_US"
 		w.Namespace = "dynamic-us"
-		w.DataURL = "https://us.api.battle.net/data/wow"
+		w.DataURL = "https://us.api.battle.net/wow/data"
 		w.CommunityURL = "https://us.api.battle.net/wow"
 	default: // USA! USA!
 		w.Locale = "en_US"
 		w.Namespace = "dynamic-us"
-		w.DataURL = "https://us.api.battle.net/data/wow"
+		w.DataURL = "https://us.api.battle.net/wow/data"
 		w.CommunityURL = "https://us.api.battle.net/wow"
 	}
 
@@ -2469,4 +2469,404 @@ func (w *WorldOfWarcraft) GetZone(zoneID int) (*Zone, error) {
 	}
 
 	return &zone, nil
+}
+
+// GetBattlegroupsJSON gets battlegroups JSON information
+func (w *WorldOfWarcraft) GetBattlegroupsJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.DataURL + battlegroupsPath + "/?" + localeQuery + w.Locale + "&" + apiKeyQuery +
+		w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetBattlegroups puts battlegroups info into Battlegroups structure
+func (w *WorldOfWarcraft) GetBattlegroups() (*Battlegroups, error) {
+	var (
+		battlegroups Battlegroups
+		json         *[]byte
+		err          error
+	)
+
+	json, err = w.GetBattlegroupsJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &battlegroups)
+	if err != nil {
+		return nil, err
+	}
+
+	return &battlegroups, nil
+}
+
+// GetCharacterRacesJSON gets character races JSON information
+func (w *WorldOfWarcraft) GetCharacterRacesJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.DataURL + characterPath + racesPath + "?" + localeQuery + w.Locale + "&" +
+		apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterRaces puts character races info into CharacterRaces structure
+func (w *WorldOfWarcraft) GetCharacterRaces() (*CharacterRaces, error) {
+	var (
+		characterRaces CharacterRaces
+		json           *[]byte
+		err            error
+	)
+
+	json, err = w.GetCharacterRacesJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &characterRaces)
+	if err != nil {
+		return nil, err
+	}
+
+	return &characterRaces, nil
+}
+
+// GetCharacterClassesJSON gets character classes JSON information
+func (w *WorldOfWarcraft) GetCharacterClassesJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.DataURL + characterPath + classesPath + "?" + localeQuery + w.Locale + "&" +
+		apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterClasses puts character classes info into CharacterClasses structure
+func (w *WorldOfWarcraft) GetCharacterClasses() (*CharacterClasses, error) {
+	var (
+		characterClasses CharacterClasses
+		json             *[]byte
+		err              error
+	)
+
+	json, err = w.GetCharacterClassesJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &characterClasses)
+	if err != nil {
+		return nil, err
+	}
+
+	return &characterClasses, nil
+}
+
+// GetCharacterAchievementsJSON gets character achievements JSON information
+func (w *WorldOfWarcraft) GetCharacterAchievementsJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.DataURL + characterPath + achievementsPath + "?" + localeQuery + w.Locale + "&" +
+		apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetCharacterAchievements puts character achievements info into CharacterAchievements structure
+func (w *WorldOfWarcraft) GetCharacterAchievements() (*CharacterAchievements, error) {
+	var (
+		characterAchievements CharacterAchievements
+		json                  *[]byte
+		err                   error
+	)
+
+	json, err = w.GetCharacterAchievementsJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &characterAchievements)
+	if err != nil {
+		return nil, err
+	}
+
+	return &characterAchievements, nil
+}
+
+// GetGuildRewardsJSON gets guild rewards JSON information
+func (w *WorldOfWarcraft) GetGuildRewardsJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.DataURL + guildPath + rewardsPath + "?" + localeQuery + w.Locale + "&" +
+		apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetGuildRewards puts guild rewards info into GuildRewards structure
+func (w *WorldOfWarcraft) GetGuildRewards() (*GuildRewards, error) {
+	var (
+		guildRewards GuildRewards
+		json         *[]byte
+		err          error
+	)
+
+	json, err = w.GetGuildRewardsJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &guildRewards)
+	if err != nil {
+		return nil, err
+	}
+
+	return &guildRewards, nil
+}
+
+// GetGuildPerksJSON gets guild perks JSON information
+func (w *WorldOfWarcraft) GetGuildPerksJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.DataURL + guildPath + perksPath + "?" + localeQuery + w.Locale + "&" +
+		apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetGuildPerks puts guild perks info into GuildPerks structure
+func (w *WorldOfWarcraft) GetGuildPerks() (*GuildPerks, error) {
+	var (
+		guildPerks GuildPerks
+		json       *[]byte
+		err        error
+	)
+
+	json, err = w.GetGuildPerksJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &guildPerks)
+	if err != nil {
+		return nil, err
+	}
+
+	return &guildPerks, nil
+}
+
+// GetGuildAchievementsJSON gets guild achievements JSON information
+func (w *WorldOfWarcraft) GetGuildAchievementsJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.DataURL + guildPath + achievementsPath + "?" + localeQuery + w.Locale + "&" +
+		apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetGuildAchievements puts guild achievements info into GuildAchievements structure
+func (w *WorldOfWarcraft) GetGuildAchievements() (*GuildAchievements, error) {
+	var (
+		guildAchievements GuildAchievements
+		json              *[]byte
+		err               error
+	)
+
+	json, err = w.GetGuildAchievementsJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &guildAchievements)
+	if err != nil {
+		return nil, err
+	}
+
+	return &guildAchievements, nil
+}
+
+// GetItemClassesJSON gets item classes JSON information
+func (w *WorldOfWarcraft) GetItemClassesJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.DataURL + itemPath + classesPath + "?" + localeQuery + w.Locale + "&" +
+		apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetItemClasses puts item classes info into ItemClasses structure
+func (w *WorldOfWarcraft) GetItemClasses() (*ItemClasses, error) {
+	var (
+		itemClasses ItemClasses
+		json        *[]byte
+		err         error
+	)
+
+	json, err = w.GetItemClassesJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &itemClasses)
+	if err != nil {
+		return nil, err
+	}
+
+	return &itemClasses, nil
+}
+
+// GetTalentsJSON gets talents JSON information
+func (w *WorldOfWarcraft) GetTalentsJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.DataURL + talentsPath + "?" + localeQuery + w.Locale + "&" + apiKeyQuery +
+		w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetTalents puts talents info into Talents structure
+func (w *WorldOfWarcraft) GetTalents() (*Talents, error) {
+	var (
+		talents Talents
+		json    *[]byte
+		err     error
+	)
+
+	json, err = w.GetTalentsJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &talents)
+	if err != nil {
+		return nil, err
+	}
+
+	return &talents, nil
+}
+
+// GetPetTypesJSON gets pet types JSON information
+func (w *WorldOfWarcraft) GetPetTypesJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.DataURL + itemPath + classesPath + "?" + localeQuery + w.Locale + "&" +
+		apiKeyQuery + w.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, errors.New(err.Error())
+	}
+
+	return &json, nil
+}
+
+// GetPetTypes puts pet types info into PetTypes structure
+func (w *WorldOfWarcraft) GetPetTypes() (*PetTypes, error) {
+	var (
+		petTypes PetTypes
+		json     *[]byte
+		err      error
+	)
+
+	json, err = w.GetPetTypesJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &petTypes)
+	if err != nil {
+		return nil, err
+	}
+
+	return &petTypes, nil
 }

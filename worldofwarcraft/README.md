@@ -20,7 +20,13 @@ w = New(
 
 ### Fetching data
 
-Now you can fetch data from the World of Warcraft API. 
+Now you can fetch data from the World of Warcraft API. For example, you can get all the data for a character:
 
-TODO
-* Add all calls
+```go
+character, err := w.GetCharacter("illidan", "flowbs")
+if err != nil {
+	t.Fail()
+}
+
+fmt.Println(*character)
+```

@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:20
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-15 12:58:09
+ * @Last Modified time: 2018-01-15 18:59:01
  */
 
 package worldofwarcraft
@@ -10,10 +10,13 @@ package worldofwarcraft
 const (
 	abilityPath        = "/ability"
 	achievementPath    = "/achievement"
+	achievementsPath   = "/achievements"
 	auctionDataPath    = "/auction/data"
+	battlegroupsPath   = "/battlegroups"
 	bossPath           = "/boss"
 	challengePath      = "/challenge"
 	characterPath      = "/character"
+	classesPath        = "/classes"
 	connectedRealmPath = "/connected-realm"
 	guildPath          = "/guild"
 	itemPath           = "/item"
@@ -21,17 +24,22 @@ const (
 	mountPath          = "/mount"
 	mythicLeaderPath   = "/mythic-leaderboard"
 	periodPath         = "/period"
+	perksPath          = "/perks"
 	petPath            = "/pet"
 	questPath          = "/quest"
+	racesPath          = "/races"
 	realmPath          = "/realm"
 	recipePath         = "/recipe"
 	regionPath         = "/region"
+	rewardsPath        = "/rewards"
 	setPath            = "/set"
 	speciesPath        = "/species"
 	spellPath          = "/spell"
 	statsPath          = "/stats"
 	statusPath         = "/status"
+	talentsPath        = "/talents"
 	tokenPath          = "/token"
+	typesPath          = "/types"
 	zonePath           = "/zone"
 	accessTokenQuery   = "access_token="
 	apiKeyQuery        = "apikey="

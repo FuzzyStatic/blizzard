@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:06
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-15 13:06:39
+ * @Last Modified time: 2018-01-15 19:04:12
  */
 
 package worldofwarcraft
@@ -1284,4 +1284,214 @@ func TestGetZone(t *testing.T) {
 
 	fmt.Println(string(*zoneJSON))
 	fmt.Println(*zone)
+}
+
+func TestGetBattlegroups(t *testing.T) {
+	var (
+		battlegroupsJSON *[]byte
+		battlegroups     *Battlegroups
+		err              error
+	)
+
+	battlegroupsJSON, err = w.GetBattlegroupsJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	battlegroups, err = w.GetBattlegroups()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*battlegroupsJSON))
+	fmt.Println(*battlegroups)
+}
+
+func TestGetCharacterRaces(t *testing.T) {
+	var (
+		characterRacesJSON *[]byte
+		characterRaces     *CharacterRaces
+		err                error
+	)
+
+	characterRacesJSON, err = w.GetCharacterRacesJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	characterRaces, err = w.GetCharacterRaces()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterRacesJSON))
+	fmt.Println(*characterRaces)
+}
+
+func TestGetCharacterClasses(t *testing.T) {
+	var (
+		characterClassesJSON *[]byte
+		characterClasses     *CharacterClasses
+		err                  error
+	)
+
+	characterClassesJSON, err = w.GetCharacterClassesJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	characterClasses, err = w.GetCharacterClasses()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterClassesJSON))
+	fmt.Println(*characterClasses)
+}
+
+func TestGetCharacterAchievements(t *testing.T) {
+	var (
+		characterAchievementsJSON *[]byte
+		characterAchievements     *CharacterAchievements
+		err                       error
+	)
+
+	characterAchievementsJSON, err = w.GetCharacterAchievementsJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	characterAchievements, err = w.GetCharacterAchievements()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*characterAchievementsJSON))
+	fmt.Println(*characterAchievements)
+}
+
+func TestGetGuildRewards(t *testing.T) {
+	var (
+		guildRewardsJSON *[]byte
+		guildRewards     *GuildRewards
+		err              error
+	)
+
+	guildRewardsJSON, err = w.GetGuildRewardsJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	guildRewards, err = w.GetGuildRewards()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*guildRewardsJSON))
+	fmt.Println(*guildRewards)
+}
+
+func TestGetGuildPerks(t *testing.T) {
+	var (
+		guildPerksJSON *[]byte
+		guildPerks     *GuildPerks
+		err            error
+	)
+
+	guildPerksJSON, err = w.GetGuildPerksJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	guildPerks, err = w.GetGuildPerks()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*guildPerksJSON))
+	fmt.Println(*guildPerks)
+}
+
+func TestGetGuildAchievements(t *testing.T) {
+	var (
+		guildAchievementsJSON *[]byte
+		guildAchievements     *GuildAchievements
+		err                   error
+	)
+
+	guildAchievementsJSON, err = w.GetGuildAchievementsJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	guildAchievements, err = w.GetGuildAchievements()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*guildAchievementsJSON))
+	fmt.Println(*guildAchievements)
+}
+
+func TestGetItemClasses(t *testing.T) {
+	var (
+		itemClassesJSON *[]byte
+		itemClasses     *ItemClasses
+		err             error
+	)
+
+	itemClassesJSON, err = w.GetItemClassesJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	itemClasses, err = w.GetItemClasses()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*itemClassesJSON))
+	fmt.Println(*itemClasses)
+}
+
+func TestGetTalents(t *testing.T) {
+	var (
+		talentsJSON *[]byte
+		talents     *Talents
+		err         error
+	)
+
+	talentsJSON, err = w.GetTalentsJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	talents, err = w.GetTalents()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*talentsJSON))
+	fmt.Println(*talents)
+}
+
+func TestGetPetTypes(t *testing.T) {
+	var (
+		petTypesJSON *[]byte
+		petTypes     *PetTypes
+		err          error
+	)
+
+	petTypesJSON, err = w.GetPetTypesJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	petTypes, err = w.GetPetTypes()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*petTypesJSON))
+	fmt.Println(*petTypes)
 }
