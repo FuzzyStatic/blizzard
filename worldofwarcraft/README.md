@@ -25,7 +25,7 @@ Now you can fetch data from the World of Warcraft API. For example, you can get 
 ```go
 character, err := w.GetCharacter("illidan", "flowbs")
 if err != nil {
-	t.Fail()
+	fmt.Println(err)
 }
 
 fmt.Println(*character)
