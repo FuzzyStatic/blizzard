@@ -2,8 +2,9 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-16 19:26:42
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-16 19:34:42
+ * @Last Modified time: 2018-01-17 19:28:40
  */
+
 package blizzard
 
 import (
