@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:39:33
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-14 21:18:01
+ * @Last Modified time: 2018-01-17 19:46:27
  */
 
 package diablo3
@@ -24,7 +24,7 @@ func init() {
 
 	err := viper.ReadInConfig()
 	if err != nil {
-		fmt.Println(err.Error())
+		fmt.Println(err)
 	}
 
 	accessToken := viper.GetString("API.access_token")

@@ -2,14 +2,13 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:37:59
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-15 19:01:09
+ * @Last Modified time: 2018-01-17 19:42:18
  */
 
 // Package worldofwarcraft is a client library to use Blizzard World of Warcraft API calls.
 package worldofwarcraft
 
 import (
-	"errors"
 	"strconv"
 
 	"github.com/FuzzyStatic/blizzard"
@@ -72,7 +71,7 @@ func (w *WorldOfWarcraft) GetConnectedRealmIndexJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -112,7 +111,7 @@ func (w *WorldOfWarcraft) GetConnectedRealmJSON(connectRealmID int) (*[]byte, er
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -153,7 +152,7 @@ func (w *WorldOfWarcraft) GetMythicLeaderboardIndexJSON(connectRealmID int) (*[]
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -194,7 +193,7 @@ func (w *WorldOfWarcraft) GetMythicLeaderboardJSON(connectRealmID, dungeonID, pe
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -234,7 +233,7 @@ func (w *WorldOfWarcraft) GetRealmIndexJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -282,7 +281,7 @@ func (w *WorldOfWarcraft) GetRealmJSON(realmID interface{}) (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -323,7 +322,7 @@ func (w *WorldOfWarcraft) GetRegionIndexJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -363,7 +362,7 @@ func (w *WorldOfWarcraft) GetRegionJSON(regionID int) (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -403,7 +402,7 @@ func (w *WorldOfWarcraft) GetTokenIndexJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -443,7 +442,7 @@ func (w *WorldOfWarcraft) GetAchievementJSON(achievementID int) (*[]byte, error)
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -483,7 +482,7 @@ func (w *WorldOfWarcraft) GetAuctionDataJSON(realmSlug string) (*[]byte, error) 
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -531,7 +530,7 @@ func (w *WorldOfWarcraft) GetAuctions(realmSlug string) ([]*Auctions, error) {
 
 		err = blizzard.GetURLBody(file.URL, &json)
 		if err != nil {
-			return nil, errors.New(err.Error())
+			return nil, err
 		}
 
 		err = blizzard.GetStruct(&json, &auctions)
@@ -558,7 +557,7 @@ func (w *WorldOfWarcraft) GetBossIndexJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -598,7 +597,7 @@ func (w *WorldOfWarcraft) GetBossJSON(bossID int) (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -638,7 +637,7 @@ func (w *WorldOfWarcraft) GetChallengeRealmLeaderboardJSON(realmSlug string) (*[
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -678,7 +677,7 @@ func (w *WorldOfWarcraft) GetChallengeRegionLeaderboardJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -718,7 +717,7 @@ func (w *WorldOfWarcraft) GetCharacterJSON(realm, characterName string) (*[]byte
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -758,7 +757,7 @@ func (w *WorldOfWarcraft) GetCharacterWithAchievementsJSON(realm, characterName 
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -798,7 +797,7 @@ func (w *WorldOfWarcraft) GetCharacterWithAppearanceJSON(realm, characterName st
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -838,7 +837,7 @@ func (w *WorldOfWarcraft) GetCharacterWithFeedJSON(realm, characterName string) 
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -878,7 +877,7 @@ func (w *WorldOfWarcraft) GetCharacterWithGuildJSON(realm, characterName string)
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -918,7 +917,7 @@ func (w *WorldOfWarcraft) GetCharacterWithHunterPetsJSON(realm, characterName st
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -958,7 +957,7 @@ func (w *WorldOfWarcraft) GetCharacterWithItemsJSON(realm, characterName string)
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -998,7 +997,7 @@ func (w *WorldOfWarcraft) GetCharacterWithMountsJSON(realm, characterName string
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1038,7 +1037,7 @@ func (w *WorldOfWarcraft) GetCharacterWithPetsJSON(realm, characterName string) 
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1078,7 +1077,7 @@ func (w *WorldOfWarcraft) GetCharacterWithPetSlotsJSON(realm, characterName stri
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1118,7 +1117,7 @@ func (w *WorldOfWarcraft) GetCharacterWithProfessionsJSON(realm, characterName s
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1158,7 +1157,7 @@ func (w *WorldOfWarcraft) GetCharacterWithProgressionJSON(realm, characterName s
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1198,7 +1197,7 @@ func (w *WorldOfWarcraft) GetCharacterWithPVPJSON(realm, characterName string) (
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1238,7 +1237,7 @@ func (w *WorldOfWarcraft) GetCharacterWithQuestsJSON(realm, characterName string
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1278,7 +1277,7 @@ func (w *WorldOfWarcraft) GetCharacterWithReputationJSON(realm, characterName st
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1318,7 +1317,7 @@ func (w *WorldOfWarcraft) GetCharacterWithStatisticsJSON(realm, characterName st
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1358,7 +1357,7 @@ func (w *WorldOfWarcraft) GetCharacterWithStatsJSON(realm, characterName string)
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1398,7 +1397,7 @@ func (w *WorldOfWarcraft) GetCharacterWithTalentsJSON(realm, characterName strin
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1438,7 +1437,7 @@ func (w *WorldOfWarcraft) GetCharacterWithTitlesJSON(realm, characterName string
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1478,7 +1477,7 @@ func (w *WorldOfWarcraft) GetCharacterWithAuditJSON(realm, characterName string)
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1523,7 +1522,7 @@ func (w *WorldOfWarcraft) GetCharacterWithAllJSON(realm, characterName string) (
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1563,7 +1562,7 @@ func (w *WorldOfWarcraft) GetGuildJSON(realm, guildName string) (*[]byte, error)
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1603,7 +1602,7 @@ func (w *WorldOfWarcraft) GetGuildWithMembersJSON(realm, guildName string) (*[]b
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1643,7 +1642,7 @@ func (w *WorldOfWarcraft) GetGuildWithAchievementsJSON(realm, guildName string) 
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1683,7 +1682,7 @@ func (w *WorldOfWarcraft) GetGuildWithNewsJSON(realm, guildName string) (*[]byte
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1723,7 +1722,7 @@ func (w *WorldOfWarcraft) GetGuildWithChallengeJSON(realm, guildName string) (*[
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1764,7 +1763,7 @@ func (w *WorldOfWarcraft) GetGuildWithAllJSON(realm, guildName string) (*[]byte,
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1804,7 +1803,7 @@ func (w *WorldOfWarcraft) GetItemJSON(itemID int) (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1844,7 +1843,7 @@ func (w *WorldOfWarcraft) GetSetJSON(setID int) (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1883,7 +1882,7 @@ func (w *WorldOfWarcraft) GetMountIndexJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1922,7 +1921,7 @@ func (w *WorldOfWarcraft) GetPetIndexJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -1962,7 +1961,7 @@ func (w *WorldOfWarcraft) GetPetAbilityJSON(abilityID int) (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -2002,7 +2001,7 @@ func (w *WorldOfWarcraft) GetPetSpeciesJSON(speciesID int) (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -2044,7 +2043,7 @@ func (w *WorldOfWarcraft) GetPetStatsJSON(speciesID, level, breedID, qualityID i
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -2084,7 +2083,7 @@ func (w *WorldOfWarcraft) Get2v2LeaderboardJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -2124,7 +2123,7 @@ func (w *WorldOfWarcraft) Get3v3LeaderboardJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -2164,7 +2163,7 @@ func (w *WorldOfWarcraft) Get5v5LeaderboardJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -2204,7 +2203,7 @@ func (w *WorldOfWarcraft) GetRBGLeaderboardJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -2231,7 +2230,7 @@ func (w *WorldOfWarcraft) GetRBGLeaderboard() (*Leaderboard, error) {
 	return &leaderboard, nil
 }
 
-// GetQuestJSON gets pet quest JSON information
+// GetQuestJSON gets quest JSON information
 func (w *WorldOfWarcraft) GetQuestJSON(questID int) (*[]byte, error) {
 	var (
 		url  string
@@ -2244,13 +2243,13 @@ func (w *WorldOfWarcraft) GetQuestJSON(questID int) (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
 }
 
-// GetQuest puts pet quest info into Quest structure
+// GetQuest puts quest info into Quest structure
 func (w *WorldOfWarcraft) GetQuest(questID int) (*Quest, error) {
 	var (
 		quest Quest
@@ -2284,7 +2283,7 @@ func (w *WorldOfWarcraft) GetRealmStatusJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -2311,7 +2310,7 @@ func (w *WorldOfWarcraft) GetRealmStatus() (*RealmStatus, error) {
 	return &realmStatus, nil
 }
 
-// GetRecipeJSON gets pet recipe JSON information
+// GetRecipeJSON gets recipe JSON information
 func (w *WorldOfWarcraft) GetRecipeJSON(recipeID int) (*[]byte, error) {
 	var (
 		url  string
@@ -2324,13 +2323,13 @@ func (w *WorldOfWarcraft) GetRecipeJSON(recipeID int) (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
 }
 
-// GetRecipe puts pet recipe info into Recipe structure
+// GetRecipe puts recipe info into Recipe structure
 func (w *WorldOfWarcraft) GetRecipe(recipeID int) (*Recipe, error) {
 	var (
 		recipe Recipe
@@ -2351,7 +2350,7 @@ func (w *WorldOfWarcraft) GetRecipe(recipeID int) (*Recipe, error) {
 	return &recipe, nil
 }
 
-// GetSpellJSON gets pet spell JSON information
+// GetSpellJSON gets spell JSON information
 func (w *WorldOfWarcraft) GetSpellJSON(spellID int) (*[]byte, error) {
 	var (
 		url  string
@@ -2364,13 +2363,13 @@ func (w *WorldOfWarcraft) GetSpellJSON(spellID int) (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
 }
 
-// GetSpell puts pet spell info into Spell structure
+// GetSpell puts spell info into Spell structure
 func (w *WorldOfWarcraft) GetSpell(spellID int) (*Spell, error) {
 	var (
 		spell Spell
@@ -2404,7 +2403,7 @@ func (w *WorldOfWarcraft) GetZoneIndexJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -2431,7 +2430,7 @@ func (w *WorldOfWarcraft) GetZoneIndex() (*ZoneIndex, error) {
 	return &zoneIndex, nil
 }
 
-// GetZoneJSON gets pet zone JSON information
+// GetZoneJSON gets zone JSON information
 func (w *WorldOfWarcraft) GetZoneJSON(zoneID int) (*[]byte, error) {
 	var (
 		url  string
@@ -2444,13 +2443,13 @@ func (w *WorldOfWarcraft) GetZoneJSON(zoneID int) (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
 }
 
-// GetZone puts pet zone info into Zone structure
+// GetZone puts zone info into Zone structure
 func (w *WorldOfWarcraft) GetZone(zoneID int) (*Zone, error) {
 	var (
 		zone Zone
@@ -2484,7 +2483,7 @@ func (w *WorldOfWarcraft) GetBattlegroupsJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -2524,7 +2523,7 @@ func (w *WorldOfWarcraft) GetCharacterRacesJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -2564,7 +2563,7 @@ func (w *WorldOfWarcraft) GetCharacterClassesJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -2604,7 +2603,7 @@ func (w *WorldOfWarcraft) GetCharacterAchievementsJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -2644,7 +2643,7 @@ func (w *WorldOfWarcraft) GetGuildRewardsJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -2684,7 +2683,7 @@ func (w *WorldOfWarcraft) GetGuildPerksJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -2724,7 +2723,7 @@ func (w *WorldOfWarcraft) GetGuildAchievementsJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -2764,7 +2763,7 @@ func (w *WorldOfWarcraft) GetItemClassesJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -2804,7 +2803,7 @@ func (w *WorldOfWarcraft) GetTalentsJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -2844,7 +2843,7 @@ func (w *WorldOfWarcraft) GetPetTypesJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil

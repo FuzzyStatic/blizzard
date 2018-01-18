@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:39:22
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-15 08:36:56
+ * @Last Modified time: 2018-01-17 19:42:27
  */
 
 // Package diablo3 is a client library to use Blizzard Diablo 3 API calls.
@@ -66,7 +66,7 @@ func (d *Diablo3) getArtisanJSON(artisanNamePath string) (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -135,7 +135,7 @@ func (d *Diablo3) GetEraJSON(eraID int) (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -174,7 +174,7 @@ func (d *Diablo3) GetEraIndexJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -220,7 +220,7 @@ func (d *Diablo3) GetEraLeaderboardJSON(eraID int, groupPath string, hardcore bo
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -259,7 +259,7 @@ func (d *Diablo3) getFollowerJSON(followerNamePath string) (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -330,7 +330,7 @@ func (d *Diablo3) GetHeroJSON(battleTag string, heroID int) (*[]byte, error) {
 		"?" + localeQuery + d.Locale + "&" + apiKeyQuery + d.Auth.APIKey
 
 	if err = blizzard.GetURLBody(url, &json); err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -376,7 +376,7 @@ func (d *Diablo3) GetItemJSON(tooltipParams string) (*[]byte, error) {
 
 		err = blizzard.GetURLBody(url, &json)
 		if err != nil {
-			return nil, errors.New(err.Error())
+			return nil, err
 		}
 	}
 
@@ -500,7 +500,7 @@ func (d *Diablo3) GetSeasonJSON(seasonID int) (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -539,7 +539,7 @@ func (d *Diablo3) GetSeasonIndexJSON() (*[]byte, error) {
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -579,7 +579,7 @@ func (d *Diablo3) GetSeasonAchievementPointsJSON(seasonID int) (*[]byte, error) 
 
 	err = blizzard.GetURLBody(url, &json)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -623,7 +623,7 @@ func (d *Diablo3) getRiftJSON(seasonID int, hardcore bool, groupPath string) (*[
 	url = url + groupPath + "?access_token=" + d.Auth.AccessToken
 
 	if err = blizzard.GetURLBody(url, &json); err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
@@ -734,7 +734,7 @@ func (d *Diablo3) getCurrentSeasonRiftJSON(hardcore bool, groupPath string) (*[]
 	url = url + groupPath + "?access_token=" + d.Auth.AccessToken
 
 	if err = blizzard.GetURLBody(url, &json); err != nil {
-		return nil, errors.New(err.Error())
+		return nil, err
 	}
 
 	return &json, nil
