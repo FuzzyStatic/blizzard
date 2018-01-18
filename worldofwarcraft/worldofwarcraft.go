@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:37:59
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-17 19:42:18
+ * @Last Modified time: 2018-01-18 17:13:59
  */
 
 // Package worldofwarcraft is a client library to use Blizzard World of Warcraft API calls.
@@ -2868,4 +2868,44 @@ func (w *WorldOfWarcraft) GetPetTypes() (*PetTypes, error) {
 	}
 
 	return &petTypes, nil
+}
+
+// GetUserCharactersJSON gets user characters JSON information
+func (w *WorldOfWarcraft) GetUserCharactersJSON() (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = w.CommunityURL + userPath + charactersPath + "?" + accessTokenQuery +
+		w.Auth.AccessToken
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, err
+	}
+
+	return &json, nil
+}
+
+// GetUserCharacters puts user characters information into UserCharacters structure
+func (w *WorldOfWarcraft) GetUserCharacters() (*UserCharacters, error) {
+	var (
+		userCharacters UserCharacters
+		json           *[]byte
+		err            error
+	)
+
+	json, err = w.GetUserCharactersJSON()
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &userCharacters)
+	if err != nil {
+		return nil, err
+	}
+
+	return &userCharacters, nil
 }

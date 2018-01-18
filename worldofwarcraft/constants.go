@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:20
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-15 18:59:01
+ * @Last Modified time: 2018-01-18 17:06:22
  */
 
 package worldofwarcraft
@@ -16,6 +16,7 @@ const (
 	bossPath           = "/boss"
 	challengePath      = "/challenge"
 	characterPath      = "/character"
+	charactersPath     = "/characters"
 	classesPath        = "/classes"
 	connectedRealmPath = "/connected-realm"
 	guildPath          = "/guild"
@@ -40,6 +41,7 @@ const (
 	talentsPath        = "/talents"
 	tokenPath          = "/token"
 	typesPath          = "/types"
+	userPath           = "/user"
 	zonePath           = "/zone"
 	accessTokenQuery   = "access_token="
 	apiKeyQuery        = "apikey="

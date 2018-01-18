@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:38:06
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-17 19:46:15
+ * @Last Modified time: 2018-01-18 17:11:11
  */
 
 package worldofwarcraft
@@ -1494,4 +1494,25 @@ func TestGetPetTypes(t *testing.T) {
 
 	fmt.Println(string(*petTypesJSON))
 	fmt.Println(*petTypes)
+}
+
+func TestGetUserCharacters(t *testing.T) {
+	var (
+		userCharactersJSON *[]byte
+		userCharacters     *UserCharacters
+		err                error
+	)
+
+	userCharactersJSON, err = w.GetUserCharactersJSON()
+	if err != nil {
+		t.Fail()
+	}
+
+	userCharacters, err = w.GetUserCharacters()
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*userCharactersJSON))
+	fmt.Println(*userCharacters)
 }
