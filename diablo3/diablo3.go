@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:39:22
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-17 19:42:27
+ * @Last Modified time: 2018-01-18 17:21:15
  */
 
 // Package diablo3 is a client library to use Blizzard Diablo 3 API calls.
@@ -29,6 +29,10 @@ func New(auth blizzard.Auth, region blizzard.Region) *Diablo3 {
 	var d = Diablo3{Auth: auth}
 
 	switch region {
+	case blizzard.CN:
+		d.Locale = "zh_CN"
+		d.DataURL = "https://api.battle.net.cn/data/d3"
+		d.CommunityURL = "https://api.battle.net.cn/d3"
 	case blizzard.EU:
 		d.Locale = "en_GB"
 		d.DataURL = "https://eu.api.battle.net/data/d3"

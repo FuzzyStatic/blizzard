@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-07 12:37:59
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-18 17:13:59
+ * @Last Modified time: 2018-01-18 17:22:15
  */
 
 // Package worldofwarcraft is a client library to use Blizzard World of Warcraft API calls.
@@ -28,6 +28,11 @@ func New(auth blizzard.Auth, region blizzard.Region) *WorldOfWarcraft {
 	var w = WorldOfWarcraft{Auth: auth}
 
 	switch region {
+	case blizzard.CN:
+		w.Locale = "zh_CN"
+		w.Namespace = "dynamic-cn"
+		w.DataURL = "https://api.battle.net.cn/wow/data"
+		w.CommunityURL = "https://api.battle.net.cn/wow"
 	case blizzard.EU:
 		w.Locale = "en_GB"
 		w.Namespace = "dynamic-eu"

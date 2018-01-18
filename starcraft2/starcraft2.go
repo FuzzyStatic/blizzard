@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-15 10:35:54
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-18 17:05:00
+ * @Last Modified time: 2018-01-18 17:24:04
  */
 
 // Package starcraft2 is a client library to use Blizzard Starcraft 2 API calls.
@@ -27,6 +27,10 @@ func New(auth blizzard.Auth, region blizzard.Region) *Starcraft2 {
 	var s = Starcraft2{Auth: auth}
 
 	switch region {
+	case blizzard.CN:
+		s.Locale = "zh_CN"
+		s.DataURL = "https://api.battle.net.cn/sc2/data"
+		s.CommunityURL = "https://api.battle.net.cn/sc2"
 	case blizzard.EU:
 		s.Locale = "en_GB"
 		s.DataURL = "https://eu.api.battle.net/sc2/data"
