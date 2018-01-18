@@ -20,7 +20,27 @@ s := New(
 
 ### Fetching data
 
-Now you can fetch data from the Starcraft 2 API. 
+Now you can fetch data from the Starcraft 2 API. For example, you can get all the data for a profile:
+
+```go
+profile, err := s.GetProfile(2537456, 1, "Neeb")
+if err != nil {
+	fmt.Println(err)
+}
+
+fmt.Println(*profile)
+```
+
+or all the ladders for a profile:
+
+```go
+profileLadders, err := s.GetProfileLadders(2537456, 1, "Neeb")
+if err != nil {
+	fmt.Println(err)
+}
+
+fmt.Println(*profileLadders)
+```
 
 TODO
 * Add all calls
