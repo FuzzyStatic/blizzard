@@ -31,10 +31,10 @@ b = New(
 Now you can fetch data from the Blizzard API. For example, you can get all the data for your account:
 
 ```go
-acountUser, err := w.GetAccountUser()
+accountUser, err := w.GetAccountUser()
 if err != nil {
 	fmt.Println(err)
 }
 
-fmt.Println(*acountUser)
+fmt.Println(*accountUser)
 ```
