@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-17 19:43:46
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-17 19:57:15
+ * @Last Modified time: 2018-01-17 20:07:29
  */
 
 package starcraft2
@@ -79,4 +79,25 @@ func TestGetProfileLadders(t *testing.T) {
 
 	fmt.Println(string(*profileLaddersJSON))
 	fmt.Println(*profileLadders)
+}
+
+func TestGetProfileMatches(t *testing.T) {
+	var (
+		profileMatchesJSON *[]byte
+		profileMatches     *ProfileMatches
+		err                error
+	)
+
+	profileMatchesJSON, err = s.GetProfileMatchesJSON(2537456, 1, "Neeb")
+	if err != nil {
+		t.Fail()
+	}
+
+	profileMatches, err = s.GetProfileMatches(2537456, 1, "Neeb")
+	if err != nil {
+		t.Fail()
+	}
+
+	fmt.Println(string(*profileMatchesJSON))
+	fmt.Println(*profileMatches)
 }

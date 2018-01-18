@@ -2,7 +2,7 @@
  * @Author: Allen Flickinger (allen.flickinger@gmail.com)
  * @Date: 2018-01-15 10:35:54
  * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-17 19:56:33
+ * @Last Modified time: 2018-01-17 20:07:01
  */
 
 // Package starcraft2 is a client library to use Blizzard Starcraft 2 API calls.
@@ -135,4 +135,45 @@ func (s *Starcraft2) GetProfileLadders(id, region int, name string) (*ProfileLad
 	}
 
 	return &profileLadders, nil
+}
+
+// GetProfileMatchesJSON gets profile matches JSON information
+func (s *Starcraft2) GetProfileMatchesJSON(id, region int, name string) (*[]byte, error) {
+	var (
+		url  string
+		json []byte
+		err  error
+	)
+
+	url = s.CommunityURL + profilePath + "/" + strconv.Itoa(id) + "/" + strconv.Itoa(region) +
+		"/" + name + "/" + matchesPath + "?" + localeQuery + s.Locale + "&" + apiKeyQuery +
+		s.Auth.APIKey
+
+	err = blizzard.GetURLBody(url, &json)
+	if err != nil {
+		return nil, err
+	}
+
+	return &json, nil
+}
+
+// GetProfileMatches puts profile matches info into ProfileMatches structure
+func (s *Starcraft2) GetProfileMatches(id, region int, name string) (*ProfileMatches, error) {
+	var (
+		profileMatches ProfileMatches
+		json           *[]byte
+		err            error
+	)
+
+	json, err = s.GetProfileMatchesJSON(id, region, name)
+	if err != nil {
+		return nil, err
+	}
+
+	err = blizzard.GetStruct(json, &profileMatches)
+	if err != nil {
+		return nil, err
+	}
+
+	return &profileMatches, nil
 }
