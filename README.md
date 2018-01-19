@@ -6,9 +6,11 @@ This is a Go client library for gathering Blizzard API game data.
 
 ### Game Client Libraries
 
-[Diablo 3](https://github.com/FuzzyStatic/blizzard/tree/master/diablo3)
+- [Diablo 3](https://github.com/FuzzyStatic/blizzard/tree/master/diablo3)
 
-[World of Warcraft](https://github.com/FuzzyStatic/blizzard/tree/master/worldofwarcraft)
+- [Starcraft 2](https://github.com/FuzzyStatic/blizzard/tree/master/starcraft2)
+
+- [World of Warcraft](https://github.com/FuzzyStatic/blizzard/tree/master/worldofwarcraft)
 
 ### Getting started
 
