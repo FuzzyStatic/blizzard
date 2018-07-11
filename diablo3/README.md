@@ -64,4 +64,3 @@ fmt.Println(*profile)
 
 TODO
 * Verify all class AttributesRaw exist
-* Add more tests
