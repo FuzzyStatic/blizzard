@@ -1,5 +1,7 @@
 # blizzard/worldofwarcraft
 
+[![GoDoc](https://godoc.org/github.com/FuzzyStatic/blizzard/worldofwarcraft?status.svg)](http://godoc.org/github.com/FuzzyStatic/blizzard/worldofwarcraft)
+
 This is a Go client library for gathering Blizzard World of Warcraft API data.
 
 ### Getting started
