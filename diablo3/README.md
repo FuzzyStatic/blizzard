@@ -1,6 +1,8 @@
 
 # blizzard/diablo3
 
+[![GoDoc](https://godoc.org/github.com/FuzzyStatic/blizzard/diablo3?status.svg)](http://godoc.org/github.com/FuzzyStatic/blizzard/diablo3)
+
 This is a Go client library for gathering Blizzard Diablo 3 API data.
 
 ### Getting started
