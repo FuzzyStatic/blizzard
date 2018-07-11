@@ -1,5 +1,7 @@
 # blizzard/starcraft2
 
+[![GoDoc](https://godoc.org/github.com/FuzzyStatic/blizzard/starcraft2?status.svg)](http://godoc.org/github.com/FuzzyStatic/blizzard/starcraft2)
+
 This is a Go client library for gathering Blizzard Starcraft 2 API data.
 
 ### Getting started
@@ -41,6 +43,3 @@ if err != nil {
 
 fmt.Println(*profileLadders)
 ```
-
-TODO
-* Add all calls
