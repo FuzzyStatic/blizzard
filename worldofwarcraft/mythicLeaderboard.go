@@ -76,6 +76,6 @@ type MythicLeaderboard struct {
 }
 
 // JSON2Struct creates MythicLeaderboard structure from JSON byte array
-func (m *MythicLeaderboard) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, m)
+func (m *MythicLeaderboard) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, m)
 }

@@ -16,6 +16,6 @@ type AccountUser struct {
 }
 
 // JSON2Struct creates AccountUser structure from JSON byte array
-func (a *AccountUser) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, a)
+func (a *AccountUser) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, a)
 }

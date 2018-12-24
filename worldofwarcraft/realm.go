@@ -40,6 +40,6 @@ type Realm struct {
 }
 
 // JSON2Struct creates Realm structure from JSON byte array
-func (r *Realm) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, r)
+func (r *Realm) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, r)
 }

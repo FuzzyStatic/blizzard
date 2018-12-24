@@ -36,6 +36,6 @@ type UserCharacters struct {
 }
 
 // JSON2Struct creates UserCharacters structure from JSON byte array
-func (u *UserCharacters) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, u)
+func (u *UserCharacters) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, u)
 }

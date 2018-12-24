@@ -25,6 +25,6 @@ type GuildPerks struct {
 }
 
 // JSON2Struct creates GuildPerks structure from JSON byte array
-func (g *GuildPerks) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, g)
+func (g *GuildPerks) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, g)
 }

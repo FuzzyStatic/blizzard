@@ -22,6 +22,6 @@ type Region struct {
 }
 
 // JSON2Struct creates Region structure from JSON byte array
-func (r *Region) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, r)
+func (r *Region) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, r)
 }

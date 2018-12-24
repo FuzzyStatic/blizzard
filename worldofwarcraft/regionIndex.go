@@ -22,6 +22,6 @@ type RegionIndex struct {
 }
 
 // JSON2Struct creates RegionIndex structure from JSON byte array
-func (r *RegionIndex) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, r)
+func (r *RegionIndex) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, r)
 }

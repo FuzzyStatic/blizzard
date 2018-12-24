@@ -31,6 +31,6 @@ type Era struct {
 }
 
 // JSON2Struct creates Era structure from JSON byte array
-func (e *Era) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, e)
+func (e *Era) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, e)
 }

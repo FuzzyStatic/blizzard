@@ -49,6 +49,6 @@ type Achievement struct {
 }
 
 // JSON2Struct creates Achievement structure from JSON byte array
-func (a *Achievement) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, a)
+func (a *Achievement) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, a)
 }

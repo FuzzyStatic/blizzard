@@ -20,6 +20,6 @@ type CharacterRaces struct {
 }
 
 // JSON2Struct creates CharacterRaces structure from JSON byte array
-func (c *CharacterRaces) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, c)
+func (c *CharacterRaces) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, c)
 }

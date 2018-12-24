@@ -31,6 +31,6 @@ type Leaderboard struct {
 }
 
 // JSON2Struct creates Leaderboard structure from JSON byte array
-func (l *Leaderboard) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, l)
+func (l *Leaderboard) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, l)
 }

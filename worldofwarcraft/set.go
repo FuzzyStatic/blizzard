@@ -21,6 +21,6 @@ type Set struct {
 }
 
 // JSON2Struct creates Set structure from JSON byte array
-func (s *Set) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, s)
+func (s *Set) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, s)
 }

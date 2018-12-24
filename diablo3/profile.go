@@ -644,28 +644,28 @@ type Heroes struct {
 }
 
 // JSON2Struct creates Profile structure from JSON byte array
-func (p *Profile) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, p)
+func (p *Profile) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, p)
 }
 
 // GetHeroNamesFromProfile get all hero names from profile
-func (p *Profile) GetHeroNamesFromProfile() *[]string {
+func (p *Profile) GetHeroNamesFromProfile() []string {
 	var heroes []string
 
 	for _, v := range (*p).Heroes {
 		heroes = append(heroes, v.Name)
 	}
 
-	return &heroes
+	return heroes
 }
 
 // GetHeroIDsAndNamesFromProfile get all hero ids and names from profile
-func (p *Profile) GetHeroIDsAndNamesFromProfile() *map[int]string {
+func (p *Profile) GetHeroIDsAndNamesFromProfile() map[int]string {
 	m := make(map[int]string)
 
 	for _, v := range (*p).Heroes {
 		m[v.ID] = v.Name
 	}
 
-	return &m
+	return m
 }

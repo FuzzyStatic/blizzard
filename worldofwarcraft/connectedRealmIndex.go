@@ -22,6 +22,6 @@ type ConnectedRealmIndex struct {
 }
 
 // JSON2Struct creates ConnectedRealmIndex structure from JSON byte array
-func (c *ConnectedRealmIndex) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, c)
+func (c *ConnectedRealmIndex) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, c)
 }

@@ -54,6 +54,6 @@ type Zone struct {
 }
 
 // JSON2Struct creates Zone structure from JSON byte array
-func (z *Zone) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, z)
+func (z *Zone) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, z)
 }

@@ -18,6 +18,6 @@ type Battlegroups struct {
 }
 
 // JSON2Struct creates Battlegroups structure from JSON byte array
-func (bg *Battlegroups) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, bg)
+func (bg *Battlegroups) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, bg)
 }

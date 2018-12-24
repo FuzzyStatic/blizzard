@@ -74,6 +74,6 @@ type Artisan struct {
 }
 
 // JSON2Struct creates Artisan structure from JSON byte array
-func (a *Artisan) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, a)
+func (a *Artisan) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, a)
 }

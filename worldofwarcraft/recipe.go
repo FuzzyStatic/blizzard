@@ -18,6 +18,6 @@ type Recipe struct {
 }
 
 // JSON2Struct creates Recipe structure from JSON byte array
-func (r *Recipe) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, r)
+func (r *Recipe) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, r)
 }

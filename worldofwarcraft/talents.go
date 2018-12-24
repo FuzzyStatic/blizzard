@@ -381,6 +381,6 @@ type Talents struct {
 }
 
 // JSON2Struct creates Talents structure from JSON byte array
-func (t *Talents) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, t)
+func (t *Talents) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, t)
 }

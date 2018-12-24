@@ -55,6 +55,6 @@ type ConnectedRealm struct {
 }
 
 // JSON2Struct creates ConnectedRealm structure from JSON byte array
-func (c *ConnectedRealm) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, c)
+func (c *ConnectedRealm) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, c)
 }

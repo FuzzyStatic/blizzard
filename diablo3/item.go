@@ -661,12 +661,12 @@ type MinMax struct {
 }
 
 // JSON2Struct creates Item structure from JSON byte array
-func (i *Item) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, i)
+func (i *Item) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, i)
 }
 
 // GetItemAttributesRaw returns the raw attributes of an item in a map
-func GetItemAttributesRaw(item Item) map[string]float64 {
+func GetItemAttributesRaw(item *Item) map[string]float64 {
 	m := make(map[string]float64)
 	v := reflect.ValueOf(item.AttributesRaw)
 
@@ -682,7 +682,7 @@ func GetItemAttributesRaw(item Item) map[string]float64 {
 
 // CompareItemsAttributesRaw returns the difference values of all attributes for item1
 // compared to item2
-func CompareItemsAttributesRaw(item1, item2 Item) map[string]float64 {
+func CompareItemsAttributesRaw(item1, item2 *Item) map[string]float64 {
 	m := make(map[string]float64)
 
 	mItem1 := GetItemAttributesRaw(item1)

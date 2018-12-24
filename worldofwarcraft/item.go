@@ -74,6 +74,6 @@ type Item struct {
 }
 
 // JSON2Struct creates Item structure from JSON byte array
-func (i *Item) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, i)
+func (i *Item) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, i)
 }

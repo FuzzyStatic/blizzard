@@ -155,13 +155,13 @@ type Data struct {
 }
 
 // JSON2Struct creates SeasonAchievementPoints structure from JSON byte array
-func (s *SeasonAchievementPoints) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, s)
+func (s *SeasonAchievementPoints) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, s)
 }
 
 // JSON2Struct creates SeasonRift structure from JSON byte array
-func (s *SeasonRift) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, s)
+func (s *SeasonRift) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, s)
 }
 
 // GetSeasonRiftRowFromRank get player information from season leaderboard via rank
@@ -212,47 +212,47 @@ func (r *Row) GetSeasonRowPlayer() (*Player, error) {
 
 // GetHeroBattleTagFromSeasonRowPlayer get hero battle tag from row player from season
 // leaderboard
-func (p *Player) GetHeroBattleTagFromSeasonRowPlayer() (*string, error) {
+func (p *Player) GetHeroBattleTagFromSeasonRowPlayer() (string, error) {
 	for _, v := range (*p).Data {
 		if v.ID == "HeroBattleTag" {
-			return &v.String, nil
+			return v.String, nil
 		}
 	}
 
-	return nil, errors.New("no HeroBattleTag found")
+	return "", errors.New("no HeroBattleTag found")
 }
 
 // GetHeroIDFromSeasonRowPlayer get hero ID from row player from season leaderboard
-func (p *Player) GetHeroIDFromSeasonRowPlayer() (*int, error) {
+func (p *Player) GetHeroIDFromSeasonRowPlayer() (int, error) {
 	for _, v := range (*p).Data {
 		if v.ID == "HeroId" {
-			return &v.Number, nil
+			return v.Number, nil
 		}
 	}
 
-	return nil, errors.New("no HeroId found")
+	return -1, errors.New("no HeroId found")
 }
 
 // GetHeroBattleTagAndIDFromSeasonRow get hero battle tag ID from row from season
 // leaderboard
-func (r *Row) GetHeroBattleTagAndIDFromSeasonRow() (*string, *int, error) {
+func (r *Row) GetHeroBattleTagAndIDFromSeasonRow() (string, int, error) {
 	var (
 		player    *Player
-		battleTag *string
-		heroID    *int
+		battleTag string
+		heroID    int
 		err       error
 	)
 
 	if player, err = r.GetSeasonRowPlayer(); err != nil {
-		return nil, nil, err
+		return "", -1, err
 	}
 
 	if battleTag, err = player.GetHeroBattleTagFromSeasonRowPlayer(); err != nil {
-		return nil, nil, err
+		return "", -1, err
 	}
 
 	if heroID, err = player.GetHeroIDFromSeasonRowPlayer(); err != nil {
-		return nil, nil, err
+		return "", -1, err
 	}
 
 	return battleTag, heroID, nil

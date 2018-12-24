@@ -6,18 +6,19 @@
  */
 
 // Package blizzard is the top level library needed to use the
-// API calls for Blizzard games within the subpackages.
+// API calls for Config games within the subpackages.
 package blizzard
 
 import (
 	"errors"
 	"io/ioutil"
 	"net/http"
+	"time"
 )
 
 // JSON interface for struture creation
 type JSON interface {
-	JSON2Struct(*[]byte) error
+	JSON2Struct([]byte) error
 }
 
 // Auth contains access token and api key
@@ -26,98 +27,112 @@ type Auth struct {
 	APIKey      string
 }
 
-// Blizzard regional API URLs, locale, access token, api key
-type Blizzard struct {
-	Auth
+// Config regional API URLs, locale, access token, api key
+type Config struct {
+	Client       *http.Client
+	Auth         Auth
+	Region       Region
 	CommunityURL string
 }
 
 // New create new WorldOfWarcraft structure
-func New(auth Auth, region Region) *Blizzard {
-	var b = Blizzard{Auth: auth}
-
-	switch region {
-	case EU:
-		b.CommunityURL = "https://eu.api.battle.net"
-	case KR:
-		b.CommunityURL = "https://kr.api.battle.net"
-	case SEA:
-		b.CommunityURL = "https://sea.api.battle.net"
-	case TW:
-		b.CommunityURL = "https://tb.api.battle.net"
-	case US:
-		b.CommunityURL = "https://us.api.battle.net"
-	default: // USA! USA!
-		b.CommunityURL = "https://us.api.battle.net"
+func New(auth Auth, region Region) *Config {
+	var c = Config{
+		Client: &http.Client{
+			Timeout: time.Second * time.Duration(60),
+		},
+		Auth:   auth,
+		Region: region,
 	}
 
-	return &b
+	switch c.Region {
+	case EU:
+		c.CommunityURL = "https://eu.api.battle.net"
+	case KR:
+		c.CommunityURL = "https://kr.api.battle.net"
+	case SEA:
+		c.CommunityURL = "https://sea.api.battle.net"
+	case TW:
+		c.CommunityURL = "https://tb.api.battle.net"
+	case US:
+		c.CommunityURL = "https://us.api.battle.net"
+	default: // USA! USA!
+		c.CommunityURL = "https://us.api.battle.net"
+	}
+
+	return &c
 }
 
 // GetStruct returns structure of JSON interface
-func GetStruct(b *[]byte, v JSON) error {
+func GetStruct(b []byte, v JSON) error {
 	return v.JSON2Struct(b)
 }
 
 // GetURLBody fills body of url
-func GetURLBody(url string, body *[]byte) error {
+func (c *Config) GetURLBody(url string) ([]byte, error) {
 	var (
-		req *http.Request
-		res *http.Response
-		err error
+		req  *http.Request
+		res  *http.Response
+		body []byte
+		err  error
 	)
 
 	req, err = http.NewRequest("GET", url, nil)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	res, err = http.DefaultClient.Do(req)
+	res, err = c.Client.Do(req)
 	if err != nil {
-		return err
+		return nil, err
 	}
+	defer func() {
+		err = res.Body.Close()
+		if err != nil {
+			return
+		}
+	}()
 
-	defer res.Body.Close()
-	*body, err = ioutil.ReadAll(res.Body)
+	body, err = ioutil.ReadAll(res.Body)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	switch res.StatusCode {
 	case http.StatusNotFound:
-		return errors.New(res.Status)
+		return nil, errors.New(res.Status)
 	}
 
-	return nil
+	return body, nil
 }
 
 // GetAccountUserJSON gets account user JSON information
-func (b *Blizzard) GetAccountUserJSON() (*[]byte, error) {
+func (c *Config) GetAccountUserJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
 		err  error
 	)
 
-	url = b.CommunityURL + accountPath + userPath + "?" + accessTokenQuery + b.AccessToken
+	url = c.CommunityURL + accountPath + userPath + "?" + accessTokenQuery + c.Auth.AccessToken
 
-	err = GetURLBody(url, &json)
+	json, err = c.GetURLBody(url)
 	if err != nil {
 		return nil, errors.New(err.Error())
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetAccountUser puts account user info into AccountUser structure
-func (b *Blizzard) GetAccountUser() (*AccountUser, error) {
+func (c *Config) GetAccountUser() (*AccountUser, error) {
 	var (
 		accountUser AccountUser
-		json        *[]byte
+		json        []byte
 		err         error
 	)
 
-	json, err = b.GetAccountUserJSON()
+	json, err = c.GetAccountUserJSON()
 	if err != nil {
 		return nil, err
 	}

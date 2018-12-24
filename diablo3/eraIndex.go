@@ -25,6 +25,6 @@ type EraIndex struct {
 }
 
 // JSON2Struct creates EraIndex structure from JSON byte array
-func (e *EraIndex) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, e)
+func (e *EraIndex) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, e)
 }

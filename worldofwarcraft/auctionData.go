@@ -18,8 +18,8 @@ type AuctionData struct {
 }
 
 // JSON2Struct creates AuctionData structure from JSON byte array
-func (a *AuctionData) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, a)
+func (a *AuctionData) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, a)
 }
 
 // Auctions structure
@@ -55,6 +55,6 @@ type Auctions struct {
 }
 
 // JSON2Struct creates Auctions structure from JSON byte array
-func (a *Auctions) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, a)
+func (a *Auctions) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, a)
 }

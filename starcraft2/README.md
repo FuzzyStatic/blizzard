@@ -11,12 +11,13 @@ Start by initiating a new Starcraft2 structure (accessToken and apiKey can be ac
 ```go
 var s *Starcraft2
 
-s := New(
-	blizzard.Auth{
-		AccessToken: "myAccessToken",
-		APIKey:      "myApiKey",
-	},
-	blizzard.US,
+s = New(
+	blizzard.New(
+		blizzard.Auth{
+			AccessToken: accessToken,
+			APIKey:      apiKey,
+		},
+		blizzard.US),
 )
 ```
 

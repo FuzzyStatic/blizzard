@@ -17,9 +17,9 @@ This is a Go client library for gathering Blizzard API game data.
 Start by initiating a new Blizzard structure (accessToken and apiKey can be acquired through your Mashery account at https://dev.battle.net/):
 
 ```go
-var b *Blizzard
+var c *Config
 
-b = New(
+c = New(
 	Auth{
 		AccessToken: "myAccessToken",
 		APIKey:      "myApiKey",
@@ -33,10 +33,10 @@ b = New(
 Now you can fetch data from the Blizzard API. For example, you can get all the data for your account:
 
 ```go
-accountUser, err := w.GetAccountUser()
+accountUser, err := c.GetAccountUser()
 if err != nil {
 	fmt.Println(err)
 }
 
-fmt.Println(*accountUser)
+fmt.Println(accountUser)
 ```

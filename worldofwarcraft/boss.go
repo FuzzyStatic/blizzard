@@ -32,6 +32,6 @@ type Boss struct {
 }
 
 // JSON2Struct creates Boss structure from JSON byte array
-func (boss *Boss) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, boss)
+func (boss *Boss) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, boss)
 }

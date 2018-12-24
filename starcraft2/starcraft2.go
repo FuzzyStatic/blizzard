@@ -16,17 +16,19 @@ import (
 
 // Starcraft2 regional API URLs, locale, access token, api key
 type Starcraft2 struct {
-	Auth         blizzard.Auth
+	Config       *blizzard.Config
 	Locale       string
 	DataURL      string
 	CommunityURL string
 }
 
 // New create new Starcraft2 structure
-func New(auth blizzard.Auth, region blizzard.Region) *Starcraft2 {
-	var s = Starcraft2{Auth: auth}
+func New(c *blizzard.Config) *Starcraft2 {
+	var s = Starcraft2{
+		Config: c,
+	}
 
-	switch region {
+	switch c.Region {
 	case blizzard.CN:
 		s.Locale = "zh_CN"
 		s.DataURL = "https://api.battle.net.cn/sc2/data"
@@ -61,7 +63,7 @@ func New(auth blizzard.Auth, region blizzard.Region) *Starcraft2 {
 }
 
 // GetProfileJSON gets profile JSON information
-func (s *Starcraft2) GetProfileJSON(id, region int, name string) (*[]byte, error) {
+func (s *Starcraft2) GetProfileJSON(id, region int, name string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -69,21 +71,21 @@ func (s *Starcraft2) GetProfileJSON(id, region int, name string) (*[]byte, error
 	)
 
 	url = s.CommunityURL + profilePath + "/" + strconv.Itoa(id) + "/" + strconv.Itoa(region) +
-		"/" + name + "/?" + localeQuery + s.Locale + "&" + apiKeyQuery + s.Auth.APIKey
+		"/" + name + "/?" + localeQuery + s.Locale + "&" + apiKeyQuery + s.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = s.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetProfile puts profile info into Profile structure
 func (s *Starcraft2) GetProfile(id, region int, name string) (*Profile, error) {
 	var (
 		profile Profile
-		json    *[]byte
+		json    []byte
 		err     error
 	)
 
@@ -101,7 +103,7 @@ func (s *Starcraft2) GetProfile(id, region int, name string) (*Profile, error) {
 }
 
 // GetProfileLaddersJSON gets profile ladders JSON information
-func (s *Starcraft2) GetProfileLaddersJSON(id, region int, name string) (*[]byte, error) {
+func (s *Starcraft2) GetProfileLaddersJSON(id, region int, name string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -110,21 +112,21 @@ func (s *Starcraft2) GetProfileLaddersJSON(id, region int, name string) (*[]byte
 
 	url = s.CommunityURL + profilePath + "/" + strconv.Itoa(id) + "/" + strconv.Itoa(region) +
 		"/" + name + "/" + laddersPath + "?" + localeQuery + s.Locale + "&" + apiKeyQuery +
-		s.Auth.APIKey
+		s.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = s.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetProfileLadders puts profile ladders info into ProfileLadders structure
 func (s *Starcraft2) GetProfileLadders(id, region int, name string) (*ProfileLadders, error) {
 	var (
 		profileLadders ProfileLadders
-		json           *[]byte
+		json           []byte
 		err            error
 	)
 
@@ -142,7 +144,7 @@ func (s *Starcraft2) GetProfileLadders(id, region int, name string) (*ProfileLad
 }
 
 // GetProfileMatchesJSON gets profile matches JSON information
-func (s *Starcraft2) GetProfileMatchesJSON(id, region int, name string) (*[]byte, error) {
+func (s *Starcraft2) GetProfileMatchesJSON(id, region int, name string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -151,21 +153,21 @@ func (s *Starcraft2) GetProfileMatchesJSON(id, region int, name string) (*[]byte
 
 	url = s.CommunityURL + profilePath + "/" + strconv.Itoa(id) + "/" + strconv.Itoa(region) +
 		"/" + name + "/" + matchesPath + "?" + localeQuery + s.Locale + "&" + apiKeyQuery +
-		s.Auth.APIKey
+		s.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = s.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetProfileMatches puts profile matches info into ProfileMatches structure
 func (s *Starcraft2) GetProfileMatches(id, region int, name string) (*ProfileMatches, error) {
 	var (
 		profileMatches ProfileMatches
-		json           *[]byte
+		json           []byte
 		err            error
 	)
 
@@ -183,7 +185,7 @@ func (s *Starcraft2) GetProfileMatches(id, region int, name string) (*ProfileMat
 }
 
 // GetLadderJSON gets ladder JSON information
-func (s *Starcraft2) GetLadderJSON(id int) (*[]byte, error) {
+func (s *Starcraft2) GetLadderJSON(id int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -191,21 +193,21 @@ func (s *Starcraft2) GetLadderJSON(id int) (*[]byte, error) {
 	)
 
 	url = s.CommunityURL + ladderPath + "/" + strconv.Itoa(id) + "?" + localeQuery +
-		s.Locale + "&" + apiKeyQuery + s.Auth.APIKey
+		s.Locale + "&" + apiKeyQuery + s.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = s.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetLadder puts ladder info into Ladder structure
 func (s *Starcraft2) GetLadder(id int) (*Ladder, error) {
 	var (
 		ladder Ladder
-		json   *[]byte
+		json   []byte
 		err    error
 	)
 
@@ -223,7 +225,7 @@ func (s *Starcraft2) GetLadder(id int) (*Ladder, error) {
 }
 
 // GetAchievementsJSON gets achievements JSON information
-func (s *Starcraft2) GetAchievementsJSON() (*[]byte, error) {
+func (s *Starcraft2) GetAchievementsJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -231,21 +233,21 @@ func (s *Starcraft2) GetAchievementsJSON() (*[]byte, error) {
 	)
 
 	url = s.DataURL + achievementsPath + "?" + localeQuery + s.Locale + "&" +
-		apiKeyQuery + s.Auth.APIKey
+		apiKeyQuery + s.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = s.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetAchievements puts achievements info into Achievements structure
 func (s *Starcraft2) GetAchievements() (*Achievements, error) {
 	var (
 		achievements Achievements
-		json         *[]byte
+		json         []byte
 		err          error
 	)
 
@@ -263,7 +265,7 @@ func (s *Starcraft2) GetAchievements() (*Achievements, error) {
 }
 
 // GetRewardsJSON gets rewards JSON information
-func (s *Starcraft2) GetRewardsJSON() (*[]byte, error) {
+func (s *Starcraft2) GetRewardsJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -271,21 +273,21 @@ func (s *Starcraft2) GetRewardsJSON() (*[]byte, error) {
 	)
 
 	url = s.DataURL + rewardsPath + "?" + localeQuery + s.Locale + "&" +
-		apiKeyQuery + s.Auth.APIKey
+		apiKeyQuery + s.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = s.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetRewards puts rewards info into Rewards structure
 func (s *Starcraft2) GetRewards() (*Rewards, error) {
 	var (
 		rewards Rewards
-		json    *[]byte
+		json    []byte
 		err     error
 	)
 
@@ -303,7 +305,7 @@ func (s *Starcraft2) GetRewards() (*Rewards, error) {
 }
 
 // GetProfileUserJSON gets profile user JSON information
-func (s *Starcraft2) GetProfileUserJSON() (*[]byte, error) {
+func (s *Starcraft2) GetProfileUserJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -311,21 +313,21 @@ func (s *Starcraft2) GetProfileUserJSON() (*[]byte, error) {
 	)
 
 	url = s.CommunityURL + profilePath + userPath + "?" + localeQuery + s.Locale +
-		"&" + accessTokenQuery + s.Auth.AccessToken
+		"&" + accessTokenQuery + s.Config.Auth.AccessToken
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = s.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetProfileUser puts profile user info into ProfileUser structure
 func (s *Starcraft2) GetProfileUser() (*ProfileUser, error) {
 	var (
 		profileUser ProfileUser
-		json        *[]byte
+		json        []byte
 		err         error
 	)
 

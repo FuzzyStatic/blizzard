@@ -31,17 +31,18 @@ func init() {
 	apiKey := viper.GetString("API.api_key")
 
 	s = New(
-		blizzard.Auth{
-			AccessToken: accessToken,
-			APIKey:      apiKey,
-		},
-		blizzard.US,
+		blizzard.New(
+			blizzard.Auth{
+				AccessToken: accessToken,
+				APIKey:      apiKey,
+			},
+			blizzard.US),
 	)
 }
 
 func TestGetProfile(t *testing.T) {
 	var (
-		profileJSON *[]byte
+		profileJSON []byte
 		profile     *Profile
 		err         error
 	)
@@ -56,13 +57,13 @@ func TestGetProfile(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*profileJSON))
-	fmt.Println(*profile)
+	fmt.Println(string(profileJSON))
+	fmt.Println(profile)
 }
 
 func TestGetProfileLadders(t *testing.T) {
 	var (
-		profileLaddersJSON *[]byte
+		profileLaddersJSON []byte
 		profileLadders     *ProfileLadders
 		err                error
 	)
@@ -77,13 +78,13 @@ func TestGetProfileLadders(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*profileLaddersJSON))
-	fmt.Println(*profileLadders)
+	fmt.Println(string(profileLaddersJSON))
+	fmt.Println(profileLadders)
 }
 
 func TestGetProfileMatches(t *testing.T) {
 	var (
-		profileMatchesJSON *[]byte
+		profileMatchesJSON []byte
 		profileMatches     *ProfileMatches
 		err                error
 	)
@@ -98,13 +99,13 @@ func TestGetProfileMatches(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*profileMatchesJSON))
-	fmt.Println(*profileMatches)
+	fmt.Println(string(profileMatchesJSON))
+	fmt.Println(profileMatches)
 }
 
 func TestGetLadder(t *testing.T) {
 	var (
-		ladderJSON *[]byte
+		ladderJSON []byte
 		ladder     *Ladder
 		err        error
 	)
@@ -119,13 +120,13 @@ func TestGetLadder(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*ladderJSON))
-	fmt.Println(*ladder)
+	fmt.Println(string(ladderJSON))
+	fmt.Println(ladder)
 }
 
 func TestGetAchievements(t *testing.T) {
 	var (
-		achievementsJSON *[]byte
+		achievementsJSON []byte
 		achievements     *Achievements
 		err              error
 	)
@@ -140,13 +141,13 @@ func TestGetAchievements(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*achievementsJSON))
-	fmt.Println(*achievements)
+	fmt.Println(string(achievementsJSON))
+	fmt.Println(achievements)
 }
 
 func TestGetRewards(t *testing.T) {
 	var (
-		rewardsJSON *[]byte
+		rewardsJSON []byte
 		rewards     *Rewards
 		err         error
 	)
@@ -161,13 +162,13 @@ func TestGetRewards(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*rewardsJSON))
-	fmt.Println(*rewards)
+	fmt.Println(string(rewardsJSON))
+	fmt.Println(rewards)
 }
 
 func TestGetProfileUser(t *testing.T) {
 	var (
-		profileUserJSON *[]byte
+		profileUserJSON []byte
 		profileUser     *ProfileUser
 		err             error
 	)
@@ -182,6 +183,6 @@ func TestGetProfileUser(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*profileUserJSON))
-	fmt.Println(*profileUser)
+	fmt.Println(string(profileUserJSON))
+	fmt.Println(profileUser)
 }

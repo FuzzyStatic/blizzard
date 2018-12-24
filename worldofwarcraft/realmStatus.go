@@ -26,6 +26,6 @@ type RealmStatus struct {
 }
 
 // JSON2Struct creates RealmStatus structure from JSON byte array
-func (r *RealmStatus) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, r)
+func (r *RealmStatus) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, r)
 }

@@ -30,6 +30,6 @@ type Season struct {
 }
 
 // JSON2Struct creates Season structure from JSON byte array
-func (s *Season) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, s)
+func (s *Season) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, s)
 }

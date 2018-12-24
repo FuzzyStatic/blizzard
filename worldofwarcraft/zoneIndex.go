@@ -17,6 +17,6 @@ type ZoneIndex struct {
 }
 
 // JSON2Struct creates ZoneIndex structure from JSON byte array
-func (z *ZoneIndex) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, z)
+func (z *ZoneIndex) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, z)
 }

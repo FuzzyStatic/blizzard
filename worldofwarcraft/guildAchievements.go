@@ -55,6 +55,6 @@ type GuildAchievements struct {
 }
 
 // JSON2Struct creates GuildAchievements structure from JSON byte array
-func (g *GuildAchievements) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, g)
+func (g *GuildAchievements) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, g)
 }

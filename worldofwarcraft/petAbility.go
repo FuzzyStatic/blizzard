@@ -22,6 +22,6 @@ type PetAbility struct {
 }
 
 // JSON2Struct creates PetAbility structure from JSON byte array
-func (p *PetAbility) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, p)
+func (p *PetAbility) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, p)
 }

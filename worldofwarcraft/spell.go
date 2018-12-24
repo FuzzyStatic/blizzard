@@ -20,6 +20,6 @@ type Spell struct {
 }
 
 // JSON2Struct creates Spell structure from JSON byte array
-func (s *Spell) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, s)
+func (s *Spell) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, s)
 }

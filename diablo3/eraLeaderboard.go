@@ -81,6 +81,6 @@ type EraLeaderboard struct {
 }
 
 // JSON2Struct creates EraLeaderboard structure from JSON byte array
-func (e *EraLeaderboard) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, e)
+func (e *EraLeaderboard) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, e)
 }

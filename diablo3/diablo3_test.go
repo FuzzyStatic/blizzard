@@ -31,17 +31,18 @@ func init() {
 	apiKey := viper.GetString("API.api_key")
 
 	d = New(
-		blizzard.Auth{
-			AccessToken: accessToken,
-			APIKey:      apiKey,
-		},
-		blizzard.US,
+		blizzard.New(
+			blizzard.Auth{
+				AccessToken: accessToken,
+				APIKey:      apiKey,
+			},
+			blizzard.US),
 	)
 }
 
 func TestGetSeasonIndex(t *testing.T) {
 	var (
-		seasonIndexJSON *[]byte
+		seasonIndexJSON []byte
 		seasonIndex     *SeasonIndex
 		err             error
 	)
@@ -56,14 +57,14 @@ func TestGetSeasonIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*seasonIndexJSON))
-	fmt.Println(*seasonIndex)
+	fmt.Println(string(seasonIndexJSON))
+	fmt.Printf("%+v", seasonIndex)
 }
 
 func TestGetSeason(t *testing.T) {
 	var (
 		seasonIndex *SeasonIndex
-		seasonJSON  *[]byte
+		seasonJSON  []byte
 		season      *Season
 		err         error
 	)
@@ -83,14 +84,14 @@ func TestGetSeason(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*seasonJSON))
-	fmt.Println(*season)
+	fmt.Println(string(seasonJSON))
+	fmt.Printf("%+v", season)
 }
 
 func TestGetSeasonAchievementPoints(t *testing.T) {
 	var (
 		seasonIndex                 *SeasonIndex
-		seasonAchievementPointsJSON *[]byte
+		seasonAchievementPointsJSON []byte
 		seasonAchievementPoints     *SeasonAchievementPoints
 		err                         error
 	)
@@ -110,13 +111,13 @@ func TestGetSeasonAchievementPoints(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*seasonAchievementPointsJSON))
-	fmt.Println(*seasonAchievementPoints)
+	fmt.Println(string(seasonAchievementPointsJSON))
+	fmt.Printf("%+v", seasonAchievementPoints)
 }
 
 func TestGetSeasonRift(t *testing.T) {
 	var (
-		seasonRiftJSON *[]byte
+		seasonRiftJSON []byte
 		seasonRift     *SeasonRift
 		err            error
 	)
@@ -131,8 +132,8 @@ func TestGetSeasonRift(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*seasonRiftJSON))
-	fmt.Println(*seasonRift)
+	fmt.Println(string(seasonRiftJSON))
+	fmt.Println(seasonRift)
 }
 
 func TestGetSeasonRiftRowFromRank(t *testing.T) {
@@ -152,7 +153,7 @@ func TestGetSeasonRiftRowFromRank(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(*seasonRiftRowFromRank)
+	fmt.Printf("%+v", seasonRiftRowFromRank)
 }
 
 func TestGetSeasonRowPlayer(t *testing.T) {
@@ -178,7 +179,7 @@ func TestGetSeasonRowPlayer(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(*seasonRowPlayer)
+	fmt.Printf("%+v", seasonRowPlayer)
 }
 
 func TestGetHeroBattleTagFromSeasonRowPlayer(t *testing.T) {
@@ -186,7 +187,7 @@ func TestGetHeroBattleTagFromSeasonRowPlayer(t *testing.T) {
 		seasonRift                       *SeasonRift
 		seasonRiftRowFromRank            *Row
 		seasonRowPlayer                  *Player
-		heroBattleTagFromSeasonRowPlayer *string
+		heroBattleTagFromSeasonRowPlayer string
 		err                              error
 	)
 
@@ -210,7 +211,7 @@ func TestGetHeroBattleTagFromSeasonRowPlayer(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(*heroBattleTagFromSeasonRowPlayer)
+	fmt.Println(heroBattleTagFromSeasonRowPlayer)
 }
 
 func TestGetHeroIDFromSeasonRowPlayer(t *testing.T) {
@@ -218,7 +219,7 @@ func TestGetHeroIDFromSeasonRowPlayer(t *testing.T) {
 		seasonRift                *SeasonRift
 		seasonRiftRowFromRank     *Row
 		seasonRowPlayer           *Player
-		heroIDFromSeasonRowPlayer *int
+		heroIDFromSeasonRowPlayer int
 		err                       error
 	)
 
@@ -242,15 +243,15 @@ func TestGetHeroIDFromSeasonRowPlayer(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(*heroIDFromSeasonRowPlayer)
+	fmt.Println(heroIDFromSeasonRowPlayer)
 }
 
 func TestGetHeroBattleTagAndIDFromSeasonRow(t *testing.T) {
 	var (
 		seasonRift            *SeasonRift
 		seasonRiftRowFromRank *Row
-		battleTag             *string
-		heroID                *int
+		battleTag             string
+		heroID                int
 		err                   error
 	)
 
@@ -269,14 +270,14 @@ func TestGetHeroBattleTagAndIDFromSeasonRow(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(*battleTag)
-	fmt.Println(*heroID)
+	fmt.Println(battleTag)
+	fmt.Println(heroID)
 }
 
 func TestGetProfile(t *testing.T) {
 	var (
 		battleTag   = "FuzzyStatic#1384"
-		profileJSON *[]byte
+		profileJSON []byte
 		profile     *Profile
 		err         error
 	)
@@ -291,15 +292,15 @@ func TestGetProfile(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*profileJSON))
-	fmt.Println(*profile)
+	fmt.Println(string(profileJSON))
+	fmt.Printf("%+v", profile)
 }
 
 func TestGetHeroNamesFromProfile(t *testing.T) {
 	var (
 		battleTag            = "FuzzyStatic#1384"
 		profile              *Profile
-		heroNamesFromProfile *[]string
+		heroNamesFromProfile []string
 		err                  error
 	)
 
@@ -310,14 +311,14 @@ func TestGetHeroNamesFromProfile(t *testing.T) {
 
 	heroNamesFromProfile = profile.GetHeroNamesFromProfile()
 
-	fmt.Println(*heroNamesFromProfile)
+	fmt.Println(heroNamesFromProfile)
 }
 
 func TestGetHeroIDsAndNamesFromProfile(t *testing.T) {
 	var (
 		battleTag                  = "FuzzyStatic#1384"
 		profile                    *Profile
-		heroIDsAndNamesFromProfile *map[int]string
+		heroIDsAndNamesFromProfile map[int]string
 		err                        error
 	)
 
@@ -328,36 +329,38 @@ func TestGetHeroIDsAndNamesFromProfile(t *testing.T) {
 
 	heroIDsAndNamesFromProfile = profile.GetHeroIDsAndNamesFromProfile()
 
-	fmt.Println(*heroIDsAndNamesFromProfile)
+	fmt.Println(heroIDsAndNamesFromProfile)
 }
 
 func TestGetHero(t *testing.T) {
 	var (
 		battleTag = "DyS#1311"
-		heroID    = 93409818
-		heroJSON  *[]byte
+		heroID    = 104452451
+		heroJSON  []byte
 		hero      *Hero
 		err       error
 	)
 
 	heroJSON, err = d.GetHeroJSON(battleTag, heroID)
 	if err != nil {
+		fmt.Println(err)
 		t.Fail()
 	}
 
 	hero, err = d.GetHero(battleTag, heroID)
 	if err != nil {
+		fmt.Println(err)
 		t.Fail()
 	}
 
-	fmt.Println(string(*heroJSON))
-	fmt.Println(*hero)
+	fmt.Println(string(heroJSON))
+	fmt.Printf("%+v", hero)
 }
 
 func TestGetAllItemTooltipParams(t *testing.T) {
 	var (
 		battleTag            = "DyS#1311"
-		heroID               = 93409818
+		heroID               = 104452451
 		hero                 *Hero
 		allItemTooltipParams map[string]string
 		err                  error
@@ -376,7 +379,7 @@ func TestGetAllItemTooltipParams(t *testing.T) {
 func TestGetAllItems(t *testing.T) {
 	var (
 		battleTag = "DyS#1311"
-		heroID    = 93409818
+		heroID    = 104452451
 		hero      *Hero
 		allItems  map[string]*Item
 		err       error
@@ -389,13 +392,13 @@ func TestGetAllItems(t *testing.T) {
 
 	allItems = d.GetAllItems(hero)
 
-	fmt.Println(*allItems["Bracers"])
+	fmt.Println(allItems["LeftFinger"])
 }
 
 func TestGetItem(t *testing.T) {
 	var (
-		tooltipParams = "item/CpkBCIOsrpkPEgcIBBX9OUmaHfRwB60dZiMGUB2cBgDLHWc-7OQdbhfHex0bXc9EMIvaAjiiAkAASAtQElgEYNsCaiwKDAgAEK_U4sSDgICgLxIcCMu4g5cJEgcIBBWkvhzCMIvSAjgAQAFYBJABC4ABRo0BVoz9E6UBZz7s5K0B5hXbDbUBf_lOXbgB6eGb9gfAAROAAgSIAsgBGIWYttsMUAxYAqABhZi22wygAYO-tM8DoAGj4cPOA6ABhaiHwAOgAY6k2PoJoAHg-Pm6Dw"
-		itemJSON      *[]byte
+		tooltipParams = "/item/krysbins-sentence-P6_Unique_Ring_03"
+		itemJSON      []byte
 		item          *Item
 		err           error
 	)
@@ -410,13 +413,13 @@ func TestGetItem(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*itemJSON))
-	fmt.Println(*item)
+	fmt.Println(string(itemJSON))
+	fmt.Printf("%+v", item)
 }
 
 func TestGetItemAttributesRaw(t *testing.T) {
 	var (
-		tooltipParams     = "item/CpkBCIOsrpkPEgcIBBX9OUmaHfRwB60dZiMGUB2cBgDLHWc-7OQdbhfHex0bXc9EMIvaAjiiAkAASAtQElgEYNsCaiwKDAgAEK_U4sSDgICgLxIcCMu4g5cJEgcIBBWkvhzCMIvSAjgAQAFYBJABC4ABRo0BVoz9E6UBZz7s5K0B5hXbDbUBf_lOXbgB6eGb9gfAAROAAgSIAsgBGIWYttsMUAxYAqABhZi22wygAYO-tM8DoAGj4cPOA6ABhaiHwAOgAY6k2PoJoAHg-Pm6Dw"
+		tooltipParams     = "/item/krysbins-sentence-P6_Unique_Ring_03"
 		item              *Item
 		itemAttributesRaw map[string]float64
 		err               error
@@ -425,18 +428,19 @@ func TestGetItemAttributesRaw(t *testing.T) {
 	item, err = d.GetItem(tooltipParams)
 	if err != nil {
 		t.Fail()
+		return
 	}
 
-	itemAttributesRaw = GetItemAttributesRaw(*item)
+	itemAttributesRaw = GetItemAttributesRaw(item)
 
 	fmt.Println(itemAttributesRaw)
 }
 
 func TestCompareItemsAttributesRaw(t *testing.T) {
 	var (
-		tooltipParams1            = "item/CpkBCIOsrpkPEgcIBBX9OUmaHfRwB60dZiMGUB2cBgDLHWc-7OQdbhfHex0bXc9EMIvaAjiiAkAASAtQElgEYNsCaiwKDAgAEK_U4sSDgICgLxIcCMu4g5cJEgcIBBWkvhzCMIvSAjgAQAFYBJABC4ABRo0BVoz9E6UBZz7s5K0B5hXbDbUBf_lOXbgB6eGb9gfAAROAAgSIAsgBGIWYttsMUAxYAqABhZi22wygAYO-tM8DoAGj4cPOA6ABhaiHwAOgAY6k2PoJoAHg-Pm6Dw"
+		tooltipParams1            = "/item/krysbins-sentence-P6_Unique_Ring_03"
 		item1                     *Item
-		tooltipParams2            = "item/CoUBCNaYpeALEgcIBBVWt3pQHXKOHSEdmwYAyx1mIwZQHY9Y1h4d83AHrTCL1gI4qANAAFASWARgqgNqLAoMCAAQq57e9oOAgOAHEhwImsXD2gsSBwgEFYm-HMIwi9ICOABAAVgEkAELgAFGpQFmIwZQrQHQ7mgxtQGb2dnvuAHUxsPHDcABFRis3dWHCg"
+		tooltipParams2            = "/item/krysbins-sentence-P6_Unique_Ring_03"
 		item2                     *Item
 		compareItemsAttributesRaw map[string]float64
 		err                       error
@@ -445,21 +449,23 @@ func TestCompareItemsAttributesRaw(t *testing.T) {
 	item1, err = d.GetItem(tooltipParams1)
 	if err != nil {
 		t.Fail()
+		return
 	}
 
 	item2, err = d.GetItem(tooltipParams2)
 	if err != nil {
 		t.Fail()
+		return
 	}
 
-	compareItemsAttributesRaw = CompareItemsAttributesRaw(*item1, *item2)
+	compareItemsAttributesRaw = CompareItemsAttributesRaw(item1, item2)
 
 	fmt.Println(compareItemsAttributesRaw)
 }
 
 func TestGetFollower(t *testing.T) {
 	var (
-		followerJSON *[]byte
+		followerJSON []byte
 		follower     *Follower
 		err          error
 	)
@@ -474,13 +480,13 @@ func TestGetFollower(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*followerJSON))
-	fmt.Println(*follower)
+	fmt.Println(string(followerJSON))
+	fmt.Printf("%+v", follower)
 }
 
 func TestGetArtisan(t *testing.T) {
 	var (
-		artisanJSON *[]byte
+		artisanJSON []byte
 		artisan     *Artisan
 		err         error
 	)
@@ -495,6 +501,6 @@ func TestGetArtisan(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*artisanJSON))
-	fmt.Println(*artisan)
+	fmt.Println(string(artisanJSON))
+	fmt.Printf("%+v", artisan)
 }

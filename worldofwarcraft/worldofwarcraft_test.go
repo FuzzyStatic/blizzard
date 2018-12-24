@@ -31,17 +31,18 @@ func init() {
 	apiKey := viper.GetString("API.api_key")
 
 	w = New(
-		blizzard.Auth{
-			AccessToken: accessToken,
-			APIKey:      apiKey,
-		},
-		blizzard.US,
+		blizzard.New(
+			blizzard.Auth{
+				AccessToken: accessToken,
+				APIKey:      apiKey,
+			},
+			blizzard.US),
 	)
 }
 
 func TestGetConnectedRealmIndex(t *testing.T) {
 	var (
-		connectedRealmIndexJSON *[]byte
+		connectedRealmIndexJSON []byte
 		connectedRealmIndex     *ConnectedRealmIndex
 		err                     error
 	)
@@ -56,13 +57,13 @@ func TestGetConnectedRealmIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*connectedRealmIndexJSON))
-	fmt.Println(*connectedRealmIndex)
+	fmt.Println(string(connectedRealmIndexJSON))
+	fmt.Println(connectedRealmIndex)
 }
 
 func TestGetConnectedRealm(t *testing.T) {
 	var (
-		connectedRealmJSON *[]byte
+		connectedRealmJSON []byte
 		connectedRealm     *ConnectedRealm
 		err                error
 	)
@@ -77,13 +78,13 @@ func TestGetConnectedRealm(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*connectedRealmJSON))
-	fmt.Println(*connectedRealm)
+	fmt.Println(string(connectedRealmJSON))
+	fmt.Println(connectedRealm)
 }
 
 func TestGetMythicLeaderboardIndex(t *testing.T) {
 	var (
-		mythicLeaderboardIndexJSON *[]byte
+		mythicLeaderboardIndexJSON []byte
 		mythicLeaderboardIndex     *MythicLeaderboardIndex
 		err                        error
 	)
@@ -98,13 +99,13 @@ func TestGetMythicLeaderboardIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*mythicLeaderboardIndexJSON))
-	fmt.Println(*mythicLeaderboardIndex)
+	fmt.Println(string(mythicLeaderboardIndexJSON))
+	fmt.Println(mythicLeaderboardIndex)
 }
 
 func TestGetMythicLeaderboard(t *testing.T) {
 	var (
-		mythicLeaderboardJSON *[]byte
+		mythicLeaderboardJSON []byte
 		mythicLeaderboard     *MythicLeaderboard
 		err                   error
 	)
@@ -119,13 +120,13 @@ func TestGetMythicLeaderboard(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*mythicLeaderboardJSON))
-	fmt.Println(*mythicLeaderboard)
+	fmt.Println(string(mythicLeaderboardJSON))
+	fmt.Println(mythicLeaderboard)
 }
 
 func TestGetRealmIndex(t *testing.T) {
 	var (
-		realmIndexJSON *[]byte
+		realmIndexJSON []byte
 		realmIndex     *RealmIndex
 		err            error
 	)
@@ -140,13 +141,13 @@ func TestGetRealmIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*realmIndexJSON))
-	fmt.Println(*realmIndex)
+	fmt.Println(string(realmIndexJSON))
+	fmt.Println(realmIndex)
 }
 
 func TestGetRealm(t *testing.T) {
 	var (
-		realmJSON *[]byte
+		realmJSON []byte
 		realm     *Realm
 		err       error
 	)
@@ -161,8 +162,8 @@ func TestGetRealm(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*realmJSON))
-	fmt.Println(*realm)
+	fmt.Println(string(realmJSON))
+	fmt.Println(realm)
 
 	realmJSON, err = w.GetRealmJSON("malganis")
 	if err != nil {
@@ -174,13 +175,13 @@ func TestGetRealm(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*realmJSON))
-	fmt.Println(*realm)
+	fmt.Println(string(realmJSON))
+	fmt.Println(realm)
 }
 
 func TestGetRegionIndex(t *testing.T) {
 	var (
-		regionIndexJSON *[]byte
+		regionIndexJSON []byte
 		regionIndex     *RegionIndex
 		err             error
 	)
@@ -195,13 +196,13 @@ func TestGetRegionIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*regionIndexJSON))
-	fmt.Println(*regionIndex)
+	fmt.Println(string(regionIndexJSON))
+	fmt.Println(regionIndex)
 }
 
 func TestGetRegion(t *testing.T) {
 	var (
-		regionJSON *[]byte
+		regionJSON []byte
 		region     *Region
 		err        error
 	)
@@ -216,13 +217,13 @@ func TestGetRegion(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*regionJSON))
-	fmt.Println(*region)
+	fmt.Println(string(regionJSON))
+	fmt.Println(region)
 }
 
 func TestGetTokenIndex(t *testing.T) {
 	var (
-		tokenIndexJSON *[]byte
+		tokenIndexJSON []byte
 		tokenIndex     *TokenIndex
 		err            error
 	)
@@ -237,13 +238,13 @@ func TestGetTokenIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*tokenIndexJSON))
-	fmt.Println(*tokenIndex)
+	fmt.Println(string(tokenIndexJSON))
+	fmt.Println(tokenIndex)
 }
 
 func TestGetAchievement(t *testing.T) {
 	var (
-		achievementJSON *[]byte
+		achievementJSON []byte
 		achievement     *Achievement
 		err             error
 	)
@@ -258,13 +259,13 @@ func TestGetAchievement(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*achievementJSON))
-	fmt.Println(*achievement)
+	fmt.Println(string(achievementJSON))
+	fmt.Println(achievement)
 }
 
 func TestGetAuctionData(t *testing.T) {
 	var (
-		auctionDataJSON *[]byte
+		auctionDataJSON []byte
 		auctionData     *AuctionData
 		err             error
 	)
@@ -279,8 +280,8 @@ func TestGetAuctionData(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*auctionDataJSON))
-	fmt.Println(*auctionData)
+	fmt.Println(string(auctionDataJSON))
+	fmt.Println(auctionData)
 }
 
 func TestGetAuctions(t *testing.T) {
@@ -295,13 +296,13 @@ func TestGetAuctions(t *testing.T) {
 	}
 
 	for _, auctions := range auctionsArr {
-		fmt.Println(*auctions)
+		fmt.Println(auctions)
 	}
 }
 
 func TestGetBossIndex(t *testing.T) {
 	var (
-		bossIndexJSON *[]byte
+		bossIndexJSON []byte
 		bossIndex     *BossIndex
 		err           error
 	)
@@ -316,13 +317,13 @@ func TestGetBossIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*bossIndexJSON))
-	fmt.Println(*bossIndex)
+	fmt.Println(string(bossIndexJSON))
+	fmt.Println(bossIndex)
 }
 
 func TestGetBoss(t *testing.T) {
 	var (
-		bossJSON *[]byte
+		bossJSON []byte
 		boss     *Boss
 		err      error
 	)
@@ -337,13 +338,13 @@ func TestGetBoss(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*bossJSON))
-	fmt.Println(*boss)
+	fmt.Println(string(bossJSON))
+	fmt.Println(boss)
 }
 
 func TestGetChallengeRegionLeaderboard(t *testing.T) {
 	var (
-		challengeRegionLeaderboardJSON *[]byte
+		challengeRegionLeaderboardJSON []byte
 		challengeRegionLeaderboard     *ChallengeRegionLeaderboard
 		err                            error
 	)
@@ -358,13 +359,13 @@ func TestGetChallengeRegionLeaderboard(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*challengeRegionLeaderboardJSON))
-	fmt.Println(*challengeRegionLeaderboard)
+	fmt.Println(string(challengeRegionLeaderboardJSON))
+	fmt.Println(challengeRegionLeaderboard)
 }
 
 func TestGetCharacter(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -379,13 +380,13 @@ func TestGetCharacter(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithAchievements(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -400,13 +401,13 @@ func TestGetCharacterWithAchievements(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithAppearance(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -421,13 +422,13 @@ func TestGetCharacterWithAppearance(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithFeed(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -442,13 +443,13 @@ func TestGetCharacterWithFeed(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithGuild(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -463,13 +464,13 @@ func TestGetCharacterWithGuild(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithHunterPets(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -484,13 +485,13 @@ func TestGetCharacterWithHunterPets(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithItems(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -505,13 +506,13 @@ func TestGetCharacterWithItems(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithMounts(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -526,13 +527,13 @@ func TestGetCharacterWithMounts(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithPets(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -547,13 +548,13 @@ func TestGetCharacterWithPets(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithPetSlots(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -568,13 +569,13 @@ func TestGetCharacterWithPetSlots(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithProfessions(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -589,13 +590,13 @@ func TestGetCharacterWithProfessions(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithProgression(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -610,13 +611,13 @@ func TestGetCharacterWithProgression(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithPVP(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -631,13 +632,13 @@ func TestGetCharacterWithPVP(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithQuests(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -652,13 +653,13 @@ func TestGetCharacterWithQuests(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithReputation(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -673,13 +674,13 @@ func TestGetCharacterWithReputation(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithStatistics(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -694,13 +695,13 @@ func TestGetCharacterWithStatistics(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithStats(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -715,13 +716,13 @@ func TestGetCharacterWithStats(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithTalents(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -736,13 +737,13 @@ func TestGetCharacterWithTalents(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithTitles(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -757,13 +758,13 @@ func TestGetCharacterWithTitles(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithAudit(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -778,13 +779,13 @@ func TestGetCharacterWithAudit(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetCharacterWithAll(t *testing.T) {
 	var (
-		characterJSON *[]byte
+		characterJSON []byte
 		character     *Character
 		err           error
 	)
@@ -799,13 +800,13 @@ func TestGetCharacterWithAll(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterJSON))
-	fmt.Println(*character)
+	fmt.Println(string(characterJSON))
+	fmt.Println(character)
 }
 
 func TestGetGuild(t *testing.T) {
 	var (
-		guildJSON *[]byte
+		guildJSON []byte
 		guild     *Guild
 		err       error
 	)
@@ -820,13 +821,13 @@ func TestGetGuild(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*guildJSON))
-	fmt.Println(*guild)
+	fmt.Println(string(guildJSON))
+	fmt.Println(guild)
 }
 
 func TestGetGuildWithMembers(t *testing.T) {
 	var (
-		guildJSON *[]byte
+		guildJSON []byte
 		guild     *Guild
 		err       error
 	)
@@ -841,13 +842,13 @@ func TestGetGuildWithMembers(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*guildJSON))
-	fmt.Println(*guild)
+	fmt.Println(string(guildJSON))
+	fmt.Println(guild)
 }
 
 func TestGetGuildWithAchievements(t *testing.T) {
 	var (
-		guildJSON *[]byte
+		guildJSON []byte
 		guild     *Guild
 		err       error
 	)
@@ -862,13 +863,13 @@ func TestGetGuildWithAchievements(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*guildJSON))
-	fmt.Println(*guild)
+	fmt.Println(string(guildJSON))
+	fmt.Println(guild)
 }
 
 func TestGetGuildWithNews(t *testing.T) {
 	var (
-		guildJSON *[]byte
+		guildJSON []byte
 		guild     *Guild
 		err       error
 	)
@@ -883,13 +884,13 @@ func TestGetGuildWithNews(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*guildJSON))
-	fmt.Println(*guild)
+	fmt.Println(string(guildJSON))
+	fmt.Println(guild)
 }
 
 func TestGetGuildWithChallenge(t *testing.T) {
 	var (
-		guildJSON *[]byte
+		guildJSON []byte
 		guild     *Guild
 		err       error
 	)
@@ -904,13 +905,13 @@ func TestGetGuildWithChallenge(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*guildJSON))
-	fmt.Println(*guild)
+	fmt.Println(string(guildJSON))
+	fmt.Println(guild)
 }
 
 func TestGetGuildWithAll(t *testing.T) {
 	var (
-		guildJSON *[]byte
+		guildJSON []byte
 		guild     *Guild
 		err       error
 	)
@@ -925,13 +926,13 @@ func TestGetGuildWithAll(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*guildJSON))
-	fmt.Println(*guild)
+	fmt.Println(string(guildJSON))
+	fmt.Println(guild)
 }
 
 func TestGetItem(t *testing.T) {
 	var (
-		itemJSON *[]byte
+		itemJSON []byte
 		item     *Item
 		err      error
 	)
@@ -946,13 +947,13 @@ func TestGetItem(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*itemJSON))
-	fmt.Println(*item)
+	fmt.Println(string(itemJSON))
+	fmt.Println(item)
 }
 
 func TestGetSet(t *testing.T) {
 	var (
-		setJSON *[]byte
+		setJSON []byte
 		set     *Set
 		err     error
 	)
@@ -967,13 +968,13 @@ func TestGetSet(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*setJSON))
-	fmt.Println(*set)
+	fmt.Println(string(setJSON))
+	fmt.Println(set)
 }
 
 func TestGetMountIndex(t *testing.T) {
 	var (
-		mountIndexJSON *[]byte
+		mountIndexJSON []byte
 		mountIndex     *MountIndex
 		err            error
 	)
@@ -988,13 +989,13 @@ func TestGetMountIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*mountIndexJSON))
-	fmt.Println(*mountIndex)
+	fmt.Println(string(mountIndexJSON))
+	fmt.Println(mountIndex)
 }
 
 func TestGetPetIndex(t *testing.T) {
 	var (
-		petIndexJSON *[]byte
+		petIndexJSON []byte
 		petIndex     *PetIndex
 		err          error
 	)
@@ -1009,13 +1010,13 @@ func TestGetPetIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*petIndexJSON))
-	fmt.Println(*petIndex)
+	fmt.Println(string(petIndexJSON))
+	fmt.Println(petIndex)
 }
 
 func TestGetPetAbility(t *testing.T) {
 	var (
-		petAbilityJSON *[]byte
+		petAbilityJSON []byte
 		petAbility     *PetAbility
 		err            error
 	)
@@ -1030,13 +1031,13 @@ func TestGetPetAbility(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*petAbilityJSON))
-	fmt.Println(*petAbility)
+	fmt.Println(string(petAbilityJSON))
+	fmt.Println(petAbility)
 }
 
 func TestGetPetSpecies(t *testing.T) {
 	var (
-		petSpeciesJSON *[]byte
+		petSpeciesJSON []byte
 		petSpecies     *PetSpecies
 		err            error
 	)
@@ -1051,13 +1052,13 @@ func TestGetPetSpecies(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*petSpeciesJSON))
-	fmt.Println(*petSpecies)
+	fmt.Println(string(petSpeciesJSON))
+	fmt.Println(petSpecies)
 }
 
 func TestGetPetStats(t *testing.T) {
 	var (
-		petStatsJSON *[]byte
+		petStatsJSON []byte
 		petStats     *PetStats
 		err          error
 	)
@@ -1072,13 +1073,13 @@ func TestGetPetStats(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*petStatsJSON))
-	fmt.Println(*petStats)
+	fmt.Println(string(petStatsJSON))
+	fmt.Println(petStats)
 }
 
 func TestGet2v2Leaderboard(t *testing.T) {
 	var (
-		leaderboardJSON *[]byte
+		leaderboardJSON []byte
 		leaderboard     *Leaderboard
 		err             error
 	)
@@ -1093,13 +1094,13 @@ func TestGet2v2Leaderboard(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*leaderboardJSON))
-	fmt.Println(*leaderboard)
+	fmt.Println(string(leaderboardJSON))
+	fmt.Println(leaderboard)
 }
 
 func TestGet3v3Leaderboard(t *testing.T) {
 	var (
-		leaderboardJSON *[]byte
+		leaderboardJSON []byte
 		leaderboard     *Leaderboard
 		err             error
 	)
@@ -1114,13 +1115,13 @@ func TestGet3v3Leaderboard(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*leaderboardJSON))
-	fmt.Println(*leaderboard)
+	fmt.Println(string(leaderboardJSON))
+	fmt.Println(leaderboard)
 }
 
 func TestGet5v5Leaderboard(t *testing.T) {
 	var (
-		leaderboardJSON *[]byte
+		leaderboardJSON []byte
 		leaderboard     *Leaderboard
 		err             error
 	)
@@ -1135,13 +1136,13 @@ func TestGet5v5Leaderboard(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*leaderboardJSON))
-	fmt.Println(*leaderboard)
+	fmt.Println(string(leaderboardJSON))
+	fmt.Println(leaderboard)
 }
 
 func TestGetRBGLeaderboard(t *testing.T) {
 	var (
-		leaderboardJSON *[]byte
+		leaderboardJSON []byte
 		leaderboard     *Leaderboard
 		err             error
 	)
@@ -1156,13 +1157,13 @@ func TestGetRBGLeaderboard(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*leaderboardJSON))
-	fmt.Println(*leaderboard)
+	fmt.Println(string(leaderboardJSON))
+	fmt.Println(leaderboard)
 }
 
 func TestGetQuest(t *testing.T) {
 	var (
-		questJSON *[]byte
+		questJSON []byte
 		quest     *Quest
 		err       error
 	)
@@ -1177,13 +1178,13 @@ func TestGetQuest(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*questJSON))
-	fmt.Println(*quest)
+	fmt.Println(string(questJSON))
+	fmt.Println(quest)
 }
 
 func TestGetRealmStatus(t *testing.T) {
 	var (
-		realmStatusJSON *[]byte
+		realmStatusJSON []byte
 		realmStatus     *RealmStatus
 		err             error
 	)
@@ -1198,13 +1199,13 @@ func TestGetRealmStatus(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*realmStatusJSON))
-	fmt.Println(*realmStatus)
+	fmt.Println(string(realmStatusJSON))
+	fmt.Println(realmStatus)
 }
 
 func TestGetRecipe(t *testing.T) {
 	var (
-		recipeJSON *[]byte
+		recipeJSON []byte
 		recipe     *Recipe
 		err        error
 	)
@@ -1219,13 +1220,13 @@ func TestGetRecipe(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*recipeJSON))
-	fmt.Println(*recipe)
+	fmt.Println(string(recipeJSON))
+	fmt.Println(recipe)
 }
 
 func TestGetSpell(t *testing.T) {
 	var (
-		spellJSON *[]byte
+		spellJSON []byte
 		spell     *Spell
 		err       error
 	)
@@ -1240,13 +1241,13 @@ func TestGetSpell(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*spellJSON))
-	fmt.Println(*spell)
+	fmt.Println(string(spellJSON))
+	fmt.Println(spell)
 }
 
 func TestGetZoneIndex(t *testing.T) {
 	var (
-		zoneIndexJSON *[]byte
+		zoneIndexJSON []byte
 		zoneIndex     *ZoneIndex
 		err           error
 	)
@@ -1261,13 +1262,13 @@ func TestGetZoneIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*zoneIndexJSON))
-	fmt.Println(*zoneIndex)
+	fmt.Println(string(zoneIndexJSON))
+	fmt.Println(zoneIndex)
 }
 
 func TestGetZone(t *testing.T) {
 	var (
-		zoneJSON *[]byte
+		zoneJSON []byte
 		zone     *Zone
 		err      error
 	)
@@ -1282,13 +1283,13 @@ func TestGetZone(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*zoneJSON))
-	fmt.Println(*zone)
+	fmt.Println(string(zoneJSON))
+	fmt.Println(zone)
 }
 
 func TestGetBattlegroups(t *testing.T) {
 	var (
-		battlegroupsJSON *[]byte
+		battlegroupsJSON []byte
 		battlegroups     *Battlegroups
 		err              error
 	)
@@ -1303,13 +1304,13 @@ func TestGetBattlegroups(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*battlegroupsJSON))
-	fmt.Println(*battlegroups)
+	fmt.Println(string(battlegroupsJSON))
+	fmt.Println(battlegroups)
 }
 
 func TestGetCharacterRaces(t *testing.T) {
 	var (
-		characterRacesJSON *[]byte
+		characterRacesJSON []byte
 		characterRaces     *CharacterRaces
 		err                error
 	)
@@ -1324,13 +1325,13 @@ func TestGetCharacterRaces(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterRacesJSON))
-	fmt.Println(*characterRaces)
+	fmt.Println(string(characterRacesJSON))
+	fmt.Println(characterRaces)
 }
 
 func TestGetCharacterClasses(t *testing.T) {
 	var (
-		characterClassesJSON *[]byte
+		characterClassesJSON []byte
 		characterClasses     *CharacterClasses
 		err                  error
 	)
@@ -1345,13 +1346,13 @@ func TestGetCharacterClasses(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterClassesJSON))
-	fmt.Println(*characterClasses)
+	fmt.Println(string(characterClassesJSON))
+	fmt.Println(characterClasses)
 }
 
 func TestGetCharacterAchievements(t *testing.T) {
 	var (
-		characterAchievementsJSON *[]byte
+		characterAchievementsJSON []byte
 		characterAchievements     *CharacterAchievements
 		err                       error
 	)
@@ -1366,13 +1367,13 @@ func TestGetCharacterAchievements(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*characterAchievementsJSON))
-	fmt.Println(*characterAchievements)
+	fmt.Println(string(characterAchievementsJSON))
+	fmt.Println(characterAchievements)
 }
 
 func TestGetGuildRewards(t *testing.T) {
 	var (
-		guildRewardsJSON *[]byte
+		guildRewardsJSON []byte
 		guildRewards     *GuildRewards
 		err              error
 	)
@@ -1387,13 +1388,13 @@ func TestGetGuildRewards(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*guildRewardsJSON))
-	fmt.Println(*guildRewards)
+	fmt.Println(string(guildRewardsJSON))
+	fmt.Println(guildRewards)
 }
 
 func TestGetGuildPerks(t *testing.T) {
 	var (
-		guildPerksJSON *[]byte
+		guildPerksJSON []byte
 		guildPerks     *GuildPerks
 		err            error
 	)
@@ -1408,13 +1409,13 @@ func TestGetGuildPerks(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*guildPerksJSON))
-	fmt.Println(*guildPerks)
+	fmt.Println(string(guildPerksJSON))
+	fmt.Println(guildPerks)
 }
 
 func TestGetGuildAchievements(t *testing.T) {
 	var (
-		guildAchievementsJSON *[]byte
+		guildAchievementsJSON []byte
 		guildAchievements     *GuildAchievements
 		err                   error
 	)
@@ -1429,13 +1430,13 @@ func TestGetGuildAchievements(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*guildAchievementsJSON))
-	fmt.Println(*guildAchievements)
+	fmt.Println(string(guildAchievementsJSON))
+	fmt.Println(guildAchievements)
 }
 
 func TestGetItemClasses(t *testing.T) {
 	var (
-		itemClassesJSON *[]byte
+		itemClassesJSON []byte
 		itemClasses     *ItemClasses
 		err             error
 	)
@@ -1450,13 +1451,13 @@ func TestGetItemClasses(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*itemClassesJSON))
-	fmt.Println(*itemClasses)
+	fmt.Println(string(itemClassesJSON))
+	fmt.Println(itemClasses)
 }
 
 func TestGetTalents(t *testing.T) {
 	var (
-		talentsJSON *[]byte
+		talentsJSON []byte
 		talents     *Talents
 		err         error
 	)
@@ -1471,13 +1472,13 @@ func TestGetTalents(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*talentsJSON))
-	fmt.Println(*talents)
+	fmt.Println(string(talentsJSON))
+	fmt.Println(talents)
 }
 
 func TestGetPetTypes(t *testing.T) {
 	var (
-		petTypesJSON *[]byte
+		petTypesJSON []byte
 		petTypes     *PetTypes
 		err          error
 	)
@@ -1492,13 +1493,13 @@ func TestGetPetTypes(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*petTypesJSON))
-	fmt.Println(*petTypes)
+	fmt.Println(string(petTypesJSON))
+	fmt.Println(petTypes)
 }
 
 func TestGetUserCharacters(t *testing.T) {
 	var (
-		userCharactersJSON *[]byte
+		userCharactersJSON []byte
 		userCharacters     *UserCharacters
 		err                error
 	)
@@ -1513,6 +1514,6 @@ func TestGetUserCharacters(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Println(string(*userCharactersJSON))
-	fmt.Println(*userCharacters)
+	fmt.Println(string(userCharactersJSON))
+	fmt.Println(userCharacters)
 }

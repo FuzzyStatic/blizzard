@@ -94,6 +94,6 @@ type Rewards struct {
 }
 
 // JSON2Struct creates Rewards structure from JSON byte array
-func (r *Rewards) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, r)
+func (r *Rewards) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, r)
 }

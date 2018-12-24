@@ -21,6 +21,6 @@ type TokenIndex struct {
 }
 
 // JSON2Struct creates TokenIndex structure from JSON byte array
-func (t *TokenIndex) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, t)
+func (t *TokenIndex) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, t)
 }

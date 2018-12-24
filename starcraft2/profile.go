@@ -85,6 +85,6 @@ type Profile struct {
 }
 
 // JSON2Struct creates Profile structure from JSON byte array
-func (p *Profile) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, p)
+func (p *Profile) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, p)
 }

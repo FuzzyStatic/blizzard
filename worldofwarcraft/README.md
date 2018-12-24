@@ -12,11 +12,12 @@ Start by initiating a new WorldOfWarcraft structure (accessToken and apiKey can 
 var w *WorldOfWarcraft
 
 w = New(
-	blizzard.Auth{
-		AccessToken: "myAccessToken",
-		APIKey:      "myApiKey",
-	},
-	blizzard.US,
+	blizzard.New(
+		blizzard.Auth{
+			AccessToken: accessToken,
+			APIKey:      apiKey,
+		},
+		blizzard.US),
 )
 ```
 

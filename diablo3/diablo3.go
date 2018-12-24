@@ -18,17 +18,19 @@ import (
 
 // Diablo3 regional API URLs, locale, access token, api key
 type Diablo3 struct {
-	Auth         blizzard.Auth
+	Config       *blizzard.Config
 	Locale       string
 	DataURL      string
 	CommunityURL string
 }
 
 // New create new Diablo3 structure
-func New(auth blizzard.Auth, region blizzard.Region) *Diablo3 {
-	var d = Diablo3{Auth: auth}
+func New(c *blizzard.Config) *Diablo3 {
+	var d = Diablo3{
+		Config: c,
+	}
 
-	switch region {
+	switch c.Region {
 	case blizzard.CN:
 		d.Locale = "zh_CN"
 		d.DataURL = "https://api.battle.net.cn/data/d3"
@@ -58,7 +60,7 @@ func New(auth blizzard.Auth, region blizzard.Region) *Diablo3 {
 	return &d
 }
 
-func (d *Diablo3) getArtisanJSON(artisanNamePath string) (*[]byte, error) {
+func (d *Diablo3) getArtisanJSON(artisanNamePath string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -66,20 +68,20 @@ func (d *Diablo3) getArtisanJSON(artisanNamePath string) (*[]byte, error) {
 	)
 
 	url = d.CommunityURL + dataPath + artisanPath + artisanNamePath + "?" + localeQuery +
-		d.Locale + "&" + apiKeyQuery + d.Auth.APIKey
+		d.Locale + "&" + apiKeyQuery + d.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = d.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 func (d *Diablo3) getArtisan(artisanNamePath string) (*Artisan, error) {
 	var (
 		artisan Artisan
-		json    *[]byte
+		json    []byte
 		err     error
 	)
 
@@ -97,17 +99,17 @@ func (d *Diablo3) getArtisan(artisanNamePath string) (*Artisan, error) {
 }
 
 // GetBlacksmithJSON gets JSON for Blacksmith artisan
-func (d *Diablo3) GetBlacksmithJSON() (*[]byte, error) {
+func (d *Diablo3) GetBlacksmithJSON() ([]byte, error) {
 	return d.getArtisanJSON(blacksmithPath)
 }
 
 // GetJewelerJSON gets JSON for Jeweler artisan
-func (d *Diablo3) GetJewelerJSON() (*[]byte, error) {
+func (d *Diablo3) GetJewelerJSON() ([]byte, error) {
 	return d.getArtisanJSON(jewelerPath)
 }
 
 // GetMysticJSON gets JSON for Mystic artisan
-func (d *Diablo3) GetMysticJSON() (*[]byte, error) {
+func (d *Diablo3) GetMysticJSON() ([]byte, error) {
 	return d.getArtisanJSON(mysticPath)
 }
 
@@ -127,7 +129,7 @@ func (d *Diablo3) GetMystic() (*Artisan, error) {
 }
 
 // GetEraJSON gets specified eraID JSON information
-func (d *Diablo3) GetEraJSON(eraID int) (*[]byte, error) {
+func (d *Diablo3) GetEraJSON(eraID int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -135,21 +137,21 @@ func (d *Diablo3) GetEraJSON(eraID int) (*[]byte, error) {
 	)
 
 	url = d.DataURL + eraIndexPath + "/" + strconv.Itoa(eraID) + "?" + accessTokenQuery +
-		d.Auth.AccessToken
+		d.Config.Auth.AccessToken
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = d.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetEra puts specified era information into Era structure
 func (d *Diablo3) GetEra(eraID int) (*Era, error) {
 	var (
 		era  Era
-		json *[]byte
+		json []byte
 		err  error
 	)
 
@@ -167,28 +169,28 @@ func (d *Diablo3) GetEra(eraID int) (*Era, error) {
 }
 
 // GetEraIndexJSON gets season index JSON information
-func (d *Diablo3) GetEraIndexJSON() (*[]byte, error) {
+func (d *Diablo3) GetEraIndexJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
 		err  error
 	)
 
-	url = d.DataURL + eraIndexPath + "/?" + accessTokenQuery + d.Auth.AccessToken
+	url = d.DataURL + eraIndexPath + "/?" + accessTokenQuery + d.Config.Auth.AccessToken
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = d.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetEraIndex puts era index information into EraIndex structure
 func (d *Diablo3) GetEraIndex() (*EraIndex, error) {
 	var (
 		eraIndex EraIndex
-		json     *[]byte
+		json     []byte
 		err      error
 	)
 
@@ -206,7 +208,7 @@ func (d *Diablo3) GetEraIndex() (*EraIndex, error) {
 }
 
 // GetEraLeaderboardJSON gets specified season information JSON
-func (d *Diablo3) GetEraLeaderboardJSON(eraID int, groupPath string, hardcore bool) (*[]byte, error) {
+func (d *Diablo3) GetEraLeaderboardJSON(eraID int, groupPath string, hardcore bool) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -220,21 +222,21 @@ func (d *Diablo3) GetEraLeaderboardJSON(eraID int, groupPath string, hardcore bo
 		url = url + hardcorePath
 	}
 
-	url = url + groupPath + "?access_token=" + d.Auth.AccessToken
+	url = url + groupPath + "?access_token=" + d.Config.Auth.AccessToken
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = d.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetEraLeaderboard puts specified era leaderboard information into EraLeaderboard structure
 func (d *Diablo3) GetEraLeaderboard(eraID int, groupPath string, hardcore bool) (*EraLeaderboard, error) {
 	var (
 		eraLeaderboard EraLeaderboard
-		json           *[]byte
+		json           []byte
 		err            error
 	)
 
@@ -251,7 +253,7 @@ func (d *Diablo3) GetEraLeaderboard(eraID int, groupPath string, hardcore bool) 
 	return &eraLeaderboard, nil
 }
 
-func (d *Diablo3) getFollowerJSON(followerNamePath string) (*[]byte, error) {
+func (d *Diablo3) getFollowerJSON(followerNamePath string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -259,20 +261,20 @@ func (d *Diablo3) getFollowerJSON(followerNamePath string) (*[]byte, error) {
 	)
 
 	url = d.CommunityURL + dataPath + followerPath + followerNamePath + "?" + localeQuery +
-		d.Locale + "&" + apiKeyQuery + d.Auth.APIKey
+		d.Locale + "&" + apiKeyQuery + d.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = d.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 func (d *Diablo3) getFollower(followerNamePath string) (*Follower, error) {
 	var (
 		follower Follower
-		json     *[]byte
+		json     []byte
 		err      error
 	)
 
@@ -290,17 +292,17 @@ func (d *Diablo3) getFollower(followerNamePath string) (*Follower, error) {
 }
 
 // GetEnchantressJSON gets enchantress follower information JSON
-func (d *Diablo3) GetEnchantressJSON() (*[]byte, error) {
+func (d *Diablo3) GetEnchantressJSON() ([]byte, error) {
 	return d.getFollowerJSON(enchantressPath)
 }
 
 // GetScoundrelJSON gets scoundrel follower information JSON
-func (d *Diablo3) GetScoundrelJSON() (*[]byte, error) {
+func (d *Diablo3) GetScoundrelJSON() ([]byte, error) {
 	return d.getFollowerJSON(scoundrelPath)
 }
 
 // GetTemplarJSON gets templar follower information JSON
-func (d *Diablo3) GetTemplarJSON() (*[]byte, error) {
+func (d *Diablo3) GetTemplarJSON() ([]byte, error) {
 	return d.getFollowerJSON(templarPath)
 }
 
@@ -321,30 +323,30 @@ func (d *Diablo3) GetTemplar() (*Follower, error) {
 
 // GetHeroJSON gets specified battleTag hero information JSON
 // Formats accepted: Player-1234 or Player#1234
-func (d *Diablo3) GetHeroJSON(battleTag string, heroID int) (*[]byte, error) {
+func (d *Diablo3) GetHeroJSON(battleTag string, heroID int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
 		err  error
 	)
 
-	battleTag = strings.Replace(battleTag, "#", "-", -1)
+	battleTag = strings.Replace(battleTag, "#", "%23", -1)
 
 	url = d.CommunityURL + profilePath + "/" + battleTag + heroPath + "/" + strconv.Itoa(heroID) +
-		"?" + localeQuery + d.Locale + "&" + apiKeyQuery + d.Auth.APIKey
+		"?" + localeQuery + d.Locale + "&" + apiKeyQuery + d.Config.Auth.APIKey
 
-	if err = blizzard.GetURLBody(url, &json); err != nil {
+	if json, err = d.Config.GetURLBody(url); err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetHero puts specified follower information into Hero structure
 func (d *Diablo3) GetHero(battleTag string, heroID int) (*Hero, error) {
 	var (
 		hero Hero
-		json *[]byte
+		json []byte
 		err  error
 	)
 
@@ -367,7 +369,7 @@ func (d *Diablo3) GetHero(battleTag string, heroID int) (*Hero, error) {
 
 // GetItemJSON gets specified item information JSON
 // Expected format: item/<string>
-func (d *Diablo3) GetItemJSON(tooltipParams string) (*[]byte, error) {
+func (d *Diablo3) GetItemJSON(tooltipParams string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -376,22 +378,22 @@ func (d *Diablo3) GetItemJSON(tooltipParams string) (*[]byte, error) {
 
 	if tooltipParams != "" {
 		url = d.CommunityURL + dataPath + "/" + tooltipParams + "?" + localeQuery + d.Locale +
-			"&" + apiKeyQuery + d.Auth.APIKey
+			"&" + apiKeyQuery + d.Config.Auth.APIKey
 
-		err = blizzard.GetURLBody(url, &json)
+		json, err = d.Config.GetURLBody(url)
 		if err != nil {
 			return nil, err
 		}
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetItem puts specified follower information into Item structure
 func (d *Diablo3) GetItem(tooltipParams string) (*Item, error) {
 	var (
 		item Item
-		json *[]byte
+		json []byte
 		err  error
 	)
 
@@ -438,7 +440,7 @@ func (d *Diablo3) CompareAllItemsBetweenHeroes(hero1, hero2 *Hero) map[string]ma
 			if i == j {
 				item1, _ := d.GetItem(v)
 				item2, _ := d.GetItem(w)
-				m[i] = CompareItemsAttributesRaw(*item1, *item2)
+				m[i] = CompareItemsAttributesRaw(item1, item2)
 				delete(mItems2, j)
 			}
 		}
@@ -449,7 +451,7 @@ func (d *Diablo3) CompareAllItemsBetweenHeroes(hero1, hero2 *Hero) map[string]ma
 
 // GetProfileJSON gets specified battleTag profile JSON information
 // Formats accepted: Player-1234 or Player#1234
-func (d *Diablo3) GetProfileJSON(battleTag string) (*[]byte, error) {
+func (d *Diablo3) GetProfileJSON(battleTag string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -459,14 +461,14 @@ func (d *Diablo3) GetProfileJSON(battleTag string) (*[]byte, error) {
 	battleTag = strings.Replace(battleTag, "#", "-", -1)
 
 	url = d.CommunityURL + profilePath + "/" + battleTag + "/?" + localeQuery + d.Locale +
-		"&" + apiKeyQuery + d.Auth.APIKey
+		"&" + apiKeyQuery + d.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = d.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetProfile puts specified battleTag information in Profile structure
@@ -474,7 +476,7 @@ func (d *Diablo3) GetProfileJSON(battleTag string) (*[]byte, error) {
 func (d *Diablo3) GetProfile(battleTag string) (*Profile, error) {
 	var (
 		profile Profile
-		json    *[]byte
+		json    []byte
 		err     error
 	)
 
@@ -492,7 +494,7 @@ func (d *Diablo3) GetProfile(battleTag string) (*Profile, error) {
 }
 
 // GetSeasonJSON gets specified season information JSON
-func (d *Diablo3) GetSeasonJSON(seasonID int) (*[]byte, error) {
+func (d *Diablo3) GetSeasonJSON(seasonID int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -500,21 +502,21 @@ func (d *Diablo3) GetSeasonJSON(seasonID int) (*[]byte, error) {
 	)
 
 	url = d.DataURL + seasonIndexPath + "/" + strconv.Itoa(seasonID) + "?" + accessTokenQuery +
-		d.Auth.AccessToken
+		d.Config.Auth.AccessToken
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = d.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetSeason puts specified season information into Season structure
 func (d *Diablo3) GetSeason(seasonID int) (*Season, error) {
 	var (
 		season Season
-		json   *[]byte
+		json   []byte
 		err    error
 	)
 
@@ -532,28 +534,28 @@ func (d *Diablo3) GetSeason(seasonID int) (*Season, error) {
 }
 
 // GetSeasonIndexJSON gets season index information JSON
-func (d *Diablo3) GetSeasonIndexJSON() (*[]byte, error) {
+func (d *Diablo3) GetSeasonIndexJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
 		err  error
 	)
 
-	url = d.DataURL + seasonIndexPath + "/?" + accessTokenQuery + d.Auth.AccessToken
+	url = d.DataURL + seasonIndexPath + "/?" + accessTokenQuery + d.Config.Auth.AccessToken
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = d.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetSeasonIndex puts season index information into SeasonIndex structure
 func (d *Diablo3) GetSeasonIndex() (*SeasonIndex, error) {
 	var (
 		seasonIndex SeasonIndex
-		json        *[]byte
+		json        []byte
 		err         error
 	)
 
@@ -571,7 +573,7 @@ func (d *Diablo3) GetSeasonIndex() (*SeasonIndex, error) {
 }
 
 // GetSeasonAchievementPointsJSON puts specified season information JSON
-func (d *Diablo3) GetSeasonAchievementPointsJSON(seasonID int) (*[]byte, error) {
+func (d *Diablo3) GetSeasonAchievementPointsJSON(seasonID int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -579,21 +581,21 @@ func (d *Diablo3) GetSeasonAchievementPointsJSON(seasonID int) (*[]byte, error) 
 	)
 
 	url = d.DataURL + seasonIndexPath + "/" + strconv.Itoa(seasonID) + leaderboardPath +
-		achievementPointsPath + "?access_token=" + d.Auth.AccessToken
+		achievementPointsPath + "?access_token=" + d.Config.Auth.AccessToken
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = d.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetSeasonAchievementPoints puts specified season information into SeasonAchievementPoints structure
 func (d *Diablo3) GetSeasonAchievementPoints(seasonID int) (*SeasonAchievementPoints, error) {
 	var (
 		seasonAchievementPoints SeasonAchievementPoints
-		json                    *[]byte
+		json                    []byte
 		err                     error
 	)
 
@@ -610,7 +612,7 @@ func (d *Diablo3) GetSeasonAchievementPoints(seasonID int) (*SeasonAchievementPo
 	return &seasonAchievementPoints, nil
 }
 
-func (d *Diablo3) getRiftJSON(seasonID int, hardcore bool, groupPath string) (*[]byte, error) {
+func (d *Diablo3) getRiftJSON(seasonID int, hardcore bool, groupPath string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -624,19 +626,19 @@ func (d *Diablo3) getRiftJSON(seasonID int, hardcore bool, groupPath string) (*[
 		url = url + hardcorePath
 	}
 
-	url = url + groupPath + "?access_token=" + d.Auth.AccessToken
+	url = url + groupPath + "?access_token=" + d.Config.Auth.AccessToken
 
-	if err = blizzard.GetURLBody(url, &json); err != nil {
+	if json, err = d.Config.GetURLBody(url); err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 func (d *Diablo3) getRift(seasonID int, hardcore bool, groupPath string) (*SeasonRift, error) {
 	var (
 		seasonRift SeasonRift
-		json       *[]byte
+		json       []byte
 		err        error
 	)
 
@@ -654,68 +656,68 @@ func (d *Diablo3) getRift(seasonID int, hardcore bool, groupPath string) (*Seaso
 }
 
 // GetBarbarianRiftJSON gets specified season information JSON for Barbarian
-func (d *Diablo3) GetBarbarianRiftJSON(seasonID int, hardcore bool) (*[]byte, error) {
+func (d *Diablo3) GetBarbarianRiftJSON(seasonID int, hardcore bool) ([]byte, error) {
 	return d.getRiftJSON(seasonID, hardcore, barbarianPath)
 }
 
 // GetCrusaderRiftJSON gets specified season information JSON for Crusader
-func (d *Diablo3) GetCrusaderRiftJSON(seasonID int, hardcore bool) (*[]byte, error) {
+func (d *Diablo3) GetCrusaderRiftJSON(seasonID int, hardcore bool) ([]byte, error) {
 	return d.getRiftJSON(seasonID, hardcore, crusaderPath)
 }
 
 // GetDemonHunterRiftJSON gets specified season information JSON for Demon Hunter
-func (d *Diablo3) GetDemonHunterRiftJSON(seasonID int, hardcore bool) (*[]byte, error) {
+func (d *Diablo3) GetDemonHunterRiftJSON(seasonID int, hardcore bool) ([]byte, error) {
 	return d.getRiftJSON(seasonID, hardcore, demonHunterPath)
 }
 
 // GetNecromancerRiftJSON gets specified season information JSON for Necromancer
-func (d *Diablo3) GetNecromancerRiftJSON(seasonID int, hardcore bool) (*[]byte, error) {
+func (d *Diablo3) GetNecromancerRiftJSON(seasonID int, hardcore bool) ([]byte, error) {
 	return d.getRiftJSON(seasonID, hardcore, necromancerPath)
 }
 
 // GetWizardRiftJSON gets specified season information JSON for Wizard
-func (d *Diablo3) GetWizardRiftJSON(seasonID int, hardcore bool) (*[]byte, error) {
+func (d *Diablo3) GetWizardRiftJSON(seasonID int, hardcore bool) ([]byte, error) {
 	return d.getRiftJSON(seasonID, hardcore, wizardPath)
 
 }
 
 // GetWitchDoctorRiftJSON gets specified season information JSON for Witch Doctor
-func (d *Diablo3) GetWitchDoctorRiftJSON(seasonID int, hardcore bool) (*[]byte, error) {
+func (d *Diablo3) GetWitchDoctorRiftJSON(seasonID int, hardcore bool) ([]byte, error) {
 	return d.getRiftJSON(seasonID, hardcore, witchDoctorPath)
 }
 
 // GetBarbarianRift gets specified season information JSON for Barbarian
-func (d *Diablo3) GetBarbarianRift(seasonID int, hardcore bool) (*[]byte, error) {
+func (d *Diablo3) GetBarbarianRift(seasonID int, hardcore bool) ([]byte, error) {
 	return d.getRiftJSON(seasonID, hardcore, barbarianPath)
 }
 
 // GetCrusaderRift gets specified season information JSON for Crusader
-func (d *Diablo3) GetCrusaderRift(seasonID int, hardcore bool) (*[]byte, error) {
+func (d *Diablo3) GetCrusaderRift(seasonID int, hardcore bool) ([]byte, error) {
 	return d.getRiftJSON(seasonID, hardcore, crusaderPath)
 }
 
 // GetDemonHunterRift gets specified season information JSON for Demon Hunter
-func (d *Diablo3) GetDemonHunterRift(seasonID int, hardcore bool) (*[]byte, error) {
+func (d *Diablo3) GetDemonHunterRift(seasonID int, hardcore bool) ([]byte, error) {
 	return d.getRiftJSON(seasonID, hardcore, demonHunterPath)
 }
 
 // GetNecromancerRift gets specified season information JSON for Necromancer
-func (d *Diablo3) GetNecromancerRift(seasonID int, hardcore bool) (*[]byte, error) {
+func (d *Diablo3) GetNecromancerRift(seasonID int, hardcore bool) ([]byte, error) {
 	return d.getRiftJSON(seasonID, hardcore, necromancerPath)
 }
 
 // GetWizardRift gets specified season information JSON for Wizard
-func (d *Diablo3) GetWizardRift(seasonID int, hardcore bool) (*[]byte, error) {
+func (d *Diablo3) GetWizardRift(seasonID int, hardcore bool) ([]byte, error) {
 	return d.getRiftJSON(seasonID, hardcore, wizardPath)
 
 }
 
 // GetWitchDoctorRift gets specified season information JSON for Witch Doctor
-func (d *Diablo3) GetWitchDoctorRift(seasonID int, hardcore bool) (*[]byte, error) {
+func (d *Diablo3) GetWitchDoctorRift(seasonID int, hardcore bool) ([]byte, error) {
 	return d.getRiftJSON(seasonID, hardcore, witchDoctorPath)
 }
 
-func (d *Diablo3) getCurrentSeasonRiftJSON(hardcore bool, groupPath string) (*[]byte, error) {
+func (d *Diablo3) getCurrentSeasonRiftJSON(hardcore bool, groupPath string) ([]byte, error) {
 	var (
 		seasonIndex *SeasonIndex
 		url         string
@@ -735,19 +737,19 @@ func (d *Diablo3) getCurrentSeasonRiftJSON(hardcore bool, groupPath string) (*[]
 		url = url + hardcorePath
 	}
 
-	url = url + groupPath + "?access_token=" + d.Auth.AccessToken
+	url = url + groupPath + "?access_token=" + d.Config.Auth.AccessToken
 
-	if err = blizzard.GetURLBody(url, &json); err != nil {
+	if json, err = d.Config.GetURLBody(url); err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 func (d *Diablo3) getCurrentSeasonRift(hardcore bool, groupPath string) (*SeasonRift, error) {
 	var (
 		seasonRift SeasonRift
-		json       *[]byte
+		json       []byte
 		err        error
 	)
 
@@ -765,32 +767,32 @@ func (d *Diablo3) getCurrentSeasonRift(hardcore bool, groupPath string) (*Season
 }
 
 // GetCurrentSeasonBarbarianRiftJSON gets current season information JSON for Barbarian
-func (d *Diablo3) GetCurrentSeasonBarbarianRiftJSON(hardcore bool) (*[]byte, error) {
+func (d *Diablo3) GetCurrentSeasonBarbarianRiftJSON(hardcore bool) ([]byte, error) {
 	return d.getCurrentSeasonRiftJSON(hardcore, barbarianPath)
 }
 
 // GetCurrentSeasonCrusaderRiftJSON gets current season information JSON for Crusader
-func (d *Diablo3) GetCurrentSeasonCrusaderRiftJSON(hardcore bool) (*[]byte, error) {
+func (d *Diablo3) GetCurrentSeasonCrusaderRiftJSON(hardcore bool) ([]byte, error) {
 	return d.getCurrentSeasonRiftJSON(hardcore, crusaderPath)
 }
 
 // GetCurrentSeasonDemonHunterRiftJSON gets current season information JSON for Demon Hunter
-func (d *Diablo3) GetCurrentSeasonDemonHunterRiftJSON(hardcore bool) (*[]byte, error) {
+func (d *Diablo3) GetCurrentSeasonDemonHunterRiftJSON(hardcore bool) ([]byte, error) {
 	return d.getCurrentSeasonRiftJSON(hardcore, demonHunterPath)
 }
 
 // GetCurrentSeasonNecromancerRiftJSON gets current season information JSON for Necromancer
-func (d *Diablo3) GetCurrentSeasonNecromancerRiftJSON(hardcore bool) (*[]byte, error) {
+func (d *Diablo3) GetCurrentSeasonNecromancerRiftJSON(hardcore bool) ([]byte, error) {
 	return d.getCurrentSeasonRiftJSON(hardcore, necromancerPath)
 }
 
 // GetCurrentSeasonWizardRiftJSON gets current season information JSON for Wizard
-func (d *Diablo3) GetCurrentSeasonWizardRiftJSON(hardcore bool) (*[]byte, error) {
+func (d *Diablo3) GetCurrentSeasonWizardRiftJSON(hardcore bool) ([]byte, error) {
 	return d.getCurrentSeasonRiftJSON(hardcore, wizardPath)
 }
 
 // GetCurrentSeasonWitchDoctorRiftJSON gets current season information JSON for Witch Doctor
-func (d *Diablo3) GetCurrentSeasonWitchDoctorRiftJSON(hardcore bool) (*[]byte, error) {
+func (d *Diablo3) GetCurrentSeasonWitchDoctorRiftJSON(hardcore bool) ([]byte, error) {
 	return d.getCurrentSeasonRiftJSON(hardcore, wizardPath)
 }
 

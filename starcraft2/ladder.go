@@ -31,6 +31,6 @@ type Ladder struct {
 }
 
 // JSON2Struct creates Ladder structure from JSON byte array
-func (l *Ladder) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, l)
+func (l *Ladder) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, l)
 }

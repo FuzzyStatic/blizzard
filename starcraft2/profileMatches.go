@@ -21,6 +21,6 @@ type ProfileMatches struct {
 }
 
 // JSON2Struct creates ProfileMatches structure from JSON byte array
-func (p *ProfileMatches) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, p)
+func (p *ProfileMatches) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, p)
 }

@@ -34,6 +34,6 @@ type PetIndex struct {
 }
 
 // JSON2Struct creates PetIndex structure from JSON byte array
-func (p *PetIndex) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, p)
+func (p *PetIndex) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, p)
 }

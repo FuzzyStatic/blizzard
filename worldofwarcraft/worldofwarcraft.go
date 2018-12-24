@@ -16,7 +16,7 @@ import (
 
 // WorldOfWarcraft regional API URLs, locale, access token, api key
 type WorldOfWarcraft struct {
-	Auth         blizzard.Auth
+	Config       *blizzard.Config
 	Locale       string
 	Namespace    string
 	DataURL      string
@@ -24,10 +24,12 @@ type WorldOfWarcraft struct {
 }
 
 // New create new WorldOfWarcraft structure
-func New(auth blizzard.Auth, region blizzard.Region) *WorldOfWarcraft {
-	var w = WorldOfWarcraft{Auth: auth}
+func New(c *blizzard.Config) *WorldOfWarcraft {
+	var w = WorldOfWarcraft{
+		Config: c,
+	}
 
-	switch region {
+	switch c.Region {
 	case blizzard.CN:
 		w.Locale = "zh_CN"
 		w.Namespace = "dynamic-cn"
@@ -64,7 +66,7 @@ func New(auth blizzard.Auth, region blizzard.Region) *WorldOfWarcraft {
 }
 
 // GetConnectedRealmIndexJSON gets connected realm index JSON information
-func (w *WorldOfWarcraft) GetConnectedRealmIndexJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetConnectedRealmIndexJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -72,21 +74,21 @@ func (w *WorldOfWarcraft) GetConnectedRealmIndexJSON() (*[]byte, error) {
 	)
 
 	url = w.DataURL + connectedRealmPath + "/?" + namespaceQuery + w.Namespace + "&" + localeQuery +
-		w.Locale + "&" + accessTokenQuery + w.Auth.AccessToken
+		w.Locale + "&" + accessTokenQuery + w.Config.Auth.AccessToken
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetConnectedRealmIndex puts connected realm index information into ConnectedRealmIndex structure
 func (w *WorldOfWarcraft) GetConnectedRealmIndex() (*ConnectedRealmIndex, error) {
 	var (
 		connectedRealmIndex ConnectedRealmIndex
-		json                *[]byte
+		json                []byte
 		err                 error
 	)
 
@@ -104,7 +106,7 @@ func (w *WorldOfWarcraft) GetConnectedRealmIndex() (*ConnectedRealmIndex, error)
 }
 
 // GetConnectedRealmJSON gets specified connected realm JSON information
-func (w *WorldOfWarcraft) GetConnectedRealmJSON(connectRealmID int) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetConnectedRealmJSON(connectRealmID int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -112,21 +114,21 @@ func (w *WorldOfWarcraft) GetConnectedRealmJSON(connectRealmID int) (*[]byte, er
 	)
 
 	url = w.DataURL + connectedRealmPath + "/" + strconv.Itoa(connectRealmID) + "?" + namespaceQuery +
-		w.Namespace + "&" + localeQuery + w.Locale + "&" + accessTokenQuery + w.Auth.AccessToken
+		w.Namespace + "&" + localeQuery + w.Locale + "&" + accessTokenQuery + w.Config.Auth.AccessToken
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetConnectedRealm puts specified connected realm information into ConnectedRealm structure
 func (w *WorldOfWarcraft) GetConnectedRealm(connectRealmID int) (*ConnectedRealm, error) {
 	var (
 		connectedRealm ConnectedRealm
-		json           *[]byte
+		json           []byte
 		err            error
 	)
 
@@ -144,7 +146,7 @@ func (w *WorldOfWarcraft) GetConnectedRealm(connectRealmID int) (*ConnectedRealm
 }
 
 // GetMythicLeaderboardIndexJSON gets specified connected realm mythic leaderboard index JSON information
-func (w *WorldOfWarcraft) GetMythicLeaderboardIndexJSON(connectRealmID int) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetMythicLeaderboardIndexJSON(connectRealmID int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -153,21 +155,21 @@ func (w *WorldOfWarcraft) GetMythicLeaderboardIndexJSON(connectRealmID int) (*[]
 
 	url = w.DataURL + connectedRealmPath + "/" + strconv.Itoa(connectRealmID) + mythicLeaderPath +
 		"/?" + namespaceQuery + w.Namespace + "&" + localeQuery + w.Locale + "&" + accessTokenQuery +
-		w.Auth.AccessToken
+		w.Config.Auth.AccessToken
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetMythicLeaderboardIndex puts specified connected realm mythic leaderboard index information into MythicLeaderboardIndex structure
 func (w *WorldOfWarcraft) GetMythicLeaderboardIndex(connectRealmID int) (*MythicLeaderboardIndex, error) {
 	var (
 		mythicLeaderboardIndex MythicLeaderboardIndex
-		json                   *[]byte
+		json                   []byte
 		err                    error
 	)
 
@@ -185,7 +187,7 @@ func (w *WorldOfWarcraft) GetMythicLeaderboardIndex(connectRealmID int) (*Mythic
 }
 
 // GetMythicLeaderboardJSON gets specified connected realm and dungeon mythic leaderboard JSON information for period
-func (w *WorldOfWarcraft) GetMythicLeaderboardJSON(connectRealmID, dungeonID, period int) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetMythicLeaderboardJSON(connectRealmID, dungeonID, period int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -194,21 +196,21 @@ func (w *WorldOfWarcraft) GetMythicLeaderboardJSON(connectRealmID, dungeonID, pe
 
 	url = w.DataURL + connectedRealmPath + "/" + strconv.Itoa(connectRealmID) + mythicLeaderPath +
 		"/" + strconv.Itoa(dungeonID) + periodPath + "/" + strconv.Itoa(period) + "?" + namespaceQuery +
-		w.Namespace + "&" + localeQuery + w.Locale + "&" + accessTokenQuery + w.Auth.AccessToken
+		w.Namespace + "&" + localeQuery + w.Locale + "&" + accessTokenQuery + w.Config.Auth.AccessToken
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetMythicLeaderboard puts specified connected realm and dungeon mythic leaderboard information into MythicLeaderboardIndex structure for period
 func (w *WorldOfWarcraft) GetMythicLeaderboard(connectRealmID, dungeonID, period int) (*MythicLeaderboard, error) {
 	var (
 		mythicLeaderboard MythicLeaderboard
-		json              *[]byte
+		json              []byte
 		err               error
 	)
 
@@ -226,7 +228,7 @@ func (w *WorldOfWarcraft) GetMythicLeaderboard(connectRealmID, dungeonID, period
 }
 
 // GetRealmIndexJSON gets realm index JSON information
-func (w *WorldOfWarcraft) GetRealmIndexJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetRealmIndexJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -234,21 +236,21 @@ func (w *WorldOfWarcraft) GetRealmIndexJSON() (*[]byte, error) {
 	)
 
 	url = w.DataURL + realmPath + "/?" + namespaceQuery + w.Namespace + "&" + localeQuery +
-		w.Locale + "&" + accessTokenQuery + w.Auth.AccessToken
+		w.Locale + "&" + accessTokenQuery + w.Config.Auth.AccessToken
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetRealmIndex puts realm index information into RealmIndex structure
 func (w *WorldOfWarcraft) GetRealmIndex() (*RealmIndex, error) {
 	var (
 		realmIndex RealmIndex
-		json       *[]byte
+		json       []byte
 		err        error
 	)
 
@@ -267,7 +269,7 @@ func (w *WorldOfWarcraft) GetRealmIndex() (*RealmIndex, error) {
 
 // GetRealmJSON gets specified realm JSON information
 // Values accepted: realm ID or realm slug
-func (w *WorldOfWarcraft) GetRealmJSON(realmID interface{}) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetRealmJSON(realmID interface{}) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -276,20 +278,20 @@ func (w *WorldOfWarcraft) GetRealmJSON(realmID interface{}) (*[]byte, error) {
 
 	if v, ok := realmID.(int); ok {
 		url = w.DataURL + realmPath + "/" + strconv.Itoa(v) + "?" + namespaceQuery +
-			w.Namespace + "&" + localeQuery + w.Locale + "&" + accessTokenQuery + w.Auth.AccessToken
+			w.Namespace + "&" + localeQuery + w.Locale + "&" + accessTokenQuery + w.Config.Auth.AccessToken
 	}
 
 	if v, ok := realmID.(string); ok {
 		url = w.DataURL + realmPath + "/" + v + "?" + namespaceQuery +
-			w.Namespace + "&" + localeQuery + w.Locale + "&" + accessTokenQuery + w.Auth.AccessToken
+			w.Namespace + "&" + localeQuery + w.Locale + "&" + accessTokenQuery + w.Config.Auth.AccessToken
 	}
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetRealm puts specified realm information into Realm structure
@@ -297,7 +299,7 @@ func (w *WorldOfWarcraft) GetRealmJSON(realmID interface{}) (*[]byte, error) {
 func (w *WorldOfWarcraft) GetRealm(realmID interface{}) (*Realm, error) {
 	var (
 		realm Realm
-		json  *[]byte
+		json  []byte
 		err   error
 	)
 
@@ -315,7 +317,7 @@ func (w *WorldOfWarcraft) GetRealm(realmID interface{}) (*Realm, error) {
 }
 
 // GetRegionIndexJSON gets region index JSON information
-func (w *WorldOfWarcraft) GetRegionIndexJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetRegionIndexJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -323,21 +325,21 @@ func (w *WorldOfWarcraft) GetRegionIndexJSON() (*[]byte, error) {
 	)
 
 	url = w.DataURL + regionPath + "/?" + namespaceQuery + w.Namespace + "&" + localeQuery +
-		w.Locale + "&" + accessTokenQuery + w.Auth.AccessToken
+		w.Locale + "&" + accessTokenQuery + w.Config.Auth.AccessToken
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetRegionIndex puts region index information into RealmIndex structure
 func (w *WorldOfWarcraft) GetRegionIndex() (*RegionIndex, error) {
 	var (
 		regionIndex RegionIndex
-		json        *[]byte
+		json        []byte
 		err         error
 	)
 
@@ -355,7 +357,7 @@ func (w *WorldOfWarcraft) GetRegionIndex() (*RegionIndex, error) {
 }
 
 // GetRegionJSON gets specified region JSON information
-func (w *WorldOfWarcraft) GetRegionJSON(regionID int) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetRegionJSON(regionID int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -363,21 +365,21 @@ func (w *WorldOfWarcraft) GetRegionJSON(regionID int) (*[]byte, error) {
 	)
 
 	url = w.DataURL + regionPath + "/" + strconv.Itoa(regionID) + "?" + namespaceQuery +
-		w.Namespace + "&" + localeQuery + w.Locale + "&" + accessTokenQuery + w.Auth.AccessToken
+		w.Namespace + "&" + localeQuery + w.Locale + "&" + accessTokenQuery + w.Config.Auth.AccessToken
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetRegion puts specified region information into Region structure
 func (w *WorldOfWarcraft) GetRegion(regionID int) (*Region, error) {
 	var (
 		region Region
-		json   *[]byte
+		json   []byte
 		err    error
 	)
 
@@ -395,7 +397,7 @@ func (w *WorldOfWarcraft) GetRegion(regionID int) (*Region, error) {
 }
 
 // GetTokenIndexJSON gets token index JSON information
-func (w *WorldOfWarcraft) GetTokenIndexJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetTokenIndexJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -403,21 +405,21 @@ func (w *WorldOfWarcraft) GetTokenIndexJSON() (*[]byte, error) {
 	)
 
 	url = w.DataURL + tokenPath + "/?" + namespaceQuery + w.Namespace + "&" + localeQuery +
-		w.Locale + "&" + accessTokenQuery + w.Auth.AccessToken
+		w.Locale + "&" + accessTokenQuery + w.Config.Auth.AccessToken
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetTokenIndex puts token index information into RealmIndex structure
 func (w *WorldOfWarcraft) GetTokenIndex() (*TokenIndex, error) {
 	var (
 		tokenIndex TokenIndex
-		json       *[]byte
+		json       []byte
 		err        error
 	)
 
@@ -435,7 +437,7 @@ func (w *WorldOfWarcraft) GetTokenIndex() (*TokenIndex, error) {
 }
 
 // GetAchievementJSON gets specified achievement JSON information
-func (w *WorldOfWarcraft) GetAchievementJSON(achievementID int) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetAchievementJSON(achievementID int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -443,21 +445,21 @@ func (w *WorldOfWarcraft) GetAchievementJSON(achievementID int) (*[]byte, error)
 	)
 
 	url = w.CommunityURL + achievementPath + "/" + strconv.Itoa(achievementID) + "?" + localeQuery +
-		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetAchievement puts specified achievement information into Achievement structure
 func (w *WorldOfWarcraft) GetAchievement(achievementID int) (*Achievement, error) {
 	var (
 		achievement Achievement
-		json        *[]byte
+		json        []byte
 		err         error
 	)
 
@@ -475,7 +477,7 @@ func (w *WorldOfWarcraft) GetAchievement(achievementID int) (*Achievement, error
 }
 
 // GetAuctionDataJSON gets auction data JSON information for realm
-func (w *WorldOfWarcraft) GetAuctionDataJSON(realmSlug string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetAuctionDataJSON(realmSlug string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -483,21 +485,21 @@ func (w *WorldOfWarcraft) GetAuctionDataJSON(realmSlug string) (*[]byte, error) 
 	)
 
 	url = w.CommunityURL + auctionDataPath + "/" + realmSlug + "?" + localeQuery +
-		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetAuctionData puts auction data information into AuctionData structure for realm
 func (w *WorldOfWarcraft) GetAuctionData(realmSlug string) (*AuctionData, error) {
 	var (
 		auctionData AuctionData
-		json        *[]byte
+		json        []byte
 		err         error
 	)
 
@@ -533,12 +535,12 @@ func (w *WorldOfWarcraft) GetAuctions(realmSlug string) ([]*Auctions, error) {
 			auctions Auctions
 		)
 
-		err = blizzard.GetURLBody(file.URL, &json)
+		json, err = w.Config.GetURLBody(file.URL)
 		if err != nil {
 			return nil, err
 		}
 
-		err = blizzard.GetStruct(&json, &auctions)
+		err = blizzard.GetStruct(json, &auctions)
 		if err != nil {
 			return nil, err
 		}
@@ -550,7 +552,7 @@ func (w *WorldOfWarcraft) GetAuctions(realmSlug string) ([]*Auctions, error) {
 }
 
 // GetBossIndexJSON gets boss index JSON information
-func (w *WorldOfWarcraft) GetBossIndexJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetBossIndexJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -558,21 +560,21 @@ func (w *WorldOfWarcraft) GetBossIndexJSON() (*[]byte, error) {
 	)
 
 	url = w.CommunityURL + bossPath + "/?" + localeQuery + w.Locale + "&" + apiKeyQuery +
-		w.Auth.APIKey
+		w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetBossIndex puts boss index information into RealmIndex structure
 func (w *WorldOfWarcraft) GetBossIndex() (*BossIndex, error) {
 	var (
 		bossIndex BossIndex
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -590,7 +592,7 @@ func (w *WorldOfWarcraft) GetBossIndex() (*BossIndex, error) {
 }
 
 // GetBossJSON gets specified boss JSON information
-func (w *WorldOfWarcraft) GetBossJSON(bossID int) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetBossJSON(bossID int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -598,21 +600,21 @@ func (w *WorldOfWarcraft) GetBossJSON(bossID int) (*[]byte, error) {
 	)
 
 	url = w.CommunityURL + bossPath + "/" + strconv.Itoa(bossID) + "?" + localeQuery +
-		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetBoss puts specified boss information into Boss structure
 func (w *WorldOfWarcraft) GetBoss(bossID int) (*Boss, error) {
 	var (
 		boss Boss
-		json *[]byte
+		json []byte
 		err  error
 	)
 
@@ -630,7 +632,7 @@ func (w *WorldOfWarcraft) GetBoss(bossID int) (*Boss, error) {
 }
 
 // GetChallengeRealmLeaderboardJSON gets specified challenge realm leaderboard JSON information
-func (w *WorldOfWarcraft) GetChallengeRealmLeaderboardJSON(realmSlug string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetChallengeRealmLeaderboardJSON(realmSlug string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -638,21 +640,21 @@ func (w *WorldOfWarcraft) GetChallengeRealmLeaderboardJSON(realmSlug string) (*[
 	)
 
 	url = w.CommunityURL + challengePath + "/" + realmSlug + "?" + localeQuery + w.Locale +
-		"&" + apiKeyQuery + w.Auth.APIKey
+		"&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetChallengeRealmLeaderboard puts specified challenge realm leaderboard into ChallengeRealmLeaderboard structure
 func (w *WorldOfWarcraft) GetChallengeRealmLeaderboard(realmSlug string) (*ChallengeRealmLeaderboard, error) {
 	var (
 		challengeRealmLeaderboard ChallengeRealmLeaderboard
-		json                      *[]byte
+		json                      []byte
 		err                       error
 	)
 
@@ -670,7 +672,7 @@ func (w *WorldOfWarcraft) GetChallengeRealmLeaderboard(realmSlug string) (*Chall
 }
 
 // GetChallengeRegionLeaderboardJSON gets specified challenge region leaderboard JSON information
-func (w *WorldOfWarcraft) GetChallengeRegionLeaderboardJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetChallengeRegionLeaderboardJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -678,21 +680,21 @@ func (w *WorldOfWarcraft) GetChallengeRegionLeaderboardJSON() (*[]byte, error) {
 	)
 
 	url = w.CommunityURL + challengePath + "/" + regionPath + "?" + localeQuery + w.Locale +
-		"&" + apiKeyQuery + w.Auth.APIKey
+		"&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetChallengeRegionLeaderboard puts specified challenge region leaderboard into ChallengeRegionLeaderboard structure
 func (w *WorldOfWarcraft) GetChallengeRegionLeaderboard() (*ChallengeRegionLeaderboard, error) {
 	var (
 		challengeRegionLeaderboard ChallengeRegionLeaderboard
-		json                       *[]byte
+		json                       []byte
 		err                        error
 	)
 
@@ -710,7 +712,7 @@ func (w *WorldOfWarcraft) GetChallengeRegionLeaderboard() (*ChallengeRegionLeade
 }
 
 // GetCharacterJSON gets specified character JSON information
-func (w *WorldOfWarcraft) GetCharacterJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -718,21 +720,21 @@ func (w *WorldOfWarcraft) GetCharacterJSON(realm, characterName string) (*[]byte
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + localeQuery +
-		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacter puts specified character info into Character structure
 func (w *WorldOfWarcraft) GetCharacter(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -750,7 +752,7 @@ func (w *WorldOfWarcraft) GetCharacter(realm, characterName string) (*Character,
 }
 
 // GetCharacterWithAchievementsJSON gets specified character with achievements JSON information
-func (w *WorldOfWarcraft) GetCharacterWithAchievementsJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithAchievementsJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -758,21 +760,21 @@ func (w *WorldOfWarcraft) GetCharacterWithAchievementsJSON(realm, characterName 
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
-		achievementsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		achievementsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithAchievements puts character info with achievements into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithAchievements(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -790,7 +792,7 @@ func (w *WorldOfWarcraft) GetCharacterWithAchievements(realm, characterName stri
 }
 
 // GetCharacterWithAppearanceJSON gets specified character with appearance JSON information
-func (w *WorldOfWarcraft) GetCharacterWithAppearanceJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithAppearanceJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -798,21 +800,21 @@ func (w *WorldOfWarcraft) GetCharacterWithAppearanceJSON(realm, characterName st
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
-		appearanceField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		appearanceField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithAppearance puts character info with appearance into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithAppearance(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -830,7 +832,7 @@ func (w *WorldOfWarcraft) GetCharacterWithAppearance(realm, characterName string
 }
 
 // GetCharacterWithFeedJSON gets specified character with feed JSON information
-func (w *WorldOfWarcraft) GetCharacterWithFeedJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithFeedJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -838,21 +840,21 @@ func (w *WorldOfWarcraft) GetCharacterWithFeedJSON(realm, characterName string) 
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
-		feedField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		feedField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithFeed puts character info with feed into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithFeed(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -870,7 +872,7 @@ func (w *WorldOfWarcraft) GetCharacterWithFeed(realm, characterName string) (*Ch
 }
 
 // GetCharacterWithGuildJSON gets specified character with guild JSON information
-func (w *WorldOfWarcraft) GetCharacterWithGuildJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithGuildJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -878,21 +880,21 @@ func (w *WorldOfWarcraft) GetCharacterWithGuildJSON(realm, characterName string)
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
-		guildField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		guildField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithGuild puts character info with guild into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithGuild(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -910,7 +912,7 @@ func (w *WorldOfWarcraft) GetCharacterWithGuild(realm, characterName string) (*C
 }
 
 // GetCharacterWithHunterPetsJSON gets specified character with hunterPets JSON information
-func (w *WorldOfWarcraft) GetCharacterWithHunterPetsJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithHunterPetsJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -918,21 +920,21 @@ func (w *WorldOfWarcraft) GetCharacterWithHunterPetsJSON(realm, characterName st
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
-		hunterPetsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		hunterPetsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithHunterPets puts character info with hunterPets into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithHunterPets(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -950,7 +952,7 @@ func (w *WorldOfWarcraft) GetCharacterWithHunterPets(realm, characterName string
 }
 
 // GetCharacterWithItemsJSON gets specified character with items JSON information
-func (w *WorldOfWarcraft) GetCharacterWithItemsJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithItemsJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -958,21 +960,21 @@ func (w *WorldOfWarcraft) GetCharacterWithItemsJSON(realm, characterName string)
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
-		itemsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		itemsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithItems puts character info with items into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithItems(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -990,7 +992,7 @@ func (w *WorldOfWarcraft) GetCharacterWithItems(realm, characterName string) (*C
 }
 
 // GetCharacterWithMountsJSON gets specified character with mounts JSON information
-func (w *WorldOfWarcraft) GetCharacterWithMountsJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithMountsJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -998,21 +1000,21 @@ func (w *WorldOfWarcraft) GetCharacterWithMountsJSON(realm, characterName string
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
-		mountsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		mountsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithMounts puts character info with mounts into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithMounts(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -1030,7 +1032,7 @@ func (w *WorldOfWarcraft) GetCharacterWithMounts(realm, characterName string) (*
 }
 
 // GetCharacterWithPetsJSON gets specified character with pets JSON information
-func (w *WorldOfWarcraft) GetCharacterWithPetsJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithPetsJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1038,21 +1040,21 @@ func (w *WorldOfWarcraft) GetCharacterWithPetsJSON(realm, characterName string) 
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
-		petsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		petsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithPets puts character info with pets into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithPets(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -1070,7 +1072,7 @@ func (w *WorldOfWarcraft) GetCharacterWithPets(realm, characterName string) (*Ch
 }
 
 // GetCharacterWithPetSlotsJSON gets specified character with petSlots JSON information
-func (w *WorldOfWarcraft) GetCharacterWithPetSlotsJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithPetSlotsJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1078,21 +1080,21 @@ func (w *WorldOfWarcraft) GetCharacterWithPetSlotsJSON(realm, characterName stri
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
-		petSlotsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		petSlotsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithPetSlots puts character info with petSlots into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithPetSlots(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -1110,7 +1112,7 @@ func (w *WorldOfWarcraft) GetCharacterWithPetSlots(realm, characterName string) 
 }
 
 // GetCharacterWithProfessionsJSON gets specified character with professions JSON information
-func (w *WorldOfWarcraft) GetCharacterWithProfessionsJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithProfessionsJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1118,21 +1120,21 @@ func (w *WorldOfWarcraft) GetCharacterWithProfessionsJSON(realm, characterName s
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
-		professionsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		professionsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithProfessions puts character info with professions into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithProfessions(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -1150,7 +1152,7 @@ func (w *WorldOfWarcraft) GetCharacterWithProfessions(realm, characterName strin
 }
 
 // GetCharacterWithProgressionJSON gets specified character with progression JSON information
-func (w *WorldOfWarcraft) GetCharacterWithProgressionJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithProgressionJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1158,21 +1160,21 @@ func (w *WorldOfWarcraft) GetCharacterWithProgressionJSON(realm, characterName s
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
-		progressionField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		progressionField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithProgression puts character info with progression into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithProgression(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -1190,7 +1192,7 @@ func (w *WorldOfWarcraft) GetCharacterWithProgression(realm, characterName strin
 }
 
 // GetCharacterWithPVPJSON gets specified character with pvp JSON information
-func (w *WorldOfWarcraft) GetCharacterWithPVPJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithPVPJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1198,21 +1200,21 @@ func (w *WorldOfWarcraft) GetCharacterWithPVPJSON(realm, characterName string) (
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
-		pvpField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		pvpField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithPVP puts character info with pvp into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithPVP(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -1230,7 +1232,7 @@ func (w *WorldOfWarcraft) GetCharacterWithPVP(realm, characterName string) (*Cha
 }
 
 // GetCharacterWithQuestsJSON gets specified character with quests JSON information
-func (w *WorldOfWarcraft) GetCharacterWithQuestsJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithQuestsJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1238,21 +1240,21 @@ func (w *WorldOfWarcraft) GetCharacterWithQuestsJSON(realm, characterName string
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
-		questsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		questsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithQuests puts character info with quests into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithQuests(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -1270,7 +1272,7 @@ func (w *WorldOfWarcraft) GetCharacterWithQuests(realm, characterName string) (*
 }
 
 // GetCharacterWithReputationJSON gets specified character with reputation JSON information
-func (w *WorldOfWarcraft) GetCharacterWithReputationJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithReputationJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1278,21 +1280,21 @@ func (w *WorldOfWarcraft) GetCharacterWithReputationJSON(realm, characterName st
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
-		reputationField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		reputationField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithReputation puts character info with reputation into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithReputation(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -1310,7 +1312,7 @@ func (w *WorldOfWarcraft) GetCharacterWithReputation(realm, characterName string
 }
 
 // GetCharacterWithStatisticsJSON gets specified character with statistics JSON information
-func (w *WorldOfWarcraft) GetCharacterWithStatisticsJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithStatisticsJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1318,21 +1320,21 @@ func (w *WorldOfWarcraft) GetCharacterWithStatisticsJSON(realm, characterName st
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
-		statisticsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		statisticsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithStatistics puts character info with statistics into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithStatistics(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -1350,7 +1352,7 @@ func (w *WorldOfWarcraft) GetCharacterWithStatistics(realm, characterName string
 }
 
 // GetCharacterWithStatsJSON gets specified character with stats JSON information
-func (w *WorldOfWarcraft) GetCharacterWithStatsJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithStatsJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1358,21 +1360,21 @@ func (w *WorldOfWarcraft) GetCharacterWithStatsJSON(realm, characterName string)
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
-		statsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		statsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithStats puts character info with stats into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithStats(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -1390,7 +1392,7 @@ func (w *WorldOfWarcraft) GetCharacterWithStats(realm, characterName string) (*C
 }
 
 // GetCharacterWithTalentsJSON gets specified character with talents JSON information
-func (w *WorldOfWarcraft) GetCharacterWithTalentsJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithTalentsJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1398,21 +1400,21 @@ func (w *WorldOfWarcraft) GetCharacterWithTalentsJSON(realm, characterName strin
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
-		talentsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		talentsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithTalents puts character info with talents into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithTalents(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -1430,7 +1432,7 @@ func (w *WorldOfWarcraft) GetCharacterWithTalents(realm, characterName string) (
 }
 
 // GetCharacterWithTitlesJSON gets specified character with titles JSON information
-func (w *WorldOfWarcraft) GetCharacterWithTitlesJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithTitlesJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1438,21 +1440,21 @@ func (w *WorldOfWarcraft) GetCharacterWithTitlesJSON(realm, characterName string
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
-		titlesField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		titlesField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithTitles puts character info with titles into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithTitles(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -1470,7 +1472,7 @@ func (w *WorldOfWarcraft) GetCharacterWithTitles(realm, characterName string) (*
 }
 
 // GetCharacterWithAuditJSON gets specified character with audit JSON information
-func (w *WorldOfWarcraft) GetCharacterWithAuditJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithAuditJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1478,21 +1480,21 @@ func (w *WorldOfWarcraft) GetCharacterWithAuditJSON(realm, characterName string)
 	)
 
 	url = w.CommunityURL + characterPath + "/" + realm + "/" + characterName + "?" + fieldsQuery +
-		auditField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		auditField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithAudit puts character info with audit into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithAudit(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -1510,7 +1512,7 @@ func (w *WorldOfWarcraft) GetCharacterWithAudit(realm, characterName string) (*C
 }
 
 // GetCharacterWithAllJSON gets specified character with all fields JSON information
-func (w *WorldOfWarcraft) GetCharacterWithAllJSON(realm, characterName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterWithAllJSON(realm, characterName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1523,21 +1525,21 @@ func (w *WorldOfWarcraft) GetCharacterWithAllJSON(realm, characterName string) (
 		petSlotsField + "," + professionsField + "," + progressionField + "," + pvpField + "," +
 		questsField + "," + reputationField + "," + statisticsField + "," + statsField + "," +
 		talentsField + "," + titlesField + "," + auditField + "&" + localeQuery + w.Locale + "&" +
-		apiKeyQuery + w.Auth.APIKey
+		apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterWithAll puts character info with all fields into Character structure
 func (w *WorldOfWarcraft) GetCharacterWithAll(realm, characterName string) (*Character, error) {
 	var (
 		character Character
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -1555,7 +1557,7 @@ func (w *WorldOfWarcraft) GetCharacterWithAll(realm, characterName string) (*Cha
 }
 
 // GetGuildJSON gets specified guild JSON information
-func (w *WorldOfWarcraft) GetGuildJSON(realm, guildName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetGuildJSON(realm, guildName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1563,21 +1565,21 @@ func (w *WorldOfWarcraft) GetGuildJSON(realm, guildName string) (*[]byte, error)
 	)
 
 	url = w.CommunityURL + guildPath + "/" + realm + "/" + guildName + "?" + localeQuery +
-		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetGuild puts guild info into Guild structure
 func (w *WorldOfWarcraft) GetGuild(realm, guildName string) (*Guild, error) {
 	var (
 		guild Guild
-		json  *[]byte
+		json  []byte
 		err   error
 	)
 
@@ -1595,7 +1597,7 @@ func (w *WorldOfWarcraft) GetGuild(realm, guildName string) (*Guild, error) {
 }
 
 // GetGuildWithMembersJSON gets specified guild with members JSON information
-func (w *WorldOfWarcraft) GetGuildWithMembersJSON(realm, guildName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetGuildWithMembersJSON(realm, guildName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1603,21 +1605,21 @@ func (w *WorldOfWarcraft) GetGuildWithMembersJSON(realm, guildName string) (*[]b
 	)
 
 	url = w.CommunityURL + guildPath + "/" + realm + "/" + guildName + "?" + fieldsQuery +
-		membersField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		membersField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetGuildWithMembers puts guild info with members into Guild structure
 func (w *WorldOfWarcraft) GetGuildWithMembers(realm, guildName string) (*Guild, error) {
 	var (
 		guild Guild
-		json  *[]byte
+		json  []byte
 		err   error
 	)
 
@@ -1635,7 +1637,7 @@ func (w *WorldOfWarcraft) GetGuildWithMembers(realm, guildName string) (*Guild, 
 }
 
 // GetGuildWithAchievementsJSON gets specified guild with achievements JSON information
-func (w *WorldOfWarcraft) GetGuildWithAchievementsJSON(realm, guildName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetGuildWithAchievementsJSON(realm, guildName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1643,21 +1645,21 @@ func (w *WorldOfWarcraft) GetGuildWithAchievementsJSON(realm, guildName string) 
 	)
 
 	url = w.CommunityURL + guildPath + "/" + realm + "/" + guildName + "?" + fieldsQuery +
-		achievementsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		achievementsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetGuildWithAchievements puts guild info with achievements into Guild structure
 func (w *WorldOfWarcraft) GetGuildWithAchievements(realm, guildName string) (*Guild, error) {
 	var (
 		guild Guild
-		json  *[]byte
+		json  []byte
 		err   error
 	)
 
@@ -1675,7 +1677,7 @@ func (w *WorldOfWarcraft) GetGuildWithAchievements(realm, guildName string) (*Gu
 }
 
 // GetGuildWithNewsJSON gets specified guild with news JSON information
-func (w *WorldOfWarcraft) GetGuildWithNewsJSON(realm, guildName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetGuildWithNewsJSON(realm, guildName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1683,21 +1685,21 @@ func (w *WorldOfWarcraft) GetGuildWithNewsJSON(realm, guildName string) (*[]byte
 	)
 
 	url = w.CommunityURL + guildPath + "/" + realm + "/" + guildName + "?" + fieldsQuery +
-		newsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		newsField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetGuildWithNews puts guild info with news into Guild structure
 func (w *WorldOfWarcraft) GetGuildWithNews(realm, guildName string) (*Guild, error) {
 	var (
 		guild Guild
-		json  *[]byte
+		json  []byte
 		err   error
 	)
 
@@ -1715,7 +1717,7 @@ func (w *WorldOfWarcraft) GetGuildWithNews(realm, guildName string) (*Guild, err
 }
 
 // GetGuildWithChallengeJSON gets specified guild with challenge JSON information
-func (w *WorldOfWarcraft) GetGuildWithChallengeJSON(realm, guildName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetGuildWithChallengeJSON(realm, guildName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1723,21 +1725,21 @@ func (w *WorldOfWarcraft) GetGuildWithChallengeJSON(realm, guildName string) (*[
 	)
 
 	url = w.CommunityURL + guildPath + "/" + realm + "/" + guildName + "?" + fieldsQuery +
-		challengeField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		challengeField + "&" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetGuildWithChallenge puts guild info with challenge into Guild structure
 func (w *WorldOfWarcraft) GetGuildWithChallenge(realm, guildName string) (*Guild, error) {
 	var (
 		guild Guild
-		json  *[]byte
+		json  []byte
 		err   error
 	)
 
@@ -1755,7 +1757,7 @@ func (w *WorldOfWarcraft) GetGuildWithChallenge(realm, guildName string) (*Guild
 }
 
 // GetGuildWithAllJSON gets specified guild with all fields JSON information
-func (w *WorldOfWarcraft) GetGuildWithAllJSON(realm, guildName string) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetGuildWithAllJSON(realm, guildName string) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1764,21 +1766,21 @@ func (w *WorldOfWarcraft) GetGuildWithAllJSON(realm, guildName string) (*[]byte,
 
 	url = w.CommunityURL + guildPath + "/" + realm + "/" + guildName + "?" + fieldsQuery +
 		membersField + "," + achievementsField + "," + newsField + "," + challengeField + "&" +
-		localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetGuildWithAll puts guild info with all into Guild structure
 func (w *WorldOfWarcraft) GetGuildWithAll(realm, guildName string) (*Guild, error) {
 	var (
 		guild Guild
-		json  *[]byte
+		json  []byte
 		err   error
 	)
 
@@ -1796,7 +1798,7 @@ func (w *WorldOfWarcraft) GetGuildWithAll(realm, guildName string) (*Guild, erro
 }
 
 // GetItemJSON gets specified item JSON information
-func (w *WorldOfWarcraft) GetItemJSON(itemID int) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetItemJSON(itemID int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1804,21 +1806,21 @@ func (w *WorldOfWarcraft) GetItemJSON(itemID int) (*[]byte, error) {
 	)
 
 	url = w.CommunityURL + itemPath + "/" + strconv.Itoa(itemID) + "?" + localeQuery +
-		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetItem puts item info into Item structure
 func (w *WorldOfWarcraft) GetItem(itemID int) (*Item, error) {
 	var (
 		item Item
-		json *[]byte
+		json []byte
 		err  error
 	)
 
@@ -1836,7 +1838,7 @@ func (w *WorldOfWarcraft) GetItem(itemID int) (*Item, error) {
 }
 
 // GetSetJSON gets specified set JSON information
-func (w *WorldOfWarcraft) GetSetJSON(setID int) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetSetJSON(setID int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1844,21 +1846,21 @@ func (w *WorldOfWarcraft) GetSetJSON(setID int) (*[]byte, error) {
 	)
 
 	url = w.CommunityURL + itemPath + setPath + "/" + strconv.Itoa(setID) + "?" +
-		localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetSet puts set info into Set structure
 func (w *WorldOfWarcraft) GetSet(setID int) (*Set, error) {
 	var (
 		set  Set
-		json *[]byte
+		json []byte
 		err  error
 	)
 
@@ -1876,28 +1878,28 @@ func (w *WorldOfWarcraft) GetSet(setID int) (*Set, error) {
 }
 
 // GetMountIndexJSON gets mount JSON information
-func (w *WorldOfWarcraft) GetMountIndexJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetMountIndexJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
 		err  error
 	)
 
-	url = w.CommunityURL + mountPath + "/?" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+	url = w.CommunityURL + mountPath + "/?" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetMountIndex puts mount info into MountIndex structure
 func (w *WorldOfWarcraft) GetMountIndex() (*MountIndex, error) {
 	var (
 		mountIndex MountIndex
-		json       *[]byte
+		json       []byte
 		err        error
 	)
 
@@ -1915,28 +1917,28 @@ func (w *WorldOfWarcraft) GetMountIndex() (*MountIndex, error) {
 }
 
 // GetPetIndexJSON gets pet JSON information
-func (w *WorldOfWarcraft) GetPetIndexJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetPetIndexJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
 		err  error
 	)
 
-	url = w.CommunityURL + petPath + "/?" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+	url = w.CommunityURL + petPath + "/?" + localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetPetIndex puts pet info into PetIndex structure
 func (w *WorldOfWarcraft) GetPetIndex() (*PetIndex, error) {
 	var (
 		petIndex PetIndex
-		json     *[]byte
+		json     []byte
 		err      error
 	)
 
@@ -1954,7 +1956,7 @@ func (w *WorldOfWarcraft) GetPetIndex() (*PetIndex, error) {
 }
 
 // GetPetAbilityJSON gets pet ability JSON information
-func (w *WorldOfWarcraft) GetPetAbilityJSON(abilityID int) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetPetAbilityJSON(abilityID int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -1962,21 +1964,21 @@ func (w *WorldOfWarcraft) GetPetAbilityJSON(abilityID int) (*[]byte, error) {
 	)
 
 	url = w.CommunityURL + petPath + abilityPath + "/" + strconv.Itoa(abilityID) + "?" +
-		localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetPetAbility puts pet ability info into PetAbility structure
 func (w *WorldOfWarcraft) GetPetAbility(abilityID int) (*PetAbility, error) {
 	var (
 		petAbility PetAbility
-		json       *[]byte
+		json       []byte
 		err        error
 	)
 
@@ -1994,7 +1996,7 @@ func (w *WorldOfWarcraft) GetPetAbility(abilityID int) (*PetAbility, error) {
 }
 
 // GetPetSpeciesJSON gets pet species JSON information
-func (w *WorldOfWarcraft) GetPetSpeciesJSON(speciesID int) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetPetSpeciesJSON(speciesID int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2002,21 +2004,21 @@ func (w *WorldOfWarcraft) GetPetSpeciesJSON(speciesID int) (*[]byte, error) {
 	)
 
 	url = w.CommunityURL + petPath + speciesPath + "/" + strconv.Itoa(speciesID) + "?" +
-		localeQuery + w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		localeQuery + w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetPetSpecies puts pet species info into PetSpecies structure
 func (w *WorldOfWarcraft) GetPetSpecies(speciesID int) (*PetSpecies, error) {
 	var (
 		petSpecies PetSpecies
-		json       *[]byte
+		json       []byte
 		err        error
 	)
 
@@ -2034,7 +2036,7 @@ func (w *WorldOfWarcraft) GetPetSpecies(speciesID int) (*PetSpecies, error) {
 }
 
 // GetPetStatsJSON gets pet stats JSON information
-func (w *WorldOfWarcraft) GetPetStatsJSON(speciesID, level, breedID, qualityID int) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetPetStatsJSON(speciesID, level, breedID, qualityID int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2044,21 +2046,21 @@ func (w *WorldOfWarcraft) GetPetStatsJSON(speciesID, level, breedID, qualityID i
 	url = w.CommunityURL + petPath + statsPath + "/" + strconv.Itoa(speciesID) + "?" +
 		levelQuery + strconv.Itoa(level) + "&" + breedIDQuery + strconv.Itoa(breedID) + "&" +
 		qualityIDQuery + strconv.Itoa(qualityID) + "&" + localeQuery + w.Locale + "&" +
-		apiKeyQuery + w.Auth.APIKey
+		apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetPetStats puts pet stats info into PetStats structure
 func (w *WorldOfWarcraft) GetPetStats(speciesID, level, breedID, qualityID int) (*PetStats, error) {
 	var (
 		petStats PetStats
-		json     *[]byte
+		json     []byte
 		err      error
 	)
 
@@ -2076,7 +2078,7 @@ func (w *WorldOfWarcraft) GetPetStats(speciesID, level, breedID, qualityID int) 
 }
 
 // Get2v2LeaderboardJSON gets 2v2 PvP leaderboard JSON information
-func (w *WorldOfWarcraft) Get2v2LeaderboardJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) Get2v2LeaderboardJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2084,21 +2086,21 @@ func (w *WorldOfWarcraft) Get2v2LeaderboardJSON() (*[]byte, error) {
 	)
 
 	url = w.CommunityURL + leaderboardPath + "/2v2?" + localeQuery + w.Locale + "&" +
-		apiKeyQuery + w.Auth.APIKey
+		apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // Get2v2Leaderboard puts 2v2 PvP leaderboard info into Leaderboard structure
 func (w *WorldOfWarcraft) Get2v2Leaderboard() (*Leaderboard, error) {
 	var (
 		leaderboard Leaderboard
-		json        *[]byte
+		json        []byte
 		err         error
 	)
 
@@ -2116,7 +2118,7 @@ func (w *WorldOfWarcraft) Get2v2Leaderboard() (*Leaderboard, error) {
 }
 
 // Get3v3LeaderboardJSON gets 3v3 PvP leaderboard JSON information
-func (w *WorldOfWarcraft) Get3v3LeaderboardJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) Get3v3LeaderboardJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2124,21 +2126,21 @@ func (w *WorldOfWarcraft) Get3v3LeaderboardJSON() (*[]byte, error) {
 	)
 
 	url = w.CommunityURL + leaderboardPath + "/3v3?" + localeQuery + w.Locale + "&" +
-		apiKeyQuery + w.Auth.APIKey
+		apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // Get3v3Leaderboard puts 3v3 PvP leaderboard info into Leaderboard structure
 func (w *WorldOfWarcraft) Get3v3Leaderboard() (*Leaderboard, error) {
 	var (
 		leaderboard Leaderboard
-		json        *[]byte
+		json        []byte
 		err         error
 	)
 
@@ -2156,7 +2158,7 @@ func (w *WorldOfWarcraft) Get3v3Leaderboard() (*Leaderboard, error) {
 }
 
 // Get5v5LeaderboardJSON gets 5v5 PvP leaderboard JSON information
-func (w *WorldOfWarcraft) Get5v5LeaderboardJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) Get5v5LeaderboardJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2164,21 +2166,21 @@ func (w *WorldOfWarcraft) Get5v5LeaderboardJSON() (*[]byte, error) {
 	)
 
 	url = w.CommunityURL + leaderboardPath + "/5v5?" + localeQuery + w.Locale + "&" +
-		apiKeyQuery + w.Auth.APIKey
+		apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // Get5v5Leaderboard puts 5v5 PvP leaderboard info into Leaderboard structure
 func (w *WorldOfWarcraft) Get5v5Leaderboard() (*Leaderboard, error) {
 	var (
 		leaderboard Leaderboard
-		json        *[]byte
+		json        []byte
 		err         error
 	)
 
@@ -2196,7 +2198,7 @@ func (w *WorldOfWarcraft) Get5v5Leaderboard() (*Leaderboard, error) {
 }
 
 // GetRBGLeaderboardJSON gets RBG PvP leaderboard JSON information
-func (w *WorldOfWarcraft) GetRBGLeaderboardJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetRBGLeaderboardJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2204,21 +2206,21 @@ func (w *WorldOfWarcraft) GetRBGLeaderboardJSON() (*[]byte, error) {
 	)
 
 	url = w.CommunityURL + leaderboardPath + "/rbg?" + localeQuery + w.Locale + "&" +
-		apiKeyQuery + w.Auth.APIKey
+		apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetRBGLeaderboard puts RBG PvP leaderboard info into Leaderboard structure
 func (w *WorldOfWarcraft) GetRBGLeaderboard() (*Leaderboard, error) {
 	var (
 		leaderboard Leaderboard
-		json        *[]byte
+		json        []byte
 		err         error
 	)
 
@@ -2236,7 +2238,7 @@ func (w *WorldOfWarcraft) GetRBGLeaderboard() (*Leaderboard, error) {
 }
 
 // GetQuestJSON gets quest JSON information
-func (w *WorldOfWarcraft) GetQuestJSON(questID int) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetQuestJSON(questID int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2244,21 +2246,21 @@ func (w *WorldOfWarcraft) GetQuestJSON(questID int) (*[]byte, error) {
 	)
 
 	url = w.CommunityURL + questPath + "/" + strconv.Itoa(questID) + "?" + localeQuery +
-		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetQuest puts quest info into Quest structure
 func (w *WorldOfWarcraft) GetQuest(questID int) (*Quest, error) {
 	var (
 		quest Quest
-		json  *[]byte
+		json  []byte
 		err   error
 	)
 
@@ -2276,7 +2278,7 @@ func (w *WorldOfWarcraft) GetQuest(questID int) (*Quest, error) {
 }
 
 // GetRealmStatusJSON gets realm status JSON information
-func (w *WorldOfWarcraft) GetRealmStatusJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetRealmStatusJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2284,21 +2286,21 @@ func (w *WorldOfWarcraft) GetRealmStatusJSON() (*[]byte, error) {
 	)
 
 	url = w.CommunityURL + realmPath + statusPath + "?" + localeQuery + w.Locale + "&" +
-		apiKeyQuery + w.Auth.APIKey
+		apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetRealmStatus puts realm status info into RealmStatus structure
 func (w *WorldOfWarcraft) GetRealmStatus() (*RealmStatus, error) {
 	var (
 		realmStatus RealmStatus
-		json        *[]byte
+		json        []byte
 		err         error
 	)
 
@@ -2316,7 +2318,7 @@ func (w *WorldOfWarcraft) GetRealmStatus() (*RealmStatus, error) {
 }
 
 // GetRecipeJSON gets recipe JSON information
-func (w *WorldOfWarcraft) GetRecipeJSON(recipeID int) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetRecipeJSON(recipeID int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2324,21 +2326,21 @@ func (w *WorldOfWarcraft) GetRecipeJSON(recipeID int) (*[]byte, error) {
 	)
 
 	url = w.CommunityURL + recipePath + "/" + strconv.Itoa(recipeID) + "?" + localeQuery +
-		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetRecipe puts recipe info into Recipe structure
 func (w *WorldOfWarcraft) GetRecipe(recipeID int) (*Recipe, error) {
 	var (
 		recipe Recipe
-		json   *[]byte
+		json   []byte
 		err    error
 	)
 
@@ -2356,7 +2358,7 @@ func (w *WorldOfWarcraft) GetRecipe(recipeID int) (*Recipe, error) {
 }
 
 // GetSpellJSON gets spell JSON information
-func (w *WorldOfWarcraft) GetSpellJSON(spellID int) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetSpellJSON(spellID int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2364,21 +2366,21 @@ func (w *WorldOfWarcraft) GetSpellJSON(spellID int) (*[]byte, error) {
 	)
 
 	url = w.CommunityURL + spellPath + "/" + strconv.Itoa(spellID) + "?" + localeQuery +
-		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetSpell puts spell info into Spell structure
 func (w *WorldOfWarcraft) GetSpell(spellID int) (*Spell, error) {
 	var (
 		spell Spell
-		json  *[]byte
+		json  []byte
 		err   error
 	)
 
@@ -2396,7 +2398,7 @@ func (w *WorldOfWarcraft) GetSpell(spellID int) (*Spell, error) {
 }
 
 // GetZoneIndexJSON gets zone JSON information
-func (w *WorldOfWarcraft) GetZoneIndexJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetZoneIndexJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2404,21 +2406,21 @@ func (w *WorldOfWarcraft) GetZoneIndexJSON() (*[]byte, error) {
 	)
 
 	url = w.CommunityURL + zonePath + "/?" + localeQuery + w.Locale + "&" + apiKeyQuery +
-		w.Auth.APIKey
+		w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetZoneIndex puts zone info into ZoneIndex structure
 func (w *WorldOfWarcraft) GetZoneIndex() (*ZoneIndex, error) {
 	var (
 		zoneIndex ZoneIndex
-		json      *[]byte
+		json      []byte
 		err       error
 	)
 
@@ -2436,7 +2438,7 @@ func (w *WorldOfWarcraft) GetZoneIndex() (*ZoneIndex, error) {
 }
 
 // GetZoneJSON gets zone JSON information
-func (w *WorldOfWarcraft) GetZoneJSON(zoneID int) (*[]byte, error) {
+func (w *WorldOfWarcraft) GetZoneJSON(zoneID int) ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2444,21 +2446,21 @@ func (w *WorldOfWarcraft) GetZoneJSON(zoneID int) (*[]byte, error) {
 	)
 
 	url = w.CommunityURL + zonePath + "/" + strconv.Itoa(zoneID) + "?" + localeQuery +
-		w.Locale + "&" + apiKeyQuery + w.Auth.APIKey
+		w.Locale + "&" + apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetZone puts zone info into Zone structure
 func (w *WorldOfWarcraft) GetZone(zoneID int) (*Zone, error) {
 	var (
 		zone Zone
-		json *[]byte
+		json []byte
 		err  error
 	)
 
@@ -2476,7 +2478,7 @@ func (w *WorldOfWarcraft) GetZone(zoneID int) (*Zone, error) {
 }
 
 // GetBattlegroupsJSON gets battlegroups JSON information
-func (w *WorldOfWarcraft) GetBattlegroupsJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetBattlegroupsJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2484,21 +2486,21 @@ func (w *WorldOfWarcraft) GetBattlegroupsJSON() (*[]byte, error) {
 	)
 
 	url = w.DataURL + battlegroupsPath + "/?" + localeQuery + w.Locale + "&" + apiKeyQuery +
-		w.Auth.APIKey
+		w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetBattlegroups puts battlegroups info into Battlegroups structure
 func (w *WorldOfWarcraft) GetBattlegroups() (*Battlegroups, error) {
 	var (
 		battlegroups Battlegroups
-		json         *[]byte
+		json         []byte
 		err          error
 	)
 
@@ -2516,7 +2518,7 @@ func (w *WorldOfWarcraft) GetBattlegroups() (*Battlegroups, error) {
 }
 
 // GetCharacterRacesJSON gets character races JSON information
-func (w *WorldOfWarcraft) GetCharacterRacesJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterRacesJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2524,21 +2526,21 @@ func (w *WorldOfWarcraft) GetCharacterRacesJSON() (*[]byte, error) {
 	)
 
 	url = w.DataURL + characterPath + racesPath + "?" + localeQuery + w.Locale + "&" +
-		apiKeyQuery + w.Auth.APIKey
+		apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterRaces puts character races info into CharacterRaces structure
 func (w *WorldOfWarcraft) GetCharacterRaces() (*CharacterRaces, error) {
 	var (
 		characterRaces CharacterRaces
-		json           *[]byte
+		json           []byte
 		err            error
 	)
 
@@ -2556,7 +2558,7 @@ func (w *WorldOfWarcraft) GetCharacterRaces() (*CharacterRaces, error) {
 }
 
 // GetCharacterClassesJSON gets character classes JSON information
-func (w *WorldOfWarcraft) GetCharacterClassesJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterClassesJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2564,21 +2566,21 @@ func (w *WorldOfWarcraft) GetCharacterClassesJSON() (*[]byte, error) {
 	)
 
 	url = w.DataURL + characterPath + classesPath + "?" + localeQuery + w.Locale + "&" +
-		apiKeyQuery + w.Auth.APIKey
+		apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterClasses puts character classes info into CharacterClasses structure
 func (w *WorldOfWarcraft) GetCharacterClasses() (*CharacterClasses, error) {
 	var (
 		characterClasses CharacterClasses
-		json             *[]byte
+		json             []byte
 		err              error
 	)
 
@@ -2596,7 +2598,7 @@ func (w *WorldOfWarcraft) GetCharacterClasses() (*CharacterClasses, error) {
 }
 
 // GetCharacterAchievementsJSON gets character achievements JSON information
-func (w *WorldOfWarcraft) GetCharacterAchievementsJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetCharacterAchievementsJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2604,21 +2606,21 @@ func (w *WorldOfWarcraft) GetCharacterAchievementsJSON() (*[]byte, error) {
 	)
 
 	url = w.DataURL + characterPath + achievementsPath + "?" + localeQuery + w.Locale + "&" +
-		apiKeyQuery + w.Auth.APIKey
+		apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetCharacterAchievements puts character achievements info into CharacterAchievements structure
 func (w *WorldOfWarcraft) GetCharacterAchievements() (*CharacterAchievements, error) {
 	var (
 		characterAchievements CharacterAchievements
-		json                  *[]byte
+		json                  []byte
 		err                   error
 	)
 
@@ -2636,7 +2638,7 @@ func (w *WorldOfWarcraft) GetCharacterAchievements() (*CharacterAchievements, er
 }
 
 // GetGuildRewardsJSON gets guild rewards JSON information
-func (w *WorldOfWarcraft) GetGuildRewardsJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetGuildRewardsJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2644,21 +2646,21 @@ func (w *WorldOfWarcraft) GetGuildRewardsJSON() (*[]byte, error) {
 	)
 
 	url = w.DataURL + guildPath + rewardsPath + "?" + localeQuery + w.Locale + "&" +
-		apiKeyQuery + w.Auth.APIKey
+		apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetGuildRewards puts guild rewards info into GuildRewards structure
 func (w *WorldOfWarcraft) GetGuildRewards() (*GuildRewards, error) {
 	var (
 		guildRewards GuildRewards
-		json         *[]byte
+		json         []byte
 		err          error
 	)
 
@@ -2676,7 +2678,7 @@ func (w *WorldOfWarcraft) GetGuildRewards() (*GuildRewards, error) {
 }
 
 // GetGuildPerksJSON gets guild perks JSON information
-func (w *WorldOfWarcraft) GetGuildPerksJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetGuildPerksJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2684,21 +2686,21 @@ func (w *WorldOfWarcraft) GetGuildPerksJSON() (*[]byte, error) {
 	)
 
 	url = w.DataURL + guildPath + perksPath + "?" + localeQuery + w.Locale + "&" +
-		apiKeyQuery + w.Auth.APIKey
+		apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetGuildPerks puts guild perks info into GuildPerks structure
 func (w *WorldOfWarcraft) GetGuildPerks() (*GuildPerks, error) {
 	var (
 		guildPerks GuildPerks
-		json       *[]byte
+		json       []byte
 		err        error
 	)
 
@@ -2716,7 +2718,7 @@ func (w *WorldOfWarcraft) GetGuildPerks() (*GuildPerks, error) {
 }
 
 // GetGuildAchievementsJSON gets guild achievements JSON information
-func (w *WorldOfWarcraft) GetGuildAchievementsJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetGuildAchievementsJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2724,21 +2726,21 @@ func (w *WorldOfWarcraft) GetGuildAchievementsJSON() (*[]byte, error) {
 	)
 
 	url = w.DataURL + guildPath + achievementsPath + "?" + localeQuery + w.Locale + "&" +
-		apiKeyQuery + w.Auth.APIKey
+		apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetGuildAchievements puts guild achievements info into GuildAchievements structure
 func (w *WorldOfWarcraft) GetGuildAchievements() (*GuildAchievements, error) {
 	var (
 		guildAchievements GuildAchievements
-		json              *[]byte
+		json              []byte
 		err               error
 	)
 
@@ -2756,7 +2758,7 @@ func (w *WorldOfWarcraft) GetGuildAchievements() (*GuildAchievements, error) {
 }
 
 // GetItemClassesJSON gets item classes JSON information
-func (w *WorldOfWarcraft) GetItemClassesJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetItemClassesJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2764,21 +2766,21 @@ func (w *WorldOfWarcraft) GetItemClassesJSON() (*[]byte, error) {
 	)
 
 	url = w.DataURL + itemPath + classesPath + "?" + localeQuery + w.Locale + "&" +
-		apiKeyQuery + w.Auth.APIKey
+		apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetItemClasses puts item classes info into ItemClasses structure
 func (w *WorldOfWarcraft) GetItemClasses() (*ItemClasses, error) {
 	var (
 		itemClasses ItemClasses
-		json        *[]byte
+		json        []byte
 		err         error
 	)
 
@@ -2796,7 +2798,7 @@ func (w *WorldOfWarcraft) GetItemClasses() (*ItemClasses, error) {
 }
 
 // GetTalentsJSON gets talents JSON information
-func (w *WorldOfWarcraft) GetTalentsJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetTalentsJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2804,21 +2806,21 @@ func (w *WorldOfWarcraft) GetTalentsJSON() (*[]byte, error) {
 	)
 
 	url = w.DataURL + talentsPath + "?" + localeQuery + w.Locale + "&" + apiKeyQuery +
-		w.Auth.APIKey
+		w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetTalents puts talents info into Talents structure
 func (w *WorldOfWarcraft) GetTalents() (*Talents, error) {
 	var (
 		talents Talents
-		json    *[]byte
+		json    []byte
 		err     error
 	)
 
@@ -2836,7 +2838,7 @@ func (w *WorldOfWarcraft) GetTalents() (*Talents, error) {
 }
 
 // GetPetTypesJSON gets pet types JSON information
-func (w *WorldOfWarcraft) GetPetTypesJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetPetTypesJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2844,21 +2846,21 @@ func (w *WorldOfWarcraft) GetPetTypesJSON() (*[]byte, error) {
 	)
 
 	url = w.DataURL + itemPath + classesPath + "?" + localeQuery + w.Locale + "&" +
-		apiKeyQuery + w.Auth.APIKey
+		apiKeyQuery + w.Config.Auth.APIKey
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetPetTypes puts pet types info into PetTypes structure
 func (w *WorldOfWarcraft) GetPetTypes() (*PetTypes, error) {
 	var (
 		petTypes PetTypes
-		json     *[]byte
+		json     []byte
 		err      error
 	)
 
@@ -2876,7 +2878,7 @@ func (w *WorldOfWarcraft) GetPetTypes() (*PetTypes, error) {
 }
 
 // GetUserCharactersJSON gets user characters JSON information
-func (w *WorldOfWarcraft) GetUserCharactersJSON() (*[]byte, error) {
+func (w *WorldOfWarcraft) GetUserCharactersJSON() ([]byte, error) {
 	var (
 		url  string
 		json []byte
@@ -2884,21 +2886,21 @@ func (w *WorldOfWarcraft) GetUserCharactersJSON() (*[]byte, error) {
 	)
 
 	url = w.CommunityURL + userPath + charactersPath + "?" + accessTokenQuery +
-		w.Auth.AccessToken
+		w.Config.Auth.AccessToken
 
-	err = blizzard.GetURLBody(url, &json)
+	json, err = w.Config.GetURLBody(url)
 	if err != nil {
 		return nil, err
 	}
 
-	return &json, nil
+	return json, nil
 }
 
 // GetUserCharacters puts user characters information into UserCharacters structure
 func (w *WorldOfWarcraft) GetUserCharacters() (*UserCharacters, error) {
 	var (
 		userCharacters UserCharacters
-		json           *[]byte
+		json           []byte
 		err            error
 	)
 

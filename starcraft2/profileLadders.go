@@ -59,6 +59,6 @@ type ProfileLadders struct {
 }
 
 // JSON2Struct creates ProfileLadders structure from JSON byte array
-func (p *ProfileLadders) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, p)
+func (p *ProfileLadders) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, p)
 }

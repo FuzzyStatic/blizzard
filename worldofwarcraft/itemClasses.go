@@ -22,6 +22,6 @@ type ItemClasses struct {
 }
 
 // JSON2Struct creates ItemClasses structure from JSON byte array
-func (i *ItemClasses) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, i)
+func (i *ItemClasses) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, i)
 }

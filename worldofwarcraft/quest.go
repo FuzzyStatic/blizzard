@@ -20,6 +20,6 @@ type Quest struct {
 }
 
 // JSON2Struct creates Quest structure from JSON byte array
-func (q *Quest) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, q)
+func (q *Quest) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, q)
 }

@@ -17,6 +17,6 @@ type ChallengeRegionLeaderboard struct {
 }
 
 // JSON2Struct creates ChallengeRegionLeaderboard structure from JSON byte array
-func (c *ChallengeRegionLeaderboard) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, c)
+func (c *ChallengeRegionLeaderboard) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, c)
 }

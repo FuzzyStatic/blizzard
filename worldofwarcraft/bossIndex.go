@@ -21,6 +21,6 @@ type BossIndex struct {
 }
 
 // JSON2Struct creates BossIndex structure from JSON byte array
-func (boss *BossIndex) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, boss)
+func (boss *BossIndex) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, boss)
 }

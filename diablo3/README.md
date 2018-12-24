@@ -13,12 +13,13 @@ Start by initiating a new Diablo3 structure (accessToken and apiKey can be acqui
 var d *Diablo3
 
 d = New(
-	blizzard.Auth{
-		AccessToken: "myAccessToken",
-		APIKey:      "myApiKey",
-	},
-	blizzard.US,
-)
+	blizzard.New(
+		blizzard.Auth{
+			AccessToken: accessToken,
+			APIKey:      apiKey,
+		},
+		blizzard.US),
+	)
 ```
 
 ### Fetching data

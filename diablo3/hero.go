@@ -264,26 +264,26 @@ type Hero struct {
 		TooltipParams string `json:"tooltipParams"`
 	} `json:"legendaryPowers"`
 	Stats struct {
-		Life              int     `json:"life"`
+		Life              float64 `json:"life"`
 		Damage            float64 `json:"damage"`
 		Toughness         float64 `json:"toughness"`
 		Healing           float64 `json:"healing"`
 		AttackSpeed       float64 `json:"attackSpeed"`
-		Armor             int     `json:"armor"`
-		Strength          int     `json:"strength"`
-		Dexterity         int     `json:"dexterity"`
-		Vitality          int     `json:"vitality"`
-		Intelligence      int     `json:"intelligence"`
-		PhysicalResist    int     `json:"physicalResist"`
-		FireResist        int     `json:"fireResist"`
-		ColdResist        int     `json:"coldResist"`
-		LightningResist   int     `json:"lightningResist"`
-		PoisonResist      int     `json:"poisonResist"`
-		ArcaneResist      int     `json:"arcaneResist"`
+		Armor             float64 `json:"armor"`
+		Strength          float64 `json:"strength"`
+		Dexterity         float64 `json:"dexterity"`
+		Vitality          float64 `json:"vitality"`
+		Intelligence      float64 `json:"intelligence"`
+		PhysicalResist    float64 `json:"physicalResist"`
+		FireResist        float64 `json:"fireResist"`
+		ColdResist        float64 `json:"coldResist"`
+		LightningResist   float64 `json:"lightningResist"`
+		PoisonResist      float64 `json:"poisonResist"`
+		ArcaneResist      float64 `json:"arcaneResist"`
 		CritDamage        float64 `json:"critDamage"`
 		BlockChance       float64 `json:"blockChance"`
-		BlockAmountMin    int     `json:"blockAmountMin"`
-		BlockAmountMax    int     `json:"blockAmountMax"`
+		BlockAmountMin    float64 `json:"blockAmountMin"`
+		BlockAmountMax    float64 `json:"blockAmountMax"`
 		DamageIncrease    float64 `json:"damageIncrease"`
 		CritChance        float64 `json:"critChance"`
 		DamageReduction   float64 `json:"damageReduction"`
@@ -293,8 +293,8 @@ type Hero struct {
 		GoldFind          float64 `json:"goldFind"`
 		MagicFind         float64 `json:"magicFind"`
 		LifeOnHit         float64 `json:"lifeOnHit"`
-		PrimaryResource   int     `json:"primaryResource"`
-		SecondaryResource int     `json:"secondaryResource"`
+		PrimaryResource   float64 `json:"primaryResource"`
+		SecondaryResource float64 `json:"secondaryResource"`
 	} `json:"stats"`
 	Progression struct {
 		Act1 struct {
@@ -325,8 +325,8 @@ type Hero struct {
 }
 
 // JSON2Struct creates Hero structure from JSON byte array
-func (h *Hero) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, h)
+func (h *Hero) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, h)
 }
 
 // GetAllItemTooltipParams returns a map with all the item tooltipParams from a hero

@@ -31,6 +31,6 @@ type Follower struct {
 }
 
 // JSON2Struct creates Follower structure from JSON byte array
-func (f *Follower) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, f)
+func (f *Follower) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, f)
 }

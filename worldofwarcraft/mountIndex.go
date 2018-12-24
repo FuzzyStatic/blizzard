@@ -26,6 +26,6 @@ type MountIndex struct {
 }
 
 // JSON2Struct creates MountIndex structure from JSON byte array
-func (m *MountIndex) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, m)
+func (m *MountIndex) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, m)
 }

@@ -14,7 +14,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-var b *Blizzard
+var c *Config
 
 func init() {
 	viper.SetConfigName("credentials") // replace with TOML file similar to sample.toml
@@ -29,7 +29,7 @@ func init() {
 	accessToken := viper.GetString("API.access_token")
 	apiKey := viper.GetString("API.api_key")
 
-	b = New(
+	c = New(
 		Auth{
 			AccessToken: accessToken,
 			APIKey:      apiKey,
@@ -40,21 +40,23 @@ func init() {
 
 func TestGetAccountUser(t *testing.T) {
 	var (
-		accountUserJSON *[]byte
+		accountUserJSON []byte
 		accountUser     *AccountUser
 		err             error
 	)
 
-	accountUserJSON, err = b.GetAccountUserJSON()
+	accountUserJSON, err = c.GetAccountUserJSON()
 	if err != nil {
+		fmt.Println(err)
 		t.Fail()
 	}
 
-	accountUser, err = b.GetAccountUser()
+	accountUser, err = c.GetAccountUser()
 	if err != nil {
+		fmt.Println(err)
 		t.Fail()
 	}
 
-	fmt.Println(string(*accountUserJSON))
-	fmt.Println(*accountUser)
+	fmt.Println(string(accountUserJSON))
+	fmt.Printf("%+v\n", accountUser)
 }

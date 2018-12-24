@@ -26,6 +26,6 @@ type MythicLeaderboardIndex struct {
 }
 
 // JSON2Struct creates MythicLeaderboardIndex structure from JSON byte array
-func (m *MythicLeaderboardIndex) JSON2Struct(b *[]byte) error {
-	return json.Unmarshal(*b, m)
+func (m *MythicLeaderboardIndex) JSON2Struct(b []byte) error {
+	return json.Unmarshal(b, m)
 }
