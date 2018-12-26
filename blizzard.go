@@ -1,12 +1,4 @@
-/*
- * @Author: Allen Flickinger (allen.flickinger@gmail.com)
- * @Date: 2018-01-07 12:40:31
- * @Last Modified by: FuzzyStatic
- * @Last Modified time: 2018-01-16 19:32:55
- */
-
-// Package blizzard is the top level library needed to use the
-// API calls for Config games within the subpackages.
+// Package blizzard is a client library designed to make calling and processing Blizzard Game APIs simple
 package blizzard
 
 import (
@@ -100,7 +92,7 @@ func (c *Config) getURLBody(url string) ([]byte, error) {
 		err  error
 	)
 
-	err = c.UpdateAccessTokenIfExp()
+	err = c.updateAccessTokenIfExp()
 	if err != nil {
 		return nil, err
 	}

@@ -73,8 +73,8 @@ func (c *Config) AccessTokenReq() error {
 	return nil
 }
 
-// UpdateAccessTokenIfExp updates Access Token if expired
-func (c *Config) UpdateAccessTokenIfExp() error {
+// updateAccessTokenIfExp updates Access Token if expired
+func (c *Config) updateAccessTokenIfExp() error {
 	var err error
 
 	if c.oauth.ExpiresAt.Sub(time.Now().UTC()) < 60 {
@@ -97,7 +97,7 @@ func (c *Config) UserInfoHeader() ([]byte, error) {
 		err error
 	)
 
-	err = c.UpdateAccessTokenIfExp()
+	err = c.updateAccessTokenIfExp()
 	if err != nil {
 		return nil, err
 	}
@@ -138,7 +138,7 @@ func (c *Config) UserInfoParam() ([]byte, error) {
 		err error
 	)
 
-	err = c.UpdateAccessTokenIfExp()
+	err = c.updateAccessTokenIfExp()
 	if err != nil {
 		return nil, err
 	}
@@ -179,7 +179,7 @@ func (c *Config) TokenValidation() (*oauth.TokenValidation, error) {
 		err error
 	)
 
-	err = c.UpdateAccessTokenIfExp()
+	err = c.updateAccessTokenIfExp()
 	if err != nil {
 		return nil, err
 	}

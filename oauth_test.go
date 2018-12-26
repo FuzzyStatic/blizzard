@@ -41,14 +41,14 @@ func TestUpdateAccessTokenIfExp(t *testing.T) {
 		t.Fail()
 	}
 
-	c.UpdateAccessTokenIfExp()
+	c.updateAccessTokenIfExp()
 	fmt.Printf("%+v\n", c.oauth)
 
 	c.oauth.AccessTokenRequest.ExpiresIn = 0
 	c.oauth.ExpiresAt = time.Now().UTC()
 
 	fmt.Printf("%+v\n", c.oauth)
-	c.UpdateAccessTokenIfExp()
+	c.updateAccessTokenIfExp()
 
 	fmt.Printf("%+v\n", c.oauth)
 }

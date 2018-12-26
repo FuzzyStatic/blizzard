@@ -271,27 +271,7 @@ func TestD3GetEraIndex(t *testing.T) {
 }
 
 func TestD3GetEra(t *testing.T) {
-	dat, err := c.D3GetEra(15)
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
-
-	fmt.Printf("%+v\n", dat)
-}
-
-func TestD3GetEraLeaderboard(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboard(15, "74987248527082")
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
-
-	fmt.Printf("%+v\n", dat)
-}
-
-func TestD3GetEraLeaderboardAchievementPoints(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardAchievementPoints(15)
+	dat, err := c.D3GetEra(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -301,7 +281,7 @@ func TestD3GetEraLeaderboardAchievementPoints(t *testing.T) {
 }
 
 func TestD3GetEraLeaderboardHardcoreBarbarian(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreBarbarian(15)
+	dat, err := c.D3GetEraLeaderboardHardcoreBarbarian(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -311,7 +291,7 @@ func TestD3GetEraLeaderboardHardcoreBarbarian(t *testing.T) {
 }
 
 func TestD3GetEraLeaderboardBarbarian(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardBarbarian(15)
+	dat, err := c.D3GetEraLeaderboardBarbarian(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -321,7 +301,7 @@ func TestD3GetEraLeaderboardBarbarian(t *testing.T) {
 }
 
 func TestD3GetEraLeaderboardHardcoreCrusader(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreCrusader(15)
+	dat, err := c.D3GetEraLeaderboardHardcoreCrusader(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -331,7 +311,7 @@ func TestD3GetEraLeaderboardHardcoreCrusader(t *testing.T) {
 }
 
 func TestD3GetEraLeaderboardCrusader(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardCrusader(15)
+	dat, err := c.D3GetEraLeaderboardCrusader(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -341,7 +321,7 @@ func TestD3GetEraLeaderboardCrusader(t *testing.T) {
 }
 
 func TestD3GetEraLeaderboardHardcoreDemonHunter(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreDemonHunter(15)
+	dat, err := c.D3GetEraLeaderboardHardcoreDemonHunter(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -351,7 +331,7 @@ func TestD3GetEraLeaderboardHardcoreDemonHunter(t *testing.T) {
 }
 
 func TestD3GetEraLeaderboardDemonHunter(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardDemonHunter(15)
+	dat, err := c.D3GetEraLeaderboardDemonHunter(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -361,7 +341,7 @@ func TestD3GetEraLeaderboardDemonHunter(t *testing.T) {
 }
 
 func TestD3GetEraLeaderboardHardcoreMonk(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreMonk(15)
+	dat, err := c.D3GetEraLeaderboardHardcoreMonk(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -371,7 +351,7 @@ func TestD3GetEraLeaderboardHardcoreMonk(t *testing.T) {
 }
 
 func TestD3GetEraLeaderboardMonk(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardMonk(15)
+	dat, err := c.D3GetEraLeaderboardMonk(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -381,7 +361,7 @@ func TestD3GetEraLeaderboardMonk(t *testing.T) {
 }
 
 func TestD3GetEraLeaderboardHardcoreNecromancer(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreNecromancer(15)
+	dat, err := c.D3GetEraLeaderboardHardcoreNecromancer(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -391,7 +371,7 @@ func TestD3GetEraLeaderboardHardcoreNecromancer(t *testing.T) {
 }
 
 func TestD3GetEraLeaderboardNecromancer(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardNecromancer(15)
+	dat, err := c.D3GetEraLeaderboardNecromancer(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -401,7 +381,7 @@ func TestD3GetEraLeaderboardNecromancer(t *testing.T) {
 }
 
 func TestD3GetEraLeaderboardHardcoreWizard(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreWizard(15)
+	dat, err := c.D3GetEraLeaderboardHardcoreWizard(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -411,7 +391,7 @@ func TestD3GetEraLeaderboardHardcoreWizard(t *testing.T) {
 }
 
 func TestD3GetEraLeaderboardWizard(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardWizard(15)
+	dat, err := c.D3GetEraLeaderboardWizard(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -420,7 +400,7 @@ func TestD3GetEraLeaderboardWizard(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 func TestD3GetEraLeaderboardHardcoreWitchDoctor(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreWitchDoctor(15)
+	dat, err := c.D3GetEraLeaderboardHardcoreWitchDoctor(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -430,7 +410,7 @@ func TestD3GetEraLeaderboardHardcoreWitchDoctor(t *testing.T) {
 }
 
 func TestD3GetEraLeaderboardWitchDoctor(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardWitchDoctor(15)
+	dat, err := c.D3GetEraLeaderboardWitchDoctor(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -440,7 +420,7 @@ func TestD3GetEraLeaderboardWitchDoctor(t *testing.T) {
 }
 
 func TestD3GetEraLeaderboardHardcoreTeam2(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreTeam2(15)
+	dat, err := c.D3GetEraLeaderboardHardcoreTeam2(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -450,7 +430,7 @@ func TestD3GetEraLeaderboardHardcoreTeam2(t *testing.T) {
 }
 
 func TestD3GetEraLeaderboardTeam2(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardTeam2(15)
+	dat, err := c.D3GetEraLeaderboardTeam2(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -459,7 +439,7 @@ func TestD3GetEraLeaderboardTeam2(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 func TestD3GetEraLeaderboardHardcoreTeam3(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreTeam3(15)
+	dat, err := c.D3GetEraLeaderboardHardcoreTeam3(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -469,7 +449,7 @@ func TestD3GetEraLeaderboardHardcoreTeam3(t *testing.T) {
 }
 
 func TestD3GetEraLeaderboardTeam3(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardTeam3(15)
+	dat, err := c.D3GetEraLeaderboardTeam3(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -478,7 +458,7 @@ func TestD3GetEraLeaderboardTeam3(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 func TestD3GetEraLeaderboardHardcoreTeam4(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreTeam4(15)
+	dat, err := c.D3GetEraLeaderboardHardcoreTeam4(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -488,7 +468,7 @@ func TestD3GetEraLeaderboardHardcoreTeam4(t *testing.T) {
 }
 
 func TestD3GetEraLeaderboardTeam4(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardTeam4(15)
+	dat, err := c.D3GetEraLeaderboardTeam4(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

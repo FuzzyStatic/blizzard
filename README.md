@@ -6,10 +6,10 @@ This is a Go client library for gathering Blizzard API game data.
 
 ### Getting started
 
-Start by initiating a new Blizzard config structure (client_id and client_secret can be acquired through your developer account at https://develop.battle.net/):
+Start by initiating a new Blizzard config structure for desired region (client_id and client_secret can be acquired through your developer account at https://develop.battle.net/):
 
 ```go
-	blizz = New("client_id", "client_secret", US)
+blizz = New("client_id", "client_secret", US)
 ```
 
 ### Fetching data
@@ -17,14 +17,25 @@ Start by initiating a new Blizzard config structure (client_id and client_secret
 Now you can fetch data from the Blizzard API. For example, you validate your token:
 
 ```go
-	dat, err := blizz.TokenValidation()
-	if err != nil {
-		fmt.Println(err)
-	}
+dat, err := blizz.TokenValidation()
+if err != nil {
+	fmt.Println(err)
+}
 
-	fmt.Printf("%+v\n", dat)
+fmt.Printf("%+v\n", dat)
+```
+
+You can get information about the current D3 hardcore necromancer leaderboards:
+
+```go
+dat, err := blizz.D3GetSeasonLeaderboardHardcoreNecromancer(15)
+if err != nil {
+	fmt.Println(err)
+}
+
+fmt.Printf("%+v\n", dat)
 ```
 
 ### Thanks
 
-Thanks to https://mholt.github.io/json-to-go/ for making JSON to Go structure creation simple.
+Thanks to [JSON-to-Go](https://mholt.github.io/json-to-go/) for making JSON to Go structure creation simple.
