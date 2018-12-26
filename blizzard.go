@@ -24,14 +24,14 @@ type Config struct {
 // Region type
 type Region int
 
-// Region constants
+// Region constants (1=US, 2=EU, 3=KO and TW, 5=CN) DO NOT REARRANGE
 const (
-	CN Region = iota
+	_ Region = iota
+	US
 	EU
 	KR
-	SEA
 	TW
-	US
+	CN
 )
 
 // Path constants
@@ -54,6 +54,10 @@ func New(clientID, clientSecret string, region Region) *Config {
 	}
 
 	switch c.region {
+	case CN:
+		c.oauthURL = "https://www.battle.net.cn"
+		c.apiURL = "https://api.blizzard.com.cn"
+		c.locale = "zh_CN"
 	case EU:
 		c.oauthURL = "https://eu.battle.net"
 		c.apiURL = "https://eu.api.blizzard.com"
@@ -62,10 +66,6 @@ func New(clientID, clientSecret string, region Region) *Config {
 		c.oauthURL = "https://kr.battle.net"
 		c.apiURL = "https://kr.api.blizzard.com"
 		c.locale = "ko_KR"
-	case SEA:
-		c.oauthURL = "https://sea.battle.net"
-		c.apiURL = "https://sea.api.blizzard.com"
-		//c.locale = "zh_CN"
 	case TW:
 		c.oauthURL = "https://tb.battle.net"
 		c.apiURL = "https://tb.api.blizzard.com"
