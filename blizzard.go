@@ -16,59 +16,82 @@ import (
 	"time"
 )
 
-// JSON interface for struture creation
-type JSON interface {
-	JSON2Struct([]byte) error
-}
-
-// Auth contains access token and api key
-type Auth struct {
-	AccessToken string
-	APIKey      string
-}
+// For testing
+var c *Config
 
 // Config regional API URLs, locale, access token, api key
 type Config struct {
-	Client       *http.Client
-	Auth         Auth
-	Region       Region
-	CommunityURL string
+	client   *http.Client
+	oauth    OAuth
+	region   Region
+	oauthURL string
+	apiURL   string
+	locale   string
 }
 
+// Region type
+type Region int
+
+// Region constants
+const (
+	CN Region = iota
+	EU
+	KR
+	SEA
+	TW
+	US
+)
+
+// Path constants
+const (
+	localeQuery = "locale="
+)
+
 // New create new WorldOfWarcraft structure
-func New(auth Auth, region Region) *Config {
+func New(clientID, clientSecret string, region Region) *Config {
 	var c = Config{
-		Client: &http.Client{
+		client: &http.Client{
 			Timeout: time.Second * time.Duration(60),
 		},
-		Auth:   auth,
-		Region: region,
+		oauth: OAuth{
+			ClientID:     clientID,
+			ClientSecret: clientSecret,
+			ExpiresAt:    time.Now(),
+		},
+		region: region,
 	}
 
-	switch c.Region {
+	switch c.region {
 	case EU:
-		c.CommunityURL = "https://eu.api.battle.net"
+		c.oauthURL = "https://eu.battle.net"
+		c.apiURL = "https://eu.api.blizzard.com"
+		c.locale = "en_GB"
 	case KR:
-		c.CommunityURL = "https://kr.api.battle.net"
+		c.oauthURL = "https://kr.battle.net"
+		c.apiURL = "https://kr.api.blizzard.com"
+		c.locale = "ko_KR"
 	case SEA:
-		c.CommunityURL = "https://sea.api.battle.net"
+		c.oauthURL = "https://sea.battle.net"
+		c.apiURL = "https://sea.api.blizzard.com"
+		//c.locale = "zh_CN"
 	case TW:
-		c.CommunityURL = "https://tb.api.battle.net"
+		c.oauthURL = "https://tb.battle.net"
+		c.apiURL = "https://tb.api.blizzard.com"
+		c.locale = "zh_TW"
 	case US:
-		c.CommunityURL = "https://us.api.battle.net"
+		c.oauthURL = "https://us.battle.net"
+		c.apiURL = "https://us.api.blizzard.com"
+		c.locale = "en_US"
 	default: // USA! USA!
-		c.CommunityURL = "https://us.api.battle.net"
+		c.oauthURL = "https://us.battle.net"
+		c.apiURL = "https://us.api.blizzard.com"
+		c.locale = "en_US"
 	}
 
 	return &c
 }
 
-// GetStruct returns structure of JSON interface
-func GetStruct(b []byte, v JSON) error {
-	return v.JSON2Struct(b)
-}
-
-// GetURLBody fills body of url
+// GetURLBody processes simple GET request based on URL
 func (c *Config) GetURLBody(url string) ([]byte, error) {
 	var (
 		req  *http.Request
@@ -77,12 +100,20 @@ func (c *Config) GetURLBody(url string) ([]byte, error) {
 		err  error
 	)
 
+	err = c.UpdateAccessTokenIfExp()
+	if err != nil {
+		return nil, err
+	}
+
 	req, err = http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	res, err = c.Client.Do(req)
+	req.Header.Set("Authorization", "Bearer "+c.oauth.AccessTokenRequest.AccessToken)
+	req.Header.Set("Accept", "application/json")
+
+	res, err = c.client.Do(req)
 	if err != nil {
 		return nil, err
 	}
@@ -104,43 +135,4 @@ func (c *Config) GetURLBody(url string) ([]byte, error) {
 	}
 
 	return body, nil
-}
-
-// GetAccountUserJSON gets account user JSON information
-func (c *Config) GetAccountUserJSON() ([]byte, error) {
-	var (
-		url  string
-		json []byte
-		err  error
-	)
-
-	url = c.CommunityURL + accountPath + userPath + "?" + accessTokenQuery + c.Auth.AccessToken
-
-	json, err = c.GetURLBody(url)
-	if err != nil {
-		return nil, errors.New(err.Error())
-	}
-
-	return json, nil
-}
-
-// GetAccountUser puts account user info into AccountUser structure
-func (c *Config) GetAccountUser() (*AccountUser, error) {
-	var (
-		accountUser AccountUser
-		json        []byte
-		err         error
-	)
-
-	json, err = c.GetAccountUserJSON()
-	if err != nil {
-		return nil, err
-	}
-
-	err = GetStruct(json, &accountUser)
-	if err != nil {
-		return nil, err
-	}
-
-	return &accountUser, nil
 }

@@ -4,39 +4,27 @@
 
 This is a Go client library for gathering Blizzard API game data.
 
-### Game Client Libraries
-
-- [Diablo 3](https://github.com/FuzzyStatic/blizzard/tree/master/diablo3)
-
-- [Starcraft 2](https://github.com/FuzzyStatic/blizzard/tree/master/starcraft2)
-
-- [World of Warcraft](https://github.com/FuzzyStatic/blizzard/tree/master/worldofwarcraft)
-
 ### Getting started
 
-Start by initiating a new Blizzard structure (accessToken and apiKey can be acquired through your Mashery account at https://dev.battle.net/):
+Start by initiating a new Blizzard config structure (client_id and client_secret can be acquired through your developer account at https://develop.battle.net/):
 
 ```go
-var c *Config
-
-c = New(
-	Auth{
-		AccessToken: "myAccessToken",
-		APIKey:      "myApiKey",
-	},
-	US,
-)
+	blizz = New("client_id", "client_secret", US)
 ```
 
 ### Fetching data
 
-Now you can fetch data from the Blizzard API. For example, you can get all the data for your account:
+Now you can fetch data from the Blizzard API. For example, you validate your token:
 
 ```go
-accountUser, err := c.GetAccountUser()
-if err != nil {
-	fmt.Println(err)
-}
+	dat, err := blizz.TokenValidation()
+	if err != nil {
+		fmt.Println(err)
+	}
 
-fmt.Println(accountUser)
+	fmt.Printf("%+v\n", dat)
 ```
+
+### Thanks
+
+Thanks to https://mholt.github.io/json-to-go/ for making JSON to Go structure creation simple.
