@@ -47,7 +47,7 @@ const (
 	localeQuery = "locale="
 )
 
-// New create new WorldOfWarcraft structure
+// New create new Blizzard structure. This structure will be used to acquire your access token and make API calls.
 func New(clientID, clientSecret string, region Region) *Config {
 	var c = Config{
 		client: &http.Client{
@@ -91,8 +91,8 @@ func New(clientID, clientSecret string, region Region) *Config {
 	return &c
 }
 
-// GetURLBody processes simple GET request based on URL
-func (c *Config) GetURLBody(url string) ([]byte, error) {
+// getURLBody processes simple GET request based on URL
+func (c *Config) getURLBody(url string) ([]byte, error) {
 	var (
 		req  *http.Request
 		res  *http.Response

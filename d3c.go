@@ -10,22 +10,23 @@ import (
 
 const (
 	d3Path                          = "/d3"
-	dataPath                        = d3Path + "/data"
-	actPath                         = dataPath + "/act"
-	artisanPath                     = dataPath + "/artisan"
+	d3DataPath                      = d3Path + "/data"
+	actPath                         = d3DataPath + "/act"
+	artisanPath                     = d3DataPath + "/artisan"
 	blacksmithPath                  = artisanPath + "/blacksmith"
 	jewelerPath                     = artisanPath + "/jeweler"
 	mysticPath                      = artisanPath + "/mystic"
 	blacksmithRecipePath            = blacksmithPath + "/recipe"
 	jewelerRecipePath               = jewelerPath + "/recipe"
-	followerPath                    = dataPath + "/follower"
+	followerPath                    = d3DataPath + "/follower"
 	enchantressPath                 = followerPath + "/enchantress"
 	scoundrelPath                   = followerPath + "/scoundrel"
 	templarPath                     = followerPath + "/templar"
-	heroPath                        = dataPath + "/hero"
+	heroPath                        = d3DataPath + "/hero"
 	barbarianPath                   = heroPath + "/barbarian"
 	crusaderPath                    = heroPath + "/crusader"
 	demonHunterPath                 = heroPath + "/demon-hunter"
+	monkPath                        = heroPath + "/monk"
 	necromancerPath                 = heroPath + "/necromancer"
 	wizardPath                      = heroPath + "/wizard"
 	witchDoctorPath                 = heroPath + "/witch-doctor"
@@ -33,11 +34,12 @@ const (
 	barbarianSkillPath              = barbarianPath + skillPath
 	crusaderSkillPath               = crusaderPath + skillPath
 	demonHunterSkillPath            = demonHunterPath + skillPath
+	monkSkillPath                   = monkPath + skillPath
 	necromancerSkillPath            = necromancerPath + skillPath
 	wizardSkillPath                 = wizardPath + skillPath
 	witchDoctorSkillPath            = witchDoctorPath + skillPath
-	itemTypePath                    = dataPath + "/item-type"
-	itemPath                        = dataPath + "/item"
+	itemTypePath                    = d3DataPath + "/item-type"
+	itemPath                        = d3DataPath + "/item"
 	profilePath                     = d3Path + "/profile"
 	profileHeroPartialPath          = "/hero"
 	profileItemsPartialPath         = "/items"
@@ -52,7 +54,7 @@ func (c *Config) D3GetActIndex() (*d3c.ActIndex, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + actPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + actPath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -73,7 +75,7 @@ func (c *Config) D3GetAct(id int) (*d3c.Act, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + actPath + "/" + strconv.Itoa(id) + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + actPath + "/" + strconv.Itoa(id) + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -94,7 +96,7 @@ func (c *Config) D3GetBlacksmith() (*d3c.Artisan, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + blacksmithPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + blacksmithPath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -115,7 +117,7 @@ func (c *Config) D3GetJeweler() (*d3c.Artisan, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + jewelerPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + jewelerPath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -136,7 +138,7 @@ func (c *Config) D3GetMystic() (*d3c.Artisan, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + mysticPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + mysticPath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -157,7 +159,7 @@ func (c *Config) D3GetBlacksmithRecipe(recipeSlug string) (*d3c.Recipe, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + blacksmithRecipePath + "/" + recipeSlug + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + blacksmithRecipePath + "/" + recipeSlug + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -178,7 +180,7 @@ func (c *Config) D3GetJewelerRecipe(recipeSlug string) (*d3c.Recipe, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + jewelerRecipePath + "/" + recipeSlug + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + jewelerRecipePath + "/" + recipeSlug + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -199,7 +201,7 @@ func (c *Config) D3GetEnchantress() (*d3c.Follower, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + enchantressPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + enchantressPath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -220,7 +222,7 @@ func (c *Config) D3GetScoundrel() (*d3c.Follower, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + scoundrelPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + scoundrelPath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -241,7 +243,7 @@ func (c *Config) D3GetTemplar() (*d3c.Follower, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + templarPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + templarPath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -262,7 +264,7 @@ func (c *Config) D3GetBarbarian() (*d3c.Hero, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + barbarianPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + barbarianPath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -283,7 +285,7 @@ func (c *Config) D3GetCrusader() (*d3c.Hero, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + crusaderPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + crusaderPath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -304,7 +306,28 @@ func (c *Config) D3GetDemonHunter() (*d3c.Hero, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + demonHunterPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + demonHunterPath + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// D3GetMonk returns monk data
+func (c *Config) D3GetMonk() (*d3c.Hero, error) {
+	var (
+		dat d3c.Hero
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + monkPath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -325,7 +348,7 @@ func (c *Config) D3GetNecromancer() (*d3c.Hero, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + necromancerPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + necromancerPath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -346,7 +369,7 @@ func (c *Config) D3GetWizard() (*d3c.Hero, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + wizardPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + wizardPath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -367,7 +390,7 @@ func (c *Config) D3GetWitchDoctor() (*d3c.Hero, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + witchDoctorPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + witchDoctorPath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -388,7 +411,7 @@ func (c *Config) D3GetBarbarianSkill(skillSlug string) (*d3c.Skill, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + barbarianSkillPath + "/" + skillSlug + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + barbarianSkillPath + "/" + skillSlug + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -409,7 +432,7 @@ func (c *Config) D3GetCrusaderSkill(skillSlug string) (*d3c.Skill, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + crusaderSkillPath + "/" + skillSlug + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + crusaderSkillPath + "/" + skillSlug + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -430,7 +453,28 @@ func (c *Config) D3GetDemonHunterSkill(skillSlug string) (*d3c.Skill, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + demonHunterSkillPath + "/" + skillSlug + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + demonHunterSkillPath + "/" + skillSlug + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// D3GetMonkSkill returns monk skill data
+func (c *Config) D3GetMonkSkill(skillSlug string) (*d3c.Skill, error) {
+	var (
+		dat d3c.Skill
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + monkSkillPath + "/" + skillSlug + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -451,7 +495,7 @@ func (c *Config) D3GetNecromancerSkill(skillSlug string) (*d3c.Skill, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + necromancerSkillPath + "/" + skillSlug + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + necromancerSkillPath + "/" + skillSlug + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -472,7 +516,7 @@ func (c *Config) D3GetWizardSkill(skillSlug string) (*d3c.Skill, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + wizardSkillPath + "/" + skillSlug + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + wizardSkillPath + "/" + skillSlug + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -493,7 +537,7 @@ func (c *Config) D3GetWitchDoctorSkill(skillSlug string) (*d3c.Skill, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + witchDoctorSkillPath + "/" + skillSlug + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + witchDoctorSkillPath + "/" + skillSlug + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -514,7 +558,7 @@ func (c *Config) D3GetItemTypeIndex() (*d3c.ItemTypeIndex, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + itemTypePath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + itemTypePath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -535,7 +579,7 @@ func (c *Config) D3GetItemType(itemTypeSlug string) (*d3c.ItemType, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + itemTypePath + "/" + itemTypeSlug + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + itemTypePath + "/" + itemTypeSlug + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -556,7 +600,7 @@ func (c *Config) D3GetItem(itemSlug, itemID string) (*d3c.Item, error) {
 		err error
 	)
 
-	b, err = c.GetURLBody(c.apiURL + itemPath + "/" + itemSlug + "-" + itemID + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + itemPath + "/" + itemSlug + "-" + itemID + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -580,7 +624,7 @@ func (c *Config) D3GetProfile(account string) (*d3c.Profile, error) {
 
 	account = strings.Replace(account, "#", "-", 1)
 
-	b, err = c.GetURLBody(c.apiURL + profilePath + "/" + account + "/?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + profilePath + "/" + account + "/?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -604,7 +648,7 @@ func (c *Config) D3GetProfileHero(account string, heroID int) (*d3c.ProfileHero,
 
 	account = strings.Replace(account, "#", "-", 1)
 
-	b, err = c.GetURLBody(c.apiURL + profilePath + "/" + account + profileHeroPartialPath + "/" + strconv.Itoa(heroID) + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + profilePath + "/" + account + profileHeroPartialPath + "/" + strconv.Itoa(heroID) + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -628,7 +672,7 @@ func (c *Config) D3GetProfileHeroItems(account string, heroID int) (*d3c.Profile
 
 	account = strings.Replace(account, "#", "-", 1)
 
-	b, err = c.GetURLBody(c.apiURL + profilePath + "/" + account + profileHeroPartialPath + "/" + strconv.Itoa(heroID) + profileItemsPartialPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + profilePath + "/" + account + profileHeroPartialPath + "/" + strconv.Itoa(heroID) + profileItemsPartialPath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -652,7 +696,7 @@ func (c *Config) D3GetProfileHeroFollowerItems(account string, heroID int) (*d3c
 
 	account = strings.Replace(account, "#", "-", 1)
 
-	b, err = c.GetURLBody(c.apiURL + profilePath + "/" + account + profileHeroPartialPath + "/" + strconv.Itoa(heroID) + profileFollowerItemsPartialPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + profilePath + "/" + account + profileHeroPartialPath + "/" + strconv.Itoa(heroID) + profileFollowerItemsPartialPath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}

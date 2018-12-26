@@ -153,6 +153,16 @@ func TestD3GetDemonHunter(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
+func TestD3GetMonk(t *testing.T) {
+	dat, err := c.D3GetMonk()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
 func TestD3GetNecromancer(t *testing.T) {
 	dat, err := c.D3GetNecromancer()
 	if err != nil {
@@ -205,6 +215,16 @@ func TestD3GetCrusaderSkill(t *testing.T) {
 
 func TestD3GetDemonHunterSkill(t *testing.T) {
 	dat, err := c.D3GetDemonHunterSkill("smoke-screen")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestD3GetMonkSkill(t *testing.T) {
+	dat, err := c.D3GetMonkSkill("dashing-strike")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
