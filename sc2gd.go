@@ -11,8 +11,8 @@ const (
 	sc2LeaguePath = dataPath + sc2Path + "/league"
 )
 
-// SC2GetLeagueData returns all SC2 league data from for seasonID, queue ID, team type, and league ID
-func (c *Config) SC2GetLeagueData(seasonID int, queueID sc2gd.QueueID, teamType sc2gd.TeamType, leagueID sc2gd.LeagueID) (*sc2gd.League, error) {
+// SC2LeagueData returns all SC2 league data from for seasonID, queue ID, team type, and league ID
+func (c *Config) SC2LeagueData(seasonID int, queueID sc2gd.QueueID, teamType sc2gd.TeamType, leagueID sc2gd.LeagueID) (*sc2gd.League, error) {
 	var (
 		dat sc2gd.League
 		b   []byte

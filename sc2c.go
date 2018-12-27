@@ -29,8 +29,8 @@ const (
 	sc2LegacyRewardsPath      = sc2LegacyDataPath + "/rewards"
 )
 
-// SC2GetStaticProfile returns all static SC2 profile data (achievements, categories, criteria, and rewards)
-func (c *Config) SC2GetStaticProfile(region Region) (*sc2c.StaticProfile, error) {
+// SC2StaticProfile returns all static SC2 profile data (achievements, categories, criteria, and rewards)
+func (c *Config) SC2StaticProfile(region Region) (*sc2c.StaticProfile, error) {
 	var (
 		dat sc2c.StaticProfile
 		b   []byte
@@ -50,8 +50,8 @@ func (c *Config) SC2GetStaticProfile(region Region) (*sc2c.StaticProfile, error)
 	return &dat, nil
 }
 
-// SC2GetMetadataProfile returns all SC2 profile metadata
-func (c *Config) SC2GetMetadataProfile(region Region, realmID, profileID int) (*sc2c.MetadataProfile, error) {
+// SC2MetadataProfile returns all SC2 profile metadata
+func (c *Config) SC2MetadataProfile(region Region, realmID, profileID int) (*sc2c.MetadataProfile, error) {
 	var (
 		dat sc2c.MetadataProfile
 		b   []byte
@@ -71,8 +71,8 @@ func (c *Config) SC2GetMetadataProfile(region Region, realmID, profileID int) (*
 	return &dat, nil
 }
 
-// SC2GetProfile returns all SC2 profile data
-func (c *Config) SC2GetProfile(region Region, realmID, profileID int) (*sc2c.Profile, error) {
+// SC2Profile returns all SC2 profile data
+func (c *Config) SC2Profile(region Region, realmID, profileID int) (*sc2c.Profile, error) {
 	var (
 		dat sc2c.Profile
 		b   []byte
@@ -92,8 +92,8 @@ func (c *Config) SC2GetProfile(region Region, realmID, profileID int) (*sc2c.Pro
 	return &dat, nil
 }
 
-// SC2GetProfileLadderSummary returns SC2 profile ladder summary
-func (c *Config) SC2GetProfileLadderSummary(region Region, realmID, profileID int) (*sc2c.LadderSummary, error) {
+// SC2ProfileLadderSummary returns SC2 profile ladder summary
+func (c *Config) SC2ProfileLadderSummary(region Region, realmID, profileID int) (*sc2c.LadderSummary, error) {
 	var (
 		dat sc2c.LadderSummary
 		b   []byte
@@ -113,8 +113,8 @@ func (c *Config) SC2GetProfileLadderSummary(region Region, realmID, profileID in
 	return &dat, nil
 }
 
-// SC2GetProfileLadder returns SC2 profile ladder data
-func (c *Config) SC2GetProfileLadder(region Region, realmID, profileID, ladderID int) (*sc2c.Ladder, error) {
+// SC2ProfileLadder returns SC2 profile ladder data
+func (c *Config) SC2ProfileLadder(region Region, realmID, profileID, ladderID int) (*sc2c.Ladder, error) {
 	var (
 		dat sc2c.Ladder
 		b   []byte
@@ -134,8 +134,8 @@ func (c *Config) SC2GetProfileLadder(region Region, realmID, profileID, ladderID
 	return &dat, nil
 }
 
-// SC2GetLadderGrandmaster returns SC2 ladder grandmaster for current season
-func (c *Config) SC2GetLadderGrandmaster(region Region) (*sc2c.LadderGrandmaster, error) {
+// SC2LadderGrandmaster returns SC2 ladder grandmaster for current season
+func (c *Config) SC2LadderGrandmaster(region Region) (*sc2c.LadderGrandmaster, error) {
 	var (
 		dat sc2c.LadderGrandmaster
 		b   []byte
@@ -155,8 +155,8 @@ func (c *Config) SC2GetLadderGrandmaster(region Region) (*sc2c.LadderGrandmaster
 	return &dat, nil
 }
 
-// SC2GetLadderSeason returns SC2 ladder current season
-func (c *Config) SC2GetLadderSeason(region Region) (*sc2c.LadderSeason, error) {
+// SC2LadderSeason returns SC2 ladder current season
+func (c *Config) SC2LadderSeason(region Region) (*sc2c.LadderSeason, error) {
 	var (
 		dat sc2c.LadderSeason
 		b   []byte
@@ -176,8 +176,8 @@ func (c *Config) SC2GetLadderSeason(region Region) (*sc2c.LadderSeason, error) {
 	return &dat, nil
 }
 
-// SC2GetPlayer returns data about player using account ID
-func (c *Config) SC2GetPlayer(accountID int) (*sc2c.Player, error) {
+// SC2Player returns data about player using account ID
+func (c *Config) SC2Player(accountID int) (*sc2c.Player, error) {
 	var (
 		dat sc2c.Player
 		b   []byte
@@ -197,8 +197,8 @@ func (c *Config) SC2GetPlayer(accountID int) (*sc2c.Player, error) {
 	return &dat, nil
 }
 
-// SC2GetLegacyProfile returns all SC2 legacy profile data
-func (c *Config) SC2GetLegacyProfile(region Region, realmID, profileID int) (*sc2c.LegacyProfile, error) {
+// SC2LegacyProfile returns all SC2 legacy profile data
+func (c *Config) SC2LegacyProfile(region Region, realmID, profileID int) (*sc2c.LegacyProfile, error) {
 	var (
 		dat sc2c.LegacyProfile
 		b   []byte
@@ -218,8 +218,8 @@ func (c *Config) SC2GetLegacyProfile(region Region, realmID, profileID int) (*sc
 	return &dat, nil
 }
 
-// SC2GetLegacyProfileLadders returns all SC2 legacy profile ladder data
-func (c *Config) SC2GetLegacyProfileLadders(region Region, realmID, profileID int) (*sc2c.LegacyProfileLadders, error) {
+// SC2LegacyProfileLadders returns all SC2 legacy profile ladder data
+func (c *Config) SC2LegacyProfileLadders(region Region, realmID, profileID int) (*sc2c.LegacyProfileLadders, error) {
 	var (
 		dat sc2c.LegacyProfileLadders
 		b   []byte
@@ -239,8 +239,8 @@ func (c *Config) SC2GetLegacyProfileLadders(region Region, realmID, profileID in
 	return &dat, nil
 }
 
-// SC2GetLegacyProfileMatches returns all SC2 legacy profile matches data
-func (c *Config) SC2GetLegacyProfileMatches(region Region, realmID, profileID int) (*sc2c.LegacyProfileMatches, error) {
+// SC2LegacyProfileMatches returns all SC2 legacy profile matches data
+func (c *Config) SC2LegacyProfileMatches(region Region, realmID, profileID int) (*sc2c.LegacyProfileMatches, error) {
 	var (
 		dat sc2c.LegacyProfileMatches
 		b   []byte
@@ -260,8 +260,8 @@ func (c *Config) SC2GetLegacyProfileMatches(region Region, realmID, profileID in
 	return &dat, nil
 }
 
-// SC2GetLegacyLadder returns SC2 legacy ladder data
-func (c *Config) SC2GetLegacyLadder(region Region, ladderID int) (*sc2c.LegacyLadder, error) {
+// SC2LegacyLadder returns SC2 legacy ladder data
+func (c *Config) SC2LegacyLadder(region Region, ladderID int) (*sc2c.LegacyLadder, error) {
 	var (
 		dat sc2c.LegacyLadder
 		b   []byte
@@ -281,8 +281,8 @@ func (c *Config) SC2GetLegacyLadder(region Region, ladderID int) (*sc2c.LegacyLa
 	return &dat, nil
 }
 
-// SC2GetLegacyAchievements returns SC2 legacy achievements for region
-func (c *Config) SC2GetLegacyAchievements(region Region) (*sc2c.LegacyAchievements, error) {
+// SC2LegacyAchievements returns SC2 legacy achievements for region
+func (c *Config) SC2LegacyAchievements(region Region) (*sc2c.LegacyAchievements, error) {
 	var (
 		dat sc2c.LegacyAchievements
 		b   []byte
@@ -302,8 +302,8 @@ func (c *Config) SC2GetLegacyAchievements(region Region) (*sc2c.LegacyAchievemen
 	return &dat, nil
 }
 
-// SC2GetLegacyRewards returns SC2 legacy rewards for region
-func (c *Config) SC2GetLegacyRewards(region Region) (*sc2c.LegacyRewards, error) {
+// SC2LegacyRewards returns SC2 legacy rewards for region
+func (c *Config) SC2LegacyRewards(region Region) (*sc2c.LegacyRewards, error) {
 	var (
 		dat sc2c.LegacyRewards
 		b   []byte

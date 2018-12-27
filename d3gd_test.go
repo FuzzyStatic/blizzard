@@ -23,8 +23,8 @@ func init() {
 	c = New(clientID, clientSecret, US)
 }
 
-func TestD3GetSeasonIndex(t *testing.T) {
-	dat, err := c.D3GetSeasonIndex()
+func TestD3SeasonIndex(t *testing.T) {
+	dat, err := c.D3SeasonIndex()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -33,8 +33,8 @@ func TestD3GetSeasonIndex(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetSeason(t *testing.T) {
-	dat, err := c.D3GetSeason(15)
+func TestD3Season(t *testing.T) {
+	dat, err := c.D3Season(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -43,8 +43,8 @@ func TestD3GetSeason(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetSeasonLeaderboard(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboard(15, "74987248527082")
+func TestD3SeasonLeaderboard(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboard(15, "74987248527082")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -53,8 +53,8 @@ func TestD3GetSeasonLeaderboard(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetSeasonLeaderboardAchievementPoints(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardAchievementPoints(15)
+func TestD3SeasonLeaderboardAchievementPoints(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardAchievementPoints(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -63,8 +63,8 @@ func TestD3GetSeasonLeaderboardAchievementPoints(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetSeasonLeaderboardHardcoreBarbarian(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardHardcoreBarbarian(15)
+func TestD3SeasonLeaderboardHardcoreBarbarian(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardHardcoreBarbarian(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -73,8 +73,8 @@ func TestD3GetSeasonLeaderboardHardcoreBarbarian(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetSeasonLeaderboardBarbarian(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardBarbarian(15)
+func TestD3SeasonLeaderboardBarbarian(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardBarbarian(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -83,8 +83,8 @@ func TestD3GetSeasonLeaderboardBarbarian(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetSeasonLeaderboardHardcoreCrusader(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardHardcoreCrusader(15)
+func TestD3SeasonLeaderboardHardcoreCrusader(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardHardcoreCrusader(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -93,8 +93,8 @@ func TestD3GetSeasonLeaderboardHardcoreCrusader(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetSeasonLeaderboardCrusader(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardCrusader(15)
+func TestD3SeasonLeaderboardCrusader(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardCrusader(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -103,8 +103,8 @@ func TestD3GetSeasonLeaderboardCrusader(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetSeasonLeaderboardHardcoreDemonHunter(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardHardcoreDemonHunter(15)
+func TestD3SeasonLeaderboardHardcoreDemonHunter(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardHardcoreDemonHunter(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -113,8 +113,8 @@ func TestD3GetSeasonLeaderboardHardcoreDemonHunter(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetSeasonLeaderboardDemonHunter(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardDemonHunter(15)
+func TestD3SeasonLeaderboardDemonHunter(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardDemonHunter(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -123,8 +123,8 @@ func TestD3GetSeasonLeaderboardDemonHunter(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetSeasonLeaderboardHardcoreMonk(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardHardcoreMonk(15)
+func TestD3SeasonLeaderboardHardcoreMonk(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardHardcoreMonk(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -133,8 +133,8 @@ func TestD3GetSeasonLeaderboardHardcoreMonk(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetSeasonLeaderboardMonk(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardMonk(15)
+func TestD3SeasonLeaderboardMonk(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardMonk(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -143,8 +143,8 @@ func TestD3GetSeasonLeaderboardMonk(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetSeasonLeaderboardHardcoreNecromancer(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardHardcoreNecromancer(15)
+func TestD3SeasonLeaderboardHardcoreNecromancer(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardHardcoreNecromancer(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -153,8 +153,8 @@ func TestD3GetSeasonLeaderboardHardcoreNecromancer(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetSeasonLeaderboardNecromancer(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardNecromancer(15)
+func TestD3SeasonLeaderboardNecromancer(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardNecromancer(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -163,8 +163,8 @@ func TestD3GetSeasonLeaderboardNecromancer(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetSeasonLeaderboardHardcoreWizard(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardHardcoreWizard(15)
+func TestD3SeasonLeaderboardHardcoreWizard(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardHardcoreWizard(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -173,8 +173,8 @@ func TestD3GetSeasonLeaderboardHardcoreWizard(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetSeasonLeaderboardWizard(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardWizard(15)
+func TestD3SeasonLeaderboardWizard(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardWizard(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -182,18 +182,8 @@ func TestD3GetSeasonLeaderboardWizard(t *testing.T) {
 
 	fmt.Printf("%+v\n", dat)
 }
-func TestD3GetSeasonLeaderboardHardcoreWitchDoctor(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardHardcoreWitchDoctor(15)
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
-
-	fmt.Printf("%+v\n", dat)
-}
-
-func TestD3GetSeasonLeaderboardWitchDoctor(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardWitchDoctor(15)
+func TestD3SeasonLeaderboardHardcoreWitchDoctor(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardHardcoreWitchDoctor(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -202,8 +192,8 @@ func TestD3GetSeasonLeaderboardWitchDoctor(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetSeasonLeaderboardHardcoreTeam2(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardHardcoreTeam2(15)
+func TestD3SeasonLeaderboardWitchDoctor(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardWitchDoctor(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -212,17 +202,8 @@ func TestD3GetSeasonLeaderboardHardcoreTeam2(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetSeasonLeaderboardTeam2(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardTeam2(15)
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
-
-	fmt.Printf("%+v\n", dat)
-}
-func TestD3GetSeasonLeaderboardHardcoreTeam3(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardHardcoreTeam3(15)
+func TestD3SeasonLeaderboardHardcoreTeam2(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardHardcoreTeam2(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -231,8 +212,8 @@ func TestD3GetSeasonLeaderboardHardcoreTeam3(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetSeasonLeaderboardTeam3(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardTeam3(15)
+func TestD3SeasonLeaderboardTeam2(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardTeam2(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -240,18 +221,8 @@ func TestD3GetSeasonLeaderboardTeam3(t *testing.T) {
 
 	fmt.Printf("%+v\n", dat)
 }
-func TestD3GetSeasonLeaderboardHardcoreTeam4(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardHardcoreTeam4(15)
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
-
-	fmt.Printf("%+v\n", dat)
-}
-
-func TestD3GetSeasonLeaderboardTeam4(t *testing.T) {
-	dat, err := c.D3GetSeasonLeaderboardTeam4(15)
+func TestD3SeasonLeaderboardHardcoreTeam3(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardHardcoreTeam3(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -260,8 +231,17 @@ func TestD3GetSeasonLeaderboardTeam4(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetEraIndex(t *testing.T) {
-	dat, err := c.D3GetEraIndex()
+func TestD3SeasonLeaderboardTeam3(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardTeam3(15)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+func TestD3SeasonLeaderboardHardcoreTeam4(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardHardcoreTeam4(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -270,8 +250,8 @@ func TestD3GetEraIndex(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetEra(t *testing.T) {
-	dat, err := c.D3GetEra(10)
+func TestD3SeasonLeaderboardTeam4(t *testing.T) {
+	dat, err := c.D3SeasonLeaderboardTeam4(15)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -280,8 +260,8 @@ func TestD3GetEra(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetEraLeaderboardHardcoreBarbarian(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreBarbarian(10)
+func TestD3EraIndex(t *testing.T) {
+	dat, err := c.D3EraIndex()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -290,8 +270,8 @@ func TestD3GetEraLeaderboardHardcoreBarbarian(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetEraLeaderboardBarbarian(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardBarbarian(10)
+func TestD3Era(t *testing.T) {
+	dat, err := c.D3Era(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -300,8 +280,8 @@ func TestD3GetEraLeaderboardBarbarian(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetEraLeaderboardHardcoreCrusader(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreCrusader(10)
+func TestD3EraLeaderboardHardcoreBarbarian(t *testing.T) {
+	dat, err := c.D3EraLeaderboardHardcoreBarbarian(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -310,8 +290,8 @@ func TestD3GetEraLeaderboardHardcoreCrusader(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetEraLeaderboardCrusader(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardCrusader(10)
+func TestD3EraLeaderboardBarbarian(t *testing.T) {
+	dat, err := c.D3EraLeaderboardBarbarian(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -320,8 +300,8 @@ func TestD3GetEraLeaderboardCrusader(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetEraLeaderboardHardcoreDemonHunter(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreDemonHunter(10)
+func TestD3EraLeaderboardHardcoreCrusader(t *testing.T) {
+	dat, err := c.D3EraLeaderboardHardcoreCrusader(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -330,8 +310,8 @@ func TestD3GetEraLeaderboardHardcoreDemonHunter(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetEraLeaderboardDemonHunter(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardDemonHunter(10)
+func TestD3EraLeaderboardCrusader(t *testing.T) {
+	dat, err := c.D3EraLeaderboardCrusader(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -340,8 +320,8 @@ func TestD3GetEraLeaderboardDemonHunter(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetEraLeaderboardHardcoreMonk(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreMonk(10)
+func TestD3EraLeaderboardHardcoreDemonHunter(t *testing.T) {
+	dat, err := c.D3EraLeaderboardHardcoreDemonHunter(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -350,8 +330,8 @@ func TestD3GetEraLeaderboardHardcoreMonk(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetEraLeaderboardMonk(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardMonk(10)
+func TestD3EraLeaderboardDemonHunter(t *testing.T) {
+	dat, err := c.D3EraLeaderboardDemonHunter(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -360,8 +340,8 @@ func TestD3GetEraLeaderboardMonk(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetEraLeaderboardHardcoreNecromancer(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreNecromancer(10)
+func TestD3EraLeaderboardHardcoreMonk(t *testing.T) {
+	dat, err := c.D3EraLeaderboardHardcoreMonk(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -370,8 +350,8 @@ func TestD3GetEraLeaderboardHardcoreNecromancer(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetEraLeaderboardNecromancer(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardNecromancer(10)
+func TestD3EraLeaderboardMonk(t *testing.T) {
+	dat, err := c.D3EraLeaderboardMonk(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -380,8 +360,8 @@ func TestD3GetEraLeaderboardNecromancer(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetEraLeaderboardHardcoreWizard(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreWizard(10)
+func TestD3EraLeaderboardHardcoreNecromancer(t *testing.T) {
+	dat, err := c.D3EraLeaderboardHardcoreNecromancer(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -390,17 +370,8 @@ func TestD3GetEraLeaderboardHardcoreWizard(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetEraLeaderboardWizard(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardWizard(10)
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
-
-	fmt.Printf("%+v\n", dat)
-}
-func TestD3GetEraLeaderboardHardcoreWitchDoctor(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreWitchDoctor(10)
+func TestD3EraLeaderboardNecromancer(t *testing.T) {
+	dat, err := c.D3EraLeaderboardNecromancer(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -409,8 +380,8 @@ func TestD3GetEraLeaderboardHardcoreWitchDoctor(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetEraLeaderboardWitchDoctor(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardWitchDoctor(10)
+func TestD3EraLeaderboardHardcoreWizard(t *testing.T) {
+	dat, err := c.D3EraLeaderboardHardcoreWizard(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -419,8 +390,17 @@ func TestD3GetEraLeaderboardWitchDoctor(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetEraLeaderboardHardcoreTeam2(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreTeam2(10)
+func TestD3EraLeaderboardWizard(t *testing.T) {
+	dat, err := c.D3EraLeaderboardWizard(10)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+func TestD3EraLeaderboardHardcoreWitchDoctor(t *testing.T) {
+	dat, err := c.D3EraLeaderboardHardcoreWitchDoctor(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -429,17 +409,8 @@ func TestD3GetEraLeaderboardHardcoreTeam2(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetEraLeaderboardTeam2(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardTeam2(10)
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
-
-	fmt.Printf("%+v\n", dat)
-}
-func TestD3GetEraLeaderboardHardcoreTeam3(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreTeam3(10)
+func TestD3EraLeaderboardWitchDoctor(t *testing.T) {
+	dat, err := c.D3EraLeaderboardWitchDoctor(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -448,17 +419,8 @@ func TestD3GetEraLeaderboardHardcoreTeam3(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetEraLeaderboardTeam3(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardTeam3(10)
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
-
-	fmt.Printf("%+v\n", dat)
-}
-func TestD3GetEraLeaderboardHardcoreTeam4(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardHardcoreTeam4(10)
+func TestD3EraLeaderboardHardcoreTeam2(t *testing.T) {
+	dat, err := c.D3EraLeaderboardHardcoreTeam2(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -467,8 +429,46 @@ func TestD3GetEraLeaderboardHardcoreTeam4(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestD3GetEraLeaderboardTeam4(t *testing.T) {
-	dat, err := c.D3GetEraLeaderboardTeam4(10)
+func TestD3EraLeaderboardTeam2(t *testing.T) {
+	dat, err := c.D3EraLeaderboardTeam2(10)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+func TestD3EraLeaderboardHardcoreTeam3(t *testing.T) {
+	dat, err := c.D3EraLeaderboardHardcoreTeam3(10)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestD3EraLeaderboardTeam3(t *testing.T) {
+	dat, err := c.D3EraLeaderboardTeam3(10)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+func TestD3EraLeaderboardHardcoreTeam4(t *testing.T) {
+	dat, err := c.D3EraLeaderboardHardcoreTeam4(10)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestD3EraLeaderboardTeam4(t *testing.T) {
+	dat, err := c.D3EraLeaderboardTeam4(10)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

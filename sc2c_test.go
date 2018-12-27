@@ -23,8 +23,8 @@ func init() {
 	c = New(clientID, clientSecret, US)
 }
 
-func TestSC2GetStaticProfile(t *testing.T) {
-	dat, err := c.SC2GetStaticProfile(CN)
+func TestSC2StaticProfile(t *testing.T) {
+	dat, err := c.SC2StaticProfile(CN)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -33,8 +33,8 @@ func TestSC2GetStaticProfile(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestSC2GetMetadataProfile(t *testing.T) {
-	dat, err := c.SC2GetMetadataProfile(US, 1, 305084)
+func TestSC2MetadataProfile(t *testing.T) {
+	dat, err := c.SC2MetadataProfile(US, 1, 305084)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -43,8 +43,8 @@ func TestSC2GetMetadataProfile(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestSC2GetProfile(t *testing.T) {
-	dat, err := c.SC2GetProfile(US, 1, 305084)
+func TestSC2Profile(t *testing.T) {
+	dat, err := c.SC2Profile(US, 1, 305084)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -53,8 +53,8 @@ func TestSC2GetProfile(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestSC2GetProfileLadderSummary(t *testing.T) {
-	dat, err := c.SC2GetProfileLadderSummary(US, 1, 305084)
+func TestSC2ProfileLadderSummary(t *testing.T) {
+	dat, err := c.SC2ProfileLadderSummary(US, 1, 305084)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -63,8 +63,8 @@ func TestSC2GetProfileLadderSummary(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestSC2GetProfileLadder(t *testing.T) {
-	dat, err := c.SC2GetProfileLadder(US, 1, 2376042, 194163)
+func TestSC2ProfileLadder(t *testing.T) {
+	dat, err := c.SC2ProfileLadder(US, 1, 2376042, 194163)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -73,8 +73,8 @@ func TestSC2GetProfileLadder(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestSC2GetLadderGrandmaster(t *testing.T) {
-	dat, err := c.SC2GetLadderGrandmaster(EU)
+func TestSC2LadderGrandmaster(t *testing.T) {
+	dat, err := c.SC2LadderGrandmaster(EU)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -83,8 +83,8 @@ func TestSC2GetLadderGrandmaster(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestSC2GetLadderSeason(t *testing.T) {
-	dat, err := c.SC2GetLadderSeason(EU)
+func TestSC2LadderSeason(t *testing.T) {
+	dat, err := c.SC2LadderSeason(EU)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -93,8 +93,8 @@ func TestSC2GetLadderSeason(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestSC2GetPlayer(t *testing.T) {
-	dat, err := c.SC2GetPlayer(1312411)
+func TestSC2Player(t *testing.T) {
+	dat, err := c.SC2Player(1312411)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -103,8 +103,8 @@ func TestSC2GetPlayer(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestSC2GetLegacyProfile(t *testing.T) {
-	dat, err := c.SC2GetLegacyProfile(US, 1, 305084)
+func TestSC2LegacyProfile(t *testing.T) {
+	dat, err := c.SC2LegacyProfile(US, 1, 305084)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -113,8 +113,8 @@ func TestSC2GetLegacyProfile(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestSC2GetLegacyProfileLadders(t *testing.T) {
-	dat, err := c.SC2GetLegacyProfileLadders(US, 1, 305084)
+func TestSC2LegacyProfileLadders(t *testing.T) {
+	dat, err := c.SC2LegacyProfileLadders(US, 1, 305084)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -123,8 +123,8 @@ func TestSC2GetLegacyProfileLadders(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestSC2GetLegacyProfileMatches(t *testing.T) {
-	dat, err := c.SC2GetLegacyProfileMatches(US, 1, 305084)
+func TestSC2LegacyProfileMatches(t *testing.T) {
+	dat, err := c.SC2LegacyProfileMatches(US, 1, 305084)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -133,8 +133,8 @@ func TestSC2GetLegacyProfileMatches(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestSC2GetLegacyLadder(t *testing.T) {
-	dat, err := c.SC2GetLegacyLadder(US, 194163)
+func TestSC2LegacyLadder(t *testing.T) {
+	dat, err := c.SC2LegacyLadder(US, 194163)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -143,8 +143,8 @@ func TestSC2GetLegacyLadder(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestSC2GetLegacyAchievements(t *testing.T) {
-	dat, err := c.SC2GetLegacyAchievements(US)
+func TestSC2LegacyAchievements(t *testing.T) {
+	dat, err := c.SC2LegacyAchievements(US)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -153,8 +153,8 @@ func TestSC2GetLegacyAchievements(t *testing.T) {
 	fmt.Printf("%+v\n", dat)
 }
 
-func TestSC2GetLegacyRewards(t *testing.T) {
-	dat, err := c.SC2GetLegacyRewards(US)
+func TestSC2LegacyRewards(t *testing.T) {
+	dat, err := c.SC2LegacyRewards(US)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

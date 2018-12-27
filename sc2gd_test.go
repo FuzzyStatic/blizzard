@@ -25,8 +25,8 @@ func init() {
 	c = New(clientID, clientSecret, US)
 }
 
-func TestSC2GetLeagueData(t *testing.T) {
-	dat, err := c.SC2GetLeagueData(37, sc2gd.LotV1v1, sc2gd.Arranged, sc2gd.Master)
+func TestSC2LeagueData(t *testing.T) {
+	dat, err := c.SC2LeagueData(37, sc2gd.LotV1v1, sc2gd.Arranged, sc2gd.Master)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

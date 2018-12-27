@@ -35,8 +35,8 @@ const (
 	eraPath                     = dataD3Path + "/era"
 )
 
-// D3GetSeasonIndex returns an index of seasons
-func (c *Config) D3GetSeasonIndex() (*d3gd.SeasonIndex, error) {
+// D3SeasonIndex returns an index of seasons
+func (c *Config) D3SeasonIndex() (*d3gd.SeasonIndex, error) {
 	var (
 		dat d3gd.SeasonIndex
 		b   []byte
@@ -56,8 +56,8 @@ func (c *Config) D3GetSeasonIndex() (*d3gd.SeasonIndex, error) {
 	return &dat, nil
 }
 
-// D3GetSeason returns season data
-func (c *Config) D3GetSeason(seasonID int) (*d3gd.Season, error) {
+// D3Season returns season data
+func (c *Config) D3Season(seasonID int) (*d3gd.Season, error) {
 	var (
 		dat d3gd.Season
 		b   []byte
@@ -77,8 +77,8 @@ func (c *Config) D3GetSeason(seasonID int) (*d3gd.Season, error) {
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboard returns leaderboard data for season and leaderboard
-func (c *Config) D3GetSeasonLeaderboard(seasonID int, leaderboard string) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboard returns leaderboard data for season and leaderboard
+func (c *Config) D3SeasonLeaderboard(seasonID int, leaderboard string) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -98,8 +98,8 @@ func (c *Config) D3GetSeasonLeaderboard(seasonID int, leaderboard string) (*d3gd
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardAchievementPoints returns achievement points leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardAchievementPoints(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardAchievementPoints returns achievement points leaderboard data for season
+func (c *Config) D3SeasonLeaderboardAchievementPoints(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -119,8 +119,8 @@ func (c *Config) D3GetSeasonLeaderboardAchievementPoints(seasonID int) (*d3gd.Le
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardHardcoreBarbarian returns hardcore barbarian leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardHardcoreBarbarian(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardHardcoreBarbarian returns hardcore barbarian leaderboard data for season
+func (c *Config) D3SeasonLeaderboardHardcoreBarbarian(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -140,8 +140,8 @@ func (c *Config) D3GetSeasonLeaderboardHardcoreBarbarian(seasonID int) (*d3gd.Le
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardBarbarian returns barbarian leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardBarbarian(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardBarbarian returns barbarian leaderboard data for season
+func (c *Config) D3SeasonLeaderboardBarbarian(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -161,8 +161,8 @@ func (c *Config) D3GetSeasonLeaderboardBarbarian(seasonID int) (*d3gd.Leaderboar
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardHardcoreCrusader returns hardcore crusader leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardHardcoreCrusader(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardHardcoreCrusader returns hardcore crusader leaderboard data for season
+func (c *Config) D3SeasonLeaderboardHardcoreCrusader(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -182,8 +182,8 @@ func (c *Config) D3GetSeasonLeaderboardHardcoreCrusader(seasonID int) (*d3gd.Lea
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardCrusader returns crusader leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardCrusader(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardCrusader returns crusader leaderboard data for season
+func (c *Config) D3SeasonLeaderboardCrusader(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -203,8 +203,8 @@ func (c *Config) D3GetSeasonLeaderboardCrusader(seasonID int) (*d3gd.Leaderboard
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardHardcoreDemonHunter returns hardcore demon hunter leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardHardcoreDemonHunter(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardHardcoreDemonHunter returns hardcore demon hunter leaderboard data for season
+func (c *Config) D3SeasonLeaderboardHardcoreDemonHunter(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -224,8 +224,8 @@ func (c *Config) D3GetSeasonLeaderboardHardcoreDemonHunter(seasonID int) (*d3gd.
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardDemonHunter returns barbarian leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardDemonHunter(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardDemonHunter returns barbarian leaderboard data for season
+func (c *Config) D3SeasonLeaderboardDemonHunter(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -245,8 +245,8 @@ func (c *Config) D3GetSeasonLeaderboardDemonHunter(seasonID int) (*d3gd.Leaderbo
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardHardcoreMonk returns hardcore monk leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardHardcoreMonk(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardHardcoreMonk returns hardcore monk leaderboard data for season
+func (c *Config) D3SeasonLeaderboardHardcoreMonk(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -266,8 +266,8 @@ func (c *Config) D3GetSeasonLeaderboardHardcoreMonk(seasonID int) (*d3gd.Leaderb
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardMonk returns monk leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardMonk(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardMonk returns monk leaderboard data for season
+func (c *Config) D3SeasonLeaderboardMonk(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -287,8 +287,8 @@ func (c *Config) D3GetSeasonLeaderboardMonk(seasonID int) (*d3gd.Leaderboard, er
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardHardcoreNecromancer returns hardcore necromancer leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardHardcoreNecromancer(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardHardcoreNecromancer returns hardcore necromancer leaderboard data for season
+func (c *Config) D3SeasonLeaderboardHardcoreNecromancer(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -308,8 +308,8 @@ func (c *Config) D3GetSeasonLeaderboardHardcoreNecromancer(seasonID int) (*d3gd.
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardNecromancer returns necromancer leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardNecromancer(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardNecromancer returns necromancer leaderboard data for season
+func (c *Config) D3SeasonLeaderboardNecromancer(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -329,8 +329,8 @@ func (c *Config) D3GetSeasonLeaderboardNecromancer(seasonID int) (*d3gd.Leaderbo
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardHardcoreWizard returns hardcore wizard leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardHardcoreWizard(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardHardcoreWizard returns hardcore wizard leaderboard data for season
+func (c *Config) D3SeasonLeaderboardHardcoreWizard(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -350,8 +350,8 @@ func (c *Config) D3GetSeasonLeaderboardHardcoreWizard(seasonID int) (*d3gd.Leade
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardWizard returns wizard leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardWizard(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardWizard returns wizard leaderboard data for season
+func (c *Config) D3SeasonLeaderboardWizard(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -371,8 +371,8 @@ func (c *Config) D3GetSeasonLeaderboardWizard(seasonID int) (*d3gd.Leaderboard, 
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardHardcoreWitchDoctor returns hardcore witch doctor leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardHardcoreWitchDoctor(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardHardcoreWitchDoctor returns hardcore witch doctor leaderboard data for season
+func (c *Config) D3SeasonLeaderboardHardcoreWitchDoctor(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -392,8 +392,8 @@ func (c *Config) D3GetSeasonLeaderboardHardcoreWitchDoctor(seasonID int) (*d3gd.
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardWitchDoctor returns witch doctor leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardWitchDoctor(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardWitchDoctor returns witch doctor leaderboard data for season
+func (c *Config) D3SeasonLeaderboardWitchDoctor(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -413,8 +413,8 @@ func (c *Config) D3GetSeasonLeaderboardWitchDoctor(seasonID int) (*d3gd.Leaderbo
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardHardcoreTeam2 returns hardcore 2 team leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardHardcoreTeam2(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardHardcoreTeam2 returns hardcore 2 team leaderboard data for season
+func (c *Config) D3SeasonLeaderboardHardcoreTeam2(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -434,8 +434,8 @@ func (c *Config) D3GetSeasonLeaderboardHardcoreTeam2(seasonID int) (*d3gd.Leader
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardTeam2 returns 2 team leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardTeam2(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardTeam2 returns 2 team leaderboard data for season
+func (c *Config) D3SeasonLeaderboardTeam2(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -455,8 +455,8 @@ func (c *Config) D3GetSeasonLeaderboardTeam2(seasonID int) (*d3gd.Leaderboard, e
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardHardcoreTeam3 returns hardcore 2 team leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardHardcoreTeam3(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardHardcoreTeam3 returns hardcore 2 team leaderboard data for season
+func (c *Config) D3SeasonLeaderboardHardcoreTeam3(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -476,8 +476,8 @@ func (c *Config) D3GetSeasonLeaderboardHardcoreTeam3(seasonID int) (*d3gd.Leader
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardTeam3 returns 3 team leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardTeam3(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardTeam3 returns 3 team leaderboard data for season
+func (c *Config) D3SeasonLeaderboardTeam3(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -497,8 +497,8 @@ func (c *Config) D3GetSeasonLeaderboardTeam3(seasonID int) (*d3gd.Leaderboard, e
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardHardcoreTeam4 returns hardcore 4 team leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardHardcoreTeam4(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardHardcoreTeam4 returns hardcore 4 team leaderboard data for season
+func (c *Config) D3SeasonLeaderboardHardcoreTeam4(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -518,8 +518,8 @@ func (c *Config) D3GetSeasonLeaderboardHardcoreTeam4(seasonID int) (*d3gd.Leader
 	return &dat, nil
 }
 
-// D3GetSeasonLeaderboardTeam4 returns 4 team leaderboard data for season
-func (c *Config) D3GetSeasonLeaderboardTeam4(seasonID int) (*d3gd.Leaderboard, error) {
+// D3SeasonLeaderboardTeam4 returns 4 team leaderboard data for season
+func (c *Config) D3SeasonLeaderboardTeam4(seasonID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -539,8 +539,8 @@ func (c *Config) D3GetSeasonLeaderboardTeam4(seasonID int) (*d3gd.Leaderboard, e
 	return &dat, nil
 }
 
-// D3GetEraIndex returns an index of seasons
-func (c *Config) D3GetEraIndex() (*d3gd.EraIndex, error) {
+// D3EraIndex returns an index of seasons
+func (c *Config) D3EraIndex() (*d3gd.EraIndex, error) {
 	var (
 		dat d3gd.EraIndex
 		b   []byte
@@ -560,8 +560,8 @@ func (c *Config) D3GetEraIndex() (*d3gd.EraIndex, error) {
 	return &dat, nil
 }
 
-// D3GetEra returns season data
-func (c *Config) D3GetEra(eraID int) (*d3gd.Era, error) {
+// D3Era returns season data
+func (c *Config) D3Era(eraID int) (*d3gd.Era, error) {
 	var (
 		dat d3gd.Era
 		b   []byte
@@ -581,8 +581,8 @@ func (c *Config) D3GetEra(eraID int) (*d3gd.Era, error) {
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardHardcoreBarbarian returns hardcore barbarian leaderboard data for season
-func (c *Config) D3GetEraLeaderboardHardcoreBarbarian(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardHardcoreBarbarian returns hardcore barbarian leaderboard data for season
+func (c *Config) D3EraLeaderboardHardcoreBarbarian(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -602,8 +602,8 @@ func (c *Config) D3GetEraLeaderboardHardcoreBarbarian(eraID int) (*d3gd.Leaderbo
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardBarbarian returns barbarian leaderboard data for season
-func (c *Config) D3GetEraLeaderboardBarbarian(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardBarbarian returns barbarian leaderboard data for season
+func (c *Config) D3EraLeaderboardBarbarian(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -623,8 +623,8 @@ func (c *Config) D3GetEraLeaderboardBarbarian(eraID int) (*d3gd.Leaderboard, err
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardHardcoreCrusader returns hardcore crusader leaderboard data for season
-func (c *Config) D3GetEraLeaderboardHardcoreCrusader(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardHardcoreCrusader returns hardcore crusader leaderboard data for season
+func (c *Config) D3EraLeaderboardHardcoreCrusader(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -644,8 +644,8 @@ func (c *Config) D3GetEraLeaderboardHardcoreCrusader(eraID int) (*d3gd.Leaderboa
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardCrusader returns crusader leaderboard data for season
-func (c *Config) D3GetEraLeaderboardCrusader(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardCrusader returns crusader leaderboard data for season
+func (c *Config) D3EraLeaderboardCrusader(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -665,8 +665,8 @@ func (c *Config) D3GetEraLeaderboardCrusader(eraID int) (*d3gd.Leaderboard, erro
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardHardcoreDemonHunter returns hardcore demon hunter leaderboard data for season
-func (c *Config) D3GetEraLeaderboardHardcoreDemonHunter(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardHardcoreDemonHunter returns hardcore demon hunter leaderboard data for season
+func (c *Config) D3EraLeaderboardHardcoreDemonHunter(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -686,8 +686,8 @@ func (c *Config) D3GetEraLeaderboardHardcoreDemonHunter(eraID int) (*d3gd.Leader
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardDemonHunter returns barbarian leaderboard data for season
-func (c *Config) D3GetEraLeaderboardDemonHunter(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardDemonHunter returns barbarian leaderboard data for season
+func (c *Config) D3EraLeaderboardDemonHunter(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -707,8 +707,8 @@ func (c *Config) D3GetEraLeaderboardDemonHunter(eraID int) (*d3gd.Leaderboard, e
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardHardcoreMonk returns hardcore monk leaderboard data for season
-func (c *Config) D3GetEraLeaderboardHardcoreMonk(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardHardcoreMonk returns hardcore monk leaderboard data for season
+func (c *Config) D3EraLeaderboardHardcoreMonk(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -728,8 +728,8 @@ func (c *Config) D3GetEraLeaderboardHardcoreMonk(eraID int) (*d3gd.Leaderboard, 
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardMonk returns monk leaderboard data for season
-func (c *Config) D3GetEraLeaderboardMonk(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardMonk returns monk leaderboard data for season
+func (c *Config) D3EraLeaderboardMonk(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -749,8 +749,8 @@ func (c *Config) D3GetEraLeaderboardMonk(eraID int) (*d3gd.Leaderboard, error) {
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardHardcoreNecromancer returns hardcore necromancer leaderboard data for season
-func (c *Config) D3GetEraLeaderboardHardcoreNecromancer(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardHardcoreNecromancer returns hardcore necromancer leaderboard data for season
+func (c *Config) D3EraLeaderboardHardcoreNecromancer(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -770,8 +770,8 @@ func (c *Config) D3GetEraLeaderboardHardcoreNecromancer(eraID int) (*d3gd.Leader
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardNecromancer returns necromancer leaderboard data for season
-func (c *Config) D3GetEraLeaderboardNecromancer(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardNecromancer returns necromancer leaderboard data for season
+func (c *Config) D3EraLeaderboardNecromancer(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -791,8 +791,8 @@ func (c *Config) D3GetEraLeaderboardNecromancer(eraID int) (*d3gd.Leaderboard, e
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardHardcoreWizard returns hardcore wizard leaderboard data for season
-func (c *Config) D3GetEraLeaderboardHardcoreWizard(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardHardcoreWizard returns hardcore wizard leaderboard data for season
+func (c *Config) D3EraLeaderboardHardcoreWizard(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -812,8 +812,8 @@ func (c *Config) D3GetEraLeaderboardHardcoreWizard(eraID int) (*d3gd.Leaderboard
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardWizard returns wizard leaderboard data for season
-func (c *Config) D3GetEraLeaderboardWizard(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardWizard returns wizard leaderboard data for season
+func (c *Config) D3EraLeaderboardWizard(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -833,8 +833,8 @@ func (c *Config) D3GetEraLeaderboardWizard(eraID int) (*d3gd.Leaderboard, error)
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardHardcoreWitchDoctor returns hardcore witch doctor leaderboard data for season
-func (c *Config) D3GetEraLeaderboardHardcoreWitchDoctor(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardHardcoreWitchDoctor returns hardcore witch doctor leaderboard data for season
+func (c *Config) D3EraLeaderboardHardcoreWitchDoctor(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -854,8 +854,8 @@ func (c *Config) D3GetEraLeaderboardHardcoreWitchDoctor(eraID int) (*d3gd.Leader
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardWitchDoctor returns witch doctor leaderboard data for season
-func (c *Config) D3GetEraLeaderboardWitchDoctor(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardWitchDoctor returns witch doctor leaderboard data for season
+func (c *Config) D3EraLeaderboardWitchDoctor(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -875,8 +875,8 @@ func (c *Config) D3GetEraLeaderboardWitchDoctor(eraID int) (*d3gd.Leaderboard, e
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardHardcoreTeam2 returns hardcore 2 team leaderboard data for season
-func (c *Config) D3GetEraLeaderboardHardcoreTeam2(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardHardcoreTeam2 returns hardcore 2 team leaderboard data for season
+func (c *Config) D3EraLeaderboardHardcoreTeam2(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -896,8 +896,8 @@ func (c *Config) D3GetEraLeaderboardHardcoreTeam2(eraID int) (*d3gd.Leaderboard,
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardTeam2 returns 2 team leaderboard data for season
-func (c *Config) D3GetEraLeaderboardTeam2(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardTeam2 returns 2 team leaderboard data for season
+func (c *Config) D3EraLeaderboardTeam2(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -917,8 +917,8 @@ func (c *Config) D3GetEraLeaderboardTeam2(eraID int) (*d3gd.Leaderboard, error) 
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardHardcoreTeam3 returns hardcore 2 team leaderboard data for season
-func (c *Config) D3GetEraLeaderboardHardcoreTeam3(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardHardcoreTeam3 returns hardcore 2 team leaderboard data for season
+func (c *Config) D3EraLeaderboardHardcoreTeam3(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -938,8 +938,8 @@ func (c *Config) D3GetEraLeaderboardHardcoreTeam3(eraID int) (*d3gd.Leaderboard,
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardTeam3 returns 3 team leaderboard data for season
-func (c *Config) D3GetEraLeaderboardTeam3(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardTeam3 returns 3 team leaderboard data for season
+func (c *Config) D3EraLeaderboardTeam3(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -959,8 +959,8 @@ func (c *Config) D3GetEraLeaderboardTeam3(eraID int) (*d3gd.Leaderboard, error) 
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardHardcoreTeam4 returns hardcore 4 team leaderboard data for season
-func (c *Config) D3GetEraLeaderboardHardcoreTeam4(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardHardcoreTeam4 returns hardcore 4 team leaderboard data for season
+func (c *Config) D3EraLeaderboardHardcoreTeam4(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
@@ -980,8 +980,8 @@ func (c *Config) D3GetEraLeaderboardHardcoreTeam4(eraID int) (*d3gd.Leaderboard,
 	return &dat, nil
 }
 
-// D3GetEraLeaderboardTeam4 returns 4 team leaderboard data for season
-func (c *Config) D3GetEraLeaderboardTeam4(eraID int) (*d3gd.Leaderboard, error) {
+// D3EraLeaderboardTeam4 returns 4 team leaderboard data for season
+func (c *Config) D3EraLeaderboardTeam4(eraID int) (*d3gd.Leaderboard, error) {
 	var (
 		dat d3gd.Leaderboard
 		b   []byte
