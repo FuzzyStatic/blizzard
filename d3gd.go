@@ -8,7 +8,6 @@ import (
 )
 
 const (
-	dataPath                    = "/data"
 	dataD3Path                  = dataPath + "/d3"
 	seasonPath                  = dataD3Path + "/season"
 	leaderboardPath             = "/leaderboard"

@@ -37,6 +37,8 @@ const (
 // Path constants
 const (
 	localeQuery = "locale="
+	dataPath    = "/data"
+	profilePath = "/profile"
 )
 
 // New create new Blizzard structure. This structure will be used to acquire your access token and make API calls.

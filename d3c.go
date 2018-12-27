@@ -40,7 +40,7 @@ const (
 	witchDoctorSkillPath            = witchDoctorPath + skillPath
 	itemTypePath                    = d3DataPath + "/item-type"
 	itemPath                        = d3DataPath + "/item"
-	profilePath                     = d3Path + "/profile"
+	d3ProfilePath                   = d3Path + profilePath
 	profileHeroPartialPath          = "/hero"
 	profileItemsPartialPath         = "/items"
 	profileFollowerItemsPartialPath = "/follower-items"
@@ -624,7 +624,7 @@ func (c *Config) D3GetProfile(account string) (*d3c.Profile, error) {
 
 	account = strings.Replace(account, "#", "-", 1)
 
-	b, err = c.getURLBody(c.apiURL + profilePath + "/" + account + "/?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + d3ProfilePath + "/" + account + "/?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -648,7 +648,7 @@ func (c *Config) D3GetProfileHero(account string, heroID int) (*d3c.ProfileHero,
 
 	account = strings.Replace(account, "#", "-", 1)
 
-	b, err = c.getURLBody(c.apiURL + profilePath + "/" + account + profileHeroPartialPath + "/" + strconv.Itoa(heroID) + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + d3ProfilePath + "/" + account + profileHeroPartialPath + "/" + strconv.Itoa(heroID) + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -672,7 +672,7 @@ func (c *Config) D3GetProfileHeroItems(account string, heroID int) (*d3c.Profile
 
 	account = strings.Replace(account, "#", "-", 1)
 
-	b, err = c.getURLBody(c.apiURL + profilePath + "/" + account + profileHeroPartialPath + "/" + strconv.Itoa(heroID) + profileItemsPartialPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + d3ProfilePath + "/" + account + profileHeroPartialPath + "/" + strconv.Itoa(heroID) + profileItemsPartialPath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -696,7 +696,7 @@ func (c *Config) D3GetProfileHeroFollowerItems(account string, heroID int) (*d3c
 
 	account = strings.Replace(account, "#", "-", 1)
 
-	b, err = c.getURLBody(c.apiURL + profilePath + "/" + account + profileHeroPartialPath + "/" + strconv.Itoa(heroID) + profileFollowerItemsPartialPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + d3ProfilePath + "/" + account + profileHeroPartialPath + "/" + strconv.Itoa(heroID) + profileFollowerItemsPartialPath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}

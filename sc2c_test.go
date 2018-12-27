@@ -72,3 +72,93 @@ func TestSC2GetProfileLadder(t *testing.T) {
 
 	fmt.Printf("%+v\n", dat)
 }
+
+func TestSC2GetLadderGrandmaster(t *testing.T) {
+	dat, err := c.SC2GetLadderGrandmaster(EU)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestSC2GetLadderSeason(t *testing.T) {
+	dat, err := c.SC2GetLadderSeason(EU)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestSC2GetPlayer(t *testing.T) {
+	dat, err := c.SC2GetPlayer(1312411)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestSC2GetLegacyProfile(t *testing.T) {
+	dat, err := c.SC2GetLegacyProfile(US, 1, 305084)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestSC2GetLegacyProfileLadders(t *testing.T) {
+	dat, err := c.SC2GetLegacyProfileLadders(US, 1, 305084)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestSC2GetLegacyProfileMatches(t *testing.T) {
+	dat, err := c.SC2GetLegacyProfileMatches(US, 1, 305084)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestSC2GetLegacyLadder(t *testing.T) {
+	dat, err := c.SC2GetLegacyLadder(US, 194163)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestSC2GetLegacyAchievements(t *testing.T) {
+	dat, err := c.SC2GetLegacyAchievements(US)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestSC2GetLegacyRewards(t *testing.T) {
+	dat, err := c.SC2GetLegacyRewards(US)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}

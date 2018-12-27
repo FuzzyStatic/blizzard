@@ -36,6 +36,19 @@ if err != nil {
 fmt.Printf("%+v\n", dat)
 ```
 
+You can get information about the current SC2 grandmaster ladder:
+
+```go
+dat, err := blizz.SC2GetLadderGrandmaster(EU)
+if err != nil {
+	fmt.Println(err)
+}
+
+fmt.Printf("%+v\n", dat)
+```
+
+See godoc for all the different datasets that can be acquired.
+
 ### Thanks
 
 Thanks to [JSON-to-Go](https://mholt.github.io/json-to-go/) for making JSON to Go structure creation simple.
