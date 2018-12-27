@@ -3,7 +3,6 @@ package blizzard
 import (
 	"fmt"
 	"testing"
-	"time"
 
 	"github.com/spf13/viper"
 )
@@ -24,47 +23,48 @@ func init() {
 	c = New(clientID, clientSecret, US)
 }
 
-func TestAccessTokenReq(t *testing.T) {
-	err := c.AccessTokenReq()
+func TestSC2GetStaticProfile(t *testing.T) {
+	dat, err := c.SC2GetStaticProfile(CN)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", c.oauth)
+	fmt.Printf("%+v\n", dat)
 }
 
-func TestUpdateAccessTokenIfExp(t *testing.T) {
-	err := c.AccessTokenReq()
+func TestSC2GetMetadataProfile(t *testing.T) {
+	dat, err := c.SC2GetMetadataProfile(US, 1, 305084)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
 	}
 
-	c.updateAccessTokenIfExp()
-	fmt.Printf("%+v\n", c.oauth)
-
-	c.oauth.AccessTokenRequest.ExpiresIn = 0
-	c.oauth.ExpiresAt = time.Now().UTC()
-
-	fmt.Printf("%+v\n", c.oauth)
-	c.updateAccessTokenIfExp()
-
-	fmt.Printf("%+v\n", c.oauth)
+	fmt.Printf("%+v\n", dat)
 }
 
-func TestUserInfoHeader(t *testing.T) {
-	body, err := c.UserInfoHeader()
+func TestSC2GetProfile(t *testing.T) {
+	dat, err := c.SC2GetProfile(US, 1, 305084)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
 	}
 
-	fmt.Printf("%s\n", body)
+	fmt.Printf("%+v\n", dat)
 }
 
-func TestTokenValidation(t *testing.T) {
-	dat, err := c.TokenValidation()
+func TestSC2GetProfileLadderSummary(t *testing.T) {
+	dat, err := c.SC2GetProfileLadderSummary(US, 1, 305084)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestSC2GetProfileLadder(t *testing.T) {
+	dat, err := c.SC2GetProfileLadder(US, 1, 2376042, 194163)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

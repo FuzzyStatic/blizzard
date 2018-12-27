@@ -11,13 +11,12 @@ import (
 )
 
 const (
-	oauthPath        = "/oauth"
-	tokenPath        = "/token"
-	userInfoPath     = "/userinfo"
-	checkTokenPath   = "/check_token"
-	accessTokenQuery = "access_token="
-	tokenQuery       = "token="
-	grantType        = `grant_type=client_credentials`
+	oauthPath      = "/oauth"
+	tokenPath      = "/token"
+	userInfoPath   = "/userinfo"
+	checkTokenPath = "/check_token"
+	tokenQuery     = "token="
+	grantType      = `grant_type=client_credentials`
 )
 
 // OAuth credentials and access token to access Blizzard API
@@ -34,11 +33,12 @@ func (c *Config) AccessTokenReq() error {
 		req     *http.Request
 		res     *http.Response
 		reqBody *strings.Reader
-		resBody []byte
+		b       []byte
 		err     error
 	)
 
 	reqBody = strings.NewReader(grantType)
+
 	req, err = http.NewRequest("POST", c.oauthURL+oauthPath+tokenPath, reqBody)
 	if err != nil {
 		return err
@@ -58,12 +58,12 @@ func (c *Config) AccessTokenReq() error {
 		}
 	}()
 
-	resBody, err = ioutil.ReadAll(res.Body)
+	b, err = ioutil.ReadAll(res.Body)
 	if err != nil {
 		return err
 	}
 
-	err = json.Unmarshal(resBody, &c.oauth.AccessTokenRequest)
+	err = json.Unmarshal(b, &c.oauth.AccessTokenRequest)
 	if err != nil {
 		return err
 	}
@@ -85,7 +85,6 @@ func (c *Config) updateAccessTokenIfExp() error {
 	}
 
 	return nil
-
 }
 
 // UserInfoHeader teturns basic information about the user associated with the current bearer token
@@ -108,46 +107,6 @@ func (c *Config) UserInfoHeader() ([]byte, error) {
 	}
 
 	req.Header.Set("Authorization", "Bearer "+c.oauth.AccessTokenRequest.AccessToken)
-	req.Header.Set("Accept", "application/json")
-
-	res, err = c.client.Do(req)
-	if err != nil {
-		return nil, err
-	}
-	defer func() {
-		err = res.Body.Close()
-		if err != nil {
-			return
-		}
-	}()
-
-	b, err = ioutil.ReadAll(res.Body)
-	if err != nil {
-		return nil, err
-	}
-
-	return b, nil
-}
-
-// UserInfoParam teturns basic information about the user associated with the current bearer token
-func (c *Config) UserInfoParam() ([]byte, error) {
-	var (
-		req *http.Request
-		res *http.Response
-		b   []byte
-		err error
-	)
-
-	err = c.updateAccessTokenIfExp()
-	if err != nil {
-		return nil, err
-	}
-
-	req, err = http.NewRequest("GET", c.oauthURL+oauthPath+userInfoPath+"?"+accessTokenQuery+c.oauth.AccessTokenRequest.AccessToken, nil)
-	if err != nil {
-		return nil, err
-	}
-
 	req.Header.Set("Accept", "application/json")
 
 	res, err = c.client.Do(req)
