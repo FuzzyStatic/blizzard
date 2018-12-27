@@ -9,7 +9,7 @@ This is a Go client library for gathering Blizzard API game data.
 Start by initiating a new Blizzard config structure for desired region (client_id and client_secret can be acquired through your developer account at https://develop.battle.net/):
 
 ```go
-blizz = New("client_id", "client_secret", US)
+blizz := blizzard.New("client_id", "client_secret", blizzard.US)
 ```
 
 ### Fetching data
@@ -28,7 +28,7 @@ fmt.Printf("%+v\n", dat)
 You can get information about the current D3 hardcore necromancer leaderboards:
 
 ```go
-dat, err := blizz.D3GetSeasonLeaderboardHardcoreNecromancer(15)
+dat, err := blizz.D3SeasonLeaderboardHardcoreNecromancer(15)
 if err != nil {
 	fmt.Println(err)
 }
@@ -39,7 +39,7 @@ fmt.Printf("%+v\n", dat)
 You can get information about the current SC2 grandmaster ladder:
 
 ```go
-dat, err := blizz.SC2GetLadderGrandmaster(EU)
+dat, err := blizz.SC2LadderGrandmaster(EU)
 if err != nil {
 	fmt.Println(err)
 }
