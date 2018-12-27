@@ -47,6 +47,17 @@ if err != nil {
 fmt.Printf("%+v\n", dat)
 ```
 
+You can get information about all the WoW bosses:
+
+```go
+dat, err := blizz.WoWBossMasterList()
+if err != nil {
+	fmt.Println(err)
+}
+
+fmt.Printf("%+v\n", dat)
+```
+
 See godoc for all the different datasets that can be acquired.
 
 ### Thanks

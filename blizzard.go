@@ -82,6 +82,8 @@ func New(clientID, clientSecret string, region Region) *Config {
 		c.locale = "en_US"
 	}
 
+	c.AccessTokenReq()
+
 	return &c
 }
 
