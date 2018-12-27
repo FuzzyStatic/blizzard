@@ -84,3 +84,33 @@ func TestWoWBoss(t *testing.T) {
 
 	fmt.Printf("%+v\n", dat)
 }
+
+func TestWoWChallengeModeRealmLeaderboard(t *testing.T) {
+	dat, err := c.WoWChallengeModeRealmLeaderboard("medivh")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWChallengeModeRegionLeaderboard(t *testing.T) {
+	dat, err := c.WoWChallengeModeRegionLeaderboard()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWCharacterProfile(t *testing.T) {
+	dat, err := c.WoWCharacterProfile("emerald-dream", "Limejelly")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}

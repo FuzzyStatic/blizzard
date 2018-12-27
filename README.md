@@ -47,10 +47,10 @@ if err != nil {
 fmt.Printf("%+v\n", dat)
 ```
 
-You can get information about all the WoW bosses:
+You can get information about your WoW character profile:
 
 ```go
-dat, err := blizz.WoWBossMasterList()
+dat, err := blizz.WoWCharacterProfile("emerald-dream", "Limejelly")
 if err != nil {
 	fmt.Println(err)
 }
