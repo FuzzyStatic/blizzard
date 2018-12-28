@@ -293,3 +293,73 @@ func TestWoWZone(t *testing.T) {
 
 	fmt.Printf("%+v\n", dat)
 }
+
+func TestWoWRegionBattlegroups(t *testing.T) {
+	dat, err := c.WoWRegionBattlegroups()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWCharacterRaces(t *testing.T) {
+	dat, err := c.WoWCharacterRaces()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWCharacterClasses(t *testing.T) {
+	dat, err := c.WoWCharacterClasses()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWCharacterAchievements(t *testing.T) {
+	dat, err := c.WoWCharacterAchievements()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWGuildRewards(t *testing.T) {
+	dat, err := c.WoWGuildRewards()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWGuildPerks(t *testing.T) {
+	dat, err := c.WoWGuildPerks()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWGuildAchievements(t *testing.T) {
+	dat, err := c.WoWGuildAchievements()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}

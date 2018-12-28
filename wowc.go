@@ -12,32 +12,42 @@ import (
 )
 
 const (
-	wowPath                = "/wow"
-	wowUserPath            = wowPath + "/user"
-	wowUserCharactersPath  = wowUserPath + "/characters"
-	wowAchievementPath     = wowPath + "/achievement"
-	wowAuctionDataPath     = wowPath + "/auction" + dataPath
-	wowBossPath            = wowPath + "/boss"
-	wowChallengePath       = wowPath + "/challenge"
-	wowChallengeRegionPath = wowChallengePath + "/region"
-	wowCharacterPath       = wowPath + "/character"
-	wowGuildPath           = wowPath + "/guild"
-	wowItemPath            = wowPath + "/item"
-	wowItemSetPath         = wowItemPath + "/set"
-	wowMountPath           = wowPath + "/mount"
-	wowPetPath             = wowPath + "/pet"
-	wowPetAbilityPath      = wowPetPath + "/ability"
-	wowPetSpeciesPath      = wowPetPath + "/species"
-	wowPetStatsPath        = wowPetPath + "/stats"
-	wowPetsLevelField      = "level="
-	wowPetsBreedIDField    = "breedId="
-	wowPetsQualityIDField  = "qualityId="
-	wowPVPLeaderboardPath  = wowPath + "/leaderboard"
-	wowQuestPath           = wowPath + "/quest"
-	wowRealmStatusPath     = wowPath + "/realm/status"
-	wowRecipePath          = wowPath + "/recipe"
-	wowSpellPath           = wowPath + "/spell"
-	wowZonePath            = wowPath + "/zone"
+	wowPath                          = "/wow"
+	wowUserPath                      = wowPath + "/user"
+	wowUserCharactersPath            = wowUserPath + "/characters"
+	wowAchievementPath               = wowPath + "/achievement"
+	wowAuctionDataPath               = wowPath + "/auction" + dataPath
+	wowBossPath                      = wowPath + "/boss"
+	wowChallengePath                 = wowPath + "/challenge"
+	wowChallengeRegionPath           = wowChallengePath + "/region"
+	wowCharacterPath                 = wowPath + "/character"
+	wowGuildPath                     = wowPath + "/guild"
+	wowItemPath                      = wowPath + "/item"
+	wowItemSetPath                   = wowItemPath + "/set"
+	wowMountPath                     = wowPath + "/mount"
+	wowPetPath                       = wowPath + "/pet"
+	wowPetAbilityPath                = wowPetPath + "/ability"
+	wowPetSpeciesPath                = wowPetPath + "/species"
+	wowPetStatsPath                  = wowPetPath + "/stats"
+	wowPetsLevelField                = "level="
+	wowPetsBreedIDField              = "breedId="
+	wowPetsQualityIDField            = "qualityId="
+	wowPVPLeaderboardPath            = wowPath + "/leaderboard"
+	wowQuestPath                     = wowPath + "/quest"
+	wowRealmStatusPath               = wowPath + "/realm/status"
+	wowRecipePath                    = wowPath + "/recipe"
+	wowSpellPath                     = wowPath + "/spell"
+	wowZonePath                      = wowPath + "/zone"
+	wowDataPath                      = wowPath + "/data"
+	wowBattlegroupsPath              = wowDataPath + "/battlegroups"
+	wowDataCharacterPath             = wowDataPath + "/character"
+	wowDataCharacterRacesPath        = wowDataCharacterPath + "/races"
+	wowDataCharacterClassesPath      = wowDataCharacterPath + "/classes"
+	wowDataCharacterAchievementsPath = wowDataCharacterPath + "/achievements"
+	wowDataGuildPath                 = wowDataPath + "/guild"
+	wowDataGuildRewardsPath          = wowDataGuildPath + "/rewards"
+	wowDataGuildPerksPath            = wowDataGuildPath + "/perks"
+	wowDataGuildAchievementsPath     = wowDataGuildPath + "/achievements"
 )
 
 // WoWUserCharacters returns all characters for user's Access Token
@@ -636,6 +646,153 @@ func (c *Config) WoWZone(zoneID int) (*wowc.Zone, error) {
 	)
 
 	b, err = c.getURLBody(c.apiURL + wowZonePath + "/" + strconv.Itoa(zoneID) + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWRegionBattlegroups returns a list of battlegroups for the specified region. Note the trailing / on this request path
+func (c *Config) WoWRegionBattlegroups() (*wowc.RegionBattlegroups, error) {
+	var (
+		dat wowc.RegionBattlegroups
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowBattlegroupsPath + "/?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWCharacterRaces returns a list of races and their associated faction, name, unique ID, and skin
+func (c *Config) WoWCharacterRaces() (*wowc.CharacterRaces, error) {
+	var (
+		dat wowc.CharacterRaces
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowDataCharacterRacesPath + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWCharacterClasses returns a list of character classes
+func (c *Config) WoWCharacterClasses() (*wowc.CharacterClasses, error) {
+	var (
+		dat wowc.CharacterClasses
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowDataCharacterClassesPath + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWCharacterAchievements returns a list of all achievements that characters can earn as well as the category structure and hierarchy
+func (c *Config) WoWCharacterAchievements() (*wowc.CharacterAchievements, error) {
+	var (
+		dat wowc.CharacterAchievements
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowDataCharacterAchievementsPath + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWGuildRewards provides a list of all guild rewards
+func (c *Config) WoWGuildRewards() (*wowc.GuildRewards, error) {
+	var (
+		dat wowc.GuildRewards
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowDataGuildRewardsPath + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWGuildPerks returns a list of all guild achievements as well as the category structure and hierarchy
+func (c *Config) WoWGuildPerks() (*wowc.GuildPerks, error) {
+	var (
+		dat wowc.GuildPerks
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowDataGuildPerksPath + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWGuildAchievements returns a list of all guild achievements as well as the category structure and hierarchy
+func (c *Config) WoWGuildAchievements() (*wowc.GuildAchievements, error) {
+	var (
+		dat wowc.GuildAchievements
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowDataGuildAchievementsPath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
