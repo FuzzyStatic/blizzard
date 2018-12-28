@@ -29,6 +29,15 @@ const (
 	wowPetAbilityPath      = wowPetPath + "/ability"
 	wowPetSpeciesPath      = wowPetPath + "/species"
 	wowPetStatsPath        = wowPetPath + "/stats"
+	wowPetsLevelField      = "level="
+	wowPetsBreedIDField    = "breedId="
+	wowPetsQualityIDField  = "qualityId="
+	wowPVPLeaderboardPath  = wowPath + "/leaderboard"
+	wowQuestPath           = wowPath + "/quest"
+	wowRealmStatusPath     = wowPath + "/realm/status"
+	wowRecipePath          = wowPath + "/recipe"
+	wowSpellPath           = wowPath + "/spell"
+	wowZonePath            = wowPath + "/zone"
 )
 
 // WoWUserCharacters returns all characters for user's Access Token
@@ -417,6 +426,216 @@ func (c *Config) WoWPetMasterList() (*wowc.PetMasterList, error) {
 	)
 
 	b, err = c.getURLBody(c.apiURL + wowPetPath + "/?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWPetAbility returns data about a individual battle pet ability ID. This resource does not provide ability tooltips
+func (c *Config) WoWPetAbility(abilityID int) (*wowc.PetAbility, error) {
+	var (
+		dat wowc.PetAbility
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowPetAbilityPath + "/" + strconv.Itoa(abilityID) + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWPetSpecies returns data about an individual pet species. Use pets as the field value in a character profile request to get species IDs. Each species also has data about its six abilities
+func (c *Config) WoWPetSpecies(speciesID int) (*wowc.PetSpecies, error) {
+	var (
+		dat wowc.PetSpecies
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowPetSpeciesPath + "/" + strconv.Itoa(speciesID) + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWPetStats returns detailed information about a given species of pet
+func (c *Config) WoWPetStats(speciesID, level, breedID, qualityID int) (*wowc.PetStats, error) {
+	var (
+		dat wowc.PetStats
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowPetStatsPath + "/" + strconv.Itoa(speciesID) + "?" + wowPetsLevelField + strconv.Itoa(level) + "&" + wowPetsBreedIDField + strconv.Itoa(breedID) + "&" + wowPetsQualityIDField + strconv.Itoa(qualityID) + "&" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWPVPLeaderboard provides leaderboard information for the 2v2, 3v3, 5v5, and Rated Battleground leaderboards
+func (c *Config) WoWPVPLeaderboard(bracket string) (*wowc.PVPLeaderboard, error) {
+	var (
+		dat wowc.PVPLeaderboard
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowPVPLeaderboardPath + "/" + bracket + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWQuest returns metadata for a specified quest
+func (c *Config) WoWQuest(questID int) (*wowc.Quest, error) {
+	var (
+		dat wowc.Quest
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowQuestPath + "/" + strconv.Itoa(questID) + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWRealmStatus returns metadata for a specified quest
+func (c *Config) WoWRealmStatus() (*wowc.RealmStatus, error) {
+	var (
+		dat wowc.RealmStatus
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowRealmStatusPath + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWRecipe returns basic recipe information
+func (c *Config) WoWRecipe(recipeID int) (*wowc.Recipe, error) {
+	var (
+		dat wowc.Recipe
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowRecipePath + "/" + strconv.Itoa(recipeID) + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWSpell returns information about spells
+func (c *Config) WoWSpell(spellID int) (*wowc.Spell, error) {
+	var (
+		dat wowc.Spell
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowSpellPath + "/" + strconv.Itoa(spellID) + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWZoneMasterList returns a list of all supported zones and their bosses. A "zone" in this context should be considered a dungeon or a raid, not a world zone. A "boss" in this context should be considered a boss encounter, which may include more than one NPC
+func (c *Config) WoWZoneMasterList() (*wowc.ZoneMasterList, error) {
+	var (
+		dat wowc.ZoneMasterList
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowZonePath + "/?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWZone returns information about zone
+func (c *Config) WoWZone(zoneID int) (*wowc.Zone, error) {
+	var (
+		dat wowc.Zone
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowZonePath + "/" + strconv.Itoa(zoneID) + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}

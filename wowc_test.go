@@ -193,3 +193,103 @@ func TestWoWPetMasterList(t *testing.T) {
 
 	fmt.Printf("%+v\n", dat)
 }
+
+func TestWoWPetAbility(t *testing.T) {
+	dat, err := c.WoWPetAbility(640)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWPetSpecies(t *testing.T) {
+	dat, err := c.WoWPetSpecies(258)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWPetStats(t *testing.T) {
+	dat, err := c.WoWPetStats(258, 25, 5, 4)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWPVPLeaderboard(t *testing.T) {
+	dat, err := c.WoWPVPLeaderboard(wowc.Bracket3v3)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWQuest(t *testing.T) {
+	dat, err := c.WoWQuest(13146)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWRealmStatus(t *testing.T) {
+	dat, err := c.WoWRealmStatus()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWRecipe(t *testing.T) {
+	dat, err := c.WoWRecipe(33994)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWSpell(t *testing.T) {
+	dat, err := c.WoWSpell(17086)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWZoneMasterList(t *testing.T) {
+	dat, err := c.WoWZoneMasterList()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWZone(t *testing.T) {
+	dat, err := c.WoWZone(4131)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}

@@ -79,7 +79,7 @@ if err != nil {
 fmt.Printf("%+v\n", dat)
 ```
 
-See godoc for all the different datasets that can be acquired.
+See the [Blizzard API reference](https://develop.battle.net/documentation/api-reference) and the godoc for all the different datasets that can be acquired.
 
 ### Thanks
 
