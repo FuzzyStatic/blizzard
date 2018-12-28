@@ -2,6 +2,14 @@ package wowc
 
 import "time"
 
+// Fields for Guild API calls
+const (
+	FieldGuildMembers      = "members"
+	FieldGuildAchievements = "achievements"
+	FieldGuildNews         = "news"
+	FieldGuildChallenge    = "challenge"
+)
+
 // GuildProfile structure
 type GuildProfile struct {
 	LastModified      int64  `json:"lastModified"`

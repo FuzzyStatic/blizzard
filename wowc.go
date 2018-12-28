@@ -22,32 +22,13 @@ const (
 	wowChallengeRegionPath = wowChallengePath + "/region"
 	wowCharacterPath       = wowPath + "/character"
 	wowGuildPath           = wowPath + "/guild"
-)
-
-// Fields for Character/Guild API calls
-const (
-	FieldCharacterAchievements = "achievements"
-	FieldCharacterAppearance   = "appearance"
-	FieldCharacterFeed         = "feed"
-	FieldCharacterGuild        = "guild"
-	FieldCharacterItems        = "items"
-	FieldCharacterMounts       = "mounts"
-	FieldCharacterPets         = "pets"
-	FieldCharacterPetSlots     = "petSlots"
-	FieldCharacterProfessions  = "professions"
-	FieldCharacterProgression  = "progression"
-	FieldCharacterPVP          = "pvp"
-	FieldCharacterQuests       = "quests"
-	FieldCharacterReputation   = "reputation"
-	FieldCharacterStatistics   = "statistics"
-	FieldCharacterStats        = "stats"
-	FieldCharacterTalents      = "talents"
-	FieldCharacterTitle        = "title"
-	FieldCharacterAudit        = "audit"
-	FieldGuildMembers          = "members"
-	FieldGuildAchievements     = "achievements"
-	FieldGuildNews             = "news"
-	FieldGuildChallenge        = "challenge"
+	wowItemPath            = wowPath + "/item"
+	wowItemSetPath         = wowItemPath + "/set"
+	wowMountPath           = wowPath + "/mount"
+	wowPetPath             = wowPath + "/pet"
+	wowPetAbilityPath      = wowPetPath + "/ability"
+	wowPetSpeciesPath      = wowPetPath + "/species"
+	wowPetStatsPath        = wowPetPath + "/stats"
 )
 
 // WoWUserCharacters returns all characters for user's Access Token
@@ -224,7 +205,7 @@ func (c *Config) WoWBossMasterList() (*wowc.BossMasterList, error) {
 	return &dat, nil
 }
 
-// WoWBoss  provides information about bosses. A "boss" in this context should be considered a boss encounter, which may include more than one NPC
+// WoWBoss provides information about bosses. A "boss" in this context should be considered a boss encounter, which may include more than one NPC
 func (c *Config) WoWBoss(bossID int) (*wowc.Boss, error) {
 	var (
 		dat wowc.Boss
@@ -355,6 +336,90 @@ func (c *Config) WoWGuildProfile(realm, guildName string, optionalFields []strin
 	}
 
 	fmt.Println(string(b))
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWItem provides detailed item information, including item set information
+func (c *Config) WoWItem(itemID int) (*wowc.Item, error) {
+	var (
+		dat wowc.Item
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowItemPath + "/" + strconv.Itoa(itemID) + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWItemSet provides detailed item information, including item set information
+func (c *Config) WoWItemSet(setID int) (*wowc.ItemSet, error) {
+	var (
+		dat wowc.ItemSet
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowItemSetPath + "/" + strconv.Itoa(setID) + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWMountMasterList returns a list of all supported mounts
+func (c *Config) WoWMountMasterList() (*wowc.MountMasterList, error) {
+	var (
+		dat wowc.MountMasterList
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowMountPath + "/?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWPetMasterList returns a list of all supported battle and vanity pets
+func (c *Config) WoWPetMasterList() (*wowc.PetMasterList, error) {
+	var (
+		dat wowc.PetMasterList
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowPetPath + "/?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {

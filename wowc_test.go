@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/FuzzyStatic/blizzard/wowc"
 	"github.com/spf13/viper"
 )
 
@@ -108,24 +109,24 @@ func TestWoWChallengeModeRegionLeaderboard(t *testing.T) {
 func TestWoWCharacterProfile(t *testing.T) {
 	dat, err := c.WoWCharacterProfile("emerald-dream", "Limejelly",
 		[]string{
-			FieldCharacterAchievements,
-			FieldCharacterAppearance,
-			FieldCharacterAudit,
-			FieldCharacterFeed,
-			FieldCharacterGuild,
-			FieldCharacterItems,
-			FieldCharacterMounts,
-			FieldCharacterPVP,
-			FieldCharacterPetSlots,
-			FieldCharacterPets,
-			FieldCharacterProfessions,
-			FieldCharacterProgression,
-			FieldCharacterQuests,
-			FieldCharacterReputation,
-			FieldCharacterStatistics,
-			FieldCharacterStats,
-			FieldCharacterTalents,
-			FieldCharacterTitle,
+			wowc.FieldCharacterAchievements,
+			wowc.FieldCharacterAppearance,
+			wowc.FieldCharacterAudit,
+			wowc.FieldCharacterFeed,
+			wowc.FieldCharacterGuild,
+			wowc.FieldCharacterItems,
+			wowc.FieldCharacterMounts,
+			wowc.FieldCharacterPVP,
+			wowc.FieldCharacterPetSlots,
+			wowc.FieldCharacterPets,
+			wowc.FieldCharacterProfessions,
+			wowc.FieldCharacterProgression,
+			wowc.FieldCharacterQuests,
+			wowc.FieldCharacterReputation,
+			wowc.FieldCharacterStatistics,
+			wowc.FieldCharacterStats,
+			wowc.FieldCharacterTalents,
+			wowc.FieldCharacterTitle,
 		},
 	)
 	if err != nil {
@@ -139,12 +140,52 @@ func TestWoWCharacterProfile(t *testing.T) {
 func TestWoWGuildProfile(t *testing.T) {
 	dat, err := c.WoWGuildProfile("emerald-dream", "nightstalkers",
 		[]string{
-			FieldGuildAchievements,
-			FieldGuildChallenge,
-			FieldGuildMembers,
-			FieldGuildNews,
+			wowc.FieldGuildAchievements,
+			wowc.FieldGuildChallenge,
+			wowc.FieldGuildMembers,
+			wowc.FieldGuildNews,
 		},
 	)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWItem(t *testing.T) {
+	dat, err := c.WoWItem(18803)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWItemSet(t *testing.T) {
+	dat, err := c.WoWItemSet(1060)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWMountMasterList(t *testing.T) {
+	dat, err := c.WoWMountMasterList()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWPetMasterList(t *testing.T) {
+	dat, err := c.WoWPetMasterList()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

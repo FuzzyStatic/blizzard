@@ -1,5 +1,27 @@
 package wowc
 
+// Fields for Character API calls
+const (
+	FieldCharacterAchievements = "achievements"
+	FieldCharacterAppearance   = "appearance"
+	FieldCharacterFeed         = "feed"
+	FieldCharacterGuild        = "guild"
+	FieldCharacterItems        = "items"
+	FieldCharacterMounts       = "mounts"
+	FieldCharacterPets         = "pets"
+	FieldCharacterPetSlots     = "petSlots"
+	FieldCharacterProfessions  = "professions"
+	FieldCharacterProgression  = "progression"
+	FieldCharacterPVP          = "pvp"
+	FieldCharacterQuests       = "quests"
+	FieldCharacterReputation   = "reputation"
+	FieldCharacterStatistics   = "statistics"
+	FieldCharacterStats        = "stats"
+	FieldCharacterTalents      = "talents"
+	FieldCharacterTitle        = "title"
+	FieldCharacterAudit        = "audit"
+)
+
 // CharacterProfile structure
 type CharacterProfile struct {
 	LastModified      int64  `json:"lastModified"`

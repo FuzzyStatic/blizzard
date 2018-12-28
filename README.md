@@ -50,7 +50,28 @@ fmt.Printf("%+v\n", dat)
 You can get information about your WoW character profile:
 
 ```go
-dat, err := blizz.WoWCharacterProfile("emerald-dream", "Limejelly")
+dat, err := blizz.WoWCharacterProfile("emerald-dream", "Limejelly",
+	[]string{
+		wowc.FieldCharacterAchievements,
+		wowc.FieldCharacterAppearance,
+		wowc.FieldCharacterAudit,
+		wowc.FieldCharacterFeed,
+		wowc.FieldCharacterGuild,
+		wowc.FieldCharacterItems,
+		wowc.FieldCharacterMounts,
+		wowc.FieldCharacterPVP,
+		wowc.FieldCharacterPetSlots,
+		wowc.FieldCharacterPets,
+		wowc.FieldCharacterProfessions,
+		wowc.FieldCharacterProgression,
+		wowc.FieldCharacterQuests,
+		wowc.FieldCharacterReputation,
+		wowc.FieldCharacterStatistics,
+		wowc.FieldCharacterStats,
+		wowc.FieldCharacterTalents,
+		wowc.FieldCharacterTitle,
+	},
+)
 if err != nil {
 	fmt.Println(err)
 }
