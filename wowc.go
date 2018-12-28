@@ -3,6 +3,7 @@ package blizzard
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strconv"
@@ -20,6 +21,33 @@ const (
 	wowChallengePath       = wowPath + "/challenge"
 	wowChallengeRegionPath = wowChallengePath + "/region"
 	wowCharacterPath       = wowPath + "/character"
+	wowGuildPath           = wowPath + "/guild"
+)
+
+// Fields for Character/Guild API calls
+const (
+	FieldCharacterAchievements = "achievements"
+	FieldCharacterAppearance   = "appearance"
+	FieldCharacterFeed         = "feed"
+	FieldCharacterGuild        = "guild"
+	FieldCharacterItems        = "items"
+	FieldCharacterMounts       = "mounts"
+	FieldCharacterPets         = "pets"
+	FieldCharacterPetSlots     = "petSlots"
+	FieldCharacterProfessions  = "professions"
+	FieldCharacterProgression  = "progression"
+	FieldCharacterPVP          = "pvp"
+	FieldCharacterQuests       = "quests"
+	FieldCharacterReputation   = "reputation"
+	FieldCharacterStatistics   = "statistics"
+	FieldCharacterStats        = "stats"
+	FieldCharacterTalents      = "talents"
+	FieldCharacterTitle        = "title"
+	FieldCharacterAudit        = "audit"
+	FieldGuildMembers          = "members"
+	FieldGuildAchievements     = "achievements"
+	FieldGuildNews             = "news"
+	FieldGuildChallenge        = "challenge"
 )
 
 // WoWUserCharacters returns all characters for user's Access Token
@@ -260,17 +288,73 @@ func (c *Config) WoWChallengeModeRegionLeaderboard() (*wowc.ChallengeModeRegionL
 }
 
 // WoWCharacterProfile is the primary way to access character information. This API can be used to fetch a single character at a time through an HTTP GET request to a URL describing the character profile resource. By default, these requests return a basic dataset, and each request can return zero or more additional fields. To access this API, craft a resource URL pointing to the desired character for which to retrieve information
-func (c *Config) WoWCharacterProfile(realm, characterName string) (*wowc.CharacterProfile, error) {
+// Optional field constants are prefixed with the word "FieldCharacter"
+func (c *Config) WoWCharacterProfile(realm, characterName string, optionalFields []string) (*wowc.CharacterProfile, error) {
 	var (
-		dat wowc.CharacterProfile
-		b   []byte
-		err error
+		dat      wowc.CharacterProfile
+		fieldStr string
+		b        []byte
+		err      error
 	)
 
-	b, err = c.getURLBody(c.apiURL + wowCharacterPath + "/" + realm + "/" + characterName + "?" + localeQuery + c.locale)
+	if optionalFields != nil {
+		fieldStr = "fields="
+
+		for i := 0; i < len(optionalFields); i++ {
+			fieldStr = fieldStr + optionalFields[i]
+
+			if i < len(optionalFields)-1 {
+				fieldStr = fieldStr + ","
+			}
+		}
+
+		fieldStr = fieldStr + "&"
+	}
+
+	b, err = c.getURLBody(c.apiURL + wowCharacterPath + "/" + realm + "/" + characterName + "?" + fieldStr + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWGuildProfile  is the primary way to access guild information. This API can fetch a single guild at a time through an HTTP GET request to a URL describing the guild profile resource. By default, these requests return a basic dataset and each request can retrieve zero or more additional fields.
+// Although this endpoint has no required query string parameters, requests can optionally pass the fields query string parameter to indicate that one or more of the optional datasets is to be retrieved. Those additional fields are listed in the method titled "Optional Fields"
+// Optional field constants are prefixed with the word "FieldGuild"
+func (c *Config) WoWGuildProfile(realm, guildName string, optionalFields []string) (*wowc.GuildProfile, error) {
+	var (
+		dat      wowc.GuildProfile
+		fieldStr string
+		b        []byte
+		err      error
+	)
+
+	if optionalFields != nil {
+		fieldStr = "fields="
+
+		for i := 0; i < len(optionalFields); i++ {
+			fieldStr = fieldStr + optionalFields[i]
+
+			if i < len(optionalFields)-1 {
+				fieldStr = fieldStr + ","
+			}
+		}
+
+		fieldStr = fieldStr + "&"
+	}
+
+	b, err = c.getURLBody(c.apiURL + wowGuildPath + "/" + realm + "/" + guildName + "?" + fieldStr + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	fmt.Println(string(b))
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {

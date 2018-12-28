@@ -106,7 +106,45 @@ func TestWoWChallengeModeRegionLeaderboard(t *testing.T) {
 }
 
 func TestWoWCharacterProfile(t *testing.T) {
-	dat, err := c.WoWCharacterProfile("emerald-dream", "Limejelly")
+	dat, err := c.WoWCharacterProfile("emerald-dream", "Limejelly",
+		[]string{
+			FieldCharacterAchievements,
+			FieldCharacterAppearance,
+			FieldCharacterAudit,
+			FieldCharacterFeed,
+			FieldCharacterGuild,
+			FieldCharacterItems,
+			FieldCharacterMounts,
+			FieldCharacterPVP,
+			FieldCharacterPetSlots,
+			FieldCharacterPets,
+			FieldCharacterProfessions,
+			FieldCharacterProgression,
+			FieldCharacterQuests,
+			FieldCharacterReputation,
+			FieldCharacterStatistics,
+			FieldCharacterStats,
+			FieldCharacterTalents,
+			FieldCharacterTitle,
+		},
+	)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWGuildProfile(t *testing.T) {
+	dat, err := c.WoWGuildProfile("emerald-dream", "nightstalkers",
+		[]string{
+			FieldGuildAchievements,
+			FieldGuildChallenge,
+			FieldGuildMembers,
+			FieldGuildNews,
+		},
+	)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
