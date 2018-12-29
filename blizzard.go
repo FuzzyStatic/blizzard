@@ -3,6 +3,7 @@ package blizzard
 
 import (
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"time"
@@ -13,12 +14,13 @@ var c *Config
 
 // Config regional API URLs, locale, access token, api key
 type Config struct {
-	client   *http.Client
-	oauth    OAuth
-	region   Region
-	oauthURL string
-	apiURL   string
-	locale   string
+	client    *http.Client
+	oauth     OAuth
+	region    Region
+	oauthURL  string
+	apiURL    string
+	namespace string
+	locale    string
 }
 
 // Region type
@@ -57,28 +59,34 @@ func New(clientID, clientSecret string, region Region) *Config {
 
 	switch c.region {
 	case CN:
-		c.oauthURL = "https://www.battle.net.cn"
-		c.apiURL = "https://api.blizzard.com.cn"
+		c.oauthURL = "https://www.battlenet.com.cn"
+		c.apiURL = "https://gateway.battlenet.com.cn"
+		c.namespace = "dynamic-zh"
 		c.locale = "zh_CN"
 	case EU:
 		c.oauthURL = "https://eu.battle.net"
 		c.apiURL = "https://eu.api.blizzard.com"
+		c.namespace = "dynamic-eu"
 		c.locale = "en_GB"
 	case KR:
-		c.oauthURL = "https://kr.battle.net"
-		c.apiURL = "https://kr.api.blizzard.com"
+		c.oauthURL = "https://apac.battle.net"
+		c.apiURL = "https://apac.api.blizzard.com"
+		c.namespace = "dynamic-kr"
 		c.locale = "ko_KR"
 	case TW:
-		c.oauthURL = "https://tb.battle.net"
-		c.apiURL = "https://tb.api.blizzard.com"
+		c.oauthURL = "https://apac.battle.net"
+		c.apiURL = "https://apac.api.blizzard.com"
+		c.namespace = "dynamic-tw"
 		c.locale = "zh_TW"
 	case US:
 		c.oauthURL = "https://us.battle.net"
 		c.apiURL = "https://us.api.blizzard.com"
+		c.namespace = "dynamic-us"
 		c.locale = "en_US"
 	default: // USA! USA!
 		c.oauthURL = "https://us.battle.net"
 		c.apiURL = "https://us.api.blizzard.com"
+		c.namespace = "dynamic-us"
 		c.locale = "en_US"
 	}
 
@@ -106,7 +114,10 @@ func (c *Config) getURLBody(url string) ([]byte, error) {
 		return nil, err
 	}
 
+	fmt.Println(url)
+
 	req.Header.Set("Authorization", "Bearer "+c.oauth.AccessTokenRequest.AccessToken)
+	req.Header.Set("Battlenet-Namespace", c.namespace)
 	req.Header.Set("Accept", "application/json")
 
 	res, err = c.client.Do(req)

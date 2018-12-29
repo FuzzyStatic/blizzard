@@ -2,22 +2,15 @@ package blizzard
 
 import (
 	"fmt"
-
-	"github.com/spf13/viper"
+	"testing"
 )
 
-func init() {
-	viper.SetConfigName("credentials") // replace with TOML file similar to sample.toml
-	viper.SetConfigType("toml")
-	viper.AddConfigPath(".")
-
-	err := viper.ReadInConfig()
+func TestWoWConnectedRealmIndex(t *testing.T) {
+	dat, err := c.WoWConnectedRealmIndex()
 	if err != nil {
-		fmt.Println(err.Error())
+		fmt.Println(err)
+		t.Fail()
 	}
 
-	clientID := viper.GetString("authentication.client_id")
-	clientSecret := viper.GetString("authentication.client_secret")
-
-	c = New(clientID, clientSecret, US)
+	fmt.Printf("%+v\n", dat)
 }
