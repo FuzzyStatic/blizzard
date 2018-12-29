@@ -19,7 +19,7 @@ func (c *Config) SC2LeagueData(seasonID int, queueID sc2gd.QueueID, teamType sc2
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + sc2LeaguePath + "/" + strconv.Itoa(seasonID) + "/" + strconv.Itoa(int(queueID)) + "/" + strconv.Itoa(int(teamType)) + "/" + strconv.Itoa(int(leagueID)) + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+sc2LeaguePath+"/"+strconv.Itoa(seasonID)+"/"+strconv.Itoa(int(queueID))+"/"+strconv.Itoa(int(teamType))+"/"+strconv.Itoa(int(leagueID))+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}

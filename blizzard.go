@@ -13,13 +13,14 @@ var c *Config
 
 // Config regional API URLs, locale, access token, api key
 type Config struct {
-	client    *http.Client
-	oauth     OAuth
-	region    Region
-	oauthURL  string
-	apiURL    string
-	namespace string
-	locale    string
+	client           *http.Client
+	oauth            OAuth
+	region           Region
+	oauthURL         string
+	apiURL           string
+	dynamicNamespace string
+	profileNamespace string
+	locale           string
 }
 
 // Region type
@@ -60,32 +61,38 @@ func New(clientID, clientSecret string, region Region) *Config {
 	case CN:
 		c.oauthURL = "https://www.battlenet.com.cn"
 		c.apiURL = "https://gateway.battlenet.com.cn"
-		c.namespace = "dynamic-zh"
+		c.dynamicNamespace = "dynamic-zh"
+		c.profileNamespace = "profile-zh"
 		c.locale = "zh_CN"
 	case EU:
 		c.oauthURL = "https://eu.battle.net"
 		c.apiURL = "https://eu.api.blizzard.com"
-		c.namespace = "dynamic-eu"
+		c.dynamicNamespace = "dynamic-eu"
+		c.profileNamespace = "profile-eu"
 		c.locale = "en_GB"
 	case KR:
 		c.oauthURL = "https://apac.battle.net"
 		c.apiURL = "https://apac.api.blizzard.com"
-		c.namespace = "dynamic-kr"
+		c.dynamicNamespace = "dynamic-kr"
+		c.profileNamespace = "profile-kr"
 		c.locale = "ko_KR"
 	case TW:
 		c.oauthURL = "https://apac.battle.net"
 		c.apiURL = "https://apac.api.blizzard.com"
-		c.namespace = "dynamic-tw"
+		c.dynamicNamespace = "dynamic-tw"
+		c.profileNamespace = "profile-tw"
 		c.locale = "zh_TW"
 	case US:
 		c.oauthURL = "https://us.battle.net"
 		c.apiURL = "https://us.api.blizzard.com"
-		c.namespace = "dynamic-us"
+		c.dynamicNamespace = "dynamic-us"
+		c.profileNamespace = "profile-us"
 		c.locale = "en_US"
 	default: // USA! USA!
 		c.oauthURL = "https://us.battle.net"
 		c.apiURL = "https://us.api.blizzard.com"
-		c.namespace = "dynamic-us"
+		c.dynamicNamespace = "dynamic-us"
+		c.profileNamespace = "profile-us"
 		c.locale = "en_US"
 	}
 
@@ -95,7 +102,7 @@ func New(clientID, clientSecret string, region Region) *Config {
 }
 
 // getURLBody processes simple GET request based on URL
-func (c *Config) getURLBody(url string) ([]byte, error) {
+func (c *Config) getURLBody(url, namespace string) ([]byte, error) {
 	var (
 		req  *http.Request
 		res  *http.Response
@@ -114,8 +121,11 @@ func (c *Config) getURLBody(url string) ([]byte, error) {
 	}
 
 	req.Header.Set("Authorization", "Bearer "+c.oauth.AccessTokenRequest.AccessToken)
-	req.Header.Set("Battlenet-Namespace", c.namespace)
 	req.Header.Set("Accept", "application/json")
+
+	if namespace != "" {
+		req.Header.Set("Battlenet-Namespace", namespace)
+	}
 
 	res, err = c.client.Do(req)
 	if err != nil {

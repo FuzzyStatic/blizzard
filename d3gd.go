@@ -9,7 +9,7 @@ import (
 
 const (
 	dataD3Path                  = dataPath + "/d3"
-	seasonPath                  = dataD3Path + "/season"
+	dataD3SeasonPath            = dataD3Path + "/season"
 	leaderboardPath             = "/leaderboard"
 	achievementPointsPath       = "/achievement-points"
 	riftHardcoreBarbarianPath   = "/rift-hardcore-barbarian"
@@ -43,7 +43,7 @@ func (c *Config) D3SeasonIndex() (*d3gd.SeasonIndex, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +64,7 @@ func (c *Config) D3Season(seasonID int) (*d3gd.Season, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -85,7 +85,7 @@ func (c *Config) D3SeasonLeaderboard(seasonID int, leaderboard string) (*d3gd.Le
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + "/" + leaderboard + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+"/"+leaderboard+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -106,7 +106,7 @@ func (c *Config) D3SeasonLeaderboardAchievementPoints(seasonID int) (*d3gd.Leade
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + achievementPointsPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+achievementPointsPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -127,7 +127,7 @@ func (c *Config) D3SeasonLeaderboardHardcoreBarbarian(seasonID int) (*d3gd.Leade
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftHardcoreBarbarianPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreBarbarianPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -148,7 +148,7 @@ func (c *Config) D3SeasonLeaderboardBarbarian(seasonID int) (*d3gd.Leaderboard, 
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftBarbarianPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftBarbarianPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -169,7 +169,7 @@ func (c *Config) D3SeasonLeaderboardHardcoreCrusader(seasonID int) (*d3gd.Leader
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftHardcoreCrusaderPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreCrusaderPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -190,7 +190,7 @@ func (c *Config) D3SeasonLeaderboardCrusader(seasonID int) (*d3gd.Leaderboard, e
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftCrusaderPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftCrusaderPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -211,7 +211,7 @@ func (c *Config) D3SeasonLeaderboardHardcoreDemonHunter(seasonID int) (*d3gd.Lea
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftHardcoreDHPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreDHPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -232,7 +232,7 @@ func (c *Config) D3SeasonLeaderboardDemonHunter(seasonID int) (*d3gd.Leaderboard
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftDHPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftDHPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -253,7 +253,7 @@ func (c *Config) D3SeasonLeaderboardHardcoreMonk(seasonID int) (*d3gd.Leaderboar
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftHardcoreMonkPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreMonkPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -274,7 +274,7 @@ func (c *Config) D3SeasonLeaderboardMonk(seasonID int) (*d3gd.Leaderboard, error
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftMonkPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftMonkPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -295,7 +295,7 @@ func (c *Config) D3SeasonLeaderboardHardcoreNecromancer(seasonID int) (*d3gd.Lea
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftHardcoreNecromancerPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreNecromancerPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -316,7 +316,7 @@ func (c *Config) D3SeasonLeaderboardNecromancer(seasonID int) (*d3gd.Leaderboard
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftNecromancerPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftNecromancerPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -337,7 +337,7 @@ func (c *Config) D3SeasonLeaderboardHardcoreWizard(seasonID int) (*d3gd.Leaderbo
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftHardcoreWizardPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreWizardPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -358,7 +358,7 @@ func (c *Config) D3SeasonLeaderboardWizard(seasonID int) (*d3gd.Leaderboard, err
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftWizardPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftWizardPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -379,7 +379,7 @@ func (c *Config) D3SeasonLeaderboardHardcoreWitchDoctor(seasonID int) (*d3gd.Lea
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftHardcoreWDPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreWDPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -400,7 +400,7 @@ func (c *Config) D3SeasonLeaderboardWitchDoctor(seasonID int) (*d3gd.Leaderboard
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftWDPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftWDPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -421,7 +421,7 @@ func (c *Config) D3SeasonLeaderboardHardcoreTeam2(seasonID int) (*d3gd.Leaderboa
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftHardcoreTeam2Path + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreTeam2Path+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -442,7 +442,7 @@ func (c *Config) D3SeasonLeaderboardTeam2(seasonID int) (*d3gd.Leaderboard, erro
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftTeam2Path + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftTeam2Path+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -463,7 +463,7 @@ func (c *Config) D3SeasonLeaderboardHardcoreTeam3(seasonID int) (*d3gd.Leaderboa
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftHardcoreTeam3Path + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreTeam3Path+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -484,7 +484,7 @@ func (c *Config) D3SeasonLeaderboardTeam3(seasonID int) (*d3gd.Leaderboard, erro
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftTeam3Path + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftTeam3Path+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -505,7 +505,7 @@ func (c *Config) D3SeasonLeaderboardHardcoreTeam4(seasonID int) (*d3gd.Leaderboa
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftHardcoreTeam4Path + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreTeam4Path+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -526,7 +526,7 @@ func (c *Config) D3SeasonLeaderboardTeam4(seasonID int) (*d3gd.Leaderboard, erro
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + seasonPath + "/" + strconv.Itoa(seasonID) + leaderboardPath + riftTeam4Path + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftTeam4Path+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -547,7 +547,7 @@ func (c *Config) D3EraIndex() (*d3gd.EraIndex, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -568,7 +568,7 @@ func (c *Config) D3Era(eraID int) (*d3gd.Era, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -589,7 +589,7 @@ func (c *Config) D3EraLeaderboardHardcoreBarbarian(eraID int) (*d3gd.Leaderboard
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftHardcoreBarbarianPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreBarbarianPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -610,7 +610,7 @@ func (c *Config) D3EraLeaderboardBarbarian(eraID int) (*d3gd.Leaderboard, error)
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftBarbarianPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftBarbarianPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -631,7 +631,7 @@ func (c *Config) D3EraLeaderboardHardcoreCrusader(eraID int) (*d3gd.Leaderboard,
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftHardcoreCrusaderPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreCrusaderPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -652,7 +652,7 @@ func (c *Config) D3EraLeaderboardCrusader(eraID int) (*d3gd.Leaderboard, error) 
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftCrusaderPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftCrusaderPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -673,7 +673,7 @@ func (c *Config) D3EraLeaderboardHardcoreDemonHunter(eraID int) (*d3gd.Leaderboa
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftHardcoreDHPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreDHPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -694,7 +694,7 @@ func (c *Config) D3EraLeaderboardDemonHunter(eraID int) (*d3gd.Leaderboard, erro
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftDHPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftDHPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -715,7 +715,7 @@ func (c *Config) D3EraLeaderboardHardcoreMonk(eraID int) (*d3gd.Leaderboard, err
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftHardcoreMonkPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreMonkPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -736,7 +736,7 @@ func (c *Config) D3EraLeaderboardMonk(eraID int) (*d3gd.Leaderboard, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftMonkPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftMonkPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -757,7 +757,7 @@ func (c *Config) D3EraLeaderboardHardcoreNecromancer(eraID int) (*d3gd.Leaderboa
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftHardcoreNecromancerPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreNecromancerPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -778,7 +778,7 @@ func (c *Config) D3EraLeaderboardNecromancer(eraID int) (*d3gd.Leaderboard, erro
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftNecromancerPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftNecromancerPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -799,7 +799,7 @@ func (c *Config) D3EraLeaderboardHardcoreWizard(eraID int) (*d3gd.Leaderboard, e
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftHardcoreWizardPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreWizardPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -820,7 +820,7 @@ func (c *Config) D3EraLeaderboardWizard(eraID int) (*d3gd.Leaderboard, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftWizardPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftWizardPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -841,7 +841,7 @@ func (c *Config) D3EraLeaderboardHardcoreWitchDoctor(eraID int) (*d3gd.Leaderboa
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftHardcoreWDPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreWDPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -862,7 +862,7 @@ func (c *Config) D3EraLeaderboardWitchDoctor(eraID int) (*d3gd.Leaderboard, erro
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftWDPath + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftWDPath+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -883,7 +883,7 @@ func (c *Config) D3EraLeaderboardHardcoreTeam2(eraID int) (*d3gd.Leaderboard, er
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftHardcoreTeam2Path + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreTeam2Path+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -904,7 +904,7 @@ func (c *Config) D3EraLeaderboardTeam2(eraID int) (*d3gd.Leaderboard, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftTeam2Path + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftTeam2Path+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -925,7 +925,7 @@ func (c *Config) D3EraLeaderboardHardcoreTeam3(eraID int) (*d3gd.Leaderboard, er
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftHardcoreTeam3Path + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreTeam3Path+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -946,7 +946,7 @@ func (c *Config) D3EraLeaderboardTeam3(eraID int) (*d3gd.Leaderboard, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftTeam3Path + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftTeam3Path+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -967,7 +967,7 @@ func (c *Config) D3EraLeaderboardHardcoreTeam4(eraID int) (*d3gd.Leaderboard, er
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftHardcoreTeam4Path + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreTeam4Path+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}
@@ -988,7 +988,7 @@ func (c *Config) D3EraLeaderboardTeam4(eraID int) (*d3gd.Leaderboard, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + eraPath + "/" + strconv.Itoa(eraID) + leaderboardPath + riftTeam4Path + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftTeam4Path+"?"+localeQuery+c.locale, "")
 	if err != nil {
 		return nil, err
 	}

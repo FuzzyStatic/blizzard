@@ -28,7 +28,7 @@ func (c *Config) WoWConnectedRealmIndex() (*wowgd.ConnectedRealmIndex, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + wowConnectedRealmIndex + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+wowConnectedRealmIndex+"?"+localeQuery+c.locale, c.dynamicNamespace)
 	if err != nil {
 		return nil, err
 	}
@@ -49,7 +49,7 @@ func (c *Config) WoWConnectedRealm(connectedRealmID int) (*wowgd.ConnectedRealm,
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + wowConnectedRealm + "/" + strconv.Itoa(connectedRealmID) + "?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL+wowConnectedRealm+"/"+strconv.Itoa(connectedRealmID)+"?"+localeQuery+c.locale, c.dynamicNamespace)
 	if err != nil {
 		return nil, err
 	}
