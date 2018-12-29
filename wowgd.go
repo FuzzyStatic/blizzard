@@ -2,6 +2,7 @@ package blizzard
 
 import (
 	"encoding/json"
+	"strconv"
 
 	"github.com/FuzzyStatic/blizzard/wowgd"
 )
@@ -28,6 +29,27 @@ func (c *Config) WoWConnectedRealmIndex() (*wowgd.ConnectedRealmIndex, error) {
 	)
 
 	b, err = c.getURLBody(c.apiURL + wowConnectedRealmIndex + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWConnectedRealm returns
+func (c *Config) WoWConnectedRealm(connectedRealmID int) (*wowgd.ConnectedRealm, error) {
+	var (
+		dat wowgd.ConnectedRealm
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowConnectedRealm + "/" + strconv.Itoa(connectedRealmID) + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}

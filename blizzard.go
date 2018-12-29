@@ -3,7 +3,6 @@ package blizzard
 
 import (
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"time"
@@ -113,8 +112,6 @@ func (c *Config) getURLBody(url string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-
-	fmt.Println(url)
 
 	req.Header.Set("Authorization", "Bearer "+c.oauth.AccessTokenRequest.AccessToken)
 	req.Header.Set("Battlenet-Namespace", c.namespace)
