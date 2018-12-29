@@ -39,7 +39,7 @@ const (
 	wowSpellPath                     = wowPath + "/spell"
 	wowZonePath                      = wowPath + "/zone"
 	wowDataPath                      = wowPath + "/data"
-	wowBattlegroupsPath              = wowDataPath + "/battlegroups"
+	wowDataBattlegroupsPath          = wowDataPath + "/battlegroups"
 	wowDataCharacterPath             = wowDataPath + "/character"
 	wowDataCharacterRacesPath        = wowDataCharacterPath + "/races"
 	wowDataCharacterClassesPath      = wowDataCharacterPath + "/classes"
@@ -48,6 +48,9 @@ const (
 	wowDataGuildRewardsPath          = wowDataGuildPath + "/rewards"
 	wowDataGuildPerksPath            = wowDataGuildPath + "/perks"
 	wowDataGuildAchievementsPath     = wowDataGuildPath + "/achievements"
+	wowDataItemClassesPath           = wowDataPath + "/item/classes"
+	wowDataTalentsPath               = wowDataPath + "/talents"
+	wowDataPetTypesPath              = wowDataPath + "/pet/types"
 )
 
 // WoWUserCharacters returns all characters for user's Access Token
@@ -666,7 +669,7 @@ func (c *Config) WoWRegionBattlegroups() (*wowc.RegionBattlegroups, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL + wowBattlegroupsPath + "/?" + localeQuery + c.locale)
+	b, err = c.getURLBody(c.apiURL + wowDataBattlegroupsPath + "/?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}
@@ -793,6 +796,69 @@ func (c *Config) WoWGuildAchievements() (*wowc.GuildAchievements, error) {
 	)
 
 	b, err = c.getURLBody(c.apiURL + wowDataGuildAchievementsPath + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWItemClasses returns a list of item classes
+func (c *Config) WoWItemClasses() (*wowc.ItemClasses, error) {
+	var (
+		dat wowc.ItemClasses
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowDataItemClassesPath + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWTalents returns a list of talents, specs, and glyphs for each class
+func (c *Config) WoWTalents() (*wowc.Talents, error) {
+	var (
+		dat wowc.Talents
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowDataTalentsPath + "?" + localeQuery + c.locale)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWPetTypes returns a list of the different battle pet types, including what they are strong and weak against
+func (c *Config) WoWPetTypes() (*wowc.PetTypes, error) {
+	var (
+		dat wowc.PetTypes
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL + wowDataPetTypesPath + "?" + localeQuery + c.locale)
 	if err != nil {
 		return nil, err
 	}

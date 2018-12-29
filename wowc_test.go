@@ -363,3 +363,33 @@ func TestWoWGuildAchievements(t *testing.T) {
 
 	fmt.Printf("%+v\n", dat)
 }
+
+func TestWoWItemClasses(t *testing.T) {
+	dat, err := c.WoWItemClasses()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWTalents(t *testing.T) {
+	dat, err := c.WoWTalents()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWPetTypes(t *testing.T) {
+	dat, err := c.WoWPetTypes()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
