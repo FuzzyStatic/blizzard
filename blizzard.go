@@ -20,6 +20,7 @@ type Config struct {
 	apiURL           string
 	dynamicNamespace string
 	profileNamespace string
+	staticNamespace  string
 	locale           string
 }
 
@@ -63,40 +64,44 @@ func New(clientID, clientSecret string, region Region) *Config {
 		c.apiURL = "https://gateway.battlenet.com.cn"
 		c.dynamicNamespace = "dynamic-zh"
 		c.profileNamespace = "profile-zh"
+		c.staticNamespace = "static-zh"
 		c.locale = "zh_CN"
 	case EU:
 		c.oauthURL = "https://eu.battle.net"
 		c.apiURL = "https://eu.api.blizzard.com"
 		c.dynamicNamespace = "dynamic-eu"
 		c.profileNamespace = "profile-eu"
+		c.staticNamespace = "static-eu"
 		c.locale = "en_GB"
 	case KR:
 		c.oauthURL = "https://apac.battle.net"
 		c.apiURL = "https://apac.api.blizzard.com"
 		c.dynamicNamespace = "dynamic-kr"
 		c.profileNamespace = "profile-kr"
+		c.staticNamespace = "static-kr"
 		c.locale = "ko_KR"
 	case TW:
 		c.oauthURL = "https://apac.battle.net"
 		c.apiURL = "https://apac.api.blizzard.com"
 		c.dynamicNamespace = "dynamic-tw"
 		c.profileNamespace = "profile-tw"
+		c.staticNamespace = "static-tw"
 		c.locale = "zh_TW"
 	case US:
 		c.oauthURL = "https://us.battle.net"
 		c.apiURL = "https://us.api.blizzard.com"
 		c.dynamicNamespace = "dynamic-us"
 		c.profileNamespace = "profile-us"
+		c.staticNamespace = "static-us"
 		c.locale = "en_US"
 	default: // USA! USA!
 		c.oauthURL = "https://us.battle.net"
 		c.apiURL = "https://us.api.blizzard.com"
 		c.dynamicNamespace = "dynamic-us"
 		c.profileNamespace = "profile-us"
+		c.staticNamespace = "static-us"
 		c.locale = "en_US"
 	}
-
-	c.AccessTokenReq()
 
 	return &c
 }

@@ -13,11 +13,17 @@ func init() {
 
 	err := viper.ReadInConfig()
 	if err != nil {
-		fmt.Println(err.Error())
+		fmt.Println(err)
 	}
 
 	clientID := viper.GetString("authentication.client_id")
 	clientSecret := viper.GetString("authentication.client_secret")
 
 	c = New(clientID, clientSecret, US)
+
+	err = c.AccessTokenReq()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 }
