@@ -1,23 +1,19 @@
 package wowgd
 
-// PowerTypesIndex structure
-type PowerTypesIndex struct {
+// RegionIndex structure
+type RegionIndex struct {
 	Links struct {
 		Self struct {
 			Href string `json:"href"`
 		} `json:"self"`
 	} `json:"_links"`
-	PowerTypes []struct {
-		Key struct {
-			Href string `json:"href"`
-		} `json:"key"`
-		Name string `json:"name"`
-		ID   int    `json:"id"`
-	} `json:"power_types"`
+	Regions []struct {
+		Href string `json:"href"`
+	} `json:"regions"`
 }
 
-// PowerType structure
-type PowerType struct {
+// Region structure
+type Region struct {
 	Links struct {
 		Self struct {
 			Href string `json:"href"`
@@ -25,4 +21,5 @@ type PowerType struct {
 	} `json:"_links"`
 	ID   int    `json:"id"`
 	Name string `json:"name"`
+	Tag  string `json:"tag"`
 }
