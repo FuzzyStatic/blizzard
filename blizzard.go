@@ -43,7 +43,7 @@ func (l Locale) String() string {
 	return string(l)
 }
 
-var (
+const (
 	enUS = Locale("en_US")
 	esMX = Locale("es_MX")
 	ptBR = Locale("pt_BR")
