@@ -9,7 +9,7 @@ This is a Go client library for gathering Blizzard API game data.
 Start by initiating a new Blizzard config structure for desired region (client_id and client_secret can be acquired through your developer account at https://develop.battle.net/) and requesting an access token:
 
 ```go
-blizz := blizzard.New("client_id", "client_secret", blizzard.US)
+blizz := blizzard.New("client_id", "client_secret", blizzard.US, blizzard.enUS)
 
 err := blizz.AccessTokenReq()
 if err != nil {

@@ -113,7 +113,7 @@ func (c *Config) WoWAchievement(achievementID int) (*wowc.Achievement, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowAchievementPath+"/"+strconv.Itoa(achievementID)+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowAchievementPath+"/"+strconv.Itoa(achievementID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -134,7 +134,7 @@ func (c *Config) WoWAuctionFiles(realm string) (*wowc.AuctionFiles, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowAuctionDataPath+"/"+realm+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowAuctionDataPath+"/"+realm+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -214,7 +214,7 @@ func (c *Config) WoWBossMasterList() (*wowc.BossMasterList, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowBossPath+"/?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowBossPath+"/?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -235,7 +235,7 @@ func (c *Config) WoWBoss(bossID int) (*wowc.Boss, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowBossPath+"/"+strconv.Itoa(bossID)+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowBossPath+"/"+strconv.Itoa(bossID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -256,7 +256,7 @@ func (c *Config) WoWChallengeModeRealmLeaderboard(realm string) (*wowc.Challenge
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowChallengePath+"/"+realm+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowChallengePath+"/"+realm+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -277,7 +277,7 @@ func (c *Config) WoWChallengeModeRegionLeaderboard() (*wowc.ChallengeModeRegionL
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowChallengeRegionPath+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowChallengeRegionPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -314,7 +314,7 @@ func (c *Config) WoWCharacterProfile(realm, characterName string, optionalFields
 		fieldStr = fieldStr + "&"
 	}
 
-	b, err = c.getURLBody(c.apiURL+wowCharacterPath+"/"+realm+"/"+characterName+"?"+fieldStr+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowCharacterPath+"/"+realm+"/"+characterName+"?"+fieldStr+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -352,7 +352,7 @@ func (c *Config) WoWGuildProfile(realm, guildName string, optionalFields []strin
 		fieldStr = fieldStr + "&"
 	}
 
-	b, err = c.getURLBody(c.apiURL+wowGuildPath+"/"+realm+"/"+guildName+"?"+fieldStr+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowGuildPath+"/"+realm+"/"+guildName+"?"+fieldStr+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -375,7 +375,7 @@ func (c *Config) WoWItem(itemID int) (*wowc.Item, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowItemPath+"/"+strconv.Itoa(itemID)+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowItemPath+"/"+strconv.Itoa(itemID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -396,7 +396,7 @@ func (c *Config) WoWItemSet(setID int) (*wowc.ItemSet, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowItemSetPath+"/"+strconv.Itoa(setID)+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowItemSetPath+"/"+strconv.Itoa(setID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -417,7 +417,7 @@ func (c *Config) WoWMountMasterList() (*wowc.MountMasterList, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowMountPath+"/?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowMountPath+"/?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -438,7 +438,7 @@ func (c *Config) WoWPetMasterList() (*wowc.PetMasterList, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowPetPath+"/?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowPetPath+"/?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -459,7 +459,7 @@ func (c *Config) WoWPetAbility(abilityID int) (*wowc.PetAbility, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowPetAbilityPath+"/"+strconv.Itoa(abilityID)+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowPetAbilityPath+"/"+strconv.Itoa(abilityID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -480,7 +480,7 @@ func (c *Config) WoWPetSpecies(speciesID int) (*wowc.PetSpecies, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowPetSpeciesPath+"/"+strconv.Itoa(speciesID)+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowPetSpeciesPath+"/"+strconv.Itoa(speciesID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -501,7 +501,7 @@ func (c *Config) WoWPetStats(speciesID, level, breedID, qualityID int) (*wowc.Pe
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowPetStatsPath+"/"+strconv.Itoa(speciesID)+"?"+wowPetsLevelField+strconv.Itoa(level)+"&"+wowPetsBreedIDField+strconv.Itoa(breedID)+"&"+wowPetsQualityIDField+strconv.Itoa(qualityID)+"&"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowPetStatsPath+"/"+strconv.Itoa(speciesID)+"?"+wowPetsLevelField+strconv.Itoa(level)+"&"+wowPetsBreedIDField+strconv.Itoa(breedID)+"&"+wowPetsQualityIDField+strconv.Itoa(qualityID)+"&"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -522,7 +522,7 @@ func (c *Config) WoWPVPLeaderboard(bracket string) (*wowc.PVPLeaderboard, error)
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowPVPLeaderboardPath+"/"+bracket+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowPVPLeaderboardPath+"/"+bracket+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -543,7 +543,7 @@ func (c *Config) WoWQuest(questID int) (*wowc.Quest, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowQuestPath+"/"+strconv.Itoa(questID)+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowQuestPath+"/"+strconv.Itoa(questID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -564,7 +564,7 @@ func (c *Config) WoWRealmStatus() (*wowc.RealmStatus, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowRealmStatusPath+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowRealmStatusPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -585,7 +585,7 @@ func (c *Config) WoWRecipe(recipeID int) (*wowc.Recipe, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowRecipePath+"/"+strconv.Itoa(recipeID)+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowRecipePath+"/"+strconv.Itoa(recipeID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -606,7 +606,7 @@ func (c *Config) WoWSpell(spellID int) (*wowc.Spell, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowSpellPath+"/"+strconv.Itoa(spellID)+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowSpellPath+"/"+strconv.Itoa(spellID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -627,7 +627,7 @@ func (c *Config) WoWZoneMasterList() (*wowc.ZoneMasterList, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowZonePath+"/?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowZonePath+"/?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -648,7 +648,7 @@ func (c *Config) WoWZone(zoneID int) (*wowc.Zone, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowZonePath+"/"+strconv.Itoa(zoneID)+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowZonePath+"/"+strconv.Itoa(zoneID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -669,7 +669,7 @@ func (c *Config) WoWRegionBattlegroups() (*wowc.RegionBattlegroups, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowDataBattlegroupsPath+"/?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowDataBattlegroupsPath+"/?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -690,7 +690,7 @@ func (c *Config) WoWCharacterRaces() (*wowc.CharacterRaces, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowDataCharacterRacesPath+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowDataCharacterRacesPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -711,7 +711,7 @@ func (c *Config) WoWCharacterClasses() (*wowc.CharacterClasses, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowDataCharacterClassesPath+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowDataCharacterClassesPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -732,7 +732,7 @@ func (c *Config) WoWCharacterAchievements() (*wowc.CharacterAchievements, error)
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowDataCharacterAchievementsPath+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowDataCharacterAchievementsPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -753,7 +753,7 @@ func (c *Config) WoWGuildRewards() (*wowc.GuildRewards, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowDataGuildRewardsPath+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowDataGuildRewardsPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -774,7 +774,7 @@ func (c *Config) WoWGuildPerks() (*wowc.GuildPerks, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowDataGuildPerksPath+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowDataGuildPerksPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -795,7 +795,7 @@ func (c *Config) WoWGuildAchievements() (*wowc.GuildAchievements, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowDataGuildAchievementsPath+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowDataGuildAchievementsPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -816,7 +816,7 @@ func (c *Config) WoWItemClasses() (*wowc.ItemClasses, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowDataItemClassesPath+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowDataItemClassesPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -837,7 +837,7 @@ func (c *Config) WoWTalents() (*wowc.Talents, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowDataTalentsPath+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowDataTalentsPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -858,7 +858,7 @@ func (c *Config) WoWPetTypes() (*wowc.PetTypes, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowDataPetTypesPath+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+wowDataPetTypesPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}

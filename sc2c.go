@@ -37,7 +37,7 @@ func (c *Config) SC2StaticProfile(region Region) (*sc2c.StaticProfile, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+sc2StaticProfilePath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+sc2StaticProfilePath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -58,7 +58,7 @@ func (c *Config) SC2MetadataProfile(region Region, realmID, profileID int) (*sc2
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+sc2MetadataProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+sc2MetadataProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -79,7 +79,7 @@ func (c *Config) SC2Profile(region Region, realmID, profileID int) (*sc2c.Profil
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+sc2ProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+sc2ProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -100,7 +100,7 @@ func (c *Config) SC2ProfileLadderSummary(region Region, realmID, profileID int) 
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+sc2ProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+ladderSummaryPath+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+sc2ProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+ladderSummaryPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -121,7 +121,7 @@ func (c *Config) SC2ProfileLadder(region Region, realmID, profileID, ladderID in
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+sc2ProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+ladderPath+"/"+strconv.Itoa(ladderID)+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+sc2ProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+ladderPath+"/"+strconv.Itoa(ladderID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -142,7 +142,7 @@ func (c *Config) SC2LadderGrandmaster(region Region) (*sc2c.LadderGrandmaster, e
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+sc2GrandmasterPath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+sc2GrandmasterPath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -163,7 +163,7 @@ func (c *Config) SC2LadderSeason(region Region) (*sc2c.LadderSeason, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+sc2SeasonPath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+sc2SeasonPath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -184,7 +184,7 @@ func (c *Config) SC2Player(accountID int) (*sc2c.Player, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+sc2PlayerPath+"/"+strconv.Itoa(accountID)+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+sc2PlayerPath+"/"+strconv.Itoa(accountID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -205,7 +205,7 @@ func (c *Config) SC2LegacyProfile(region Region, realmID, profileID int) (*sc2c.
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+sc2LegacyProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+sc2LegacyProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -226,7 +226,7 @@ func (c *Config) SC2LegacyProfileLadders(region Region, realmID, profileID int) 
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+sc2LegacyProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+laddersPath+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+sc2LegacyProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+laddersPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -247,7 +247,7 @@ func (c *Config) SC2LegacyProfileMatches(region Region, realmID, profileID int) 
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+sc2LegacyProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+matchesPath+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+sc2LegacyProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+matchesPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -268,7 +268,7 @@ func (c *Config) SC2LegacyLadder(region Region, ladderID int) (*sc2c.LegacyLadde
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+sc2LegacyLadderPath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(ladderID)+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+sc2LegacyLadderPath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(ladderID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -289,7 +289,7 @@ func (c *Config) SC2LegacyAchievements(region Region) (*sc2c.LegacyAchievements,
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+sc2LegacyAchievementsPath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+sc2LegacyAchievementsPath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}
@@ -310,7 +310,7 @@ func (c *Config) SC2LegacyRewards(region Region) (*sc2c.LegacyRewards, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+sc2LegacyRewardsPath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale, "")
+	b, err = c.getURLBody(c.apiURL+sc2LegacyRewardsPath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
 		return nil, err
 	}

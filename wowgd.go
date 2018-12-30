@@ -16,8 +16,17 @@ const (
 	wowKeystoneAffinityIndex          = wowKeystoneAffinity + indexPath
 	wowLeaderboardHallOfFame          = dataWowPath + "/leaderboard/hall-of-fame"
 	wowMythicKeystonePath             = dataWowPath + "/mythic-keystone"
+	periodPath                        = "/period"
 	wowMythicKeystoneDungeonPath      = wowMythicKeystonePath + "/dungeon"
 	wowMythicKeystoneDungeonIndexPath = wowMythicKeystoneDungeonPath + indexPath
+	wowMythicKeystonePeriodPath       = wowMythicKeystonePath + periodPath
+	wowMythicKeystonePeriodIndexPath  = wowMythicKeystonePeriodPath + indexPath
+	wowMythicKeystoneSeasonPath       = wowMythicKeystonePath + "/season"
+	wowMythicKeystoneSeasonIndexPath  = wowMythicKeystoneSeasonPath + indexPath
+	mythicLeaderboardPath             = "/mythic-leaderboard"
+	wowPlayableClassesPath            = dataWowPath + "/playable-classes"
+	wowPlayableClassesIndexPath       = wowPlayableClassesPath + indexPath
+	pvpTalentSlotsPath                = "/pvp-talent-slots"
 )
 
 // WoWConnectedRealmIndex returns
@@ -28,7 +37,7 @@ func (c *Config) WoWConnectedRealmIndex() (*wowgd.ConnectedRealmIndex, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowConnectedRealmIndex+"?"+localeQuery+c.locale, c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+wowConnectedRealmIndex+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
 		return nil, err
 	}
@@ -49,7 +58,7 @@ func (c *Config) WoWConnectedRealm(connectedRealmID int) (*wowgd.ConnectedRealm,
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowConnectedRealm+"/"+strconv.Itoa(connectedRealmID)+"?"+localeQuery+c.locale, c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+wowConnectedRealm+"/"+strconv.Itoa(connectedRealmID)+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
 		return nil, err
 	}

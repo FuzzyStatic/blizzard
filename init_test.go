@@ -19,7 +19,7 @@ func init() {
 	clientID := viper.GetString("authentication.client_id")
 	clientSecret := viper.GetString("authentication.client_secret")
 
-	c = New(clientID, clientSecret, US)
+	c = New(clientID, clientSecret, US, zhCN)
 
 	err = c.AccessTokenReq()
 	if err != nil {

@@ -21,7 +21,7 @@ func (c *Config) WoWCharacterMythicKeystoneProfile(realmSlug, characterName stri
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+profileWowCharacterPath+"/"+realmSlug+"/"+characterName+"/"+mythicKeystoneProfilePath+"?"+localeQuery+c.locale, c.profileNamespace)
+	b, err = c.getURLBody(c.apiURL+profileWowCharacterPath+"/"+realmSlug+"/"+characterName+"/"+mythicKeystoneProfilePath+"?"+localeQuery+c.locale.String(), c.profileNamespace)
 	if err != nil {
 		return nil, err
 	}
@@ -43,7 +43,7 @@ func (c *Config) WoWCharacterMythicKeystoneProfileSeason(realmSlug, characterNam
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+profileWowCharacterPath+"/"+realmSlug+"/"+characterName+"/"+mythicKeystoneProfilePath+seasonPath+"/"+strconv.Itoa(seasonID)+"?"+localeQuery+c.locale, c.profileNamespace)
+	b, err = c.getURLBody(c.apiURL+profileWowCharacterPath+"/"+realmSlug+"/"+characterName+"/"+mythicKeystoneProfilePath+seasonPath+"/"+strconv.Itoa(seasonID)+"?"+localeQuery+c.locale.String(), c.profileNamespace)
 	if err != nil {
 		return nil, err
 	}
