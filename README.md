@@ -6,13 +6,18 @@ This is a Go client library for gathering Blizzard API game data.
 
 ### Getting started
 
-Start by initiating a new Blizzard config structure for desired region (client_id and client_secret can be acquired through your developer account at https://develop.battle.net/):
+Start by initiating a new Blizzard config structure for desired region (client_id and client_secret can be acquired through your developer account at https://develop.battle.net/) and requesting an access token:
 
 ```go
 blizz := blizzard.New("client_id", "client_secret", blizzard.US)
+
+err := blizz.AccessTokenReq()
+if err != nil {
+	fmt.Println(err)
+}
 ```
 
-### Fetching data
+### Fetching basic data
 
 Now you can fetch data from the Blizzard API. For example, you validate your token:
 
@@ -25,7 +30,9 @@ if err != nil {
 fmt.Printf("%+v\n", dat)
 ```
 
-You can get information about the current D3 hardcore necromancer leaderboards:
+### Fetching Diablo 3 data
+
+You can use the functions prefixed with "D3" to acquire Diablo 3 information. For example, you can get information about the current D3 hardcore necromancer leaderboards:
 
 ```go
 dat, err := blizz.D3SeasonLeaderboardHardcoreNecromancer(15)
@@ -36,7 +43,9 @@ if err != nil {
 fmt.Printf("%+v\n", dat)
 ```
 
-You can get information about the current SC2 grandmaster ladder:
+### Fetching StarCraft 2 data
+
+You can use the functions prefixed with "SC2" to acquire StarCraft 2 information. For example, you can get information about the current SC2 grandmaster ladder:
 
 ```go
 dat, err := blizz.SC2LadderGrandmaster(EU)
@@ -47,7 +56,9 @@ if err != nil {
 fmt.Printf("%+v\n", dat)
 ```
 
-You can get information about your WoW character profile:
+### Fetching World of Warcraft data
+
+You can use the functions prefixed with "WoW" to acquire World of Warcraft information. For example, you can get information about your WoW character profile:
 
 ```go
 dat, err := blizz.WoWCharacterProfile("emerald-dream", "Limejelly",
@@ -78,6 +89,30 @@ if err != nil {
 
 fmt.Printf("%+v\n", dat)
 ```
+
+or get information about specific spells:
+
+```go
+dat, err := blizz.WoWSpell(17086)
+if err != nil {
+	fmt.Println(err)
+}
+
+fmt.Printf("%+v\n", dat)
+```
+
+or the PVP leaderboards:
+
+```go
+dat, err := blizz.WoWPVPLeaderboard(wowc.Bracket3v3)
+if err != nil {
+	t.Fail()
+}
+
+fmt.Printf("%+v\n", dat)
+```
+
+### Documentation
 
 See the [Blizzard API reference](https://develop.battle.net/documentation/api-reference) and the godoc for all the different datasets that can be acquired.
 
