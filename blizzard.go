@@ -3,6 +3,7 @@ package blizzard
 
 import (
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"time"
@@ -36,13 +37,28 @@ const (
 	CN
 )
 
-// Locale generic locale string
-type Locale string
+func (region Region) String() string {
+	var rr = []string{
+		"",
+		"us",
+		"eu",
+		"kr",
+		"tw",
+		"cn",
+	}
 
-func (l Locale) String() string {
-	return string(l)
+	return rr[region]
 }
 
+// Locale generic locale string
+// erfsf, enUS, esMX, ptBR, enGB, esES, frFR, ruRU, deDE, ptPT, itIT, koKR, zhTW, zhCN
+type Locale string
+
+func (locale Locale) String() string {
+	return string(locale)
+}
+
+// Locale constants
 const (
 	enUS = Locale("en_US")
 	esMX = Locale("es_MX")
@@ -87,36 +103,12 @@ func New(clientID, clientSecret string, region Region, locale Locale) *Config {
 		c.dynamicNamespace = "dynamic-zh"
 		c.profileNamespace = "profile-zh"
 		c.staticNamespace = "static-zh"
-	case EU:
-		c.oauthURL = "https://eu.battle.net"
-		c.apiURL = "https://eu.api.blizzard.com"
-		c.dynamicNamespace = "dynamic-eu"
-		c.profileNamespace = "profile-eu"
-		c.staticNamespace = "static-eu"
-	case KR:
-		c.oauthURL = "https://apac.battle.net"
-		c.apiURL = "https://apac.api.blizzard.com"
-		c.dynamicNamespace = "dynamic-kr"
-		c.profileNamespace = "profile-kr"
-		c.staticNamespace = "static-kr"
-	case TW:
-		c.oauthURL = "https://apac.battle.net"
-		c.apiURL = "https://apac.api.blizzard.com"
-		c.dynamicNamespace = "dynamic-tw"
-		c.profileNamespace = "profile-tw"
-		c.staticNamespace = "static-tw"
-	case US:
-		c.oauthURL = "https://us.battle.net"
-		c.apiURL = "https://us.api.blizzard.com"
-		c.dynamicNamespace = "dynamic-us"
-		c.profileNamespace = "profile-us"
-		c.staticNamespace = "static-us"
 	default:
-		c.oauthURL = "https://us.battle.net"
-		c.apiURL = "https://us.api.blizzard.com"
-		c.dynamicNamespace = "dynamic-us"
-		c.profileNamespace = "profile-us"
-		c.staticNamespace = "static-us"
+		c.oauthURL = fmt.Sprintf("https://%s.battle.net/", region)
+		c.apiURL = fmt.Sprintf("https://%s.api.blizzard.com", region)
+		c.dynamicNamespace = fmt.Sprintf("dynamic-%s", region)
+		c.profileNamespace = fmt.Sprintf("profile-%s", region)
+		c.staticNamespace = fmt.Sprintf("static-%s", region)
 	}
 
 	return &c
