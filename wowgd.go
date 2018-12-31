@@ -42,7 +42,7 @@ const (
 )
 
 // WoWConnectedRealmIndex returns an index of connected realms
-func (c *Config) WoWConnectedRealmIndex() (*wowgd.ConnectedRealmIndex, error) {
+func (c *Client) WoWConnectedRealmIndex() (*wowgd.ConnectedRealmIndex, error) {
 	var (
 		dat wowgd.ConnectedRealmIndex
 		b   []byte
@@ -63,7 +63,7 @@ func (c *Config) WoWConnectedRealmIndex() (*wowgd.ConnectedRealmIndex, error) {
 }
 
 // WoWConnectedRealm returns a single connected realm by ID
-func (c *Config) WoWConnectedRealm(connectedRealmID int) (*wowgd.ConnectedRealm, error) {
+func (c *Client) WoWConnectedRealm(connectedRealmID int) (*wowgd.ConnectedRealm, error) {
 	var (
 		dat wowgd.ConnectedRealm
 		b   []byte
@@ -84,7 +84,7 @@ func (c *Config) WoWConnectedRealm(connectedRealmID int) (*wowgd.ConnectedRealm,
 }
 
 // WoWMythicKeystoneAffixIndex returns an index of Keystone affixes
-func (c *Config) WoWMythicKeystoneAffixIndex() (*wowgd.MythicKeystoneAffixIndex, error) {
+func (c *Client) WoWMythicKeystoneAffixIndex() (*wowgd.MythicKeystoneAffixIndex, error) {
 	var (
 		dat wowgd.MythicKeystoneAffixIndex
 		b   []byte
@@ -105,7 +105,7 @@ func (c *Config) WoWMythicKeystoneAffixIndex() (*wowgd.MythicKeystoneAffixIndex,
 }
 
 // WoWMythicKeystoneAffix returns a single connected realm by ID
-func (c *Config) WoWMythicKeystoneAffix(keystoneAffixID int) (*wowgd.MythicKeystoneAffix, error) {
+func (c *Client) WoWMythicKeystoneAffix(keystoneAffixID int) (*wowgd.MythicKeystoneAffix, error) {
 	var (
 		dat wowgd.MythicKeystoneAffix
 		b   []byte
@@ -126,7 +126,7 @@ func (c *Config) WoWMythicKeystoneAffix(keystoneAffixID int) (*wowgd.MythicKeyst
 }
 
 // WoWMythicRaidLeaderboard returns the leaderboard for a given raid and faction
-func (c *Config) WoWMythicRaidLeaderboard(raid, faction string) (*wowgd.MythicRaidLeaderboard, error) {
+func (c *Client) WoWMythicRaidLeaderboard(raid, faction string) (*wowgd.MythicRaidLeaderboard, error) {
 	var (
 		dat wowgd.MythicRaidLeaderboard
 		b   []byte
@@ -147,7 +147,7 @@ func (c *Config) WoWMythicRaidLeaderboard(raid, faction string) (*wowgd.MythicRa
 }
 
 // WoWMythicKeystoneDungeonIndex returns an index of Mythic Keystone dungeons
-func (c *Config) WoWMythicKeystoneDungeonIndex() (*wowgd.MythicKeystoneDungeonIndex, error) {
+func (c *Client) WoWMythicKeystoneDungeonIndex() (*wowgd.MythicKeystoneDungeonIndex, error) {
 	var (
 		dat wowgd.MythicKeystoneDungeonIndex
 		b   []byte
@@ -168,7 +168,7 @@ func (c *Config) WoWMythicKeystoneDungeonIndex() (*wowgd.MythicKeystoneDungeonIn
 }
 
 // WoWMythicKeystoneDungeon returns a Mythic Keystone dungeon by ID
-func (c *Config) WoWMythicKeystoneDungeon(dungeonID int) (*wowgd.MythicKeystoneDungeon, error) {
+func (c *Client) WoWMythicKeystoneDungeon(dungeonID int) (*wowgd.MythicKeystoneDungeon, error) {
 	var (
 		dat wowgd.MythicKeystoneDungeon
 		b   []byte
@@ -189,7 +189,7 @@ func (c *Config) WoWMythicKeystoneDungeon(dungeonID int) (*wowgd.MythicKeystoneD
 }
 
 // WoWMythicKeystoneIndex returns n index of links to other documents related to Mythic Keystone dungeons
-func (c *Config) WoWMythicKeystoneIndex() (*wowgd.MythicKeystoneIndex, error) {
+func (c *Client) WoWMythicKeystoneIndex() (*wowgd.MythicKeystoneIndex, error) {
 	var (
 		dat wowgd.MythicKeystoneIndex
 		b   []byte
@@ -210,7 +210,7 @@ func (c *Config) WoWMythicKeystoneIndex() (*wowgd.MythicKeystoneIndex, error) {
 }
 
 // WoWMythicKeystonePeriodIndex returns an index of Mythic Keystone periods
-func (c *Config) WoWMythicKeystonePeriodIndex() (*wowgd.MythicKeystonePeriodIndex, error) {
+func (c *Client) WoWMythicKeystonePeriodIndex() (*wowgd.MythicKeystonePeriodIndex, error) {
 	var (
 		dat wowgd.MythicKeystonePeriodIndex
 		b   []byte
@@ -231,7 +231,7 @@ func (c *Config) WoWMythicKeystonePeriodIndex() (*wowgd.MythicKeystonePeriodInde
 }
 
 // WoWMythicKeystonePeriod returns a single connected realm by ID
-func (c *Config) WoWMythicKeystonePeriod(keystonePeriodID int) (*wowgd.MythicKeystonePeriod, error) {
+func (c *Client) WoWMythicKeystonePeriod(keystonePeriodID int) (*wowgd.MythicKeystonePeriod, error) {
 	var (
 		dat wowgd.MythicKeystonePeriod
 		b   []byte
@@ -252,7 +252,7 @@ func (c *Config) WoWMythicKeystonePeriod(keystonePeriodID int) (*wowgd.MythicKey
 }
 
 // WoWMythicKeystoneSeasonIndex returns an index of Keystone affixes
-func (c *Config) WoWMythicKeystoneSeasonIndex() (*wowgd.MythicKeystoneSeasonIndex, error) {
+func (c *Client) WoWMythicKeystoneSeasonIndex() (*wowgd.MythicKeystoneSeasonIndex, error) {
 	var (
 		dat wowgd.MythicKeystoneSeasonIndex
 		b   []byte
@@ -273,7 +273,7 @@ func (c *Config) WoWMythicKeystoneSeasonIndex() (*wowgd.MythicKeystoneSeasonInde
 }
 
 // WoWMythicKeystoneSeason returns a single connected realm by ID
-func (c *Config) WoWMythicKeystoneSeason(seasonID int) (*wowgd.MythicKeystoneSeason, error) {
+func (c *Client) WoWMythicKeystoneSeason(seasonID int) (*wowgd.MythicKeystoneSeason, error) {
 	var (
 		dat wowgd.MythicKeystoneSeason
 		b   []byte

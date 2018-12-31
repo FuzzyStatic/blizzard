@@ -14,7 +14,7 @@ const (
 )
 
 // WoWCharacterMythicKeystoneProfile returns a Mythic Keystone Profile index for a character
-func (c *Config) WoWCharacterMythicKeystoneProfile(realmSlug, characterName string) (*wowp.CharacterMythicKeystoneProfile, error) {
+func (c *Client) WoWCharacterMythicKeystoneProfile(realmSlug, characterName string) (*wowp.CharacterMythicKeystoneProfile, error) {
 	var (
 		dat wowp.CharacterMythicKeystoneProfile
 		b   []byte
@@ -36,7 +36,7 @@ func (c *Config) WoWCharacterMythicKeystoneProfile(realmSlug, characterName stri
 
 // WoWCharacterMythicKeystoneProfileSeason returns a Mythic Keystone Profile index for a character.
 // Note: this request returns a 404 for characters that have not completed a Mythic Keystone dungeon
-func (c *Config) WoWCharacterMythicKeystoneProfileSeason(realmSlug, characterName string, seasonID int) (*wowp.CharacterMythicKeystoneProfileSeason, error) {
+func (c *Client) WoWCharacterMythicKeystoneProfileSeason(realmSlug, characterName string, seasonID int) (*wowp.CharacterMythicKeystoneProfileSeason, error) {
 	var (
 		dat wowp.CharacterMythicKeystoneProfileSeason
 		b   []byte

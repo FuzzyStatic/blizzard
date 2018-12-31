@@ -28,7 +28,7 @@ type OAuth struct {
 }
 
 // AccessTokenReq retrieves new Access Token
-func (c *Config) AccessTokenReq() error {
+func (c *Client) AccessTokenReq() error {
 	var (
 		req     *http.Request
 		res     *http.Response
@@ -74,7 +74,7 @@ func (c *Config) AccessTokenReq() error {
 }
 
 // updateAccessTokenIfExp updates Access Token if expired
-func (c *Config) updateAccessTokenIfExp() error {
+func (c *Client) updateAccessTokenIfExp() error {
 	var err error
 
 	if c.oauth.ExpiresAt.Sub(time.Now().UTC()) < 60 {
@@ -88,7 +88,7 @@ func (c *Config) updateAccessTokenIfExp() error {
 }
 
 // UserInfoHeader teturns basic information about the user associated with the current bearer token
-func (c *Config) UserInfoHeader() ([]byte, error) {
+func (c *Client) UserInfoHeader() ([]byte, error) {
 	var (
 		req *http.Request
 		res *http.Response
@@ -129,7 +129,7 @@ func (c *Config) UserInfoHeader() ([]byte, error) {
 }
 
 // TokenValidation verify that a given bearer token is valid and retrieve metadata about the token including the client_id used to create the token, expiration timestamp, and scopes granted to the token
-func (c *Config) TokenValidation() (*oauth.TokenValidation, error) {
+func (c *Client) TokenValidation() (*oauth.TokenValidation, error) {
 	var (
 		dat oauth.TokenValidation
 		req *http.Request

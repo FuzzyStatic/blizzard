@@ -54,7 +54,7 @@ const (
 )
 
 // WoWUserCharacters returns all characters for user's Access Token
-func (c *Config) WoWUserCharacters(accessToken string) (*wowc.Profile, error) {
+func (c *Client) WoWUserCharacters(accessToken string) (*wowc.Profile, error) {
 	var (
 		dat wowc.Profile
 		req *http.Request
@@ -106,7 +106,7 @@ func (c *Config) WoWUserCharacters(accessToken string) (*wowc.Profile, error) {
 }
 
 // WoWAchievement returns data about an individual achievement
-func (c *Config) WoWAchievement(achievementID int) (*wowc.Achievement, error) {
+func (c *Client) WoWAchievement(achievementID int) (*wowc.Achievement, error) {
 	var (
 		dat wowc.Achievement
 		b   []byte
@@ -127,7 +127,7 @@ func (c *Config) WoWAchievement(achievementID int) (*wowc.Achievement, error) {
 }
 
 // WoWAuctionFiles returns list of auction URLs containing auction data
-func (c *Config) WoWAuctionFiles(realm string) (*wowc.AuctionFiles, error) {
+func (c *Client) WoWAuctionFiles(realm string) (*wowc.AuctionFiles, error) {
 	var (
 		dat wowc.AuctionFiles
 		b   []byte
@@ -148,7 +148,7 @@ func (c *Config) WoWAuctionFiles(realm string) (*wowc.AuctionFiles, error) {
 }
 
 // WoWAuctionData returns auction data for realm
-func (c *Config) WoWAuctionData(realm string) ([]*wowc.AuctionData, error) {
+func (c *Client) WoWAuctionData(realm string) ([]*wowc.AuctionData, error) {
 	var (
 		af   *wowc.AuctionFiles
 		adad []*wowc.AuctionData
@@ -207,7 +207,7 @@ func (c *Config) WoWAuctionData(realm string) ([]*wowc.AuctionData, error) {
 }
 
 // WoWBossMasterList returns a list of all supported bosses. A "boss" in this context should be considered a boss encounter, which may include more than one NPC
-func (c *Config) WoWBossMasterList() (*wowc.BossMasterList, error) {
+func (c *Client) WoWBossMasterList() (*wowc.BossMasterList, error) {
 	var (
 		dat wowc.BossMasterList
 		b   []byte
@@ -228,7 +228,7 @@ func (c *Config) WoWBossMasterList() (*wowc.BossMasterList, error) {
 }
 
 // WoWBoss provides information about bosses. A "boss" in this context should be considered a boss encounter, which may include more than one NPC
-func (c *Config) WoWBoss(bossID int) (*wowc.Boss, error) {
+func (c *Client) WoWBoss(bossID int) (*wowc.Boss, error) {
 	var (
 		dat wowc.Boss
 		b   []byte
@@ -249,7 +249,7 @@ func (c *Config) WoWBoss(bossID int) (*wowc.Boss, error) {
 }
 
 // WoWChallengeModeRealmLeaderboard returns data for all nine challenge mode maps (currently). The map field includes the current medal times for each dungeon. Each ladder provides data about each character that was part of each run. The character data includes the current cached specialization of the character while the member field includes the specialization of the character during the challenge mode run
-func (c *Config) WoWChallengeModeRealmLeaderboard(realm string) (*wowc.ChallengeModeRealmLeaderboard, error) {
+func (c *Client) WoWChallengeModeRealmLeaderboard(realm string) (*wowc.ChallengeModeRealmLeaderboard, error) {
 	var (
 		dat wowc.ChallengeModeRealmLeaderboard
 		b   []byte
@@ -270,7 +270,7 @@ func (c *Config) WoWChallengeModeRealmLeaderboard(realm string) (*wowc.Challenge
 }
 
 // WoWChallengeModeRegionLeaderboard has the exact same data format as the realm leaderboards except there is no realm field. Instead, the response has the top 100 results gathered for each map for all of the available realm leaderboards in a region
-func (c *Config) WoWChallengeModeRegionLeaderboard() (*wowc.ChallengeModeRegionLeaderboard, error) {
+func (c *Client) WoWChallengeModeRegionLeaderboard() (*wowc.ChallengeModeRegionLeaderboard, error) {
 	var (
 		dat wowc.ChallengeModeRegionLeaderboard
 		b   []byte
@@ -292,7 +292,7 @@ func (c *Config) WoWChallengeModeRegionLeaderboard() (*wowc.ChallengeModeRegionL
 
 // WoWCharacterProfile is the primary way to access character information. This API can be used to fetch a single character at a time through an HTTP GET request to a URL describing the character profile resource. By default, these requests return a basic dataset, and each request can return zero or more additional fields. To access this API, craft a resource URL pointing to the desired character for which to retrieve information
 // Optional field constants are prefixed with the word "FieldCharacter"
-func (c *Config) WoWCharacterProfile(realm, characterName string, optionalFields []string) (*wowc.CharacterProfile, error) {
+func (c *Client) WoWCharacterProfile(realm, characterName string, optionalFields []string) (*wowc.CharacterProfile, error) {
 	var (
 		dat      wowc.CharacterProfile
 		fieldStr string
@@ -330,7 +330,7 @@ func (c *Config) WoWCharacterProfile(realm, characterName string, optionalFields
 // WoWGuildProfile  is the primary way to access guild information. This API can fetch a single guild at a time through an HTTP GET request to a URL describing the guild profile resource. By default, these requests return a basic dataset and each request can retrieve zero or more additional fields.
 // Although this endpoint has no required query string parameters, requests can optionally pass the fields query string parameter to indicate that one or more of the optional datasets is to be retrieved. Those additional fields are listed in the method titled "Optional Fields"
 // Optional field constants are prefixed with the word "FieldGuild"
-func (c *Config) WoWGuildProfile(realm, guildName string, optionalFields []string) (*wowc.GuildProfile, error) {
+func (c *Client) WoWGuildProfile(realm, guildName string, optionalFields []string) (*wowc.GuildProfile, error) {
 	var (
 		dat      wowc.GuildProfile
 		fieldStr string
@@ -368,7 +368,7 @@ func (c *Config) WoWGuildProfile(realm, guildName string, optionalFields []strin
 }
 
 // WoWItem provides detailed item information, including item set information
-func (c *Config) WoWItem(itemID int) (*wowc.Item, error) {
+func (c *Client) WoWItem(itemID int) (*wowc.Item, error) {
 	var (
 		dat wowc.Item
 		b   []byte
@@ -389,7 +389,7 @@ func (c *Config) WoWItem(itemID int) (*wowc.Item, error) {
 }
 
 // WoWItemSet provides detailed item information, including item set information
-func (c *Config) WoWItemSet(setID int) (*wowc.ItemSet, error) {
+func (c *Client) WoWItemSet(setID int) (*wowc.ItemSet, error) {
 	var (
 		dat wowc.ItemSet
 		b   []byte
@@ -410,7 +410,7 @@ func (c *Config) WoWItemSet(setID int) (*wowc.ItemSet, error) {
 }
 
 // WoWMountMasterList returns a list of all supported mounts
-func (c *Config) WoWMountMasterList() (*wowc.MountMasterList, error) {
+func (c *Client) WoWMountMasterList() (*wowc.MountMasterList, error) {
 	var (
 		dat wowc.MountMasterList
 		b   []byte
@@ -431,7 +431,7 @@ func (c *Config) WoWMountMasterList() (*wowc.MountMasterList, error) {
 }
 
 // WoWPetMasterList returns a list of all supported battle and vanity pets
-func (c *Config) WoWPetMasterList() (*wowc.PetMasterList, error) {
+func (c *Client) WoWPetMasterList() (*wowc.PetMasterList, error) {
 	var (
 		dat wowc.PetMasterList
 		b   []byte
@@ -452,7 +452,7 @@ func (c *Config) WoWPetMasterList() (*wowc.PetMasterList, error) {
 }
 
 // WoWPetAbility returns data about a individual battle pet ability ID. This resource does not provide ability tooltips
-func (c *Config) WoWPetAbility(abilityID int) (*wowc.PetAbility, error) {
+func (c *Client) WoWPetAbility(abilityID int) (*wowc.PetAbility, error) {
 	var (
 		dat wowc.PetAbility
 		b   []byte
@@ -473,7 +473,7 @@ func (c *Config) WoWPetAbility(abilityID int) (*wowc.PetAbility, error) {
 }
 
 // WoWPetSpecies returns data about an individual pet species. Use pets as the field value in a character profile request to get species IDs. Each species also has data about its six abilities
-func (c *Config) WoWPetSpecies(speciesID int) (*wowc.PetSpecies, error) {
+func (c *Client) WoWPetSpecies(speciesID int) (*wowc.PetSpecies, error) {
 	var (
 		dat wowc.PetSpecies
 		b   []byte
@@ -494,7 +494,7 @@ func (c *Config) WoWPetSpecies(speciesID int) (*wowc.PetSpecies, error) {
 }
 
 // WoWPetStats returns detailed information about a given species of pet
-func (c *Config) WoWPetStats(speciesID, level, breedID, qualityID int) (*wowc.PetStats, error) {
+func (c *Client) WoWPetStats(speciesID, level, breedID, qualityID int) (*wowc.PetStats, error) {
 	var (
 		dat wowc.PetStats
 		b   []byte
@@ -515,7 +515,7 @@ func (c *Config) WoWPetStats(speciesID, level, breedID, qualityID int) (*wowc.Pe
 }
 
 // WoWPVPLeaderboard provides leaderboard information for the 2v2, 3v3, 5v5, and Rated Battleground leaderboards
-func (c *Config) WoWPVPLeaderboard(bracket string) (*wowc.PVPLeaderboard, error) {
+func (c *Client) WoWPVPLeaderboard(bracket string) (*wowc.PVPLeaderboard, error) {
 	var (
 		dat wowc.PVPLeaderboard
 		b   []byte
@@ -536,7 +536,7 @@ func (c *Config) WoWPVPLeaderboard(bracket string) (*wowc.PVPLeaderboard, error)
 }
 
 // WoWQuest returns metadata for a specified quest
-func (c *Config) WoWQuest(questID int) (*wowc.Quest, error) {
+func (c *Client) WoWQuest(questID int) (*wowc.Quest, error) {
 	var (
 		dat wowc.Quest
 		b   []byte
@@ -557,7 +557,7 @@ func (c *Config) WoWQuest(questID int) (*wowc.Quest, error) {
 }
 
 // WoWRealmStatus returns metadata for a specified quest
-func (c *Config) WoWRealmStatus() (*wowc.RealmStatus, error) {
+func (c *Client) WoWRealmStatus() (*wowc.RealmStatus, error) {
 	var (
 		dat wowc.RealmStatus
 		b   []byte
@@ -578,7 +578,7 @@ func (c *Config) WoWRealmStatus() (*wowc.RealmStatus, error) {
 }
 
 // WoWRecipe returns basic recipe information
-func (c *Config) WoWRecipe(recipeID int) (*wowc.Recipe, error) {
+func (c *Client) WoWRecipe(recipeID int) (*wowc.Recipe, error) {
 	var (
 		dat wowc.Recipe
 		b   []byte
@@ -599,7 +599,7 @@ func (c *Config) WoWRecipe(recipeID int) (*wowc.Recipe, error) {
 }
 
 // WoWSpell returns information about spells
-func (c *Config) WoWSpell(spellID int) (*wowc.Spell, error) {
+func (c *Client) WoWSpell(spellID int) (*wowc.Spell, error) {
 	var (
 		dat wowc.Spell
 		b   []byte
@@ -620,7 +620,7 @@ func (c *Config) WoWSpell(spellID int) (*wowc.Spell, error) {
 }
 
 // WoWZoneMasterList returns a list of all supported zones and their bosses. A "zone" in this context should be considered a dungeon or a raid, not a world zone. A "boss" in this context should be considered a boss encounter, which may include more than one NPC
-func (c *Config) WoWZoneMasterList() (*wowc.ZoneMasterList, error) {
+func (c *Client) WoWZoneMasterList() (*wowc.ZoneMasterList, error) {
 	var (
 		dat wowc.ZoneMasterList
 		b   []byte
@@ -641,7 +641,7 @@ func (c *Config) WoWZoneMasterList() (*wowc.ZoneMasterList, error) {
 }
 
 // WoWZone returns information about zone
-func (c *Config) WoWZone(zoneID int) (*wowc.Zone, error) {
+func (c *Client) WoWZone(zoneID int) (*wowc.Zone, error) {
 	var (
 		dat wowc.Zone
 		b   []byte
@@ -662,7 +662,7 @@ func (c *Config) WoWZone(zoneID int) (*wowc.Zone, error) {
 }
 
 // WoWRegionBattlegroups returns a list of battlegroups for the specified region. Note the trailing / on this request path
-func (c *Config) WoWRegionBattlegroups() (*wowc.RegionBattlegroups, error) {
+func (c *Client) WoWRegionBattlegroups() (*wowc.RegionBattlegroups, error) {
 	var (
 		dat wowc.RegionBattlegroups
 		b   []byte
@@ -683,7 +683,7 @@ func (c *Config) WoWRegionBattlegroups() (*wowc.RegionBattlegroups, error) {
 }
 
 // WoWCharacterRaces returns a list of races and their associated faction, name, unique ID, and skin
-func (c *Config) WoWCharacterRaces() (*wowc.CharacterRaces, error) {
+func (c *Client) WoWCharacterRaces() (*wowc.CharacterRaces, error) {
 	var (
 		dat wowc.CharacterRaces
 		b   []byte
@@ -704,7 +704,7 @@ func (c *Config) WoWCharacterRaces() (*wowc.CharacterRaces, error) {
 }
 
 // WoWCharacterClasses returns a list of character classes
-func (c *Config) WoWCharacterClasses() (*wowc.CharacterClasses, error) {
+func (c *Client) WoWCharacterClasses() (*wowc.CharacterClasses, error) {
 	var (
 		dat wowc.CharacterClasses
 		b   []byte
@@ -725,7 +725,7 @@ func (c *Config) WoWCharacterClasses() (*wowc.CharacterClasses, error) {
 }
 
 // WoWCharacterAchievements returns a list of all achievements that characters can earn as well as the category structure and hierarchy
-func (c *Config) WoWCharacterAchievements() (*wowc.CharacterAchievements, error) {
+func (c *Client) WoWCharacterAchievements() (*wowc.CharacterAchievements, error) {
 	var (
 		dat wowc.CharacterAchievements
 		b   []byte
@@ -746,7 +746,7 @@ func (c *Config) WoWCharacterAchievements() (*wowc.CharacterAchievements, error)
 }
 
 // WoWGuildRewards provides a list of all guild rewards
-func (c *Config) WoWGuildRewards() (*wowc.GuildRewards, error) {
+func (c *Client) WoWGuildRewards() (*wowc.GuildRewards, error) {
 	var (
 		dat wowc.GuildRewards
 		b   []byte
@@ -767,7 +767,7 @@ func (c *Config) WoWGuildRewards() (*wowc.GuildRewards, error) {
 }
 
 // WoWGuildPerks returns a list of all guild achievements as well as the category structure and hierarchy
-func (c *Config) WoWGuildPerks() (*wowc.GuildPerks, error) {
+func (c *Client) WoWGuildPerks() (*wowc.GuildPerks, error) {
 	var (
 		dat wowc.GuildPerks
 		b   []byte
@@ -788,7 +788,7 @@ func (c *Config) WoWGuildPerks() (*wowc.GuildPerks, error) {
 }
 
 // WoWGuildAchievements returns a list of all guild achievements as well as the category structure and hierarchy
-func (c *Config) WoWGuildAchievements() (*wowc.GuildAchievements, error) {
+func (c *Client) WoWGuildAchievements() (*wowc.GuildAchievements, error) {
 	var (
 		dat wowc.GuildAchievements
 		b   []byte
@@ -809,7 +809,7 @@ func (c *Config) WoWGuildAchievements() (*wowc.GuildAchievements, error) {
 }
 
 // WoWItemClasses returns a list of item classes
-func (c *Config) WoWItemClasses() (*wowc.ItemClasses, error) {
+func (c *Client) WoWItemClasses() (*wowc.ItemClasses, error) {
 	var (
 		dat wowc.ItemClasses
 		b   []byte
@@ -830,7 +830,7 @@ func (c *Config) WoWItemClasses() (*wowc.ItemClasses, error) {
 }
 
 // WoWTalents returns a list of talents, specs, and glyphs for each class
-func (c *Config) WoWTalents() (*wowc.Talents, error) {
+func (c *Client) WoWTalents() (*wowc.Talents, error) {
 	var (
 		dat wowc.Talents
 		b   []byte
@@ -851,7 +851,7 @@ func (c *Config) WoWTalents() (*wowc.Talents, error) {
 }
 
 // WoWPetTypes returns a list of the different battle pet types, including what they are strong and weak against
-func (c *Config) WoWPetTypes() (*wowc.PetTypes, error) {
+func (c *Client) WoWPetTypes() (*wowc.PetTypes, error) {
 	var (
 		dat wowc.PetTypes
 		b   []byte

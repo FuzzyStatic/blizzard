@@ -47,7 +47,7 @@ const (
 )
 
 // D3ActIndex returns an index of acts
-func (c *Config) D3ActIndex() (*d3c.ActIndex, error) {
+func (c *Client) D3ActIndex() (*d3c.ActIndex, error) {
 	var (
 		dat d3c.ActIndex
 		b   []byte
@@ -68,7 +68,7 @@ func (c *Config) D3ActIndex() (*d3c.ActIndex, error) {
 }
 
 // D3Act returns information about act based on ID
-func (c *Config) D3Act(id int) (*d3c.Act, error) {
+func (c *Client) D3Act(id int) (*d3c.Act, error) {
 	var (
 		dat d3c.Act
 		b   []byte
@@ -89,7 +89,7 @@ func (c *Config) D3Act(id int) (*d3c.Act, error) {
 }
 
 // D3Blacksmith returns blacksmith data
-func (c *Config) D3Blacksmith() (*d3c.Artisan, error) {
+func (c *Client) D3Blacksmith() (*d3c.Artisan, error) {
 	var (
 		dat d3c.Artisan
 		b   []byte
@@ -110,7 +110,7 @@ func (c *Config) D3Blacksmith() (*d3c.Artisan, error) {
 }
 
 // D3Jeweler returns jeweler data
-func (c *Config) D3Jeweler() (*d3c.Artisan, error) {
+func (c *Client) D3Jeweler() (*d3c.Artisan, error) {
 	var (
 		dat d3c.Artisan
 		b   []byte
@@ -131,7 +131,7 @@ func (c *Config) D3Jeweler() (*d3c.Artisan, error) {
 }
 
 // D3Mystic returns mystic data
-func (c *Config) D3Mystic() (*d3c.Artisan, error) {
+func (c *Client) D3Mystic() (*d3c.Artisan, error) {
 	var (
 		dat d3c.Artisan
 		b   []byte
@@ -152,7 +152,7 @@ func (c *Config) D3Mystic() (*d3c.Artisan, error) {
 }
 
 // D3BlacksmithRecipe returns blacksmith recipe data
-func (c *Config) D3BlacksmithRecipe(recipeSlug string) (*d3c.Recipe, error) {
+func (c *Client) D3BlacksmithRecipe(recipeSlug string) (*d3c.Recipe, error) {
 	var (
 		dat d3c.Recipe
 		b   []byte
@@ -173,7 +173,7 @@ func (c *Config) D3BlacksmithRecipe(recipeSlug string) (*d3c.Recipe, error) {
 }
 
 // D3JewelerRecipe returns jeweler recipe data
-func (c *Config) D3JewelerRecipe(recipeSlug string) (*d3c.Recipe, error) {
+func (c *Client) D3JewelerRecipe(recipeSlug string) (*d3c.Recipe, error) {
 	var (
 		dat d3c.Recipe
 		b   []byte
@@ -194,7 +194,7 @@ func (c *Config) D3JewelerRecipe(recipeSlug string) (*d3c.Recipe, error) {
 }
 
 // D3Enchantress returns enchantress data
-func (c *Config) D3Enchantress() (*d3c.Follower, error) {
+func (c *Client) D3Enchantress() (*d3c.Follower, error) {
 	var (
 		dat d3c.Follower
 		b   []byte
@@ -215,7 +215,7 @@ func (c *Config) D3Enchantress() (*d3c.Follower, error) {
 }
 
 // D3Scoundrel returns scoundrel data
-func (c *Config) D3Scoundrel() (*d3c.Follower, error) {
+func (c *Client) D3Scoundrel() (*d3c.Follower, error) {
 	var (
 		dat d3c.Follower
 		b   []byte
@@ -236,7 +236,7 @@ func (c *Config) D3Scoundrel() (*d3c.Follower, error) {
 }
 
 // D3Templar returns templar data
-func (c *Config) D3Templar() (*d3c.Follower, error) {
+func (c *Client) D3Templar() (*d3c.Follower, error) {
 	var (
 		dat d3c.Follower
 		b   []byte
@@ -257,7 +257,7 @@ func (c *Config) D3Templar() (*d3c.Follower, error) {
 }
 
 // D3Barbarian returns barbarian data
-func (c *Config) D3Barbarian() (*d3c.Hero, error) {
+func (c *Client) D3Barbarian() (*d3c.Hero, error) {
 	var (
 		dat d3c.Hero
 		b   []byte
@@ -278,7 +278,7 @@ func (c *Config) D3Barbarian() (*d3c.Hero, error) {
 }
 
 // D3Crusader returns crusader data
-func (c *Config) D3Crusader() (*d3c.Hero, error) {
+func (c *Client) D3Crusader() (*d3c.Hero, error) {
 	var (
 		dat d3c.Hero
 		b   []byte
@@ -299,7 +299,7 @@ func (c *Config) D3Crusader() (*d3c.Hero, error) {
 }
 
 // D3DemonHunter returns demon hunter data
-func (c *Config) D3DemonHunter() (*d3c.Hero, error) {
+func (c *Client) D3DemonHunter() (*d3c.Hero, error) {
 	var (
 		dat d3c.Hero
 		b   []byte
@@ -320,7 +320,7 @@ func (c *Config) D3DemonHunter() (*d3c.Hero, error) {
 }
 
 // D3Monk returns monk data
-func (c *Config) D3Monk() (*d3c.Hero, error) {
+func (c *Client) D3Monk() (*d3c.Hero, error) {
 	var (
 		dat d3c.Hero
 		b   []byte
@@ -341,7 +341,7 @@ func (c *Config) D3Monk() (*d3c.Hero, error) {
 }
 
 // D3Necromancer returns necromancer data
-func (c *Config) D3Necromancer() (*d3c.Hero, error) {
+func (c *Client) D3Necromancer() (*d3c.Hero, error) {
 	var (
 		dat d3c.Hero
 		b   []byte
@@ -362,7 +362,7 @@ func (c *Config) D3Necromancer() (*d3c.Hero, error) {
 }
 
 // D3Wizard returns wizard data
-func (c *Config) D3Wizard() (*d3c.Hero, error) {
+func (c *Client) D3Wizard() (*d3c.Hero, error) {
 	var (
 		dat d3c.Hero
 		b   []byte
@@ -383,7 +383,7 @@ func (c *Config) D3Wizard() (*d3c.Hero, error) {
 }
 
 // D3WitchDoctor returns witch doctor data
-func (c *Config) D3WitchDoctor() (*d3c.Hero, error) {
+func (c *Client) D3WitchDoctor() (*d3c.Hero, error) {
 	var (
 		dat d3c.Hero
 		b   []byte
@@ -404,7 +404,7 @@ func (c *Config) D3WitchDoctor() (*d3c.Hero, error) {
 }
 
 // D3BarbarianSkill returns barbarian skill data
-func (c *Config) D3BarbarianSkill(skillSlug string) (*d3c.Skill, error) {
+func (c *Client) D3BarbarianSkill(skillSlug string) (*d3c.Skill, error) {
 	var (
 		dat d3c.Skill
 		b   []byte
@@ -425,7 +425,7 @@ func (c *Config) D3BarbarianSkill(skillSlug string) (*d3c.Skill, error) {
 }
 
 // D3CrusaderSkill returns crusader skill data
-func (c *Config) D3CrusaderSkill(skillSlug string) (*d3c.Skill, error) {
+func (c *Client) D3CrusaderSkill(skillSlug string) (*d3c.Skill, error) {
 	var (
 		dat d3c.Skill
 		b   []byte
@@ -446,7 +446,7 @@ func (c *Config) D3CrusaderSkill(skillSlug string) (*d3c.Skill, error) {
 }
 
 // D3DemonHunterSkill returns demon hunter skill data
-func (c *Config) D3DemonHunterSkill(skillSlug string) (*d3c.Skill, error) {
+func (c *Client) D3DemonHunterSkill(skillSlug string) (*d3c.Skill, error) {
 	var (
 		dat d3c.Skill
 		b   []byte
@@ -467,7 +467,7 @@ func (c *Config) D3DemonHunterSkill(skillSlug string) (*d3c.Skill, error) {
 }
 
 // D3MonkSkill returns monk skill data
-func (c *Config) D3MonkSkill(skillSlug string) (*d3c.Skill, error) {
+func (c *Client) D3MonkSkill(skillSlug string) (*d3c.Skill, error) {
 	var (
 		dat d3c.Skill
 		b   []byte
@@ -488,7 +488,7 @@ func (c *Config) D3MonkSkill(skillSlug string) (*d3c.Skill, error) {
 }
 
 // D3NecromancerSkill returns necromancer skill data
-func (c *Config) D3NecromancerSkill(skillSlug string) (*d3c.Skill, error) {
+func (c *Client) D3NecromancerSkill(skillSlug string) (*d3c.Skill, error) {
 	var (
 		dat d3c.Skill
 		b   []byte
@@ -509,7 +509,7 @@ func (c *Config) D3NecromancerSkill(skillSlug string) (*d3c.Skill, error) {
 }
 
 // D3WizardSkill returns wizard skill data
-func (c *Config) D3WizardSkill(skillSlug string) (*d3c.Skill, error) {
+func (c *Client) D3WizardSkill(skillSlug string) (*d3c.Skill, error) {
 	var (
 		dat d3c.Skill
 		b   []byte
@@ -530,7 +530,7 @@ func (c *Config) D3WizardSkill(skillSlug string) (*d3c.Skill, error) {
 }
 
 // D3WitchDoctorSkill returns witch doctor skill data
-func (c *Config) D3WitchDoctorSkill(skillSlug string) (*d3c.Skill, error) {
+func (c *Client) D3WitchDoctorSkill(skillSlug string) (*d3c.Skill, error) {
 	var (
 		dat d3c.Skill
 		b   []byte
@@ -551,7 +551,7 @@ func (c *Config) D3WitchDoctorSkill(skillSlug string) (*d3c.Skill, error) {
 }
 
 // D3ItemTypeIndex returns an index of item types
-func (c *Config) D3ItemTypeIndex() (*d3c.ItemTypeIndex, error) {
+func (c *Client) D3ItemTypeIndex() (*d3c.ItemTypeIndex, error) {
 	var (
 		dat d3c.ItemTypeIndex
 		b   []byte
@@ -572,7 +572,7 @@ func (c *Config) D3ItemTypeIndex() (*d3c.ItemTypeIndex, error) {
 }
 
 // D3ItemType returns item type data
-func (c *Config) D3ItemType(itemTypeSlug string) (*d3c.ItemType, error) {
+func (c *Client) D3ItemType(itemTypeSlug string) (*d3c.ItemType, error) {
 	var (
 		dat d3c.ItemType
 		b   []byte
@@ -593,7 +593,7 @@ func (c *Config) D3ItemType(itemTypeSlug string) (*d3c.ItemType, error) {
 }
 
 // D3Item returns item data
-func (c *Config) D3Item(itemSlug, itemID string) (*d3c.Item, error) {
+func (c *Client) D3Item(itemSlug, itemID string) (*d3c.Item, error) {
 	var (
 		dat d3c.Item
 		b   []byte
@@ -615,7 +615,7 @@ func (c *Config) D3Item(itemSlug, itemID string) (*d3c.Item, error) {
 
 // D3Profile returns profile data
 // Formats accepted: Player-1234 or Player#1234
-func (c *Config) D3Profile(account string) (*d3c.Profile, error) {
+func (c *Client) D3Profile(account string) (*d3c.Profile, error) {
 	var (
 		dat d3c.Profile
 		b   []byte
@@ -639,7 +639,7 @@ func (c *Config) D3Profile(account string) (*d3c.Profile, error) {
 
 // D3ProfileHero returns profile's hero data
 // Formats accepted: Player-1234 or Player#1234
-func (c *Config) D3ProfileHero(account string, heroID int) (*d3c.ProfileHero, error) {
+func (c *Client) D3ProfileHero(account string, heroID int) (*d3c.ProfileHero, error) {
 	var (
 		dat d3c.ProfileHero
 		b   []byte
@@ -663,7 +663,7 @@ func (c *Config) D3ProfileHero(account string, heroID int) (*d3c.ProfileHero, er
 
 // D3ProfileHeroItems returns profile's hero's item data
 // Formats accepted: Player-1234 or Player#1234
-func (c *Config) D3ProfileHeroItems(account string, heroID int) (*d3c.ProfileHeroItems, error) {
+func (c *Client) D3ProfileHeroItems(account string, heroID int) (*d3c.ProfileHeroItems, error) {
 	var (
 		dat d3c.ProfileHeroItems
 		b   []byte
@@ -687,7 +687,7 @@ func (c *Config) D3ProfileHeroItems(account string, heroID int) (*d3c.ProfileHer
 
 // D3ProfileHeroFollowerItems returns profile's hero's follower item data
 // Formats accepted: Player-1234 or Player#1234
-func (c *Config) D3ProfileHeroFollowerItems(account string, heroID int) (*d3c.ProfileHeroFollowerItems, error) {
+func (c *Client) D3ProfileHeroFollowerItems(account string, heroID int) (*d3c.ProfileHeroFollowerItems, error) {
 	var (
 		dat d3c.ProfileHeroFollowerItems
 		b   []byte

@@ -10,10 +10,10 @@ import (
 )
 
 // For testing
-var c *Config
+var c *Client
 
-// Config regional API URLs, locale, access token, api key
-type Config struct {
+// Client regional API URLs, locale, client ID, client secret
+type Client struct {
 	client           *http.Client
 	oauth            OAuth
 	oauthURL         string
@@ -82,9 +82,9 @@ const (
 	profilePath = "/profile"
 )
 
-// New create new Blizzard structure. This structure will be used to acquire your access token and make API calls.
-func New(clientID, clientSecret string, region Region, locale Locale) *Config {
-	var c = Config{
+// NewClient create new Blizzard structure. This structure will be used to acquire your access token and make API calls.
+func NewClient(clientID, clientSecret string, region Region, locale Locale) *Client {
+	var c = Client{
 		client: &http.Client{
 			Timeout: time.Second * time.Duration(60),
 		},
@@ -115,7 +115,7 @@ func New(clientID, clientSecret string, region Region, locale Locale) *Config {
 }
 
 // getURLBody processes simple GET request based on URL
-func (c *Config) getURLBody(url, namespace string) ([]byte, error) {
+func (c *Client) getURLBody(url, namespace string) ([]byte, error) {
 	var (
 		req  *http.Request
 		res  *http.Response
