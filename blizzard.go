@@ -51,7 +51,7 @@ func (region Region) String() string {
 }
 
 // Locale generic locale string
-// erfsf, enUS, esMX, ptBR, enGB, esES, frFR, ruRU, deDE, ptPT, itIT, koKR, zhTW, zhCN
+// enUS, esMX, ptBR, enGB, esES, frFR, ruRU, deDE, ptPT, itIT, koKR, zhTW, zhCN
 type Locale string
 
 func (locale Locale) String() string {

@@ -25,8 +25,9 @@ const (
 	wowMythicKeystoneSeasonPath        = wowMythicKeystonePath + "/season"
 	wowMythicKeystoneSeasonIndexPath   = wowMythicKeystoneSeasonPath + indexPath
 	mythicLeaderboardPath              = "/mythic-leaderboard"
-	wowPlayableClassesPath             = dataWowPath + "/playable-classes"
-	wowPlayableClassesIndexPath        = wowPlayableClassesPath + indexPath
+	mythicLeaderboardIndexPath         = mythicLeaderboardPath + indexPath
+	wowPlayableClassPath               = dataWowPath + "/playable-class"
+	wowPlayableClassIndexPath          = wowPlayableClassPath + indexPath
 	pvpTalentSlotsPath                 = "/pvp-talent-slots"
 	wowPlayableSpecializationPath      = dataWowPath + "/playable-specialization"
 	wowPlayableSpecializationIndexPath = wowPlayableSpecializationPath + indexPath
@@ -230,15 +231,15 @@ func (c *Client) WoWMythicKeystonePeriodIndex() (*wowgd.MythicKeystonePeriodInde
 	return &dat, nil
 }
 
-// WoWMythicKeystonePeriod returns a single connected realm by ID
-func (c *Client) WoWMythicKeystonePeriod(keystonePeriodID int) (*wowgd.MythicKeystonePeriod, error) {
+// WoWMythicKeystonePeriod returns a Mythic Keystone period by ID
+func (c *Client) WoWMythicKeystonePeriod(periodID int) (*wowgd.MythicKeystonePeriod, error) {
 	var (
 		dat wowgd.MythicKeystonePeriod
 		b   []byte
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowMythicKeystonePeriodPath+"/"+strconv.Itoa(keystonePeriodID)+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+wowMythicKeystonePeriodPath+"/"+strconv.Itoa(periodID)+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
 		return nil, err
 	}
@@ -251,7 +252,7 @@ func (c *Client) WoWMythicKeystonePeriod(keystonePeriodID int) (*wowgd.MythicKey
 	return &dat, nil
 }
 
-// WoWMythicKeystoneSeasonIndex returns an index of Keystone affixes
+// WoWMythicKeystoneSeasonIndex returns an index of Mythic Keystone seasons
 func (c *Client) WoWMythicKeystoneSeasonIndex() (*wowgd.MythicKeystoneSeasonIndex, error) {
 	var (
 		dat wowgd.MythicKeystoneSeasonIndex
@@ -272,7 +273,7 @@ func (c *Client) WoWMythicKeystoneSeasonIndex() (*wowgd.MythicKeystoneSeasonInde
 	return &dat, nil
 }
 
-// WoWMythicKeystoneSeason returns a single connected realm by ID
+// WoWMythicKeystoneSeason returns a Mythic Keystone season by ID
 func (c *Client) WoWMythicKeystoneSeason(seasonID int) (*wowgd.MythicKeystoneSeason, error) {
 	var (
 		dat wowgd.MythicKeystoneSeason
@@ -281,6 +282,300 @@ func (c *Client) WoWMythicKeystoneSeason(seasonID int) (*wowgd.MythicKeystoneSea
 	)
 
 	b, err = c.getURLBody(c.apiURL+wowMythicKeystoneSeasonPath+"/"+strconv.Itoa(seasonID)+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWMythicKeystoneLeaderboardIndex returns an index of Mythic Keystone Leaderboard dungeon instances for a connected realm
+func (c *Client) WoWMythicKeystoneLeaderboardIndex(connectedRealmID int) (*wowgd.MythicKeystoneLeaderboardIndex, error) {
+	var (
+		dat wowgd.MythicKeystoneLeaderboardIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowConnectedRealmPath+"/"+strconv.Itoa(connectedRealmID)+"/"+mythicLeaderboardIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWMythicKeystoneLeaderboard returns a weekly Mythic Keystone Leaderboard by period
+func (c *Client) WoWMythicKeystoneLeaderboard(connectedRealmID, dungeonID, period int) (*wowgd.MythicKeystoneLeaderboard, error) {
+	var (
+		dat wowgd.MythicKeystoneLeaderboard
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowConnectedRealmPath+"/"+strconv.Itoa(connectedRealmID)+"/"+mythicLeaderboardPath+"/"+strconv.Itoa(dungeonID)+periodPath+"/"+strconv.Itoa(period)+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWPlayableClassesIndex returns an index of playable classes
+func (c *Client) WoWPlayableClassesIndex() (*wowgd.PlayableClassesIndex, error) {
+	var (
+		dat wowgd.PlayableClassesIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowPlayableClassIndexPath+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWPlayableClass returns a playable class by ID
+func (c *Client) WoWPlayableClass(classID int) (*wowgd.PlayableClass, error) {
+	var (
+		dat wowgd.PlayableClass
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowPlayableClassPath+"/"+strconv.Itoa(classID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWPlayableClassPVPTalentSlots returns the PvP talent slots for a playable class by ID
+func (c *Client) WoWPlayableClassPVPTalentSlots(classID int) (*wowgd.PlayableClassPVPTalentSlots, error) {
+	var (
+		dat wowgd.PlayableClassPVPTalentSlots
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowPlayableClassPath+"/"+strconv.Itoa(classID)+pvpTalentSlotsPath+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWPowerTypesIndex returns an index of power types
+func (c *Client) WoWPowerTypesIndex() (*wowgd.PowerTypesIndex, error) {
+	var (
+		dat wowgd.PowerTypesIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowPowerTypeIndexPath+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWPowerType returns a power type by ID
+func (c *Client) WoWPowerType(powerTypeID int) (*wowgd.PowerType, error) {
+	var (
+		dat wowgd.PowerType
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowPowerTypePath+"/"+strconv.Itoa(powerTypeID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWPlayableRacesIndex returns an index of races
+func (c *Client) WoWPlayableRacesIndex() (*wowgd.PlayableRacesIndex, error) {
+	var (
+		dat wowgd.PlayableRacesIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowRaceIndexPath+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWPlayableRace returns a race by ID
+func (c *Client) WoWPlayableRace(raceID int) (*wowgd.PlayableRace, error) {
+	var (
+		dat wowgd.PlayableRace
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowRacePath+"/"+strconv.Itoa(raceID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWRealmIndex returns an index of realms
+func (c *Client) WoWRealmIndex() (*wowgd.RealmIndex, error) {
+	var (
+		dat wowgd.RealmIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowRealmIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWRealm returns a single realm by slug or ID
+func (c *Client) WoWRealm(realmSlug string) (*wowgd.Realm, error) {
+	var (
+		dat wowgd.Realm
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowRealmPath+"/"+realmSlug+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWRegionIndex returns an index of regions
+func (c *Client) WoWRegionIndex() (*wowgd.RegionIndex, error) {
+	var (
+		dat wowgd.RegionIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowRegionIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWRegion returns a single region by ID
+func (c *Client) WoWRegion(regionID int) (*wowgd.Region, error) {
+	var (
+		dat wowgd.Region
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowRegionPath+"/"+strconv.Itoa(regionID)+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return nil, err
+	}
+
+	return &dat, nil
+}
+
+// WoWToken returns the WoW Token index
+func (c *Client) WoWToken() (*wowgd.Token, error) {
+	var (
+		dat wowgd.Token
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowTokenIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
 		return nil, err
 	}

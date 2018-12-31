@@ -1,7 +1,7 @@
 package wowgd
 
-// WowToken structure
-type WowToken struct {
+// Token structure
+type Token struct {
 	Links struct {
 		Self struct {
 			Href string `json:"href"`
