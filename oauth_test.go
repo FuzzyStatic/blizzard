@@ -13,7 +13,9 @@ func TestAccessTokenReq(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", c.oauth)
+	if printOutput != "" {
+		fmt.Printf("%+v\n", c.oauth)
+	}
 }
 
 func TestUpdateAccessTokenIfExp(t *testing.T) {
@@ -24,15 +26,21 @@ func TestUpdateAccessTokenIfExp(t *testing.T) {
 	}
 
 	c.updateAccessTokenIfExp()
-	fmt.Printf("%+v\n", c.oauth)
+	if printOutput != "" {
+		fmt.Printf("%+v\n", c.oauth)
+	}
 
 	c.oauth.AccessTokenRequest.ExpiresIn = 0
 	c.oauth.ExpiresAt = time.Now().UTC()
 
-	fmt.Printf("%+v\n", c.oauth)
+	if printOutput != "" {
+		fmt.Printf("%+v\n", c.oauth)
+	}
 	c.updateAccessTokenIfExp()
 
-	fmt.Printf("%+v\n", c.oauth)
+	if printOutput != "" {
+		fmt.Printf("%+v\n", c.oauth)
+	}
 }
 
 func TestUserInfoHeader(t *testing.T) {
@@ -42,7 +50,9 @@ func TestUserInfoHeader(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%s\n", body)
+	if printOutput != "" {
+		fmt.Printf("%s\n", body)
+	}
 }
 
 func TestTokenValidation(t *testing.T) {
@@ -52,7 +62,7 @@ func TestTokenValidation(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }

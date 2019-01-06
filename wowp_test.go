@@ -12,7 +12,7 @@ func TestWoWCharacterMythicKeystoneProfile(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -24,7 +24,7 @@ func TestWoWCharacterMythicKeystoneProfileSeason(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }

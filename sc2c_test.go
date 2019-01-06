@@ -12,7 +12,7 @@ func TestSC2StaticProfile(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -24,7 +24,7 @@ func TestSC2MetadataProfile(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -36,7 +36,7 @@ func TestSC2Profile(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -48,7 +48,7 @@ func TestSC2ProfileLadderSummary(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -60,7 +60,7 @@ func TestSC2ProfileLadder(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -72,7 +72,7 @@ func TestSC2LadderGrandmaster(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -84,7 +84,7 @@ func TestSC2LadderSeason(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -96,7 +96,7 @@ func TestSC2Player(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -108,7 +108,7 @@ func TestSC2LegacyProfile(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -120,7 +120,7 @@ func TestSC2LegacyProfileLadders(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -132,7 +132,7 @@ func TestSC2LegacyProfileMatches(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -144,7 +144,7 @@ func TestSC2LegacyLadder(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -156,7 +156,7 @@ func TestSC2LegacyAchievements(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -168,7 +168,7 @@ func TestSC2LegacyRewards(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }

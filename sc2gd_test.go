@@ -14,7 +14,7 @@ func TestSC2LeagueData(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }

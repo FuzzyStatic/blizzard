@@ -12,7 +12,7 @@ func TestD3ActIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -24,7 +24,7 @@ func TestD3Act(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -36,7 +36,7 @@ func TestD3Blacksmith(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -48,7 +48,7 @@ func TestD3Jeweler(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -60,7 +60,7 @@ func TestD3Mystic(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -72,7 +72,7 @@ func TestD3BlacksmithRecipe(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -84,7 +84,7 @@ func TestD3JewelerRecipe(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -96,7 +96,7 @@ func TestD3Enchantress(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -108,7 +108,7 @@ func TestD3Scoundrel(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -120,7 +120,7 @@ func TestD3Templar(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -132,7 +132,7 @@ func TestD3Barbarian(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -144,7 +144,7 @@ func TestD3Crusader(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -156,7 +156,7 @@ func TestD3DemonHunter(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -168,7 +168,7 @@ func TestD3Monk(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -180,7 +180,7 @@ func TestD3Necromancer(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -192,7 +192,7 @@ func TestD3Wizard(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -204,7 +204,7 @@ func TestD3WitchDoctor(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -216,7 +216,7 @@ func TestD3BarbarianSkill(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -228,7 +228,7 @@ func TestD3CrusaderSkill(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -240,7 +240,7 @@ func TestD3DemonHunterSkill(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -252,7 +252,7 @@ func TestD3MonkSkill(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -264,7 +264,7 @@ func TestD3NecromancerSkill(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -276,7 +276,7 @@ func TestD3WizardSkill(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -288,7 +288,7 @@ func TestD3WitchDoctorSkill(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -300,7 +300,7 @@ func TestD3ItemTypeIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -312,7 +312,7 @@ func TestD3ItemType(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -324,7 +324,7 @@ func TestD3Item(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -336,7 +336,7 @@ func TestD3Profile(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -348,7 +348,7 @@ func TestD3ProfileHero(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -360,7 +360,7 @@ func TestD3ProfileHeroItems(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }
@@ -372,7 +372,7 @@ func TestD3ProfileHeroFollowerItems(t *testing.T) {
 		t.Fail()
 	}
 
-	if printStruct != "" {
+	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
 	}
 }

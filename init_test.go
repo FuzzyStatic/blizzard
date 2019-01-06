@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-var printStruct string
+var printOutput string
 
 func init() {
 	clientID := os.Getenv("CLIENT_ID")
@@ -19,9 +19,9 @@ func init() {
 		log.Fatal("Set the environment variable CLIENT_SECRET before retrying.")
 	}
 
-	printStruct = os.Getenv("PRINT_STRUCT")
-	if printStruct == "" {
-		log.Println("Structures will not be printed.")
+	printOutput = os.Getenv("PRINT_OUTPUT")
+	if printOutput == "" {
+		log.Println("Output will not be printed for tests.")
 	}
 
 	c = NewClient(clientID, clientSecret, US, enUS)
