@@ -22,7 +22,7 @@ if err != nil {
 Now you can fetch data from the Blizzard API. For example, you validate your token:
 
 ```go
-dat, err := blizz.TokenValidation()
+dat, _, err := blizz.TokenValidation()
 if err != nil {
 	fmt.Println(err)
 }
@@ -35,7 +35,7 @@ fmt.Printf("%+v\n", dat)
 You can use the functions prefixed with "D3" to acquire Diablo 3 information. For example, you can get information about the current D3 hardcore necromancer leaderboards:
 
 ```go
-dat, err := blizz.D3SeasonLeaderboardHardcoreNecromancer(15)
+dat, _, err := blizz.D3SeasonLeaderboardHardcoreNecromancer(15)
 if err != nil {
 	fmt.Println(err)
 }
@@ -48,7 +48,7 @@ fmt.Printf("%+v\n", dat)
 You can use the functions prefixed with "SC2" to acquire StarCraft 2 information. For example, you can get information about the current SC2 grandmaster ladder:
 
 ```go
-dat, err := blizz.SC2LadderGrandmaster(EU)
+dat, _, err := blizz.SC2LadderGrandmaster(EU)
 if err != nil {
 	fmt.Println(err)
 }
@@ -61,7 +61,7 @@ fmt.Printf("%+v\n", dat)
 You can use the functions prefixed with "WoW" to acquire World of Warcraft information. For example, you can get information about your WoW character profile:
 
 ```go
-dat, err := blizz.WoWCharacterProfile("emerald-dream", "Limejelly",
+dat, _, err := blizz.WoWCharacterProfile("emerald-dream", "Limejelly",
 	[]string{
 		wowc.FieldCharacterAchievements,
 		wowc.FieldCharacterAppearance,
@@ -93,7 +93,7 @@ fmt.Printf("%+v\n", dat)
 or get information about specific spells:
 
 ```go
-dat, err := blizz.WoWSpell(17086)
+dat, _, err := blizz.WoWSpell(17086)
 if err != nil {
 	fmt.Println(err)
 }
@@ -104,7 +104,7 @@ fmt.Printf("%+v\n", dat)
 or the PVP leaderboards:
 
 ```go
-dat, err := blizz.WoWPVPLeaderboard(wowc.Bracket3v3)
+dat, _, err := blizz.WoWPVPLeaderboard(wowc.Bracket3v3)
 if err != nil {
 	t.Fail()
 }
