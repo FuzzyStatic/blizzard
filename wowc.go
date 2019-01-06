@@ -3,7 +3,6 @@ package blizzard
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strconv"
@@ -356,8 +355,6 @@ func (c *Client) WoWGuildProfile(realm, guildName string, optionalFields []strin
 	if err != nil {
 		return nil, nil, err
 	}
-
-	fmt.Println(string(b))
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
