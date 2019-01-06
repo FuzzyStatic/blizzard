@@ -14,7 +14,7 @@ const (
 )
 
 // WoWCharacterMythicKeystoneProfile returns a Mythic Keystone Profile index for a character
-func (c *Client) WoWCharacterMythicKeystoneProfile(realmSlug, characterName string) (*wowp.CharacterMythicKeystoneProfile, error) {
+func (c *Client) WoWCharacterMythicKeystoneProfile(realmSlug, characterName string) (*wowp.CharacterMythicKeystoneProfile, []byte, error) {
 	var (
 		dat wowp.CharacterMythicKeystoneProfile
 		b   []byte
@@ -23,20 +23,20 @@ func (c *Client) WoWCharacterMythicKeystoneProfile(realmSlug, characterName stri
 
 	b, err = c.getURLBody(c.apiURL+profileWowCharacterPath+"/"+realmSlug+"/"+characterName+"/"+mythicKeystoneProfilePath+"?"+localeQuery+c.locale.String(), c.profileNamespace)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return &dat, nil
+	return &dat, b, nil
 }
 
 // WoWCharacterMythicKeystoneProfileSeason returns a Mythic Keystone Profile index for a character.
 // Note: this request returns a 404 for characters that have not completed a Mythic Keystone dungeon
-func (c *Client) WoWCharacterMythicKeystoneProfileSeason(realmSlug, characterName string, seasonID int) (*wowp.CharacterMythicKeystoneProfileSeason, error) {
+func (c *Client) WoWCharacterMythicKeystoneProfileSeason(realmSlug, characterName string, seasonID int) (*wowp.CharacterMythicKeystoneProfileSeason, []byte, error) {
 	var (
 		dat wowp.CharacterMythicKeystoneProfileSeason
 		b   []byte
@@ -45,13 +45,13 @@ func (c *Client) WoWCharacterMythicKeystoneProfileSeason(realmSlug, characterNam
 
 	b, err = c.getURLBody(c.apiURL+profileWowCharacterPath+"/"+realmSlug+"/"+characterName+"/"+mythicKeystoneProfilePath+seasonPath+"/"+strconv.Itoa(seasonID)+"?"+localeQuery+c.locale.String(), c.profileNamespace)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return &dat, nil
+	return &dat, b, nil
 }

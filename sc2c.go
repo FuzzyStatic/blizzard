@@ -30,7 +30,7 @@ const (
 )
 
 // SC2StaticProfile returns all static SC2 profile data (achievements, categories, criteria, and rewards)
-func (c *Client) SC2StaticProfile(region Region) (*sc2c.StaticProfile, error) {
+func (c *Client) SC2StaticProfile(region Region) (*sc2c.StaticProfile, []byte, error) {
 	var (
 		dat sc2c.StaticProfile
 		b   []byte
@@ -39,19 +39,19 @@ func (c *Client) SC2StaticProfile(region Region) (*sc2c.StaticProfile, error) {
 
 	b, err = c.getURLBody(c.apiURL+sc2StaticProfilePath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return &dat, nil
+	return &dat, b, nil
 }
 
 // SC2MetadataProfile returns all SC2 profile metadata
-func (c *Client) SC2MetadataProfile(region Region, realmID, profileID int) (*sc2c.MetadataProfile, error) {
+func (c *Client) SC2MetadataProfile(region Region, realmID, profileID int) (*sc2c.MetadataProfile, []byte, error) {
 	var (
 		dat sc2c.MetadataProfile
 		b   []byte
@@ -60,19 +60,19 @@ func (c *Client) SC2MetadataProfile(region Region, realmID, profileID int) (*sc2
 
 	b, err = c.getURLBody(c.apiURL+sc2MetadataProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return &dat, nil
+	return &dat, b, nil
 }
 
 // SC2Profile returns all SC2 profile data
-func (c *Client) SC2Profile(region Region, realmID, profileID int) (*sc2c.Profile, error) {
+func (c *Client) SC2Profile(region Region, realmID, profileID int) (*sc2c.Profile, []byte, error) {
 	var (
 		dat sc2c.Profile
 		b   []byte
@@ -81,19 +81,19 @@ func (c *Client) SC2Profile(region Region, realmID, profileID int) (*sc2c.Profil
 
 	b, err = c.getURLBody(c.apiURL+sc2ProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return &dat, nil
+	return &dat, b, nil
 }
 
 // SC2ProfileLadderSummary returns SC2 profile ladder summary
-func (c *Client) SC2ProfileLadderSummary(region Region, realmID, profileID int) (*sc2c.LadderSummary, error) {
+func (c *Client) SC2ProfileLadderSummary(region Region, realmID, profileID int) (*sc2c.LadderSummary, []byte, error) {
 	var (
 		dat sc2c.LadderSummary
 		b   []byte
@@ -102,19 +102,19 @@ func (c *Client) SC2ProfileLadderSummary(region Region, realmID, profileID int) 
 
 	b, err = c.getURLBody(c.apiURL+sc2ProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+ladderSummaryPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return &dat, nil
+	return &dat, b, nil
 }
 
 // SC2ProfileLadder returns SC2 profile ladder data
-func (c *Client) SC2ProfileLadder(region Region, realmID, profileID, ladderID int) (*sc2c.Ladder, error) {
+func (c *Client) SC2ProfileLadder(region Region, realmID, profileID, ladderID int) (*sc2c.Ladder, []byte, error) {
 	var (
 		dat sc2c.Ladder
 		b   []byte
@@ -123,19 +123,19 @@ func (c *Client) SC2ProfileLadder(region Region, realmID, profileID, ladderID in
 
 	b, err = c.getURLBody(c.apiURL+sc2ProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+ladderPath+"/"+strconv.Itoa(ladderID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return &dat, nil
+	return &dat, b, nil
 }
 
 // SC2LadderGrandmaster returns SC2 ladder grandmaster for current season
-func (c *Client) SC2LadderGrandmaster(region Region) (*sc2c.LadderGrandmaster, error) {
+func (c *Client) SC2LadderGrandmaster(region Region) (*sc2c.LadderGrandmaster, []byte, error) {
 	var (
 		dat sc2c.LadderGrandmaster
 		b   []byte
@@ -144,19 +144,19 @@ func (c *Client) SC2LadderGrandmaster(region Region) (*sc2c.LadderGrandmaster, e
 
 	b, err = c.getURLBody(c.apiURL+sc2GrandmasterPath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return &dat, nil
+	return &dat, b, nil
 }
 
 // SC2LadderSeason returns SC2 ladder current season
-func (c *Client) SC2LadderSeason(region Region) (*sc2c.LadderSeason, error) {
+func (c *Client) SC2LadderSeason(region Region) (*sc2c.LadderSeason, []byte, error) {
 	var (
 		dat sc2c.LadderSeason
 		b   []byte
@@ -165,19 +165,19 @@ func (c *Client) SC2LadderSeason(region Region) (*sc2c.LadderSeason, error) {
 
 	b, err = c.getURLBody(c.apiURL+sc2SeasonPath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return &dat, nil
+	return &dat, b, nil
 }
 
 // SC2Player returns data about player using account ID
-func (c *Client) SC2Player(accountID int) (*sc2c.Player, error) {
+func (c *Client) SC2Player(accountID int) (*sc2c.Player, []byte, error) {
 	var (
 		dat sc2c.Player
 		b   []byte
@@ -186,19 +186,19 @@ func (c *Client) SC2Player(accountID int) (*sc2c.Player, error) {
 
 	b, err = c.getURLBody(c.apiURL+sc2PlayerPath+"/"+strconv.Itoa(accountID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return &dat, nil
+	return &dat, b, nil
 }
 
 // SC2LegacyProfile returns all SC2 legacy profile data
-func (c *Client) SC2LegacyProfile(region Region, realmID, profileID int) (*sc2c.LegacyProfile, error) {
+func (c *Client) SC2LegacyProfile(region Region, realmID, profileID int) (*sc2c.LegacyProfile, []byte, error) {
 	var (
 		dat sc2c.LegacyProfile
 		b   []byte
@@ -207,19 +207,19 @@ func (c *Client) SC2LegacyProfile(region Region, realmID, profileID int) (*sc2c.
 
 	b, err = c.getURLBody(c.apiURL+sc2LegacyProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return &dat, nil
+	return &dat, b, nil
 }
 
 // SC2LegacyProfileLadders returns all SC2 legacy profile ladder data
-func (c *Client) SC2LegacyProfileLadders(region Region, realmID, profileID int) (*sc2c.LegacyProfileLadders, error) {
+func (c *Client) SC2LegacyProfileLadders(region Region, realmID, profileID int) (*sc2c.LegacyProfileLadders, []byte, error) {
 	var (
 		dat sc2c.LegacyProfileLadders
 		b   []byte
@@ -228,19 +228,19 @@ func (c *Client) SC2LegacyProfileLadders(region Region, realmID, profileID int) 
 
 	b, err = c.getURLBody(c.apiURL+sc2LegacyProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+laddersPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return &dat, nil
+	return &dat, b, nil
 }
 
 // SC2LegacyProfileMatches returns all SC2 legacy profile matches data
-func (c *Client) SC2LegacyProfileMatches(region Region, realmID, profileID int) (*sc2c.LegacyProfileMatches, error) {
+func (c *Client) SC2LegacyProfileMatches(region Region, realmID, profileID int) (*sc2c.LegacyProfileMatches, []byte, error) {
 	var (
 		dat sc2c.LegacyProfileMatches
 		b   []byte
@@ -249,19 +249,19 @@ func (c *Client) SC2LegacyProfileMatches(region Region, realmID, profileID int) 
 
 	b, err = c.getURLBody(c.apiURL+sc2LegacyProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+matchesPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return &dat, nil
+	return &dat, b, nil
 }
 
 // SC2LegacyLadder returns SC2 legacy ladder data
-func (c *Client) SC2LegacyLadder(region Region, ladderID int) (*sc2c.LegacyLadder, error) {
+func (c *Client) SC2LegacyLadder(region Region, ladderID int) (*sc2c.LegacyLadder, []byte, error) {
 	var (
 		dat sc2c.LegacyLadder
 		b   []byte
@@ -270,19 +270,19 @@ func (c *Client) SC2LegacyLadder(region Region, ladderID int) (*sc2c.LegacyLadde
 
 	b, err = c.getURLBody(c.apiURL+sc2LegacyLadderPath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(ladderID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return &dat, nil
+	return &dat, b, nil
 }
 
 // SC2LegacyAchievements returns SC2 legacy achievements for region
-func (c *Client) SC2LegacyAchievements(region Region) (*sc2c.LegacyAchievements, error) {
+func (c *Client) SC2LegacyAchievements(region Region) (*sc2c.LegacyAchievements, []byte, error) {
 	var (
 		dat sc2c.LegacyAchievements
 		b   []byte
@@ -291,19 +291,19 @@ func (c *Client) SC2LegacyAchievements(region Region) (*sc2c.LegacyAchievements,
 
 	b, err = c.getURLBody(c.apiURL+sc2LegacyAchievementsPath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return &dat, nil
+	return &dat, b, nil
 }
 
 // SC2LegacyRewards returns SC2 legacy rewards for region
-func (c *Client) SC2LegacyRewards(region Region) (*sc2c.LegacyRewards, error) {
+func (c *Client) SC2LegacyRewards(region Region) (*sc2c.LegacyRewards, []byte, error) {
 	var (
 		dat sc2c.LegacyRewards
 		b   []byte
@@ -312,13 +312,13 @@ func (c *Client) SC2LegacyRewards(region Region) (*sc2c.LegacyRewards, error) {
 
 	b, err = c.getURLBody(c.apiURL+sc2LegacyRewardsPath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return &dat, nil
+	return &dat, b, nil
 }

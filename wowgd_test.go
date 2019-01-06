@@ -6,7 +6,7 @@ import (
 )
 
 func TestWoWConnectedRealmIndex(t *testing.T) {
-	dat, err := c.WoWConnectedRealmIndex()
+	dat, _, err := c.WoWConnectedRealmIndex()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -16,7 +16,7 @@ func TestWoWConnectedRealmIndex(t *testing.T) {
 }
 
 func TestWoWConnectedRealm(t *testing.T) {
-	dat, err := c.WoWConnectedRealm(11)
+	dat, _, err := c.WoWConnectedRealm(11)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -26,7 +26,7 @@ func TestWoWConnectedRealm(t *testing.T) {
 }
 
 func TestWoWMythicKeystoneAffixIndex(t *testing.T) {
-	dat, err := c.WoWMythicKeystoneAffixIndex()
+	dat, _, err := c.WoWMythicKeystoneAffixIndex()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -36,7 +36,7 @@ func TestWoWMythicKeystoneAffixIndex(t *testing.T) {
 }
 
 func TestWoWMythicKeystoneAffix(t *testing.T) {
-	dat, err := c.WoWMythicKeystoneAffix(1)
+	dat, _, err := c.WoWMythicKeystoneAffix(1)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -46,7 +46,7 @@ func TestWoWMythicKeystoneAffix(t *testing.T) {
 }
 
 func TestWoWMythicRaidLeaderboard(t *testing.T) {
-	dat, err := c.WoWMythicRaidLeaderboard("uldir", "alliance")
+	dat, _, err := c.WoWMythicRaidLeaderboard("uldir", "alliance")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -56,7 +56,7 @@ func TestWoWMythicRaidLeaderboard(t *testing.T) {
 }
 
 func TestWoWMythicKeystoneDungeonIndex(t *testing.T) {
-	dat, err := c.WoWMythicKeystoneDungeonIndex()
+	dat, _, err := c.WoWMythicKeystoneDungeonIndex()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -66,7 +66,7 @@ func TestWoWMythicKeystoneDungeonIndex(t *testing.T) {
 }
 
 func TestWoWMythicKeystoneDungeon(t *testing.T) {
-	dat, err := c.WoWMythicKeystoneDungeon(353)
+	dat, _, err := c.WoWMythicKeystoneDungeon(353)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -76,7 +76,7 @@ func TestWoWMythicKeystoneDungeon(t *testing.T) {
 }
 
 func TestWoWMythicKeystoneIndex(t *testing.T) {
-	dat, err := c.WoWMythicKeystoneIndex()
+	dat, _, err := c.WoWMythicKeystoneIndex()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -86,7 +86,7 @@ func TestWoWMythicKeystoneIndex(t *testing.T) {
 }
 
 func TestWoWMythicKeystonePeriodIndex(t *testing.T) {
-	dat, err := c.WoWMythicKeystonePeriodIndex()
+	dat, _, err := c.WoWMythicKeystonePeriodIndex()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -96,7 +96,7 @@ func TestWoWMythicKeystonePeriodIndex(t *testing.T) {
 }
 
 func TestWoWMythicKeystonePeriod(t *testing.T) {
-	dat, err := c.WoWMythicKeystonePeriod(641)
+	dat, _, err := c.WoWMythicKeystonePeriod(641)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -106,7 +106,7 @@ func TestWoWMythicKeystonePeriod(t *testing.T) {
 }
 
 func TestWoWMythicKeystoneSeasonIndex(t *testing.T) {
-	dat, err := c.WoWMythicKeystoneSeasonIndex()
+	dat, _, err := c.WoWMythicKeystoneSeasonIndex()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -116,7 +116,7 @@ func TestWoWMythicKeystoneSeasonIndex(t *testing.T) {
 }
 
 func TestWoWMythicKeystoneSeason(t *testing.T) {
-	dat, err := c.WoWMythicKeystoneSeason(1)
+	dat, _, err := c.WoWMythicKeystoneSeason(1)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -126,7 +126,7 @@ func TestWoWMythicKeystoneSeason(t *testing.T) {
 }
 
 func TestWoWMythicKeystoneLeaderboardIndex(t *testing.T) {
-	dat, err := c.WoWMythicKeystoneLeaderboardIndex(11)
+	dat, _, err := c.WoWMythicKeystoneLeaderboardIndex(11)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -136,7 +136,7 @@ func TestWoWMythicKeystoneLeaderboardIndex(t *testing.T) {
 }
 
 func TestWoWMythicKeystoneLeaderboard(t *testing.T) {
-	dat, err := c.WoWMythicKeystoneLeaderboard(11, 197, 641)
+	dat, _, err := c.WoWMythicKeystoneLeaderboard(11, 197, 641)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -146,7 +146,7 @@ func TestWoWMythicKeystoneLeaderboard(t *testing.T) {
 }
 
 func TestWoWPlayableClassesIndex(t *testing.T) {
-	dat, err := c.WoWPlayableClassesIndex()
+	dat, _, err := c.WoWPlayableClassesIndex()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -156,7 +156,7 @@ func TestWoWPlayableClassesIndex(t *testing.T) {
 }
 
 func TestWoWPlayableClass(t *testing.T) {
-	dat, err := c.WoWPlayableClass(7)
+	dat, _, err := c.WoWPlayableClass(7)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -166,7 +166,27 @@ func TestWoWPlayableClass(t *testing.T) {
 }
 
 func TestWoWPlayableClassPVPTalentSlots(t *testing.T) {
-	dat, err := c.WoWPlayableClassPVPTalentSlots(7)
+	dat, _, err := c.WoWPlayableClassPVPTalentSlots(7)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWPlayableSpecializationIndex(t *testing.T) {
+	dat, _, err := c.WoWPlayableSpecializationIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	fmt.Printf("%+v\n", dat)
+}
+
+func TestWoWPlayableSpecialization(t *testing.T) {
+	dat, _, err := c.WoWPlayableSpecialization(262)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -176,7 +196,7 @@ func TestWoWPlayableClassPVPTalentSlots(t *testing.T) {
 }
 
 func TestWoWPowerTypesIndex(t *testing.T) {
-	dat, err := c.WoWPowerTypesIndex()
+	dat, _, err := c.WoWPowerTypesIndex()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -186,7 +206,7 @@ func TestWoWPowerTypesIndex(t *testing.T) {
 }
 
 func TestWoWPowerType(t *testing.T) {
-	dat, err := c.WoWPowerType(0)
+	dat, _, err := c.WoWPowerType(0)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -196,7 +216,7 @@ func TestWoWPowerType(t *testing.T) {
 }
 
 func TestWoWPlayableRaceIndex(t *testing.T) {
-	dat, err := c.WoWPlayableRacesIndex()
+	dat, _, err := c.WoWPlayableRacesIndex()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -206,7 +226,7 @@ func TestWoWPlayableRaceIndex(t *testing.T) {
 }
 
 func TestWoWPlayableRace(t *testing.T) {
-	dat, err := c.WoWPlayableRace(2)
+	dat, _, err := c.WoWPlayableRace(2)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -216,7 +236,7 @@ func TestWoWPlayableRace(t *testing.T) {
 }
 
 func TestWoWRealmIndex(t *testing.T) {
-	dat, err := c.WoWRealmIndex()
+	dat, _, err := c.WoWRealmIndex()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -226,7 +246,7 @@ func TestWoWRealmIndex(t *testing.T) {
 }
 
 func TestWoWRealm(t *testing.T) {
-	dat, err := c.WoWRealm("tichondrius")
+	dat, _, err := c.WoWRealm("tichondrius")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -236,7 +256,7 @@ func TestWoWRealm(t *testing.T) {
 }
 
 func TestWoWRegionIndex(t *testing.T) {
-	dat, err := c.WoWRegionIndex()
+	dat, _, err := c.WoWRegionIndex()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -246,7 +266,7 @@ func TestWoWRegionIndex(t *testing.T) {
 }
 
 func TestWoWRegion(t *testing.T) {
-	dat, err := c.WoWRegion(1)
+	dat, _, err := c.WoWRegion(1)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -256,7 +276,7 @@ func TestWoWRegion(t *testing.T) {
 }
 
 func TestWoWToken(t *testing.T) {
-	dat, err := c.WoWToken()
+	dat, _, err := c.WoWToken()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

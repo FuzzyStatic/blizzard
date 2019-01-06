@@ -46,7 +46,7 @@ func TestUserInfoHeader(t *testing.T) {
 }
 
 func TestTokenValidation(t *testing.T) {
-	dat, err := c.TokenValidation()
+	dat, _, err := c.TokenValidation()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

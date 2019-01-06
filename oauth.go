@@ -129,7 +129,7 @@ func (c *Client) UserInfoHeader() ([]byte, error) {
 }
 
 // TokenValidation verify that a given bearer token is valid and retrieve metadata about the token including the client_id used to create the token, expiration timestamp, and scopes granted to the token
-func (c *Client) TokenValidation() (*oauth.TokenValidation, error) {
+func (c *Client) TokenValidation() (*oauth.TokenValidation, []byte, error) {
 	var (
 		dat oauth.TokenValidation
 		req *http.Request
@@ -140,19 +140,19 @@ func (c *Client) TokenValidation() (*oauth.TokenValidation, error) {
 
 	err = c.updateAccessTokenIfExp()
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	req, err = http.NewRequest("GET", c.oauthURL+oauthPath+checkTokenPath+"?"+tokenQuery+c.oauth.AccessTokenRequest.AccessToken, nil)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	req.Header.Set("Accept", "application/json")
 
 	res, err = c.client.Do(req)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 	defer func() {
 		err = res.Body.Close()
@@ -163,13 +163,13 @@ func (c *Client) TokenValidation() (*oauth.TokenValidation, error) {
 
 	b, err = ioutil.ReadAll(res.Body)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return &dat, nil
+	return &dat, b, nil
 }

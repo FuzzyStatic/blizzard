@@ -8,7 +8,7 @@ import (
 )
 
 func TestSC2LeagueData(t *testing.T) {
-	dat, err := c.SC2LeagueData(37, sc2gd.LotV1v1, sc2gd.Arranged, sc2gd.Master)
+	dat, _, err := c.SC2LeagueData(37, sc2gd.LotV1v1, sc2gd.Arranged, sc2gd.Master)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

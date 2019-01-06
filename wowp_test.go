@@ -6,7 +6,7 @@ import (
 )
 
 func TestWoWCharacterMythicKeystoneProfile(t *testing.T) {
-	dat, err := c.WoWCharacterMythicKeystoneProfile("illidan", "norilockxo")
+	dat, _, err := c.WoWCharacterMythicKeystoneProfile("illidan", "norilockxo")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -16,7 +16,7 @@ func TestWoWCharacterMythicKeystoneProfile(t *testing.T) {
 }
 
 func TestWoWCharacterMythicKeystoneProfileSeason(t *testing.T) {
-	dat, err := c.WoWCharacterMythicKeystoneProfileSeason("illidan", "norilockxo", 1)
+	dat, _, err := c.WoWCharacterMythicKeystoneProfileSeason("illidan", "norilockxo", 1)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

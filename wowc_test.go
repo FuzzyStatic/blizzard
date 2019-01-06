@@ -8,7 +8,7 @@ import (
 )
 
 func TestWoWUserCharacters(t *testing.T) {
-	dat, err := c.WoWUserCharacters(c.oauth.AccessTokenRequest.AccessToken)
+	dat, _, err := c.WoWUserCharacters(c.oauth.AccessTokenRequest.AccessToken)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -18,7 +18,7 @@ func TestWoWUserCharacters(t *testing.T) {
 }
 
 func TestWoWAchievement(t *testing.T) {
-	dat, err := c.WoWAchievement(2144)
+	dat, _, err := c.WoWAchievement(2144)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -28,7 +28,7 @@ func TestWoWAchievement(t *testing.T) {
 }
 
 func TestWoWAuctionFiles(t *testing.T) {
-	dat, err := c.WoWAuctionFiles("medivh")
+	dat, _, err := c.WoWAuctionFiles("medivh")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -50,7 +50,7 @@ func TestWoWAuctionData(t *testing.T) {
 }
 
 func TestWoWBossMasterList(t *testing.T) {
-	dat, err := c.WoWBossMasterList()
+	dat, _, err := c.WoWBossMasterList()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -60,7 +60,7 @@ func TestWoWBossMasterList(t *testing.T) {
 }
 
 func TestWoWBoss(t *testing.T) {
-	dat, err := c.WoWBoss(24723)
+	dat, _, err := c.WoWBoss(24723)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -70,7 +70,7 @@ func TestWoWBoss(t *testing.T) {
 }
 
 func TestWoWChallengeModeRealmLeaderboard(t *testing.T) {
-	dat, err := c.WoWChallengeModeRealmLeaderboard("medivh")
+	dat, _, err := c.WoWChallengeModeRealmLeaderboard("medivh")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -80,7 +80,7 @@ func TestWoWChallengeModeRealmLeaderboard(t *testing.T) {
 }
 
 func TestWoWChallengeModeRegionLeaderboard(t *testing.T) {
-	dat, err := c.WoWChallengeModeRegionLeaderboard()
+	dat, _, err := c.WoWChallengeModeRegionLeaderboard()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -90,7 +90,7 @@ func TestWoWChallengeModeRegionLeaderboard(t *testing.T) {
 }
 
 func TestWoWCharacterProfile(t *testing.T) {
-	dat, err := c.WoWCharacterProfile("emerald-dream", "Limejelly",
+	dat, _, err := c.WoWCharacterProfile("emerald-dream", "Limejelly",
 		[]string{
 			wowc.FieldCharacterAchievements,
 			wowc.FieldCharacterAppearance,
@@ -121,7 +121,7 @@ func TestWoWCharacterProfile(t *testing.T) {
 }
 
 func TestWoWGuildProfile(t *testing.T) {
-	dat, err := c.WoWGuildProfile("emerald-dream", "nightstalkers",
+	dat, _, err := c.WoWGuildProfile("emerald-dream", "nightstalkers",
 		[]string{
 			wowc.FieldGuildAchievements,
 			wowc.FieldGuildChallenge,
@@ -138,7 +138,7 @@ func TestWoWGuildProfile(t *testing.T) {
 }
 
 func TestWoWItem(t *testing.T) {
-	dat, err := c.WoWItem(18803)
+	dat, _, err := c.WoWItem(18803)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -148,7 +148,7 @@ func TestWoWItem(t *testing.T) {
 }
 
 func TestWoWItemSet(t *testing.T) {
-	dat, err := c.WoWItemSet(1060)
+	dat, _, err := c.WoWItemSet(1060)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -158,7 +158,7 @@ func TestWoWItemSet(t *testing.T) {
 }
 
 func TestWoWMountMasterList(t *testing.T) {
-	dat, err := c.WoWMountMasterList()
+	dat, _, err := c.WoWMountMasterList()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -168,7 +168,7 @@ func TestWoWMountMasterList(t *testing.T) {
 }
 
 func TestWoWPetMasterList(t *testing.T) {
-	dat, err := c.WoWPetMasterList()
+	dat, _, err := c.WoWPetMasterList()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -178,7 +178,7 @@ func TestWoWPetMasterList(t *testing.T) {
 }
 
 func TestWoWPetAbility(t *testing.T) {
-	dat, err := c.WoWPetAbility(640)
+	dat, _, err := c.WoWPetAbility(640)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -188,7 +188,7 @@ func TestWoWPetAbility(t *testing.T) {
 }
 
 func TestWoWPetSpecies(t *testing.T) {
-	dat, err := c.WoWPetSpecies(258)
+	dat, _, err := c.WoWPetSpecies(258)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -198,7 +198,7 @@ func TestWoWPetSpecies(t *testing.T) {
 }
 
 func TestWoWPetStats(t *testing.T) {
-	dat, err := c.WoWPetStats(258, 25, 5, 4)
+	dat, _, err := c.WoWPetStats(258, 25, 5, 4)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -208,7 +208,7 @@ func TestWoWPetStats(t *testing.T) {
 }
 
 func TestWoWPVPLeaderboard(t *testing.T) {
-	dat, err := c.WoWPVPLeaderboard(wowc.Bracket3v3)
+	dat, _, err := c.WoWPVPLeaderboard(wowc.Bracket3v3)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -218,7 +218,7 @@ func TestWoWPVPLeaderboard(t *testing.T) {
 }
 
 func TestWoWQuest(t *testing.T) {
-	dat, err := c.WoWQuest(13146)
+	dat, _, err := c.WoWQuest(13146)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -228,7 +228,7 @@ func TestWoWQuest(t *testing.T) {
 }
 
 func TestWoWRealmStatus(t *testing.T) {
-	dat, err := c.WoWRealmStatus()
+	dat, _, err := c.WoWRealmStatus()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -238,7 +238,7 @@ func TestWoWRealmStatus(t *testing.T) {
 }
 
 func TestWoWRecipe(t *testing.T) {
-	dat, err := c.WoWRecipe(33994)
+	dat, _, err := c.WoWRecipe(33994)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -248,7 +248,7 @@ func TestWoWRecipe(t *testing.T) {
 }
 
 func TestWoWSpell(t *testing.T) {
-	dat, err := c.WoWSpell(17086)
+	dat, _, err := c.WoWSpell(17086)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -258,7 +258,7 @@ func TestWoWSpell(t *testing.T) {
 }
 
 func TestWoWZoneMasterList(t *testing.T) {
-	dat, err := c.WoWZoneMasterList()
+	dat, _, err := c.WoWZoneMasterList()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -268,7 +268,7 @@ func TestWoWZoneMasterList(t *testing.T) {
 }
 
 func TestWoWZone(t *testing.T) {
-	dat, err := c.WoWZone(4131)
+	dat, _, err := c.WoWZone(4131)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -278,7 +278,7 @@ func TestWoWZone(t *testing.T) {
 }
 
 func TestWoWRegionBattlegroups(t *testing.T) {
-	dat, err := c.WoWRegionBattlegroups()
+	dat, _, err := c.WoWRegionBattlegroups()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -288,7 +288,7 @@ func TestWoWRegionBattlegroups(t *testing.T) {
 }
 
 func TestWoWCharacterRaces(t *testing.T) {
-	dat, err := c.WoWCharacterRaces()
+	dat, _, err := c.WoWCharacterRaces()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -298,7 +298,7 @@ func TestWoWCharacterRaces(t *testing.T) {
 }
 
 func TestWoWCharacterClasses(t *testing.T) {
-	dat, err := c.WoWCharacterClasses()
+	dat, _, err := c.WoWCharacterClasses()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -308,7 +308,7 @@ func TestWoWCharacterClasses(t *testing.T) {
 }
 
 func TestWoWCharacterAchievements(t *testing.T) {
-	dat, err := c.WoWCharacterAchievements()
+	dat, _, err := c.WoWCharacterAchievements()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -318,7 +318,7 @@ func TestWoWCharacterAchievements(t *testing.T) {
 }
 
 func TestWoWGuildRewards(t *testing.T) {
-	dat, err := c.WoWGuildRewards()
+	dat, _, err := c.WoWGuildRewards()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -328,7 +328,7 @@ func TestWoWGuildRewards(t *testing.T) {
 }
 
 func TestWoWGuildPerks(t *testing.T) {
-	dat, err := c.WoWGuildPerks()
+	dat, _, err := c.WoWGuildPerks()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -338,7 +338,7 @@ func TestWoWGuildPerks(t *testing.T) {
 }
 
 func TestWoWGuildAchievements(t *testing.T) {
-	dat, err := c.WoWGuildAchievements()
+	dat, _, err := c.WoWGuildAchievements()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -348,7 +348,7 @@ func TestWoWGuildAchievements(t *testing.T) {
 }
 
 func TestWoWItemClasses(t *testing.T) {
-	dat, err := c.WoWItemClasses()
+	dat, _, err := c.WoWItemClasses()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -358,7 +358,7 @@ func TestWoWItemClasses(t *testing.T) {
 }
 
 func TestWoWTalents(t *testing.T) {
-	dat, err := c.WoWTalents()
+	dat, _, err := c.WoWTalents()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -368,7 +368,7 @@ func TestWoWTalents(t *testing.T) {
 }
 
 func TestWoWPetTypes(t *testing.T) {
-	dat, err := c.WoWPetTypes()
+	dat, _, err := c.WoWPetTypes()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
