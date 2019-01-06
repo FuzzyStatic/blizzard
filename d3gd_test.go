@@ -12,7 +12,9 @@ func TestD3SeasonIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3Season(t *testing.T) {
@@ -22,7 +24,9 @@ func TestD3Season(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3SeasonLeaderboard(t *testing.T) {
@@ -32,7 +36,9 @@ func TestD3SeasonLeaderboard(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3SeasonLeaderboardAchievementPoints(t *testing.T) {
@@ -42,7 +48,9 @@ func TestD3SeasonLeaderboardAchievementPoints(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3SeasonLeaderboardHardcoreBarbarian(t *testing.T) {
@@ -52,7 +60,9 @@ func TestD3SeasonLeaderboardHardcoreBarbarian(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3SeasonLeaderboardBarbarian(t *testing.T) {
@@ -62,7 +72,9 @@ func TestD3SeasonLeaderboardBarbarian(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3SeasonLeaderboardHardcoreCrusader(t *testing.T) {
@@ -72,7 +84,9 @@ func TestD3SeasonLeaderboardHardcoreCrusader(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3SeasonLeaderboardCrusader(t *testing.T) {
@@ -82,7 +96,9 @@ func TestD3SeasonLeaderboardCrusader(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3SeasonLeaderboardHardcoreDemonHunter(t *testing.T) {
@@ -92,7 +108,9 @@ func TestD3SeasonLeaderboardHardcoreDemonHunter(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3SeasonLeaderboardDemonHunter(t *testing.T) {
@@ -102,7 +120,9 @@ func TestD3SeasonLeaderboardDemonHunter(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3SeasonLeaderboardHardcoreMonk(t *testing.T) {
@@ -112,7 +132,9 @@ func TestD3SeasonLeaderboardHardcoreMonk(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3SeasonLeaderboardMonk(t *testing.T) {
@@ -122,7 +144,9 @@ func TestD3SeasonLeaderboardMonk(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3SeasonLeaderboardHardcoreNecromancer(t *testing.T) {
@@ -132,7 +156,9 @@ func TestD3SeasonLeaderboardHardcoreNecromancer(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3SeasonLeaderboardNecromancer(t *testing.T) {
@@ -142,7 +168,9 @@ func TestD3SeasonLeaderboardNecromancer(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3SeasonLeaderboardHardcoreWizard(t *testing.T) {
@@ -152,7 +180,9 @@ func TestD3SeasonLeaderboardHardcoreWizard(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3SeasonLeaderboardWizard(t *testing.T) {
@@ -162,7 +192,9 @@ func TestD3SeasonLeaderboardWizard(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 func TestD3SeasonLeaderboardHardcoreWitchDoctor(t *testing.T) {
 	dat, _, err := c.D3SeasonLeaderboardHardcoreWitchDoctor(15)
@@ -171,7 +203,9 @@ func TestD3SeasonLeaderboardHardcoreWitchDoctor(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3SeasonLeaderboardWitchDoctor(t *testing.T) {
@@ -181,7 +215,9 @@ func TestD3SeasonLeaderboardWitchDoctor(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3SeasonLeaderboardHardcoreTeam2(t *testing.T) {
@@ -191,7 +227,9 @@ func TestD3SeasonLeaderboardHardcoreTeam2(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3SeasonLeaderboardTeam2(t *testing.T) {
@@ -201,7 +239,9 @@ func TestD3SeasonLeaderboardTeam2(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 func TestD3SeasonLeaderboardHardcoreTeam3(t *testing.T) {
 	dat, _, err := c.D3SeasonLeaderboardHardcoreTeam3(15)
@@ -210,7 +250,9 @@ func TestD3SeasonLeaderboardHardcoreTeam3(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3SeasonLeaderboardTeam3(t *testing.T) {
@@ -220,7 +262,9 @@ func TestD3SeasonLeaderboardTeam3(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 func TestD3SeasonLeaderboardHardcoreTeam4(t *testing.T) {
 	dat, _, err := c.D3SeasonLeaderboardHardcoreTeam4(15)
@@ -229,7 +273,9 @@ func TestD3SeasonLeaderboardHardcoreTeam4(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3SeasonLeaderboardTeam4(t *testing.T) {
@@ -239,7 +285,9 @@ func TestD3SeasonLeaderboardTeam4(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3EraIndex(t *testing.T) {
@@ -249,7 +297,9 @@ func TestD3EraIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3Era(t *testing.T) {
@@ -259,7 +309,9 @@ func TestD3Era(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3EraLeaderboardHardcoreBarbarian(t *testing.T) {
@@ -269,7 +321,9 @@ func TestD3EraLeaderboardHardcoreBarbarian(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3EraLeaderboardBarbarian(t *testing.T) {
@@ -279,7 +333,9 @@ func TestD3EraLeaderboardBarbarian(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3EraLeaderboardHardcoreCrusader(t *testing.T) {
@@ -289,7 +345,9 @@ func TestD3EraLeaderboardHardcoreCrusader(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3EraLeaderboardCrusader(t *testing.T) {
@@ -299,7 +357,9 @@ func TestD3EraLeaderboardCrusader(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3EraLeaderboardHardcoreDemonHunter(t *testing.T) {
@@ -309,7 +369,9 @@ func TestD3EraLeaderboardHardcoreDemonHunter(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3EraLeaderboardDemonHunter(t *testing.T) {
@@ -319,7 +381,9 @@ func TestD3EraLeaderboardDemonHunter(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3EraLeaderboardHardcoreMonk(t *testing.T) {
@@ -329,7 +393,9 @@ func TestD3EraLeaderboardHardcoreMonk(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3EraLeaderboardMonk(t *testing.T) {
@@ -339,7 +405,9 @@ func TestD3EraLeaderboardMonk(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3EraLeaderboardHardcoreNecromancer(t *testing.T) {
@@ -349,7 +417,9 @@ func TestD3EraLeaderboardHardcoreNecromancer(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3EraLeaderboardNecromancer(t *testing.T) {
@@ -359,7 +429,9 @@ func TestD3EraLeaderboardNecromancer(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3EraLeaderboardHardcoreWizard(t *testing.T) {
@@ -369,7 +441,9 @@ func TestD3EraLeaderboardHardcoreWizard(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3EraLeaderboardWizard(t *testing.T) {
@@ -379,7 +453,9 @@ func TestD3EraLeaderboardWizard(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 func TestD3EraLeaderboardHardcoreWitchDoctor(t *testing.T) {
 	dat, _, err := c.D3EraLeaderboardHardcoreWitchDoctor(10)
@@ -388,7 +464,9 @@ func TestD3EraLeaderboardHardcoreWitchDoctor(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3EraLeaderboardWitchDoctor(t *testing.T) {
@@ -398,7 +476,9 @@ func TestD3EraLeaderboardWitchDoctor(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3EraLeaderboardHardcoreTeam2(t *testing.T) {
@@ -408,7 +488,9 @@ func TestD3EraLeaderboardHardcoreTeam2(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3EraLeaderboardTeam2(t *testing.T) {
@@ -418,7 +500,9 @@ func TestD3EraLeaderboardTeam2(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 func TestD3EraLeaderboardHardcoreTeam3(t *testing.T) {
 	dat, _, err := c.D3EraLeaderboardHardcoreTeam3(10)
@@ -427,7 +511,9 @@ func TestD3EraLeaderboardHardcoreTeam3(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3EraLeaderboardTeam3(t *testing.T) {
@@ -437,7 +523,9 @@ func TestD3EraLeaderboardTeam3(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 func TestD3EraLeaderboardHardcoreTeam4(t *testing.T) {
 	dat, _, err := c.D3EraLeaderboardHardcoreTeam4(10)
@@ -446,7 +534,9 @@ func TestD3EraLeaderboardHardcoreTeam4(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestD3EraLeaderboardTeam4(t *testing.T) {
@@ -456,5 +546,7 @@ func TestD3EraLeaderboardTeam4(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }

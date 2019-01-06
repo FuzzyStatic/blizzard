@@ -14,7 +14,7 @@ func TestWoWUserCharacters(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWAchievement(t *testing.T) {
@@ -24,7 +24,7 @@ func TestWoWAchievement(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWAuctionFiles(t *testing.T) {
@@ -34,7 +34,7 @@ func TestWoWAuctionFiles(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWAuctionData(t *testing.T) {
@@ -56,7 +56,7 @@ func TestWoWBossMasterList(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWBoss(t *testing.T) {
@@ -66,7 +66,7 @@ func TestWoWBoss(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWChallengeModeRealmLeaderboard(t *testing.T) {
@@ -76,7 +76,7 @@ func TestWoWChallengeModeRealmLeaderboard(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWChallengeModeRegionLeaderboard(t *testing.T) {
@@ -86,7 +86,7 @@ func TestWoWChallengeModeRegionLeaderboard(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWCharacterProfile(t *testing.T) {
@@ -117,7 +117,7 @@ func TestWoWCharacterProfile(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWGuildProfile(t *testing.T) {
@@ -134,7 +134,7 @@ func TestWoWGuildProfile(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWItem(t *testing.T) {
@@ -144,7 +144,7 @@ func TestWoWItem(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWItemSet(t *testing.T) {
@@ -154,7 +154,7 @@ func TestWoWItemSet(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWMountMasterList(t *testing.T) {
@@ -164,7 +164,7 @@ func TestWoWMountMasterList(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWPetMasterList(t *testing.T) {
@@ -174,7 +174,7 @@ func TestWoWPetMasterList(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWPetAbility(t *testing.T) {
@@ -184,7 +184,7 @@ func TestWoWPetAbility(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWPetSpecies(t *testing.T) {
@@ -194,7 +194,7 @@ func TestWoWPetSpecies(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWPetStats(t *testing.T) {
@@ -204,7 +204,7 @@ func TestWoWPetStats(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWPVPLeaderboard(t *testing.T) {
@@ -214,7 +214,7 @@ func TestWoWPVPLeaderboard(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWQuest(t *testing.T) {
@@ -224,7 +224,7 @@ func TestWoWQuest(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWRealmStatus(t *testing.T) {
@@ -234,7 +234,7 @@ func TestWoWRealmStatus(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWRecipe(t *testing.T) {
@@ -244,7 +244,7 @@ func TestWoWRecipe(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWSpell(t *testing.T) {
@@ -254,7 +254,7 @@ func TestWoWSpell(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWZoneMasterList(t *testing.T) {
@@ -264,7 +264,7 @@ func TestWoWZoneMasterList(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWZone(t *testing.T) {
@@ -274,7 +274,7 @@ func TestWoWZone(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWRegionBattlegroups(t *testing.T) {
@@ -284,7 +284,7 @@ func TestWoWRegionBattlegroups(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWCharacterRaces(t *testing.T) {
@@ -294,7 +294,7 @@ func TestWoWCharacterRaces(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWCharacterClasses(t *testing.T) {
@@ -304,7 +304,7 @@ func TestWoWCharacterClasses(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWCharacterAchievements(t *testing.T) {
@@ -314,7 +314,7 @@ func TestWoWCharacterAchievements(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWGuildRewards(t *testing.T) {
@@ -324,7 +324,7 @@ func TestWoWGuildRewards(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWGuildPerks(t *testing.T) {
@@ -334,7 +334,7 @@ func TestWoWGuildPerks(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWGuildAchievements(t *testing.T) {
@@ -344,7 +344,7 @@ func TestWoWGuildAchievements(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWItemClasses(t *testing.T) {
@@ -354,7 +354,7 @@ func TestWoWItemClasses(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWTalents(t *testing.T) {
@@ -364,7 +364,7 @@ func TestWoWTalents(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
 
 func TestWoWPetTypes(t *testing.T) {
@@ -374,5 +374,5 @@ func TestWoWPetTypes(t *testing.T) {
 		t.Fail()
 	}
 
-	fmt.Printf("%+v\n", dat)
+	if printStruct != "" {fmt.Printf("%+v\n", dat)}
 }
