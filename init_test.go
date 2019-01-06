@@ -2,6 +2,8 @@ package blizzard
 
 import (
 	"fmt"
+	"log"
+	"os"
 
 	"github.com/spf13/viper"
 )
@@ -16,8 +18,15 @@ func init() {
 		fmt.Println(err)
 	}
 
-	clientID := viper.GetString("authentication.client_id")
-	clientSecret := viper.GetString("authentication.client_secret")
+	clientID := os.Getenv("CLIENT_ID")
+	if clientID == "" {
+		log.Fatal("Set the environment variable CLIENT_ID before retrying.")
+	}
+
+	clientSecret := os.Getenv("CLIENT_SECRET")
+	if clientID == "" {
+		log.Fatal("Set the environment variable CLIENT_SECRET before retrying.")
+	}
 
 	c = NewClient(clientID, clientSecret, US, enUS)
 
