@@ -12,7 +12,9 @@ func TestWoWConnectedRealmIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWConnectedRealm(t *testing.T) {
@@ -22,7 +24,9 @@ func TestWoWConnectedRealm(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWMythicKeystoneAffixIndex(t *testing.T) {
@@ -32,7 +36,9 @@ func TestWoWMythicKeystoneAffixIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWMythicKeystoneAffix(t *testing.T) {
@@ -42,7 +48,9 @@ func TestWoWMythicKeystoneAffix(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWMythicRaidLeaderboard(t *testing.T) {
@@ -52,7 +60,9 @@ func TestWoWMythicRaidLeaderboard(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWMythicKeystoneDungeonIndex(t *testing.T) {
@@ -62,7 +72,9 @@ func TestWoWMythicKeystoneDungeonIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWMythicKeystoneDungeon(t *testing.T) {
@@ -72,7 +84,9 @@ func TestWoWMythicKeystoneDungeon(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWMythicKeystoneIndex(t *testing.T) {
@@ -82,7 +96,9 @@ func TestWoWMythicKeystoneIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWMythicKeystonePeriodIndex(t *testing.T) {
@@ -92,7 +108,9 @@ func TestWoWMythicKeystonePeriodIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWMythicKeystonePeriod(t *testing.T) {
@@ -102,7 +120,9 @@ func TestWoWMythicKeystonePeriod(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWMythicKeystoneSeasonIndex(t *testing.T) {
@@ -112,7 +132,9 @@ func TestWoWMythicKeystoneSeasonIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWMythicKeystoneSeason(t *testing.T) {
@@ -122,7 +144,9 @@ func TestWoWMythicKeystoneSeason(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWMythicKeystoneLeaderboardIndex(t *testing.T) {
@@ -132,7 +156,9 @@ func TestWoWMythicKeystoneLeaderboardIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWMythicKeystoneLeaderboard(t *testing.T) {
@@ -142,7 +168,9 @@ func TestWoWMythicKeystoneLeaderboard(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWPlayableClassesIndex(t *testing.T) {
@@ -152,7 +180,9 @@ func TestWoWPlayableClassesIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWPlayableClass(t *testing.T) {
@@ -162,7 +192,9 @@ func TestWoWPlayableClass(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWPlayableClassPVPTalentSlots(t *testing.T) {
@@ -172,7 +204,9 @@ func TestWoWPlayableClassPVPTalentSlots(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWPlayableSpecializationIndex(t *testing.T) {
@@ -182,7 +216,9 @@ func TestWoWPlayableSpecializationIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWPlayableSpecialization(t *testing.T) {
@@ -192,7 +228,9 @@ func TestWoWPlayableSpecialization(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWPowerTypesIndex(t *testing.T) {
@@ -202,7 +240,9 @@ func TestWoWPowerTypesIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWPowerType(t *testing.T) {
@@ -212,7 +252,9 @@ func TestWoWPowerType(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWPlayableRaceIndex(t *testing.T) {
@@ -222,7 +264,9 @@ func TestWoWPlayableRaceIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWPlayableRace(t *testing.T) {
@@ -232,7 +276,9 @@ func TestWoWPlayableRace(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWRealmIndex(t *testing.T) {
@@ -242,7 +288,9 @@ func TestWoWRealmIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWRealm(t *testing.T) {
@@ -252,7 +300,9 @@ func TestWoWRealm(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWRegionIndex(t *testing.T) {
@@ -262,7 +312,9 @@ func TestWoWRegionIndex(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWRegion(t *testing.T) {
@@ -272,7 +324,9 @@ func TestWoWRegion(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
 
 func TestWoWToken(t *testing.T) {
@@ -282,5 +336,7 @@ func TestWoWToken(t *testing.T) {
 		t.Fail()
 	}
 
-	if printOutput != "" {fmt.Printf("%+v\n", dat)}
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
 }
