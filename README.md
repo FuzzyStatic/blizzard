@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/af62aceb4b074640aa62dd5a540d8c99)](https://app.codacy.com/app/FuzzyStatic/blizzard?utm_source=github.com&utm_medium=referral&utm_content=FuzzyStatic/blizzard&utm_campaign=Badge_Grade_Dashboard)
 # blizzard [![GoDoc](https://godoc.org/github.com/FuzzyStatic/blizzard?status.svg)](http://godoc.org/github.com/FuzzyStatic/blizzard) [![Go Report Card](https://goreportcard.com/badge/github.com/FuzzyStatic/blizzard)](https://goreportcard.com/report/github.com/FuzzyStatic/blizzard) [![Build Status](https://travis-ci.org/FuzzyStatic/blizzard.svg?branch=master)](https://travis-ci.org/FuzzyStatic/blizzard) [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/FuzzyStatic)
 
 > This is a Go client library for gathering [Blizzard API reference](https://develop.battle.net/documentation/api-reference)  data.
