@@ -147,6 +147,7 @@ func TestWoWGuildProfile(t *testing.T) {
 			wowc.FieldGuildNews,
 		},
 	)
+
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

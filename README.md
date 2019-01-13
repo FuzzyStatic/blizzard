@@ -1,10 +1,10 @@
-# blizzard [![GoDoc](https://godoc.org/github.com/FuzzyStatic/blizzard?status.svg)](http://godoc.org/github.com/FuzzyStatic/blizzard) [![Go Report Card](https://goreportcard.com/badge/github.com/FuzzyStatic/blizzard)](https://goreportcard.com/report/github.com/FuzzyStatic/blizzard) [![Build Status](https://travis-ci.org/FuzzyStatic/blizzard.svg?branch=master)](https://travis-ci.org/FuzzyStatic/blizzard) [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/FuzzyStatic)
+# blizzard [![GoDoc](https://godoc.org/github.com/FuzzyStatic/blizzard?status.svg)](http://godoc.org/github.com/FuzzyStatic/blizzard) [![Go Report Card](https://goreportcard.com/badge/github.com/FuzzyStatic/blizzard)](https://goreportcard.com/report/github.com/FuzzyStatic/blizzard) [![Build Status](https://travis-ci.org/FuzzyStatic/blizzard.svg?branch=master)](https://travis-ci.org/FuzzyStatic/blizzard) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/fa25319c93814ff4878ee049f04317d4)](https://www.codacy.com/app/FuzzyStatic/blizzard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=FuzzyStatic/blizzard&amp;utm_campaign=Badge_Grade) [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/FuzzyStatic)
 
-> This is a Go client library for gathering [Blizzard API reference](https://develop.battle.net/documentation/api-reference)  data.
+> This is a Go client library for gathering [Blizzard API reference](https://develop.battle.net/documentation/api-reference)  data
 
-### Getting started
+## Getting started
 
-Start by initiating a new Blizzard config structure for desired region (client_id and client_secret can be acquired through your developer account at https://develop.battle.net/) and requesting an access token:
+Start by initiating a new Blizzard config structure for desired region and locale (client_id and client_secret can be acquired through your developer account at [https://develop.battle.net/](https://develop.battle.net/)) and requesting an access token:
 
 ```go
 blizz := blizzard.NewClient("client_id", "client_secret", blizzard.US, blizzard.enUS)
@@ -15,7 +15,10 @@ if err != nil {
 }
 ```
 
-### Fetching basic data
+## Fetching Data Sets
+
+
+### Fetching OAuth Data
 
 Now you can fetch data from the Blizzard API. For example, you validate your token:
 
@@ -28,7 +31,7 @@ if err != nil {
 fmt.Printf("%+v\n", dat)
 ```
 
-### Fetching Diablo 3 data
+### Fetching Diablo 3 Data
 
 You can use the functions prefixed with "D3" to acquire Diablo 3 information. For example, you can get information about the current D3 hardcore necromancer leaderboards:
 
@@ -41,7 +44,7 @@ if err != nil {
 fmt.Printf("%+v\n", dat)
 ```
 
-### Fetching StarCraft 2 data
+### Fetching StarCraft 2 Data
 
 You can use the functions prefixed with "SC2" to acquire StarCraft 2 information. For example, you can get information about the current SC2 grandmaster ladder:
 
@@ -54,7 +57,7 @@ if err != nil {
 fmt.Printf("%+v\n", dat)
 ```
 
-### Fetching World of Warcraft data
+### Fetching World of Warcraft Data
 
 You can use the functions prefixed with "WoW" to acquire World of Warcraft information. For example, you can get information about your WoW character profile:
 
@@ -110,10 +113,10 @@ if err != nil {
 fmt.Printf("%+v\n", dat)
 ```
 
-### Documentation
+## Documentation
 
 See the [Blizzard API reference](https://develop.battle.net/documentation/api-reference) and the godoc for all the different datasets that can be acquired.
 
-### Thanks
+## Special Thanks
 
 Thanks to [JSON-to-Go](https://mholt.github.io/json-to-go/) for making JSON to Go structure creation simple.
