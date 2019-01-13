@@ -1,4 +1,6 @@
-# blizzard [![GoDoc](https://godoc.org/github.com/FuzzyStatic/blizzard?status.svg)](http://godoc.org/github.com/FuzzyStatic/blizzard) [![Go Report Card](https://goreportcard.com/badge/github.com/FuzzyStatic/blizzard)](https://goreportcard.com/report/github.com/FuzzyStatic/blizzard) [![Build Status](https://travis-ci.org/FuzzyStatic/blizzard.svg?branch=master)](https://travis-ci.org/FuzzyStatic/blizzard) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/fa25319c93814ff4878ee049f04317d4)](https://www.codacy.com/app/FuzzyStatic/blizzard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=FuzzyStatic/blizzard&amp;utm_campaign=Badge_Grade) [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/FuzzyStatic)
+# blizzard
+
+[![GoDoc](https://godoc.org/github.com/FuzzyStatic/blizzard?status.svg)](http://godoc.org/github.com/FuzzyStatic/blizzard) [![Go Report Card](https://goreportcard.com/badge/github.com/FuzzyStatic/blizzard)](https://goreportcard.com/report/github.com/FuzzyStatic/blizzard) [![Build Status](https://travis-ci.org/FuzzyStatic/blizzard.svg?branch=master)](https://travis-ci.org/FuzzyStatic/blizzard) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/fa25319c93814ff4878ee049f04317d4)](https://www.codacy.com/app/FuzzyStatic/blizzard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=FuzzyStatic/blizzard&amp;utm_campaign=Badge_Grade) [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/FuzzyStatic)
 
 > This is a Go client library for gathering [Blizzard API reference](https://develop.battle.net/documentation/api-reference)  data
 
@@ -14,9 +16,6 @@ if err != nil {
 	fmt.Println(err)
 }
 ```
-
-## Fetching Data Sets
-
 
 ### Fetching OAuth Data
 
@@ -115,7 +114,7 @@ fmt.Printf("%+v\n", dat)
 
 ## Documentation
 
-See the [Blizzard API reference](https://develop.battle.net/documentation/api-reference) and the godoc for all the different datasets that can be acquired.
+See the [Blizzard API reference](https://develop.battle.net/documentation/api-reference) and the [godoc](http://godoc.org/github.com/FuzzyStatic/blizzard) for all the different datasets that can be acquired.
 
 ## Special Thanks
 
