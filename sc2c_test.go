@@ -102,7 +102,7 @@ func TestSC2Player(t *testing.T) {
 }
 
 func TestSC2LegacyProfile(t *testing.T) {
-	dat, _, err := c.SC2LegacyProfile(US, 1, 305084)
+	dat, _, err := c.SC2LegacyProfile(US, 1, 1655091)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

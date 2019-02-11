@@ -86,9 +86,71 @@ type LegacyProfile struct {
 
 // LegacyProfileLadders structure
 type LegacyProfileLadders struct {
-	CurrentSeason     []interface{} `json:"currentSeason"`
-	PreviousSeason    []interface{} `json:"previousSeason"`
-	ShowcasePlacement []interface{} `json:"showcasePlacement"`
+	CurrentSeason []struct {
+		Characters []struct {
+			ClanName    string `json:"clanName"`
+			ClanTag     string `json:"clanTag"`
+			DisplayName string `json:"displayName"`
+			ID          string `json:"id"`
+			ProfilePath string `json:"profilePath"`
+			Realm       int    `json:"realm"`
+			Region      int    `json:"region"`
+		} `json:"characters"`
+		Ladder []struct {
+			Division         int    `json:"division"`
+			LadderID         string `json:"ladderId"`
+			LadderName       string `json:"ladderName"`
+			League           string `json:"league"`
+			Losses           int    `json:"losses"`
+			MatchMakingQueue string `json:"matchMakingQueue"`
+			Rank             int    `json:"rank"`
+			Showcase         bool   `json:"showcase"`
+			Wins             int    `json:"wins"`
+		} `json:"ladder"`
+		NonRanked []interface{} `json:"nonRanked"`
+	} `json:"currentSeason"`
+	PreviousSeason []struct {
+		Characters []struct {
+			ClanName    string `json:"clanName"`
+			ClanTag     string `json:"clanTag"`
+			DisplayName string `json:"displayName"`
+			ID          string `json:"id"`
+			ProfilePath string `json:"profilePath"`
+			Realm       int    `json:"realm"`
+			Region      int    `json:"region"`
+		} `json:"characters"`
+		Ladder []struct {
+			Division         int    `json:"division"`
+			LadderID         string `json:"ladderId"`
+			LadderName       string `json:"ladderName"`
+			League           string `json:"league"`
+			Losses           int    `json:"losses"`
+			MatchMakingQueue string `json:"matchMakingQueue"`
+			Rank             int    `json:"rank"`
+			Showcase         bool   `json:"showcase"`
+			Wins             int    `json:"wins"`
+		} `json:"ladder"`
+		NonRanked []struct {
+			GamesPlayed int    `json:"gamesPlayed"`
+			Mmq         string `json:"mmq"`
+		} `json:"nonRanked"`
+	} `json:"previousSeason"`
+	ShowcasePlacement []struct {
+		Characters []struct {
+			ClanName    string `json:"clanName"`
+			ClanTag     string `json:"clanTag"`
+			DisplayName string `json:"displayName"`
+			ID          string `json:"id"`
+			ProfilePath string `json:"profilePath"`
+			Realm       int    `json:"realm"`
+			Region      int    `json:"region"`
+		} `json:"characters"`
+		Ladder    []interface{} `json:"ladder"`
+		NonRanked []struct {
+			GamesPlayed int    `json:"gamesPlayed"`
+			Mmq         string `json:"mmq"`
+		} `json:"nonRanked"`
+	} `json:"showcasePlacement"`
 }
 
 // LegacyProfileMatches structure
