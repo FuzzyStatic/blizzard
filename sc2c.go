@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"strconv"
 
-	"github.com/ccod/blizzard/sc2c"
+	"github.com/FuzzyStatic/blizzard/sc2c"
 )
 
 const (
