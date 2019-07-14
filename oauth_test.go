@@ -25,7 +25,12 @@ func TestUpdateAccessTokenIfExp(t *testing.T) {
 		t.Fail()
 	}
 
-	c.updateAccessTokenIfExp()
+	err = c.updateAccessTokenIfExp()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
 	if printOutput != "" {
 		fmt.Printf("%+v\n", c.oauth)
 	}
@@ -36,7 +41,12 @@ func TestUpdateAccessTokenIfExp(t *testing.T) {
 	if printOutput != "" {
 		fmt.Printf("%+v\n", c.oauth)
 	}
-	c.updateAccessTokenIfExp()
+
+	err = c.updateAccessTokenIfExp()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
 
 	if printOutput != "" {
 		fmt.Printf("%+v\n", c.oauth)

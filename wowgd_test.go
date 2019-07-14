@@ -257,7 +257,7 @@ func TestWoWPowerType(t *testing.T) {
 	}
 }
 
-func TestWoWPlayableRaceIndex(t *testing.T) {
+func TestWoWPlayableRacesIndex(t *testing.T) {
 	dat, _, err := c.WoWPlayableRacesIndex()
 	if err != nil {
 		fmt.Println(err)

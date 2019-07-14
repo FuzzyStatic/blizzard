@@ -11,7 +11,7 @@ env:
 # You don't need to test on very old version of the Go compiler. It's the user's
 # responsibility to keep their compilers up to date.
 go:
-  - 1.11.x
+  - 1.12.x
 
 # Only clone the most recent commit.
 git:
@@ -25,4 +25,4 @@ notifications:
 # failing test, we want to see both. Configure golangci-lint with a
 # .golangci.yml file at the top level of your repo.
 script:
-  - go test -v -race ./...  # Run all the tests with the race detector enabled
+  - go test -v -race ./... # Run all the tests with the race detector enabled

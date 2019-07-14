@@ -114,7 +114,7 @@ func TestSC2LegacyProfile(t *testing.T) {
 }
 
 func TestSC2LegacyProfileLadders(t *testing.T) {
-	dat, _, err := c.SC2LegacyProfileLadders(US, 1, 305084)
+	dat, _, err := c.SC2LegacyProfileLadders(US, 1, 1655091)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -126,7 +126,7 @@ func TestSC2LegacyProfileLadders(t *testing.T) {
 }
 
 func TestSC2LegacyProfileMatches(t *testing.T) {
-	dat, _, err := c.SC2LegacyProfileMatches(US, 1, 305084)
+	dat, _, err := c.SC2LegacyProfileMatches(US, 1, 1655091)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

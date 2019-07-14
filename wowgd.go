@@ -33,7 +33,7 @@ const (
 	wowPlayableSpecializationIndexPath = wowPlayableSpecializationPath + indexPath
 	wowPowerTypePath                   = dataWowPath + "/power-type"
 	wowPowerTypeIndexPath              = wowPowerTypePath + indexPath
-	wowRacePath                        = dataWowPath + "/race"
+	wowRacePath                        = dataWowPath + "/playable-race"
 	wowRaceIndexPath                   = wowRacePath + indexPath
 	wowRealmPath                       = dataWowPath + "/realm"
 	wowRealmIndexPath                  = wowRealmPath + indexPath

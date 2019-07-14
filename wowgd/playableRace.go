@@ -25,12 +25,13 @@ type PlayableRace struct {
 	ID         int    `json:"id"`
 	Name       string `json:"name"`
 	GenderName struct {
-		MaleName   string `json:"male_name"`
-		FemaleName string `json:"female_name"`
+		Male   string `json:"male"`
+		Female string `json:"female"`
 	} `json:"gender_name"`
-	Faction []struct {
-		ID   int    `json:"id"`
+	Faction struct {
 		Type string `json:"type"`
 		Name string `json:"name"`
 	} `json:"faction"`
+	IsSelectable bool `json:"is_selectable"`
+	IsAlliedRace bool `json:"is_allied_race"`
 }
