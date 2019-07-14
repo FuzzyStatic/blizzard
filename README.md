@@ -1,121 +1,26 @@
 # blizzard
 
-[![GoDoc](https://godoc.org/github.com/FuzzyStatic/blizzard?status.svg)](http://godoc.org/github.com/FuzzyStatic/blizzard) [![Go Report Card](https://goreportcard.com/badge/github.com/FuzzyStatic/blizzard)](https://goreportcard.com/report/github.com/FuzzyStatic/blizzard) [![Build Status](https://travis-ci.org/FuzzyStatic/blizzard.svg?branch=master)](https://travis-ci.org/FuzzyStatic/blizzard) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/fa25319c93814ff4878ee049f04317d4)](https://www.codacy.com/app/FuzzyStatic/blizzard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=FuzzyStatic/blizzard&amp;utm_campaign=Badge_Grade) [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/FuzzyStatic)
+Package blizzard is a client library designed to make calling and processing Blizzard Game APIs simple
 
-> This is a Go client library for gathering [Blizzard API reference](https://develop.battle.net/documentation/api-reference)  data
+## Sub Packages
 
-## Getting started
+* [d3c](./d3c): Package d3c contains types for the Diablo 3 Community APIs
 
-Start by initiating a new Blizzard config structure for desired region and locale (client_id and client_secret can be acquired through your developer account at [https://develop.battle.net/](https://develop.battle.net/)) and requesting an access token:
+* [d3gd](./d3gd): Package d3gd contains types for the Diablo 3 Game Data APIs
 
-```go
-blizz := blizzard.NewClient("client_id", "client_secret", blizzard.US, blizzard.enUS)
+* [oauth](./oauth): Package oauth contains types for the OAuth APIs
 
-err := blizz.AccessTokenReq()
-if err != nil {
-	fmt.Println(err)
-}
-```
+* [sc2c](./sc2c): Package sc2c contains types for the Starcraft 2 Community APIs
 
-### Fetching OAuth Data
+* [sc2gd](./sc2gd): Package sc2gd contains types for the Starcraft 2 Game Data APIs
 
-Now you can fetch data from the Blizzard API. For example, you validate your token:
+* [wowc](./wowc): Package wowc contains types for the World of Warcraft Community APIs
 
-```go
-dat, _, err := blizz.TokenValidation()
-if err != nil {
-	fmt.Println(err)
-}
+* [wowgd](./wowgd): Package wowgd contains types for the World of Warcraft Game Data APIs
 
-fmt.Printf("%+v\n", dat)
-```
+* [wowp](./wowp): Package wowp contains types for the World of Warcraft Profile APIs
 
-### Fetching Diablo 3 Data
 
-You can use the functions prefixed with "D3" to acquire Diablo 3 information. For example, you can get information about the current D3 hardcore necromancer leaderboards:
+---
 
-```go
-dat, _, err := blizz.D3SeasonLeaderboardHardcoreNecromancer(15)
-if err != nil {
-	fmt.Println(err)
-}
-
-fmt.Printf("%+v\n", dat)
-```
-
-### Fetching StarCraft 2 Data
-
-You can use the functions prefixed with "SC2" to acquire StarCraft 2 information. For example, you can get information about the current SC2 grandmaster ladder:
-
-```go
-dat, _, err := blizz.SC2LadderGrandmaster(EU)
-if err != nil {
-	fmt.Println(err)
-}
-
-fmt.Printf("%+v\n", dat)
-```
-
-### Fetching World of Warcraft Data
-
-You can use the functions prefixed with "WoW" to acquire World of Warcraft information. For example, you can get information about your WoW character profile:
-
-```go
-dat, _, err := blizz.WoWCharacterProfile("emerald-dream", "Limejelly",
-	[]string{
-		wowc.FieldCharacterAchievements,
-		wowc.FieldCharacterAppearance,
-		wowc.FieldCharacterAudit,
-		wowc.FieldCharacterFeed,
-		wowc.FieldCharacterGuild,
-		wowc.FieldCharacterItems,
-		wowc.FieldCharacterMounts,
-		wowc.FieldCharacterPVP,
-		wowc.FieldCharacterPetSlots,
-		wowc.FieldCharacterPets,
-		wowc.FieldCharacterProfessions,
-		wowc.FieldCharacterProgression,
-		wowc.FieldCharacterQuests,
-		wowc.FieldCharacterReputation,
-		wowc.FieldCharacterStatistics,
-		wowc.FieldCharacterStats,
-		wowc.FieldCharacterTalents,
-		wowc.FieldCharacterTitle,
-	},
-)
-if err != nil {
-	fmt.Println(err)
-}
-
-fmt.Printf("%+v\n", dat)
-```
-
-or get information about specific spells:
-
-```go
-dat, _, err := blizz.WoWSpell(17086)
-if err != nil {
-	fmt.Println(err)
-}
-
-fmt.Printf("%+v\n", dat)
-```
-
-or the PVP leaderboards:
-
-```go
-dat, _, err := blizz.WoWPVPLeaderboard(wowc.Bracket3v3)
-if err != nil {
-	t.Fail()
-}
-
-fmt.Printf("%+v\n", dat)
-```
-
-## Documentation
-
-See the [Blizzard API reference](https://develop.battle.net/documentation/api-reference) and the [godoc](http://godoc.org/github.com/FuzzyStatic/blizzard) for all the different datasets that can be acquired.
-
-## Special Thanks
-
-Thanks to [JSON-to-Go](https://mholt.github.io/json-to-go/) for making JSON to Go structure creation simple.
+Created by [goreadme](https://github.com/apps/goreadme)
