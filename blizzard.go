@@ -96,6 +96,16 @@ func NewClient(clientID, clientSecret string, region Region, locale Locale) *Cli
 		locale: locale,
 	}
 
+	c.SetRegion(region)
+
+	return &c
+}
+
+func (c *Client) SetLocale(locale Locale) {
+	c.locale = locale
+}
+
+func (c *Client) SetRegion(region Region) {
 	switch region {
 	case CN:
 		c.oauthURL = "https://www.battlenet.com.cn"
@@ -110,8 +120,6 @@ func NewClient(clientID, clientSecret string, region Region, locale Locale) *Cli
 		c.profileNamespace = fmt.Sprintf("profile-%s", region)
 		c.staticNamespace = fmt.Sprintf("static-%s", region)
 	}
-
-	return &c
 }
 
 // getURLBody processes simple GET request based on URL
