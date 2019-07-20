@@ -101,10 +101,12 @@ func NewClient(clientID, clientSecret string, region Region, locale Locale) *Cli
 	return &c
 }
 
+// SetLocale changes the Locale of the client
 func (c *Client) SetLocale(locale Locale) {
 	c.locale = locale
 }
 
+// SetRegion changes the Region of the client
 func (c *Client) SetRegion(region Region) {
 	switch region {
 	case CN:
