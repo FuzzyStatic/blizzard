@@ -152,12 +152,7 @@ func (c *Client) getURLBody(url, namespace string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer func() {
-		err = res.Body.Close()
-		if err != nil {
-			return
-		}
-	}()
+	defer res.Body.Close()
 
 	body, err = ioutil.ReadAll(res.Body)
 	if err != nil {

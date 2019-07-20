@@ -11,8 +11,8 @@ const (
 	sc2Path                   = "/sc2"
 	staticPath                = "/static"
 	sc2StaticProfilePath      = sc2Path + staticPath + profilePath
-	metadataPath              = "/metadata"
-	sc2MetadataProfilePath    = sc2Path + metadataPath + profilePath
+	sc2MetadataPath           = "/metadata"
+	sc2MetadataProfilePath    = sc2Path + sc2MetadataPath + profilePath
 	sc2ProfilePath            = sc2Path + profilePath
 	ladderPath                = "/ladder"
 	ladderSummaryPath         = ladderPath + "/summary"

@@ -79,12 +79,7 @@ func (c *Client) WoWUserCharacters(accessToken string) (*wowc.Profile, []byte, e
 	if err != nil {
 		return nil, nil, err
 	}
-	defer func() {
-		err = res.Body.Close()
-		if err != nil {
-			return
-		}
-	}()
+	defer res.Body.Close()
 
 	b, err = ioutil.ReadAll(res.Body)
 	if err != nil {
