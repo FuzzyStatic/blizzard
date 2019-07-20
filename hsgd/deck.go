@@ -1,5 +1,6 @@
 package hsgd
 
+// Deck structure
 type Deck struct {
 	Version int    `json:"version"`
 	Format  string `json:"format"`

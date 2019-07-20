@@ -45,8 +45,7 @@ const (
 	CollectiblilityBoth          = Collectiblility("0,1")
 )
 
-// Sort
-// manaCost, attack, health, or name
+// Sort - manaCost, attack, health, or name
 type Sort string
 
 func (sort Sort) String() string {
@@ -61,8 +60,7 @@ const (
 	SortName     = Sort("name")
 )
 
-// Order
-// asc or desc
+// Order - asc or desc
 type Order string
 
 func (order Order) String() string {
@@ -75,8 +73,7 @@ const (
 	OrderDesc = Order("desc")
 )
 
-// MetadataType
-// sets, setGroups, types, rarities, classes, minionTypes, and keywords
+// MetadataType - sets, setGroups, types, rarities, classes, minionTypes, and keywords
 type MetadataType string
 
 func (metadataType MetadataType) String() string {

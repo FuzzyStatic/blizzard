@@ -1,5 +1,6 @@
 package hsgd
 
+// Card structure
 type Card struct {
 	ID           int    `json:"id"`
 	Collectible  int    `json:"collectible"`
@@ -22,6 +23,7 @@ type Card struct {
 	Armor        int    `json:"armor,omitempty"`
 }
 
+// CardSearch structure
 type CardSearch struct {
 	Cards     []Card `json:"cards"`
 	CardCount int    `json:"cardCount"`

@@ -1,5 +1,6 @@
 package hsgd
 
+// Metadata structure
 type Metadata struct {
 	Sets             []Set        `json:"sets"`
 	SetGroups        []SetGroup   `json:"setGroups"`
@@ -12,6 +13,7 @@ type Metadata struct {
 	NumericFields    []string     `json:"numericFields"`
 }
 
+// Set structure
 type Set struct {
 	ID                          int    `json:"id"`
 	Slug                        string `json:"slug"`
@@ -24,6 +26,7 @@ type Set struct {
 	Type                        string `json:"type,omitempty"`
 }
 
+// SetGroup structure
 type SetGroup struct {
 	Slug      string   `json:"slug"`
 	Year      int      `json:"year,omitempty"`
@@ -34,12 +37,14 @@ type SetGroup struct {
 	YearRange string   `json:"yearRange,omitempty"`
 }
 
+// Type structure
 type Type struct {
 	ID   int    `json:"id"`
 	Slug string `json:"slug"`
 	Name string `json:"name"`
 }
 
+// Rarity structure
 type Rarity struct {
 	ID           int    `json:"id"`
 	Slug         string `json:"slug"`
@@ -48,18 +53,21 @@ type Rarity struct {
 	Name         string `json:"name"`
 }
 
+// Class structure
 type Class struct {
 	ID   interface{} `json:"id"`
 	Slug string      `json:"slug"`
 	Name string      `json:"name"`
 }
 
+// MinionType structure
 type MinionType struct {
 	ID   int    `json:"id"`
 	Slug string `json:"slug"`
 	Name string `json:"name"`
 }
 
+// Keyword structure
 type Keyword struct {
 	ID      int    `json:"id"`
 	Slug    string `json:"slug"`
