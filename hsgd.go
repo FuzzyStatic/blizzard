@@ -102,12 +102,12 @@ func (c *Client) HSCardsAll() (*hsgd.CardSearch, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+hsgdPath+cardsearchPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -184,12 +184,12 @@ func (c *Client) HSCards(setSlug, classSlug, raritySlug, typeSlug, minionTypeSlu
 
 	b, err = c.getURLBody(url, "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -206,12 +206,12 @@ func (c *Client) HSCardByIDOrSlug(idOrSlug string) (*hsgd.Card, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+hsgdPath+cardsearchPath+"/"+idOrSlug+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -228,12 +228,12 @@ func (c *Client) HSDeck(deckCode string) (*hsgd.Deck, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+hsgdPath+deckPath+"/"+deckCode+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -250,12 +250,12 @@ func (c *Client) HSMetadata() (*hsgd.Metadata, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+hsgdPath+hsMetadataPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -272,12 +272,12 @@ func (c *Client) HSMetadataSets() (*[]hsgd.Set, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+hsgdPath+hsMetadataPath+"/"+string(MetadataTypeSets)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -294,12 +294,12 @@ func (c *Client) HSMetadataSetGroups() (*[]hsgd.SetGroup, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+hsgdPath+hsMetadataPath+"/"+string(MetadataTypeSetGroups)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -316,12 +316,12 @@ func (c *Client) HSMetadataTypes() (*[]hsgd.Type, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+hsgdPath+hsMetadataPath+"/"+string(MetadataTypeTypes)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -338,12 +338,12 @@ func (c *Client) HSMetadataRarities() (*[]hsgd.Rarity, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+hsgdPath+hsMetadataPath+"/"+string(MetadataTypeRarities)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -360,12 +360,12 @@ func (c *Client) HSMetadataClasses() (*[]hsgd.Class, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+hsgdPath+hsMetadataPath+"/"+string(MetadataTypeClasses)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -382,12 +382,12 @@ func (c *Client) HSMetadataMinionTypes() (*[]hsgd.MinionType, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+hsgdPath+hsMetadataPath+"/"+string(MetadataTypeMinionTypes)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -404,12 +404,12 @@ func (c *Client) HSMetadataKeywords() (*[]hsgd.Keyword, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+hsgdPath+hsMetadataPath+"/"+string(MetadataTypeKeywords)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil

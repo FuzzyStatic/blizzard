@@ -45,12 +45,12 @@ func (c *Client) D3SeasonIndex() (*d3gd.SeasonIndex, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -66,12 +66,12 @@ func (c *Client) D3Season(seasonID int) (*d3gd.Season, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -87,12 +87,12 @@ func (c *Client) D3SeasonLeaderboard(seasonID int, leaderboard string) (*d3gd.Le
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+"/"+leaderboard+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -108,12 +108,12 @@ func (c *Client) D3SeasonLeaderboardAchievementPoints(seasonID int) (*d3gd.Leade
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+achievementPointsPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -129,12 +129,12 @@ func (c *Client) D3SeasonLeaderboardHardcoreBarbarian(seasonID int) (*d3gd.Leade
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreBarbarianPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -150,12 +150,12 @@ func (c *Client) D3SeasonLeaderboardBarbarian(seasonID int) (*d3gd.Leaderboard, 
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftBarbarianPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -171,12 +171,12 @@ func (c *Client) D3SeasonLeaderboardHardcoreCrusader(seasonID int) (*d3gd.Leader
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreCrusaderPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -192,12 +192,12 @@ func (c *Client) D3SeasonLeaderboardCrusader(seasonID int) (*d3gd.Leaderboard, [
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftCrusaderPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -213,12 +213,12 @@ func (c *Client) D3SeasonLeaderboardHardcoreDemonHunter(seasonID int) (*d3gd.Lea
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreDHPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -234,12 +234,12 @@ func (c *Client) D3SeasonLeaderboardDemonHunter(seasonID int) (*d3gd.Leaderboard
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftDHPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -255,12 +255,12 @@ func (c *Client) D3SeasonLeaderboardHardcoreMonk(seasonID int) (*d3gd.Leaderboar
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreMonkPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -276,12 +276,12 @@ func (c *Client) D3SeasonLeaderboardMonk(seasonID int) (*d3gd.Leaderboard, []byt
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftMonkPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -297,12 +297,12 @@ func (c *Client) D3SeasonLeaderboardHardcoreNecromancer(seasonID int) (*d3gd.Lea
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreNecromancerPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -318,12 +318,12 @@ func (c *Client) D3SeasonLeaderboardNecromancer(seasonID int) (*d3gd.Leaderboard
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftNecromancerPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -339,12 +339,12 @@ func (c *Client) D3SeasonLeaderboardHardcoreWizard(seasonID int) (*d3gd.Leaderbo
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreWizardPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -360,12 +360,12 @@ func (c *Client) D3SeasonLeaderboardWizard(seasonID int) (*d3gd.Leaderboard, []b
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftWizardPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -381,12 +381,12 @@ func (c *Client) D3SeasonLeaderboardHardcoreWitchDoctor(seasonID int) (*d3gd.Lea
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreWDPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -402,12 +402,12 @@ func (c *Client) D3SeasonLeaderboardWitchDoctor(seasonID int) (*d3gd.Leaderboard
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftWDPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -423,12 +423,12 @@ func (c *Client) D3SeasonLeaderboardHardcoreTeam2(seasonID int) (*d3gd.Leaderboa
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreTeam2Path+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -444,12 +444,12 @@ func (c *Client) D3SeasonLeaderboardTeam2(seasonID int) (*d3gd.Leaderboard, []by
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftTeam2Path+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -465,12 +465,12 @@ func (c *Client) D3SeasonLeaderboardHardcoreTeam3(seasonID int) (*d3gd.Leaderboa
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreTeam3Path+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -486,12 +486,12 @@ func (c *Client) D3SeasonLeaderboardTeam3(seasonID int) (*d3gd.Leaderboard, []by
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftTeam3Path+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -507,12 +507,12 @@ func (c *Client) D3SeasonLeaderboardHardcoreTeam4(seasonID int) (*d3gd.Leaderboa
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftHardcoreTeam4Path+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -528,12 +528,12 @@ func (c *Client) D3SeasonLeaderboardTeam4(seasonID int) (*d3gd.Leaderboard, []by
 
 	b, err = c.getURLBody(c.apiURL+dataD3SeasonPath+"/"+strconv.Itoa(seasonID)+leaderboardPath+riftTeam4Path+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -549,12 +549,12 @@ func (c *Client) D3EraIndex() (*d3gd.EraIndex, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -570,12 +570,12 @@ func (c *Client) D3Era(eraID int) (*d3gd.Era, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -591,12 +591,12 @@ func (c *Client) D3EraLeaderboardHardcoreBarbarian(eraID int) (*d3gd.Leaderboard
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreBarbarianPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -612,12 +612,12 @@ func (c *Client) D3EraLeaderboardBarbarian(eraID int) (*d3gd.Leaderboard, []byte
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftBarbarianPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -633,12 +633,12 @@ func (c *Client) D3EraLeaderboardHardcoreCrusader(eraID int) (*d3gd.Leaderboard,
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreCrusaderPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -654,12 +654,12 @@ func (c *Client) D3EraLeaderboardCrusader(eraID int) (*d3gd.Leaderboard, []byte,
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftCrusaderPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -675,12 +675,12 @@ func (c *Client) D3EraLeaderboardHardcoreDemonHunter(eraID int) (*d3gd.Leaderboa
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreDHPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -696,12 +696,12 @@ func (c *Client) D3EraLeaderboardDemonHunter(eraID int) (*d3gd.Leaderboard, []by
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftDHPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -717,12 +717,12 @@ func (c *Client) D3EraLeaderboardHardcoreMonk(eraID int) (*d3gd.Leaderboard, []b
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreMonkPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -738,12 +738,12 @@ func (c *Client) D3EraLeaderboardMonk(eraID int) (*d3gd.Leaderboard, []byte, err
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftMonkPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -759,12 +759,12 @@ func (c *Client) D3EraLeaderboardHardcoreNecromancer(eraID int) (*d3gd.Leaderboa
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreNecromancerPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -780,12 +780,12 @@ func (c *Client) D3EraLeaderboardNecromancer(eraID int) (*d3gd.Leaderboard, []by
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftNecromancerPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -801,12 +801,12 @@ func (c *Client) D3EraLeaderboardHardcoreWizard(eraID int) (*d3gd.Leaderboard, [
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreWizardPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -822,12 +822,12 @@ func (c *Client) D3EraLeaderboardWizard(eraID int) (*d3gd.Leaderboard, []byte, e
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftWizardPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -843,12 +843,12 @@ func (c *Client) D3EraLeaderboardHardcoreWitchDoctor(eraID int) (*d3gd.Leaderboa
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreWDPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -864,12 +864,12 @@ func (c *Client) D3EraLeaderboardWitchDoctor(eraID int) (*d3gd.Leaderboard, []by
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftWDPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -885,12 +885,12 @@ func (c *Client) D3EraLeaderboardHardcoreTeam2(eraID int) (*d3gd.Leaderboard, []
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreTeam2Path+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -906,12 +906,12 @@ func (c *Client) D3EraLeaderboardTeam2(eraID int) (*d3gd.Leaderboard, []byte, er
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftTeam2Path+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -927,12 +927,12 @@ func (c *Client) D3EraLeaderboardHardcoreTeam3(eraID int) (*d3gd.Leaderboard, []
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreTeam3Path+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -948,12 +948,12 @@ func (c *Client) D3EraLeaderboardTeam3(eraID int) (*d3gd.Leaderboard, []byte, er
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftTeam3Path+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -969,12 +969,12 @@ func (c *Client) D3EraLeaderboardHardcoreTeam4(eraID int) (*d3gd.Leaderboard, []
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftHardcoreTeam4Path+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -990,12 +990,12 @@ func (c *Client) D3EraLeaderboardTeam4(eraID int) (*d3gd.Leaderboard, []byte, er
 
 	b, err = c.getURLBody(c.apiURL+eraPath+"/"+strconv.Itoa(eraID)+leaderboardPath+riftTeam4Path+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil

@@ -14,14 +14,15 @@ var c *Client
 
 // Client regional API URLs, locale, client ID, client secret
 type Client struct {
-	client           *http.Client
-	oauth            OAuth
-	oauthURL         string
-	apiURL           string
-	dynamicNamespace string
-	profileNamespace string
-	staticNamespace  string
-	locale           Locale
+	client                 *http.Client
+	oauth                  OAuth
+	oauthURL               string
+	apiURL                 string
+	dynamicNamespace       string
+	profileNamespace       string
+	staticNamespace        string
+	staticClassicNamespace string
+	locale                 Locale
 }
 
 // Region type
@@ -60,19 +61,19 @@ func (locale Locale) String() string {
 
 // Locale constants
 const (
-	enUS = Locale("en_US")
-	esMX = Locale("es_MX")
-	ptBR = Locale("pt_BR")
-	enGB = Locale("en_GB")
-	esES = Locale("es_ES")
-	frFR = Locale("fr_FR")
-	ruRU = Locale("ru_RU")
-	deDE = Locale("de_DE")
-	ptPT = Locale("pt_PT")
-	itIT = Locale("it_IT")
-	koKR = Locale("ko_KR")
-	zhTW = Locale("zh_TW")
-	zhCN = Locale("zh_CN")
+	EN_US = Locale("en_US")
+	ES_MX = Locale("es_MX")
+	PT_BR = Locale("pt_BR")
+	EN_GB = Locale("en_GB")
+	ES_ES = Locale("es_ES")
+	FR_FR = Locale("fr_FR")
+	RU_RU = Locale("ru_RU")
+	DE_DE = Locale("de_DE")
+	PT_PT = Locale("pt_PT")
+	IT_IT = Locale("it_IT")
+	KO_KR = Locale("ko_KR")
+	ZH_TW = Locale("zh_TW")
+	ZH_CN = Locale("zh_CN")
 )
 
 // Path constants
@@ -115,12 +116,14 @@ func (c *Client) SetRegion(region Region) {
 		c.dynamicNamespace = "dynamic-zh"
 		c.profileNamespace = "profile-zh"
 		c.staticNamespace = "static-zh"
+		c.staticClassicNamespace = "static-classic-zh"
 	default:
 		c.oauthURL = fmt.Sprintf("https://%s.battle.net/", region)
 		c.apiURL = fmt.Sprintf("https://%s.api.blizzard.com", region)
 		c.dynamicNamespace = fmt.Sprintf("dynamic-%s", region)
 		c.profileNamespace = fmt.Sprintf("profile-%s", region)
 		c.staticNamespace = fmt.Sprintf("static-%s", region)
+		c.staticClassicNamespace = fmt.Sprintf("static-classic-%s", region)
 	}
 }
 

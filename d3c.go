@@ -56,12 +56,12 @@ func (c *Client) D3ActIndex() (*d3c.ActIndex, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+actPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -77,12 +77,12 @@ func (c *Client) D3Act(id int) (*d3c.Act, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+actPath+"/"+strconv.Itoa(id)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -98,12 +98,12 @@ func (c *Client) D3Blacksmith() (*d3c.Artisan, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+blacksmithPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -119,12 +119,12 @@ func (c *Client) D3Jeweler() (*d3c.Artisan, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+jewelerPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -140,12 +140,12 @@ func (c *Client) D3Mystic() (*d3c.Artisan, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+mysticPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -161,12 +161,12 @@ func (c *Client) D3BlacksmithRecipe(recipeSlug string) (*d3c.Recipe, []byte, err
 
 	b, err = c.getURLBody(c.apiURL+blacksmithRecipePath+"/"+recipeSlug+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -182,12 +182,12 @@ func (c *Client) D3JewelerRecipe(recipeSlug string) (*d3c.Recipe, []byte, error)
 
 	b, err = c.getURLBody(c.apiURL+jewelerRecipePath+"/"+recipeSlug+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -203,12 +203,12 @@ func (c *Client) D3Enchantress() (*d3c.Follower, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+enchantressPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -224,12 +224,12 @@ func (c *Client) D3Scoundrel() (*d3c.Follower, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+scoundrelPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -245,12 +245,12 @@ func (c *Client) D3Templar() (*d3c.Follower, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+templarPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -266,12 +266,12 @@ func (c *Client) D3Barbarian() (*d3c.Hero, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+barbarianPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -287,12 +287,12 @@ func (c *Client) D3Crusader() (*d3c.Hero, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+crusaderPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -308,12 +308,12 @@ func (c *Client) D3DemonHunter() (*d3c.Hero, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+demonHunterPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -329,12 +329,12 @@ func (c *Client) D3Monk() (*d3c.Hero, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+monkPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -350,12 +350,12 @@ func (c *Client) D3Necromancer() (*d3c.Hero, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+necromancerPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -371,12 +371,12 @@ func (c *Client) D3Wizard() (*d3c.Hero, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+wizardPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -392,12 +392,12 @@ func (c *Client) D3WitchDoctor() (*d3c.Hero, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+witchDoctorPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -413,12 +413,12 @@ func (c *Client) D3BarbarianSkill(skillSlug string) (*d3c.Skill, []byte, error) 
 
 	b, err = c.getURLBody(c.apiURL+barbarianSkillPath+"/"+skillSlug+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -434,12 +434,12 @@ func (c *Client) D3CrusaderSkill(skillSlug string) (*d3c.Skill, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+crusaderSkillPath+"/"+skillSlug+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -455,12 +455,12 @@ func (c *Client) D3DemonHunterSkill(skillSlug string) (*d3c.Skill, []byte, error
 
 	b, err = c.getURLBody(c.apiURL+demonHunterSkillPath+"/"+skillSlug+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -476,12 +476,12 @@ func (c *Client) D3MonkSkill(skillSlug string) (*d3c.Skill, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+monkSkillPath+"/"+skillSlug+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -497,12 +497,12 @@ func (c *Client) D3NecromancerSkill(skillSlug string) (*d3c.Skill, []byte, error
 
 	b, err = c.getURLBody(c.apiURL+necromancerSkillPath+"/"+skillSlug+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -518,12 +518,12 @@ func (c *Client) D3WizardSkill(skillSlug string) (*d3c.Skill, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+wizardSkillPath+"/"+skillSlug+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -539,12 +539,12 @@ func (c *Client) D3WitchDoctorSkill(skillSlug string) (*d3c.Skill, []byte, error
 
 	b, err = c.getURLBody(c.apiURL+witchDoctorSkillPath+"/"+skillSlug+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -560,12 +560,12 @@ func (c *Client) D3ItemTypeIndex() (*d3c.ItemTypeIndex, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+itemTypePath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -581,12 +581,12 @@ func (c *Client) D3ItemType(itemTypeSlug string) (*d3c.ItemType, []byte, error) 
 
 	b, err = c.getURLBody(c.apiURL+itemTypePath+"/"+itemTypeSlug+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -602,12 +602,12 @@ func (c *Client) D3Item(itemSlug, itemID string) (*d3c.Item, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+itemPath+"/"+itemSlug+"-"+itemID+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -626,12 +626,12 @@ func (c *Client) D3Profile(account string) (*d3c.Profile, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+d3ProfilePath+"/"+account+"/?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -650,12 +650,12 @@ func (c *Client) D3ProfileHero(account string, heroID int) (*d3c.ProfileHero, []
 
 	b, err = c.getURLBody(c.apiURL+d3ProfilePath+"/"+account+profileHeroPartialPath+"/"+strconv.Itoa(heroID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -674,12 +674,12 @@ func (c *Client) D3ProfileHeroItems(account string, heroID int) (*d3c.ProfileHer
 
 	b, err = c.getURLBody(c.apiURL+d3ProfilePath+"/"+account+profileHeroPartialPath+"/"+strconv.Itoa(heroID)+profileItemsPartialPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -698,12 +698,12 @@ func (c *Client) D3ProfileHeroFollowerItems(account string, heroID int) (*d3c.Pr
 
 	b, err = c.getURLBody(c.apiURL+d3ProfilePath+"/"+account+profileHeroPartialPath+"/"+strconv.Itoa(heroID)+profileFollowerItemsPartialPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil

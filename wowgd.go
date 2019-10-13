@@ -52,12 +52,12 @@ func (c *Client) WoWConnectedRealmIndex() (*wowgd.ConnectedRealmIndex, []byte, e
 
 	b, err = c.getURLBody(c.apiURL+wowConnectedRealmIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -73,12 +73,12 @@ func (c *Client) WoWConnectedRealm(connectedRealmID int) (*wowgd.ConnectedRealm,
 
 	b, err = c.getURLBody(c.apiURL+wowConnectedRealmPath+"/"+strconv.Itoa(connectedRealmID)+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -94,12 +94,12 @@ func (c *Client) WoWMythicKeystoneAffixIndex() (*wowgd.MythicKeystoneAffixIndex,
 
 	b, err = c.getURLBody(c.apiURL+wowKeystoneAffixIndexPath+"?"+localeQuery+c.locale.String(), c.staticNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -115,12 +115,12 @@ func (c *Client) WoWMythicKeystoneAffix(keystoneAffixID int) (*wowgd.MythicKeyst
 
 	b, err = c.getURLBody(c.apiURL+wowKeystoneAffixPath+"/"+strconv.Itoa(keystoneAffixID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -136,12 +136,12 @@ func (c *Client) WoWMythicRaidLeaderboard(raid, faction string) (*wowgd.MythicRa
 
 	b, err = c.getURLBody(c.apiURL+wowLeaderboardHallOfFamePath+"/"+raid+"/"+faction+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -157,12 +157,12 @@ func (c *Client) WoWMythicKeystoneDungeonIndex() (*wowgd.MythicKeystoneDungeonIn
 
 	b, err = c.getURLBody(c.apiURL+wowMythicKeystoneDungeonIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -178,12 +178,12 @@ func (c *Client) WoWMythicKeystoneDungeon(dungeonID int) (*wowgd.MythicKeystoneD
 
 	b, err = c.getURLBody(c.apiURL+wowMythicKeystoneDungeonPath+"/"+strconv.Itoa(dungeonID)+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -199,12 +199,12 @@ func (c *Client) WoWMythicKeystoneIndex() (*wowgd.MythicKeystoneIndex, []byte, e
 
 	b, err = c.getURLBody(c.apiURL+wowMythicKeystoneIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -220,12 +220,12 @@ func (c *Client) WoWMythicKeystonePeriodIndex() (*wowgd.MythicKeystonePeriodInde
 
 	b, err = c.getURLBody(c.apiURL+wowMythicKeystonePeriodIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -241,12 +241,12 @@ func (c *Client) WoWMythicKeystonePeriod(periodID int) (*wowgd.MythicKeystonePer
 
 	b, err = c.getURLBody(c.apiURL+wowMythicKeystonePeriodPath+"/"+strconv.Itoa(periodID)+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -262,12 +262,12 @@ func (c *Client) WoWMythicKeystoneSeasonIndex() (*wowgd.MythicKeystoneSeasonInde
 
 	b, err = c.getURLBody(c.apiURL+wowMythicKeystoneSeasonIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -283,12 +283,12 @@ func (c *Client) WoWMythicKeystoneSeason(seasonID int) (*wowgd.MythicKeystoneSea
 
 	b, err = c.getURLBody(c.apiURL+wowMythicKeystoneSeasonPath+"/"+strconv.Itoa(seasonID)+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -304,12 +304,12 @@ func (c *Client) WoWMythicKeystoneLeaderboardIndex(connectedRealmID int) (*wowgd
 
 	b, err = c.getURLBody(c.apiURL+wowConnectedRealmPath+"/"+strconv.Itoa(connectedRealmID)+"/"+mythicLeaderboardIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -325,12 +325,12 @@ func (c *Client) WoWMythicKeystoneLeaderboard(connectedRealmID, dungeonID, perio
 
 	b, err = c.getURLBody(c.apiURL+wowConnectedRealmPath+"/"+strconv.Itoa(connectedRealmID)+"/"+mythicLeaderboardPath+"/"+strconv.Itoa(dungeonID)+periodPath+"/"+strconv.Itoa(period)+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -346,12 +346,12 @@ func (c *Client) WoWPlayableClassesIndex() (*wowgd.PlayableClassesIndex, []byte,
 
 	b, err = c.getURLBody(c.apiURL+wowPlayableClassIndexPath+"?"+localeQuery+c.locale.String(), c.staticNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -367,12 +367,12 @@ func (c *Client) WoWPlayableClass(classID int) (*wowgd.PlayableClass, []byte, er
 
 	b, err = c.getURLBody(c.apiURL+wowPlayableClassPath+"/"+strconv.Itoa(classID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -388,12 +388,12 @@ func (c *Client) WoWPlayableClassPVPTalentSlots(classID int) (*wowgd.PlayableCla
 
 	b, err = c.getURLBody(c.apiURL+wowPlayableClassPath+"/"+strconv.Itoa(classID)+pvpTalentSlotsPath+"?"+localeQuery+c.locale.String(), c.staticNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -409,12 +409,12 @@ func (c *Client) WoWPlayableSpecializationIndex() (*wowgd.PlayableSpecialization
 
 	b, err = c.getURLBody(c.apiURL+wowPlayableSpecializationIndexPath+"?"+localeQuery+c.locale.String(), c.staticNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -430,12 +430,12 @@ func (c *Client) WoWPlayableSpecialization(specID int) (*wowgd.PlayableSpecializ
 
 	b, err = c.getURLBody(c.apiURL+wowPlayableSpecializationPath+"/"+strconv.Itoa(specID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -451,12 +451,12 @@ func (c *Client) WoWPowerTypesIndex() (*wowgd.PowerTypesIndex, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+wowPowerTypeIndexPath+"?"+localeQuery+c.locale.String(), c.staticNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -472,12 +472,12 @@ func (c *Client) WoWPowerType(powerTypeID int) (*wowgd.PowerType, []byte, error)
 
 	b, err = c.getURLBody(c.apiURL+wowPowerTypePath+"/"+strconv.Itoa(powerTypeID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -493,12 +493,12 @@ func (c *Client) WoWPlayableRacesIndex() (*wowgd.PlayableRacesIndex, []byte, err
 
 	b, err = c.getURLBody(c.apiURL+wowRaceIndexPath+"?"+localeQuery+c.locale.String(), c.staticNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -514,12 +514,12 @@ func (c *Client) WoWPlayableRace(raceID int) (*wowgd.PlayableRace, []byte, error
 
 	b, err = c.getURLBody(c.apiURL+wowRacePath+"/"+strconv.Itoa(raceID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -535,12 +535,12 @@ func (c *Client) WoWRealmIndex() (*wowgd.RealmIndex, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+wowRealmIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -556,12 +556,12 @@ func (c *Client) WoWRealm(realmSlug string) (*wowgd.Realm, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+wowRealmPath+"/"+realmSlug+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -577,12 +577,12 @@ func (c *Client) WoWRegionIndex() (*wowgd.RegionIndex, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+wowRegionIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -598,12 +598,12 @@ func (c *Client) WoWRegion(regionID int) (*wowgd.Region, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+wowRegionPath+"/"+strconv.Itoa(regionID)+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -619,12 +619,12 @@ func (c *Client) WoWToken() (*wowgd.Token, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+wowTokenIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil

@@ -140,19 +140,19 @@ func (c *Client) TokenValidation() (*oauth.TokenValidation, []byte, error) {
 
 	err = c.updateAccessTokenIfExp()
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	req, err = http.NewRequest("GET", c.oauthURL+oauthPath+checkTokenPath+"?"+tokenQuery+c.oauth.AccessTokenRequest.AccessToken, nil)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	req.Header.Set("Accept", "application/json")
 
 	res, err = c.client.Do(req)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 	defer func() {
 		err = res.Body.Close()
@@ -163,12 +163,12 @@ func (c *Client) TokenValidation() (*oauth.TokenValidation, []byte, error) {
 
 	b, err = ioutil.ReadAll(res.Body)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil

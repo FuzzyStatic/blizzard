@@ -24,7 +24,7 @@ func init() {
 		log.Println("Output will not be printed for tests.")
 	}
 
-	c = NewClient(clientID, clientSecret, US, enUS)
+	c = NewClient(clientID, clientSecret, US, EN_US)
 
 	err := c.AccessTokenReq()
 	if err != nil {

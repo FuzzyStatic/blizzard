@@ -39,12 +39,12 @@ func (c *Client) SC2StaticProfile(region Region) (*sc2c.StaticProfile, []byte, e
 
 	b, err = c.getURLBody(c.apiURL+sc2StaticProfilePath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -60,12 +60,12 @@ func (c *Client) SC2MetadataProfile(region Region, realmID, profileID int) (*sc2
 
 	b, err = c.getURLBody(c.apiURL+sc2MetadataProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -81,12 +81,12 @@ func (c *Client) SC2Profile(region Region, realmID, profileID int) (*sc2c.Profil
 
 	b, err = c.getURLBody(c.apiURL+sc2ProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -102,12 +102,12 @@ func (c *Client) SC2ProfileLadderSummary(region Region, realmID, profileID int) 
 
 	b, err = c.getURLBody(c.apiURL+sc2ProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+ladderSummaryPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -123,12 +123,12 @@ func (c *Client) SC2ProfileLadder(region Region, realmID, profileID, ladderID in
 
 	b, err = c.getURLBody(c.apiURL+sc2ProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+ladderPath+"/"+strconv.Itoa(ladderID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -144,12 +144,12 @@ func (c *Client) SC2LadderGrandmaster(region Region) (*sc2c.LadderGrandmaster, [
 
 	b, err = c.getURLBody(c.apiURL+sc2GrandmasterPath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -165,12 +165,12 @@ func (c *Client) SC2LadderSeason(region Region) (*sc2c.LadderSeason, []byte, err
 
 	b, err = c.getURLBody(c.apiURL+sc2SeasonPath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -186,12 +186,12 @@ func (c *Client) SC2Player(accountID int) (*sc2c.Player, []byte, error) {
 
 	b, err = c.getURLBody(c.apiURL+sc2PlayerPath+"/"+strconv.Itoa(accountID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -207,12 +207,12 @@ func (c *Client) SC2LegacyProfile(region Region, realmID, profileID int) (*sc2c.
 
 	b, err = c.getURLBody(c.apiURL+sc2LegacyProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -228,12 +228,12 @@ func (c *Client) SC2LegacyProfileLadders(region Region, realmID, profileID int) 
 
 	b, err = c.getURLBody(c.apiURL+sc2LegacyProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+laddersPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -249,12 +249,12 @@ func (c *Client) SC2LegacyProfileMatches(region Region, realmID, profileID int) 
 
 	b, err = c.getURLBody(c.apiURL+sc2LegacyProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+matchesPath+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -270,12 +270,12 @@ func (c *Client) SC2LegacyLadder(region Region, ladderID int) (*sc2c.LegacyLadde
 
 	b, err = c.getURLBody(c.apiURL+sc2LegacyLadderPath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(ladderID)+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -291,12 +291,12 @@ func (c *Client) SC2LegacyAchievements(region Region) (*sc2c.LegacyAchievements,
 
 	b, err = c.getURLBody(c.apiURL+sc2LegacyAchievementsPath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -312,12 +312,12 @@ func (c *Client) SC2LegacyRewards(region Region) (*sc2c.LegacyRewards, []byte, e
 
 	b, err = c.getURLBody(c.apiURL+sc2LegacyRewardsPath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil

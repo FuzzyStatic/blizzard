@@ -49,7 +49,7 @@ type CreatureTypesIndex struct {
 	} `json:"creature_types"`
 }
 
-// CreatureType
+// CreatureType structure
 type CreatureType struct {
 	Links struct {
 		Self struct {

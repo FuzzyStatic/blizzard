@@ -6,19 +6,26 @@
 
 ## Table of Contents
 - [blizzard](#blizzard)
-	- [Table of Contents](#Table-of-Contents)
-	- [Getting Started](#Getting-Started)
-		- [Fetching OAuth Data](#Fetching-OAuth-Data)
-		- [Fetching Diablo 3 Data](#Fetching-Diablo-3-Data)
-		- [Fetching Hearthstone Data](#Fetching-Hearthstone-Data)
-		- [Fetching StarCraft 2 Data](#Fetching-StarCraft-2-Data)
-		- [Fetching World of Warcraft Data](#Fetching-World-of-Warcraft-Data)
-	- [Documentation](#Documentation)
-	- [Special Thanks](#Special-Thanks)
+  - [Table of Contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+    - [Fetching OAuth Data](#fetching-oauth-data)
+    - [Fetching Diablo 3 Data](#fetching-diablo-3-data)
+    - [Fetching Hearthstone Data](#fetching-hearthstone-data)
+    - [Fetching StarCraft 2 Data](#fetching-starcraft-2-data)
+    - [Fetching World of Warcraft Data](#fetching-world-of-warcraft-data)
+    - [Fetching World of Warcraft Classic Data](#fetching-world-of-warcraft-classic-data)
+  - [Documentation](#documentation)
+  - [Special Thanks](#special-thanks)
 
 ## Getting Started
 
-Start by initiating a new Blizzard config structure for desired region and locale (client_id and client_secret can be acquired through your developer account at [https://develop.battle.net/](https://develop.battle.net/)) and requesting an access token:
+First, download the Blizzard library:
+
+```shell
+go get github.com/FuzzyStatic/blizzard
+```
+
+Start using the library by initiating a new Blizzard config structure for desired region and locale (client_id and client_secret can be acquired through your developer account at [https://develop.battle.net/](https://develop.battle.net/)) and requesting an access token:
 
 ```go
 blizz := blizzard.NewClient("client_id", "client_secret", blizzard.US, blizzard.enUS)
@@ -136,6 +143,10 @@ if err != nil {
 
 fmt.Printf("%+v\n", dat)
 ```
+
+### Fetching World of Warcraft Classic Data
+
+You can use the functions prefixed with "WoWC" to acquire World of Warcraft Classic information. For example, you can get information about your WoW Classic character profile:
 
 ## Documentation
 

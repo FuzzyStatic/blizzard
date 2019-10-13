@@ -23,12 +23,12 @@ func (c *Client) WoWCharacterMythicKeystoneProfile(realmSlug, characterName stri
 
 	b, err = c.getURLBody(c.apiURL+profileWowCharacterPath+"/"+realmSlug+"/"+characterName+"/"+mythicKeystoneProfilePath+"?"+localeQuery+c.locale.String(), c.profileNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
@@ -45,12 +45,12 @@ func (c *Client) WoWCharacterMythicKeystoneProfileSeason(realmSlug, characterNam
 
 	b, err = c.getURLBody(c.apiURL+profileWowCharacterPath+"/"+realmSlug+"/"+characterName+"/"+mythicKeystoneProfilePath+seasonPath+"/"+strconv.Itoa(seasonID)+"?"+localeQuery+c.locale.String(), c.profileNamespace)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
-		return nil, nil, err
+		return &dat, b, err
 	}
 
 	return &dat, b, nil
