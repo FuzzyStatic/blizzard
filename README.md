@@ -146,7 +146,16 @@ fmt.Printf("%+v\n", dat)
 
 ### Fetching World of Warcraft Classic Data
 
-You can use the functions prefixed with "WoWC" to acquire World of Warcraft Classic information. For example, you can get information about your WoW Classic character profile:
+You can use the functions prefixed with "WoWClassic" to acquire World of Warcraft Classic information. For example, you can get information about WoW Classic creature data:
+
+```go
+dat, _, err := blizz.WoWClassicCreature(30)
+if err != nil {
+  fmt.Println(err)
+}
+
+fmt.Printf("%+v\n", dat)
+```
 
 ## Documentation
 

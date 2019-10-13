@@ -91,8 +91,8 @@ type Creature struct {
 	IsTameable bool `json:"is_tameable"`
 }
 
-// CreatureDisplay structure
-type CreatureDisplay struct {
+// CreatureDisplayMedia structure
+type CreatureDisplayMedia struct {
 	Links struct {
 		Self struct {
 			Href string `json:"href"`
