@@ -15,6 +15,10 @@ const (
 	wowCreaturePath              = dataWowPath + "/creature"
 	wowMediaCreatureDisplayPath  = dataWowPath + "/media/creature-display"
 	wowMediaCreatureFamilyPath   = dataWowPath + "/media/creature-family"
+	wowGuildCrestPath            = dataWowPath + "/guild-crest"
+	wowGuildCrestIndexPath       = wowGuildCrestPath + "/index"
+	wowMediaGuildCrestBorderPath = dataWowPath + "/media/guild-crest/border"
+	wowMediaGuildCrestEmblemPath = dataWowPath + "/media/guild-crest/emblem"
 )
 
 // ClassicWoWCreatureFamiliesIndex returns an index of creature families
@@ -152,6 +156,69 @@ func (c *Client) ClassicWoWCreatureFamilyMedia(creatureFamilyID int) (*wowcgd.Cr
 	)
 
 	b, err = c.getURLBody(c.apiURL+wowMediaCreatureFamilyPath+"/"+strconv.Itoa(creatureFamilyID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWGuildCrestComponentsIndex returns an index of guild crest media
+func (c *Client) ClassicWoWGuildCrestComponentsIndex() (*wowcgd.GuildCrestComponentsIndex, []byte, error) {
+	var (
+		dat wowcgd.GuildCrestComponentsIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowGuildCrestIndexPath+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWGuildCrestBorderMedia returns media for a guild crest border by ID
+func (c *Client) ClassicWoWGuildCrestBorderMedia(borderID int) (*wowcgd.GuildCrestBorderMdedia, []byte, error) {
+	var (
+		dat wowcgd.GuildCrestBorderMdedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowMediaGuildCrestBorderPath+"/"+strconv.Itoa(borderID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWGuildCrestEmblemMedia returns media for a guild crest emblem by ID
+func (c *Client) ClassicWoWGuildCrestEmblemMedia(emblemID int) (*wowcgd.GuildCrestEmblemMdedia, []byte, error) {
+	var (
+		dat wowcgd.GuildCrestEmblemMdedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowMediaGuildCrestEmblemPath+"/"+strconv.Itoa(emblemID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}

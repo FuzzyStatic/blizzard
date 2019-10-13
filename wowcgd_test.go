@@ -88,3 +88,39 @@ func TestClassicWoWCreatureFamilyMedia(t *testing.T) {
 		fmt.Printf("%+v\n", dat)
 	}
 }
+
+func TestClassicWoWGuildCrestComponentsIndex(t *testing.T) {
+	dat, _, err := c.ClassicWoWGuildCrestComponentsIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestClassicWoWGuildCrestBorderMedia(t *testing.T) {
+	dat, _, err := c.ClassicWoWGuildCrestBorderMedia(0)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestClassicWoWGuildCrestEmblemMedia(t *testing.T) {
+	dat, _, err := c.ClassicWoWGuildCrestEmblemMedia(0)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
