@@ -131,7 +131,7 @@ or the PVP leaderboards:
 ```go
 dat, _, err := blizz.WoWPVPLeaderboard(wowc.Bracket3v3)
 if err != nil {
-  t.Fail()
+  fmt.Println(err)
 }
 
 fmt.Printf("%+v\n", dat)
