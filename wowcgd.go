@@ -17,8 +17,8 @@ const (
 	wowMediaCreatureFamilyPath   = dataWowPath + "/media/creature-family"
 )
 
-// WoWClassicCreatureFamiliesIndex returns an index of creature families
-func (c *Client) WoWClassicCreatureFamiliesIndex() (*wowcgd.CreatureFamiliesIndex, []byte, error) {
+// ClassicWoWCreatureFamiliesIndex returns an index of creature families
+func (c *Client) ClassicWoWCreatureFamiliesIndex() (*wowcgd.CreatureFamiliesIndex, []byte, error) {
 	var (
 		dat wowcgd.CreatureFamiliesIndex
 		b   []byte
@@ -38,8 +38,8 @@ func (c *Client) WoWClassicCreatureFamiliesIndex() (*wowcgd.CreatureFamiliesInde
 	return &dat, b, nil
 }
 
-// WoWClassicCreatureFamily returns a creature family by ID
-func (c *Client) WoWClassicCreatureFamily(creatureFamilyID int) (*wowcgd.CreatureFamily, []byte, error) {
+// ClassicWoWCreatureFamily returns a creature family by ID
+func (c *Client) ClassicWoWCreatureFamily(creatureFamilyID int) (*wowcgd.CreatureFamily, []byte, error) {
 	var (
 		dat wowcgd.CreatureFamily
 		b   []byte
@@ -59,8 +59,8 @@ func (c *Client) WoWClassicCreatureFamily(creatureFamilyID int) (*wowcgd.Creatur
 	return &dat, b, nil
 }
 
-// WoWClassicCreatureTypesIndex returns an index of creature types
-func (c *Client) WoWClassicCreatureTypesIndex() (*wowcgd.CreatureTypesIndex, []byte, error) {
+// ClassicWoWCreatureTypesIndex returns an index of creature types
+func (c *Client) ClassicWoWCreatureTypesIndex() (*wowcgd.CreatureTypesIndex, []byte, error) {
 	var (
 		dat wowcgd.CreatureTypesIndex
 		b   []byte
@@ -80,8 +80,8 @@ func (c *Client) WoWClassicCreatureTypesIndex() (*wowcgd.CreatureTypesIndex, []b
 	return &dat, b, nil
 }
 
-// WoWClassicCreatureType returns a creature type by ID
-func (c *Client) WoWClassicCreatureType(creatureTypeID int) (*wowcgd.CreatureType, []byte, error) {
+// ClassicWoWCreatureType returns a creature type by ID
+func (c *Client) ClassicWoWCreatureType(creatureTypeID int) (*wowcgd.CreatureType, []byte, error) {
 	var (
 		dat wowcgd.CreatureType
 		b   []byte
@@ -101,8 +101,8 @@ func (c *Client) WoWClassicCreatureType(creatureTypeID int) (*wowcgd.CreatureTyp
 	return &dat, b, nil
 }
 
-// WoWClassicCreature returns a creature type by ID
-func (c *Client) WoWClassicCreature(creatureID int) (*wowcgd.Creature, []byte, error) {
+// ClassicWoWCreature returns a creature type by ID
+func (c *Client) ClassicWoWCreature(creatureID int) (*wowcgd.Creature, []byte, error) {
 	var (
 		dat wowcgd.Creature
 		b   []byte
@@ -122,8 +122,8 @@ func (c *Client) WoWClassicCreature(creatureID int) (*wowcgd.Creature, []byte, e
 	return &dat, b, nil
 }
 
-// WoWClassicCreatureDisplayMedia returns media for a creature display by ID
-func (c *Client) WoWClassicCreatureDisplayMedia(creatureDisplayID int) (*wowcgd.CreatureDisplayMedia, []byte, error) {
+// ClassicWoWCreatureDisplayMedia returns media for a creature display by ID
+func (c *Client) ClassicWoWCreatureDisplayMedia(creatureDisplayID int) (*wowcgd.CreatureDisplayMedia, []byte, error) {
 	var (
 		dat wowcgd.CreatureDisplayMedia
 		b   []byte
@@ -143,8 +143,8 @@ func (c *Client) WoWClassicCreatureDisplayMedia(creatureDisplayID int) (*wowcgd.
 	return &dat, b, nil
 }
 
-// WoWClassicCreatureFamilyMedia returns media for a creature family by ID
-func (c *Client) WoWClassicCreatureFamilyMedia(creatureFamilyID int) (*wowcgd.CreatureFamilyMedia, []byte, error) {
+// ClassicWoWCreatureFamilyMedia returns media for a creature family by ID
+func (c *Client) ClassicWoWCreatureFamilyMedia(creatureFamilyID int) (*wowcgd.CreatureFamilyMedia, []byte, error) {
 	var (
 		dat wowcgd.CreatureFamilyMedia
 		b   []byte

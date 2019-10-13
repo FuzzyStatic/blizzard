@@ -5,6 +5,7 @@
 > This is a Go client library for gathering [Blizzard API reference](https://develop.battle.net/documentation/api-reference)  data
 
 ## Table of Contents
+
 - [blizzard](#blizzard)
   - [Table of Contents](#table-of-contents)
   - [Getting Started](#getting-started)
@@ -28,7 +29,7 @@ go get github.com/FuzzyStatic/blizzard
 Start using the library by initiating a new Blizzard config structure for desired region and locale (client_id and client_secret can be acquired through your developer account at [https://develop.battle.net/](https://develop.battle.net/)) and requesting an access token:
 
 ```go
-blizz := blizzard.NewClient("client_id", "client_secret", blizzard.US, blizzard.enUS)
+blizz := blizzard.NewClient("client_id", "client_secret", blizzard.US, blizzard.EnUS)
 
 err := blizz.AccessTokenReq()
 if err != nil {
@@ -146,10 +147,10 @@ fmt.Printf("%+v\n", dat)
 
 ### Fetching World of Warcraft Classic Data
 
-You can use the functions prefixed with "WoWClassic" to acquire World of Warcraft Classic information. For example, you can get information about WoW Classic creature data:
+You can use the functions prefixed with "ClassicWoW" to acquire World of Warcraft Classic information. For example, you can get information about WoW Classic creature data:
 
 ```go
-dat, _, err := blizz.WoWClassicCreature(30)
+dat, _, err := blizz.ClassicWoWCreature(30)
 if err != nil {
   fmt.Println(err)
 }

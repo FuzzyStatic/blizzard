@@ -5,8 +5,8 @@ import (
 	"testing"
 )
 
-func TestWoWClassicCreatureFamiliesIndex(t *testing.T) {
-	dat, _, err := c.WoWClassicCreatureFamiliesIndex()
+func TestClassicWoWCreatureFamiliesIndex(t *testing.T) {
+	dat, _, err := c.ClassicWoWCreatureFamiliesIndex()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -17,8 +17,8 @@ func TestWoWClassicCreatureFamiliesIndex(t *testing.T) {
 	}
 }
 
-func TestWoWClassicCreatureFamily(t *testing.T) {
-	dat, _, err := c.WoWClassicCreatureFamily(1)
+func TestClassicWoWCreatureFamily(t *testing.T) {
+	dat, _, err := c.ClassicWoWCreatureFamily(1)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -29,8 +29,8 @@ func TestWoWClassicCreatureFamily(t *testing.T) {
 	}
 }
 
-func TestWoWClassicCreatureTypesIndex(t *testing.T) {
-	dat, _, err := c.WoWClassicCreatureTypesIndex()
+func TestClassicWoWCreatureTypesIndex(t *testing.T) {
+	dat, _, err := c.ClassicWoWCreatureTypesIndex()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -41,8 +41,8 @@ func TestWoWClassicCreatureTypesIndex(t *testing.T) {
 	}
 }
 
-func TestWoWClassicCreatureType(t *testing.T) {
-	dat, _, err := c.WoWClassicCreatureType(1)
+func TestClassicWoWCreatureType(t *testing.T) {
+	dat, _, err := c.ClassicWoWCreatureType(1)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -53,8 +53,8 @@ func TestWoWClassicCreatureType(t *testing.T) {
 	}
 }
 
-func TestWoWClassicCreature(t *testing.T) {
-	dat, _, err := c.WoWClassicCreature(30)
+func TestClassicWoWCreature(t *testing.T) {
+	dat, _, err := c.ClassicWoWCreature(30)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -65,8 +65,8 @@ func TestWoWClassicCreature(t *testing.T) {
 	}
 }
 
-func TestWoWClassicCreatureDisplayMedia(t *testing.T) {
-	dat, _, err := c.WoWClassicCreatureDisplayMedia(30)
+func TestClassicWoWCreatureDisplayMedia(t *testing.T) {
+	dat, _, err := c.ClassicWoWCreatureDisplayMedia(30)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -77,8 +77,8 @@ func TestWoWClassicCreatureDisplayMedia(t *testing.T) {
 	}
 }
 
-func TestWoWClassicCreatureFamilyMedia(t *testing.T) {
-	dat, _, err := c.WoWClassicCreatureFamilyMedia(1)
+func TestClassicWoWCreatureFamilyMedia(t *testing.T) {
+	dat, _, err := c.ClassicWoWCreatureFamilyMedia(1)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
