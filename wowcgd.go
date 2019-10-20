@@ -19,6 +19,12 @@ const (
 	wowGuildCrestIndexPath       = wowGuildCrestPath + "/index"
 	wowMediaGuildCrestBorderPath = dataWowPath + "/media/guild-crest/border"
 	wowMediaGuildCrestEmblemPath = dataWowPath + "/media/guild-crest/emblem"
+	wowItemClassPath             = dataWowPath + "/item-class"
+	wowItemClassIndexPath        = wowItemClassPath + "/index"
+	wowItemSubclassPath          = "/item-subclass"
+	wowDataItemPath              = dataWowPath + "/item"
+	wowMediaItemPath             = dataWowPath + "/media/item"
+	wowMediaPlayableClassPath    = dataWowPath + "/media/playable-class"
 )
 
 // ClassicWoWCreatureFamiliesIndex returns an index of creature families
@@ -219,6 +225,258 @@ func (c *Client) ClassicWoWGuildCrestEmblemMedia(emblemID int) (*wowcgd.GuildCre
 	)
 
 	b, err = c.getURLBody(c.apiURL+wowMediaGuildCrestEmblemPath+"/"+strconv.Itoa(emblemID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWItemClassesIndex returns an index of item classes
+func (c *Client) ClassicWoWItemClassesIndex() (*wowcgd.ItemClassesIndex, []byte, error) {
+	var (
+		dat wowcgd.ItemClassesIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowItemClassIndexPath+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWItemClass returns an item class by ID
+func (c *Client) ClassicWoWItemClass(itemClassID int) (*wowcgd.ItemClass, []byte, error) {
+	var (
+		dat wowcgd.ItemClass
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowItemClassPath+"/"+strconv.Itoa(itemClassID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWItemSubclass returns an item subclass by ID
+func (c *Client) ClassicWoWItemSubclass(itemClassID, itemSubclassID int) (*wowcgd.ItemSubclass, []byte, error) {
+	var (
+		dat wowcgd.ItemSubclass
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowItemClassPath+"/"+strconv.Itoa(itemClassID)+"/"+wowItemSubclassPath+"/"+strconv.Itoa(itemSubclassID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWItem returns an item by ID
+func (c *Client) ClassicWoWItem(itemID int) (*wowcgd.Item, []byte, error) {
+	var (
+		dat wowcgd.Item
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowDataItemPath+"/"+strconv.Itoa(itemID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWItemMedia returns media for an item by ID
+func (c *Client) ClassicWoWItemMedia(itemID int) (*wowcgd.ItemMedia, []byte, error) {
+	var (
+		dat wowcgd.ItemMedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowMediaItemPath+"/"+strconv.Itoa(itemID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWPlayableClassesIndex returns an index of playable classes
+func (c *Client) ClassicWoWPlayableClassesIndex() (*wowcgd.PlayableClassesIndex, []byte, error) {
+	var (
+		dat wowcgd.PlayableClassesIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowPlayableClassIndexPath+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWPlayableClass returns a playable class by ID
+func (c *Client) ClassicWoWPlayableClass(classID int) (*wowcgd.PlayableClass, []byte, error) {
+	var (
+		dat wowcgd.PlayableClass
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowPlayableClassPath+"/"+strconv.Itoa(classID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWPlayableClassMedia returns media for a playable class by ID
+func (c *Client) ClassicWoWPlayableClassMedia(playableClassID int) (*wowcgd.PlayableClassMedia, []byte, error) {
+	var (
+		dat wowcgd.PlayableClassMedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowMediaPlayableClassPath+"/"+strconv.Itoa(playableClassID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWPlayableRacesIndex returns an index of playable races
+func (c *Client) ClassicWoWPlayableRacesIndex() (*wowcgd.PlayableRacesIndex, []byte, error) {
+	var (
+		dat wowcgd.PlayableRacesIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowRaceIndexPath+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWPlayableRace returns a playable race by ID
+func (c *Client) ClassicWoWPlayableRace(raceID int) (*wowcgd.PlayableRace, []byte, error) {
+	var (
+		dat wowcgd.PlayableRace
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowRacePath+"/"+strconv.Itoa(raceID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWPowerTypesIndex returns an index of power types
+func (c *Client) ClassicWoWPowerTypesIndex() (*wowcgd.PowerTypesIndex, []byte, error) {
+	var (
+		dat wowcgd.PowerTypesIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowPowerTypeIndexPath+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWPlayableRace returns a power type by ID
+func (c *Client) ClassicWoWPowerType(powerTypeID int) (*wowcgd.PowerType, []byte, error) {
+	var (
+		dat wowcgd.PowerType
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowPowerTypePath+"/"+strconv.Itoa(powerTypeID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
