@@ -18,7 +18,7 @@ type Card struct {
 	ChildIds     []int  `json:"childIds,omitempty"`
 	KeywordIds   []int  `json:"keywordIds,omitempty"`
 	Health       int    `json:"health,omitempty"`
-	Attack       int    `json:"attack,omiteCardsmpty"`
+	Attack       int    `json:"attack,omitempty"`
 	MinionTypeID int    `json:"minionTypeId,omitempty"`
 	Armor        int    `json:"armor,omitempty"`
 }
