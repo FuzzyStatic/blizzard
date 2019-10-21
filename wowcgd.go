@@ -468,7 +468,7 @@ func (c *Client) ClassicWoWPowerTypesIndex() (*wowcgd.PowerTypesIndex, []byte, e
 	return &dat, b, nil
 }
 
-// ClassicWoWPlayableRace returns a power type by ID
+// ClassicWoWPowerType returns a power type by ID
 func (c *Client) ClassicWoWPowerType(powerTypeID int) (*wowcgd.PowerType, []byte, error) {
 	var (
 		dat wowcgd.PowerType
