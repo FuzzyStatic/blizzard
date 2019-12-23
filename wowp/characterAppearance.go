@@ -62,10 +62,10 @@ type CharacterAppearanceSummary struct {
 			Color struct {
 				ID   int `json:"id"`
 				Rgba struct {
-					R int `json:"r"`
-					G int `json:"g"`
-					B int `json:"b"`
-					A int `json:"a"`
+					R int     `json:"r"`
+					G int     `json:"g"`
+					B int     `json:"b"`
+					A float64 `json:"a"`
 				} `json:"rgba"`
 			} `json:"color"`
 		} `json:"emblem"`
@@ -79,10 +79,10 @@ type CharacterAppearanceSummary struct {
 			Color struct {
 				ID   int `json:"id"`
 				Rgba struct {
-					R int `json:"r"`
-					G int `json:"g"`
-					B int `json:"b"`
-					A int `json:"a"`
+					R int     `json:"r"`
+					G int     `json:"g"`
+					B int     `json:"b"`
+					A float64 `json:"a"`
 				} `json:"rgba"`
 			} `json:"color"`
 		} `json:"border"`
@@ -90,10 +90,10 @@ type CharacterAppearanceSummary struct {
 			Color struct {
 				ID   int `json:"id"`
 				Rgba struct {
-					R int `json:"r"`
-					G int `json:"g"`
-					B int `json:"b"`
-					A int `json:"a"`
+					R int     `json:"r"`
+					G int     `json:"g"`
+					B int     `json:"b"`
+					A float64 `json:"a"`
 				} `json:"rgba"`
 			} `json:"color"`
 		} `json:"background"`
