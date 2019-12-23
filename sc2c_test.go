@@ -6,7 +6,7 @@ import (
 )
 
 func TestSC2StaticProfile(t *testing.T) {
-	dat, _, err := c.SC2StaticProfile(CN)
+	dat, _, err := c.SC2StaticProfile(US)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

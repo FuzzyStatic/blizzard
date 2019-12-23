@@ -2,6 +2,7 @@ package blizzard
 
 import (
 	"encoding/json"
+	"errors"
 	"strconv"
 
 	"github.com/FuzzyStatic/blizzard/sc2c"
@@ -36,6 +37,10 @@ func (c *Client) SC2StaticProfile(region Region) (*sc2c.StaticProfile, []byte, e
 		b   []byte
 		err error
 	)
+
+	if c.region == CN {
+		return &dat, b, errors.New("CN is not a valid region for this call")
+	}
 
 	b, err = c.getURLBody(c.apiURL+sc2StaticProfilePath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale.String(), "")
 	if err != nil {

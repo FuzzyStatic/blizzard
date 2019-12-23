@@ -106,7 +106,7 @@ func TestWoWChallengeModeRegionLeaderboard(t *testing.T) {
 }
 
 func TestWoWCharacterProfile(t *testing.T) {
-	dat, _, err := c.WoWCharacterProfile("emerald-dream", "Limejelly",
+	dat, _, err := c.WoWCharacterProfile("illidan", "Wildz",
 		[]string{
 			wowc.FieldCharacterAchievements,
 			wowc.FieldCharacterAppearance,

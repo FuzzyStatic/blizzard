@@ -22,6 +22,7 @@ type Client struct {
 	profileNamespace       string
 	staticNamespace        string
 	staticClassicNamespace string
+	region                 Region
 	locale                 Locale
 }
 
@@ -109,6 +110,8 @@ func (c *Client) SetLocale(locale Locale) {
 
 // SetRegion changes the Region of the client
 func (c *Client) SetRegion(region Region) {
+	c.region = region
+
 	switch region {
 	case CN:
 		c.oauthURL = "https://www.battlenet.com.cn"
