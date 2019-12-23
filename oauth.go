@@ -2,21 +2,13 @@ package blizzard
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strings"
 	"time"
 
 	"github.com/FuzzyStatic/blizzard/oauth"
-)
-
-const (
-	oauthPath      = "/oauth"
-	tokenPath      = "/token"
-	userInfoPath   = "/userinfo"
-	checkTokenPath = "/check_token"
-	tokenQuery     = "token="
-	grantType      = `grant_type=client_credentials`
 )
 
 // OAuth credentials and access token to access Blizzard API
@@ -30,16 +22,13 @@ type OAuth struct {
 // AccessTokenReq retrieves new Access Token
 func (c *Client) AccessTokenReq() error {
 	var (
-		req     *http.Request
-		res     *http.Response
-		reqBody *strings.Reader
-		b       []byte
-		err     error
+		req *http.Request
+		res *http.Response
+		b   []byte
+		err error
 	)
 
-	reqBody = strings.NewReader(grantType)
-
-	req, err = http.NewRequest("POST", c.oauthURL+oauthPath+tokenPath, reqBody)
+	req, err = http.NewRequest("POST", c.oauthURL+"/oauth/token", strings.NewReader("grant_type=client_credentials"))
 	if err != nil {
 		return err
 	}
@@ -101,7 +90,7 @@ func (c *Client) UserInfoHeader() ([]byte, error) {
 		return nil, err
 	}
 
-	req, err = http.NewRequest("GET", c.oauthURL+oauthPath+userInfoPath, nil)
+	req, err = http.NewRequest("GET", c.oauthURL+"/oauth/userinfo", nil)
 	if err != nil {
 		return nil, err
 	}
@@ -143,7 +132,7 @@ func (c *Client) TokenValidation() (*oauth.TokenValidation, []byte, error) {
 		return &dat, b, err
 	}
 
-	req, err = http.NewRequest("GET", c.oauthURL+oauthPath+checkTokenPath+"?"+tokenQuery+c.oauth.AccessTokenRequest.AccessToken, nil)
+	req, err = http.NewRequest("GET", c.oauthURL+fmt.Sprintf("/oauth/check_token?token=%s", c.oauth.AccessTokenRequest.AccessToken), nil)
 	if err != nil {
 		return &dat, b, err
 	}
