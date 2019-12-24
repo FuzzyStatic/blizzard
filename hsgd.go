@@ -9,28 +9,6 @@ import (
 	"github.com/FuzzyStatic/blizzard/hsgd"
 )
 
-const (
-	hsgdPath         = "/hearthstone"
-	cardsearchPath   = "/cards"
-	deckPath         = "/deck"
-	hsMetadataPath   = "/metadata"
-	setField         = "set="
-	classField       = "class="
-	manaCostField    = "manaCost="
-	attackField      = "attack="
-	healthField      = "health="
-	collectibleField = "collectible="
-	rarityField      = "rarity="
-	typeField        = "type="
-	minionTypeField  = "minionType="
-	keywordField     = "keyword="
-	textFilterField  = "textFilter="
-	pageField        = "page="
-	pageSizeField    = "pageSize="
-	sortField        = "sort="
-	orderField       = "order="
-)
-
 // Collectiblility type
 type Collectiblility string
 
@@ -100,7 +78,7 @@ func (c *Client) HSCardsAll() (*hsgd.CardSearch, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+hsgdPath+cardsearchPath+"?"+localeQuery+c.locale.String(), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/cards?locale=%s", c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -126,61 +104,59 @@ func (c *Client) HSCards(setSlug, classSlug, raritySlug, typeSlug, minionTypeSlu
 		err error
 	)
 
-	url = c.apiURL + hsgdPath + cardsearchPath + "?" + localeQuery + c.locale.String()
+	url = c.apiURL + fmt.Sprintf("/hearthstone/cards?locale=%s", c.locale)
 
 	if setSlug != "" {
-		url = url + "&" + setField + setSlug
+		url = url + "&" + "set=" + setSlug
 	}
 
 	if classSlug != "" {
-		url = url + "&" + classField + classSlug
+		url = url + "&" + "class=" + classSlug
 	}
 
 	if raritySlug != "" {
-		url = url + "&" + rarityField + raritySlug
+		url = url + "&" + "rarity=" + raritySlug
 	}
 
 	if typeSlug != "" {
-		url = url + "&" + typeField + typeSlug
+		url = url + "&" + "type=" + typeSlug
 	}
 
 	if minionTypeSlug != "" {
-		url = url + "&" + minionTypeField + minionTypeSlug
+		url = url + "&" + "minionType=" + minionTypeSlug
 	}
 
 	if keywordSlug != "" {
-		url = url + "&" + keywordField + keywordSlug
+		url = url + "&" + "keyword=" + keywordSlug
 	}
 
 	if textFilter != "" {
-		url = url + "&" + textFilterField + textFilter
+		url = url + "&" + "textFilter=" + textFilter
 	}
 
 	if manaCost != nil {
-		url = url + "&" + manaCostField + strings.Trim(strings.Join(strings.Fields(fmt.Sprint(manaCost)), ","), "[]")
+		url = url + "&" + "manaCost=" + strings.Trim(strings.Join(strings.Fields(fmt.Sprint(manaCost)), ","), "[]")
 	}
 
 	if attack != nil {
-		url = url + "&" + attackField + strings.Trim(strings.Join(strings.Fields(fmt.Sprint(attack)), ","), "[]")
+		url = url + "&" + "attack=" + strings.Trim(strings.Join(strings.Fields(fmt.Sprint(attack)), ","), "[]")
 	}
 
 	if health != nil {
-		url = url + "&" + healthField + strings.Trim(strings.Join(strings.Fields(fmt.Sprint(health)), ","), "[]")
+		url = url + "&" + "health=" + strings.Trim(strings.Join(strings.Fields(fmt.Sprint(health)), ","), "[]")
 	}
 
 	if page != 0 {
-		url = url + "&" + pageField + strconv.Itoa(page)
+		url = url + "&" + "page=" + strconv.Itoa(page)
 	}
 
 	if pageSize != 0 {
-		url = url + "&" + pageSizeField + strconv.Itoa(pageSize)
+		url = url + "&" + "pageSize=" + strconv.Itoa(pageSize)
 	}
 
-	url = url + "&" + collectibleField + string(collectiblility)
-
-	url = url + "&" + sortField + string(sort)
-
-	url = url + "&" + orderField + string(order)
+	url = url + "&" + "collectible=" + string(collectiblility)
+	url = url + "&" + "sort=" + string(sort)
+	url = url + "&" + "order=" + string(order)
 
 	b, err = c.getURLBody(url, "")
 	if err != nil {
@@ -204,7 +180,7 @@ func (c *Client) HSCardByIDOrSlug(idOrSlug string) (*hsgd.Card, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+hsgdPath+cardsearchPath+"/"+idOrSlug+"?"+localeQuery+c.locale.String(), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/cards/%s?locale=%s", idOrSlug, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -226,7 +202,7 @@ func (c *Client) HSDeck(deckCode string) (*hsgd.Deck, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+hsgdPath+deckPath+"/"+deckCode+"?"+localeQuery+c.locale.String(), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/cards/%s?locale=%s", deckCode, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -248,7 +224,7 @@ func (c *Client) HSMetadata() (*hsgd.Metadata, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+hsgdPath+hsMetadataPath+"?"+localeQuery+c.locale.String(), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata?locale=%s", c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -270,7 +246,7 @@ func (c *Client) HSMetadataSets() (*[]hsgd.Set, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+hsgdPath+hsMetadataPath+"/"+string(MetadataTypeSets)+"?"+localeQuery+c.locale.String(), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", MetadataTypeSets, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -292,7 +268,7 @@ func (c *Client) HSMetadataSetGroups() (*[]hsgd.SetGroup, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+hsgdPath+hsMetadataPath+"/"+string(MetadataTypeSetGroups)+"?"+localeQuery+c.locale.String(), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", MetadataTypeSetGroups, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -314,7 +290,7 @@ func (c *Client) HSMetadataTypes() (*[]hsgd.Type, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+hsgdPath+hsMetadataPath+"/"+string(MetadataTypeTypes)+"?"+localeQuery+c.locale.String(), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", MetadataTypeTypes, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -336,7 +312,7 @@ func (c *Client) HSMetadataRarities() (*[]hsgd.Rarity, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+hsgdPath+hsMetadataPath+"/"+string(MetadataTypeRarities)+"?"+localeQuery+c.locale.String(), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", MetadataTypeRarities, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -358,7 +334,7 @@ func (c *Client) HSMetadataClasses() (*[]hsgd.Class, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+hsgdPath+hsMetadataPath+"/"+string(MetadataTypeClasses)+"?"+localeQuery+c.locale.String(), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", MetadataTypeClasses, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -380,7 +356,7 @@ func (c *Client) HSMetadataMinionTypes() (*[]hsgd.MinionType, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+hsgdPath+hsMetadataPath+"/"+string(MetadataTypeMinionTypes)+"?"+localeQuery+c.locale.String(), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", MetadataTypeMinionTypes, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -402,7 +378,7 @@ func (c *Client) HSMetadataKeywords() (*[]hsgd.Keyword, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+hsgdPath+hsMetadataPath+"/"+string(MetadataTypeKeywords)+"?"+localeQuery+c.locale.String(), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", MetadataTypeKeywords, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}

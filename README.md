@@ -94,7 +94,7 @@ fmt.Printf("%+v\n", dat)
 You can use the functions prefixed with "WoW" to acquire World of Warcraft information. For example, you can get information about your WoW character profile:
 
 ```go
-dat, _, err := blizz.WoWCharacterProfileSummary("emerald-dream", "wildz")
+dat, _, err := blizz.WoWCharacterProfileSummary("illidan", "wildz")
 if err != nil {
   fmt.Println(err)
 }
@@ -113,10 +113,10 @@ if err != nil {
 fmt.Printf("%+v\n", dat)
 ```
 
-or the PVP leaderboards:
+or the PvP leaderboards:
 
 ```go
-dat, _, err := blizz.WoWPVPLeaderboard(wowc.Bracket3v3)
+dat, _, err := blizz.WoWCharacterPvPBracketStatistics(wowp.Bracket3v3)
 if err != nil {
   fmt.Println(err)
 }

@@ -194,3 +194,27 @@ func TestWoWCharacterPvPSummary(t *testing.T) {
 		fmt.Printf("%+v\n", dat)
 	}
 }
+
+func TestWoWCharacterReputationsSummary(t *testing.T) {
+	dat, _, err := c.WoWCharacterReputationsSummary("illidan", "wildz")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCharacterSpecializationsSummary(t *testing.T) {
+	dat, _, err := c.WoWCharacterSpecializationsSummary("illidan", "wildz")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}

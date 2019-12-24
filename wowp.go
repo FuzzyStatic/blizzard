@@ -339,3 +339,49 @@ func (c *Client) WoWCharacterPvPSummary(realmSlug, characterName string) (*wowp.
 
 	return &dat, b, nil
 }
+
+// WoWCharacterReputationsSummary returns a summary of a character's reputations
+func (c *Client) WoWCharacterReputationsSummary(realmSlug, characterName string) (*wowp.CharacterReputationsSummary, []byte, error) {
+	var (
+		dat wowp.CharacterReputationsSummary
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+
+		fmt.Sprintf("/profile/wow/character/%s/%s/reputations?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCharacterSpecializationsSummary returns a summary of a character's specializations
+func (c *Client) WoWCharacterSpecializationsSummary(realmSlug, characterName string) (*wowp.CharacterSpecializationsSummary, []byte, error) {
+	var (
+		dat wowp.CharacterSpecializationsSummary
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+
+		fmt.Sprintf("/profile/wow/character/%s/%s/specializations?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
