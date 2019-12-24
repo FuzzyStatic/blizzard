@@ -1,5 +1,6 @@
 package wowp
 
+// CharacterProfileSummary structure
 type CharacterProfileSummary struct {
 	Links struct {
 		Self struct {

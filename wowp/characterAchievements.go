@@ -19,13 +19,13 @@ type CharacterAchievementsSummary struct {
 			ID   int    `json:"id"`
 		} `json:"achievement"`
 		Criteria struct {
-			ID            int  `json:"id"`
-			Amount        int  `json:"amount"`
-			IsCompleted   bool `json:"is_completed"`
+			ID            int     `json:"id"`
+			Amount        float64 `json:"amount"`
+			IsCompleted   bool    `json:"is_completed"`
 			ChildCriteria []struct {
-				ID          int  `json:"id"`
-				Amount      int  `json:"amount"`
-				IsCompleted bool `json:"is_completed"`
+				ID          int     `json:"id"`
+				Amount      float64 `json:"amount"`
+				IsCompleted bool    `json:"is_completed"`
 			} `json:"child_criteria"`
 		} `json:"criteria,omitempty"`
 		CompleteTimestamp int64 `json:"completed_timestamp"`

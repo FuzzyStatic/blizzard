@@ -398,17 +398,17 @@ func TestWoWGuildPerks(t *testing.T) {
 	}
 }
 
-func TestWoWGuildAchievements(t *testing.T) {
-	dat, _, err := c.WoWGuildAchievements()
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
+// func TestWoWGuildAchievements(t *testing.T) {
+// 	dat, _, err := c.WoWGuildAchievements()
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		t.Fail()
+// 	}
 
-	if printOutput != "" {
-		fmt.Printf("%+v\n", dat)
-	}
-}
+// 	if printOutput != "" {
+// 		fmt.Printf("%+v\n", dat)
+// 	}
+// }
 
 func TestWoWItemClasses(t *testing.T) {
 	dat, _, err := c.WoWItemClasses()

@@ -385,3 +385,118 @@ func (c *Client) WoWCharacterSpecializationsSummary(realmSlug, characterName str
 
 	return &dat, b, nil
 }
+
+// WoWCharacterStatisticsSummary returns a statistics summary for a character.
+func (c *Client) WoWCharacterStatisticsSummary(realmSlug, characterName string) (*wowp.CharacterStatisticsSummary, []byte, error) {
+	var (
+		dat wowp.CharacterStatisticsSummary
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+
+		fmt.Sprintf("/profile/wow/character/%s/%s/statistics?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCharacterTitlesSummary returns a summary of titles a character has obtained.
+func (c *Client) WoWCharacterTitlesSummary(realmSlug, characterName string) (*wowp.CharacterTitlesSummary, []byte, error) {
+	var (
+		dat wowp.CharacterTitlesSummary
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+
+		fmt.Sprintf("/profile/wow/character/%s/%s/titles?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWGuild returns a single guild by its name and realm.
+func (c *Client) WoWGuild(realmSlug, nameSlug string) (*wowp.Guild, []byte, error) {
+	var (
+		dat wowp.Guild
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+
+		fmt.Sprintf("/data/wow/guild/%s/%s?locale=%s", realmSlug, strings.Replace(strings.ToLower(nameSlug), " ", "-", -1), c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWGuildAchievements returns a single guild's achievements by name and realm.
+func (c *Client) WoWGuildAchievements(realmSlug, nameSlug string) (*wowp.GuildAchievements, []byte, error) {
+	var (
+		dat wowp.GuildAchievements
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+
+		fmt.Sprintf("/data/wow/guild/%s/%s/achievements?locale=%s", realmSlug, strings.Replace(strings.ToLower(nameSlug), " ", "-", -1), c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWGuildRoster returns a single guild's roster by its name and realm.
+func (c *Client) WoWGuildRoster(realmSlug, nameSlug string) (*wowp.GuildRoster, []byte, error) {
+	var (
+		dat wowp.GuildRoster
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+
+		fmt.Sprintf("/data/wow/guild/%s/%s/roster?locale=%s", realmSlug, strings.Replace(strings.ToLower(nameSlug), " ", "-", -1), c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}

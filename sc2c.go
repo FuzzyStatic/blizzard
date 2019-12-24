@@ -3,6 +3,7 @@ package blizzard
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"strconv"
 
 	"github.com/FuzzyStatic/blizzard/sc2c"
@@ -10,13 +11,7 @@ import (
 
 const (
 	sc2Path                   = "/sc2"
-	staticPath                = "/static"
-	sc2StaticProfilePath      = sc2Path + staticPath + profilePath
-	sc2MetadataPath           = "/metadata"
-	sc2MetadataProfilePath    = sc2Path + sc2MetadataPath + profilePath
-	sc2ProfilePath            = sc2Path + profilePath
 	ladderPath                = "/ladder"
-	ladderSummaryPath         = ladderPath + "/summary"
 	sc2GrandmasterPath        = sc2Path + ladderPath + "/grandmaster"
 	sc2SeasonPath             = sc2Path + ladderPath + "/season"
 	sc2PlayerPath             = sc2Path + "/player"
@@ -42,7 +37,7 @@ func (c *Client) SC2StaticProfile(region Region) (*sc2c.StaticProfile, []byte, e
 		return &dat, b, errors.New("CN is not a valid region for this call")
 	}
 
-	b, err = c.getURLBody(c.apiURL+sc2StaticProfilePath+"/"+strconv.Itoa(int(region))+"?"+localeQuery+c.locale.String(), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/sc2/static/profile/%d?locale=%s", region, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -63,7 +58,7 @@ func (c *Client) SC2MetadataProfile(region Region, realmID, profileID int) (*sc2
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+sc2MetadataProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+"?"+localeQuery+c.locale.String(), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/sc2/metadata/profile/%d/%d/%d?locale=%s", region, realmID, profileID, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -84,7 +79,7 @@ func (c *Client) SC2Profile(region Region, realmID, profileID int) (*sc2c.Profil
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+sc2ProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+"?"+localeQuery+c.locale.String(), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/sc2/profile/%d/%d/%d?locale=%s", region, realmID, profileID, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -105,7 +100,7 @@ func (c *Client) SC2ProfileLadderSummary(region Region, realmID, profileID int) 
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+sc2ProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+ladderSummaryPath+"?"+localeQuery+c.locale.String(), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/sc2/profile/%d/%d/%d/ladder/summary?locale=%s", region, realmID, profileID, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -126,7 +121,7 @@ func (c *Client) SC2ProfileLadder(region Region, realmID, profileID, ladderID in
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+sc2ProfilePath+"/"+strconv.Itoa(int(region))+"/"+strconv.Itoa(realmID)+"/"+strconv.Itoa(profileID)+ladderPath+"/"+strconv.Itoa(ladderID)+"?"+localeQuery+c.locale.String(), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/sc2/profile/%d/%d/%d/ladder/%d?locale=%s", region, realmID, profileID, ladderID, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}

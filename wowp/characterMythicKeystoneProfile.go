@@ -9,7 +9,7 @@ type CharacterMythicKeystoneProfile struct {
 	} `json:"_links"`
 	Character struct {
 		Href string `json:"href"`
-	} `json:"character"` 
+	} `json:"character"`
 	CurrentPeriod struct {
 		Period struct {
 			Key struct {

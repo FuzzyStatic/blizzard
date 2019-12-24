@@ -779,26 +779,26 @@ func (c *Client) WoWGuildPerks() (*wowc.GuildPerks, []byte, error) {
 	return &dat, b, nil
 }
 
-// WoWGuildAchievements returns a list of all guild achievements as well as the category structure and hierarchy
-func (c *Client) WoWGuildAchievements() (*wowc.GuildAchievements, []byte, error) {
-	var (
-		dat wowc.GuildAchievements
-		b   []byte
-		err error
-	)
+// // WoWGuildAchievements returns a list of all guild achievements as well as the category structure and hierarchy
+// func (c *Client) WoWGuildAchievements() (*wowc.GuildAchievements, []byte, error) {
+// 	var (
+// 		dat wowc.GuildAchievements
+// 		b   []byte
+// 		err error
+// 	)
 
-	b, err = c.getURLBody(c.apiURL+wowDataGuildAchievementsPath+"?"+localeQuery+c.locale.String(), "")
-	if err != nil {
-		return &dat, b, err
-	}
+// 	b, err = c.getURLBody(c.apiURL+wowDataGuildAchievementsPath+"?"+localeQuery+c.locale.String(), "")
+// 	if err != nil {
+// 		return &dat, b, err
+// 	}
 
-	err = json.Unmarshal(b, &dat)
-	if err != nil {
-		return &dat, b, err
-	}
+// 	err = json.Unmarshal(b, &dat)
+// 	if err != nil {
+// 		return &dat, b, err
+// 	}
 
-	return &dat, b, nil
-}
+// 	return &dat, b, nil
+// }
 
 // WoWItemClasses returns a list of item classes
 func (c *Client) WoWItemClasses() (*wowc.ItemClasses, []byte, error) {
