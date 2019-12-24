@@ -202,7 +202,7 @@ func (c *Client) HSDeck(deckCode string) (*hsgd.Deck, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/cards/%s?locale=%s", deckCode, c.locale), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/deck/%s?locale=%s", deckCode, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -215,7 +215,8 @@ func (c *Client) HSDeck(deckCode string) (*hsgd.Deck, []byte, error) {
 	return &dat, b, nil
 }
 
-// HSMetadata returns information about the categorization of cards. Metadata includes the card set, set group (for example, Standard or Year of the Dragon), rarity, class, card type, minion type, and keywords.
+// HSMetadata returns information about the categorization of cards.
+// Metadata includes the card set, set group (for example, Standard or Year of the Dragon), rarity, class, card type, minion type, and keywords.
 // For more information, see the Hearthstone Guide.
 func (c *Client) HSMetadata() (*hsgd.Metadata, []byte, error) {
 	var (

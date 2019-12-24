@@ -8,7 +8,7 @@ import (
 	"github.com/FuzzyStatic/blizzard/wowp"
 )
 
-// WoWCharacterAchievementsSummary returns a summary of the achievements a character has completed
+// WoWCharacterAchievementsSummary returns a summary of the achievements a character has completed.
 func (c *Client) WoWCharacterAchievementsSummary(realmSlug, characterName string) (*wowp.CharacterAchievementsSummary, []byte, error) {
 	var (
 		dat wowp.CharacterAchievementsSummary
@@ -31,7 +31,7 @@ func (c *Client) WoWCharacterAchievementsSummary(realmSlug, characterName string
 	return &dat, b, nil
 }
 
-// WoWCharacterAppearanceSummary returns a summary of a character's appearance settings
+// WoWCharacterAppearanceSummary returns a summary of a character's appearance settings.
 func (c *Client) WoWCharacterAppearanceSummary(realmSlug, characterName string) (*wowp.CharacterAppearanceSummary, []byte, error) {
 	var (
 		dat wowp.CharacterAppearanceSummary
@@ -54,7 +54,7 @@ func (c *Client) WoWCharacterAppearanceSummary(realmSlug, characterName string) 
 	return &dat, b, nil
 }
 
-// WoWCharacterCollectionsIndex returns an index of collection types for a character
+// WoWCharacterCollectionsIndex returns an index of collection types for a character.
 func (c *Client) WoWCharacterCollectionsIndex(realmSlug, characterName string) (*wowp.CharacterCollectionsIndex, []byte, error) {
 	var (
 		dat wowp.CharacterCollectionsIndex
@@ -77,7 +77,7 @@ func (c *Client) WoWCharacterCollectionsIndex(realmSlug, characterName string) (
 	return &dat, b, nil
 }
 
-// WoWCharacterMountsCollectionSummary returns a summary of the mounts a character has obtained
+// WoWCharacterMountsCollectionSummary returns a summary of the mounts a character has obtained.
 func (c *Client) WoWCharacterMountsCollectionSummary(realmSlug, characterName string) (*wowp.CharacterMountsCollectionSummary, []byte, error) {
 	var (
 		dat wowp.CharacterMountsCollectionSummary
@@ -100,7 +100,7 @@ func (c *Client) WoWCharacterMountsCollectionSummary(realmSlug, characterName st
 	return &dat, b, nil
 }
 
-// WoWCharacterPetsCollectionSummary returns a summary of the mounts a character has obtained
+// WoWCharacterPetsCollectionSummary returns a summary of the mounts a character has obtained.
 func (c *Client) WoWCharacterPetsCollectionSummary(realmSlug, characterName string) (*wowp.CharacterPetsCollectionSummary, []byte, error) {
 	var (
 		dat wowp.CharacterPetsCollectionSummary
@@ -123,7 +123,7 @@ func (c *Client) WoWCharacterPetsCollectionSummary(realmSlug, characterName stri
 	return &dat, b, nil
 }
 
-// WoWCharacterEquipmentSummary returns a summary of the items equipped by a character
+// WoWCharacterEquipmentSummary returns a summary of the items equipped by a character.
 func (c *Client) WoWCharacterEquipmentSummary(realmSlug, characterName string) (*wowp.CharacterEquipmentSummary, []byte, error) {
 	var (
 		dat wowp.CharacterEquipmentSummary
@@ -146,7 +146,7 @@ func (c *Client) WoWCharacterEquipmentSummary(realmSlug, characterName string) (
 	return &dat, b, nil
 }
 
-// WoWCharacterHunterPetsSummary if the character is a hunter, returns a summary of the character's hunter pets. Otherwise, returns an HTTP 404 Not Found error
+// WoWCharacterHunterPetsSummary if the character is a hunter, returns a summary of the character's hunter pets. Otherwise, returns an HTTP 404 Not Found error.
 func (c *Client) WoWCharacterHunterPetsSummary(realmSlug, characterName string) (*wowp.CharacterHunterPetsSummary, []byte, error) {
 	var (
 		dat wowp.CharacterHunterPetsSummary
@@ -169,7 +169,7 @@ func (c *Client) WoWCharacterHunterPetsSummary(realmSlug, characterName string) 
 	return &dat, b, nil
 }
 
-// WoWCharacterMediaSummary returns a summary of the media assets available for a character (such as an avatar render)
+// WoWCharacterMediaSummary returns a summary of the media assets available for a character (such as an avatar render).
 func (c *Client) WoWCharacterMediaSummary(realmSlug, characterName string) (*wowp.CharacterMediaSummary, []byte, error) {
 	var (
 		dat wowp.CharacterMediaSummary
@@ -192,7 +192,7 @@ func (c *Client) WoWCharacterMediaSummary(realmSlug, characterName string) (*wow
 	return &dat, b, nil
 }
 
-// WoWCharacterProfileSummary returns a profile summary for a character
+// WoWCharacterProfileSummary returns a profile summary for a character.
 func (c *Client) WoWCharacterProfileSummary(realmSlug, characterName string) (*wowp.CharacterProfileSummary, []byte, error) {
 	var (
 		dat wowp.CharacterProfileSummary
@@ -215,7 +215,7 @@ func (c *Client) WoWCharacterProfileSummary(realmSlug, characterName string) (*w
 	return &dat, b, nil
 }
 
-// WoWCharacterProfileStatus returns the status and a unique ID for a character
+// WoWCharacterProfileStatus returns the status and a unique ID for a character.
 // A client should delete information about a character from their application if any of the following conditions occur:
 // * an HTTP 404 Not Found error is returned
 // * the is_valid value is false
@@ -247,7 +247,7 @@ func (c *Client) WoWCharacterProfileStatus(realmSlug, characterName string) (*wo
 	return &dat, b, nil
 }
 
-// WoWCharacterMythicKeystoneProfile returns a Mythic Keystone Profile index for a character
+// WoWCharacterMythicKeystoneProfile returns a Mythic Keystone Profile index for a character.
 func (c *Client) WoWCharacterMythicKeystoneProfile(realmSlug, characterName string) (*wowp.CharacterMythicKeystoneProfile, []byte, error) {
 	var (
 		dat wowp.CharacterMythicKeystoneProfile
@@ -271,7 +271,7 @@ func (c *Client) WoWCharacterMythicKeystoneProfile(realmSlug, characterName stri
 }
 
 // WoWCharacterMythicKeystoneProfileSeason returns a Mythic Keystone Profile index for a character.
-// Note: this request returns a 404 for characters that have not completed a Mythic Keystone dungeon
+// Note: this request returns a 404 for characters that have not completed a Mythic Keystone dungeon.
 func (c *Client) WoWCharacterMythicKeystoneProfileSeason(realmSlug, characterName string, seasonID int) (*wowp.CharacterMythicKeystoneProfileSeason, []byte, error) {
 	var (
 		dat wowp.CharacterMythicKeystoneProfileSeason
@@ -294,7 +294,7 @@ func (c *Client) WoWCharacterMythicKeystoneProfileSeason(realmSlug, characterNam
 	return &dat, b, nil
 }
 
-// WoWCharacterPvPBracketStatistics returns the PvP bracket statistics for a character
+// WoWCharacterPvPBracketStatistics returns the PvP bracket statistics for a character.
 func (c *Client) WoWCharacterPvPBracketStatistics(realmSlug, characterName string, pvpBracket wowp.Bracket) (*wowp.CharacterPvPBracketStatistics, []byte, error) {
 	var (
 		dat wowp.CharacterPvPBracketStatistics
@@ -317,7 +317,7 @@ func (c *Client) WoWCharacterPvPBracketStatistics(realmSlug, characterName strin
 	return &dat, b, nil
 }
 
-// WoWCharacterPvPSummary returns a PvP summary for a character
+// WoWCharacterPvPSummary returns a PvP summary for a character.
 func (c *Client) WoWCharacterPvPSummary(realmSlug, characterName string) (*wowp.CharacterPvPSummary, []byte, error) {
 	var (
 		dat wowp.CharacterPvPSummary
@@ -340,7 +340,7 @@ func (c *Client) WoWCharacterPvPSummary(realmSlug, characterName string) (*wowp.
 	return &dat, b, nil
 }
 
-// WoWCharacterReputationsSummary returns a summary of a character's reputations
+// WoWCharacterReputationsSummary returns a summary of a character's reputations.
 func (c *Client) WoWCharacterReputationsSummary(realmSlug, characterName string) (*wowp.CharacterReputationsSummary, []byte, error) {
 	var (
 		dat wowp.CharacterReputationsSummary
@@ -363,7 +363,7 @@ func (c *Client) WoWCharacterReputationsSummary(realmSlug, characterName string)
 	return &dat, b, nil
 }
 
-// WoWCharacterSpecializationsSummary returns a summary of a character's specializations
+// WoWCharacterSpecializationsSummary returns a summary of a character's specializations.
 func (c *Client) WoWCharacterSpecializationsSummary(realmSlug, characterName string) (*wowp.CharacterSpecializationsSummary, []byte, error) {
 	var (
 		dat wowp.CharacterSpecializationsSummary
