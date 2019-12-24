@@ -15,6 +15,7 @@ type CharacterCollectionsIndex struct {
 	} `json:"mounts"`
 }
 
+// CharacterMountsCollectionSummary structure
 type CharacterMountsCollectionSummary struct {
 	Links struct {
 		Self struct {
@@ -33,6 +34,7 @@ type CharacterMountsCollectionSummary struct {
 	} `json:"mounts"`
 }
 
+// CharacterPetsCollectionSummary structure
 type CharacterPetsCollectionSummary struct {
 	Links struct {
 		Self struct {

@@ -3,6 +3,7 @@ package blizzard
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 
 	"github.com/FuzzyStatic/blizzard/wowp"
 )
@@ -16,7 +17,7 @@ func (c *Client) WoWCharacterAchievementsSummary(realmSlug, characterName string
 	)
 
 	b, err = c.getURLBody(c.apiURL+
-		fmt.Sprintf("/profile/wow/character/%s/%s/achievements?locale=%s", realmSlug, characterName, c.locale),
+		fmt.Sprintf("/profile/wow/character/%s/%s/achievements?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
 		c.profileNamespace)
 	if err != nil {
 		return &dat, b, err
@@ -39,7 +40,7 @@ func (c *Client) WoWCharacterAppearanceSummary(realmSlug, characterName string) 
 	)
 
 	b, err = c.getURLBody(c.apiURL+
-		fmt.Sprintf("/profile/wow/character/%s/%s/appearance?locale=%s", realmSlug, characterName, c.locale),
+		fmt.Sprintf("/profile/wow/character/%s/%s/appearance?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
 		c.profileNamespace)
 	if err != nil {
 		return &dat, b, err
@@ -62,7 +63,7 @@ func (c *Client) WoWCharacterCollectionsIndex(realmSlug, characterName string) (
 	)
 
 	b, err = c.getURLBody(c.apiURL+
-		fmt.Sprintf("/profile/wow/character/%s/%s/collections?locale=%s", realmSlug, characterName, c.locale),
+		fmt.Sprintf("/profile/wow/character/%s/%s/collections?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
 		c.profileNamespace)
 	if err != nil {
 		return &dat, b, err
@@ -85,7 +86,7 @@ func (c *Client) WoWCharacterMountsCollectionSummary(realmSlug, characterName st
 	)
 
 	b, err = c.getURLBody(c.apiURL+
-		fmt.Sprintf("/profile/wow/character/%s/%s/collections/mounts?locale=%s", realmSlug, characterName, c.locale),
+		fmt.Sprintf("/profile/wow/character/%s/%s/collections/mounts?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
 		c.profileNamespace)
 	if err != nil {
 		return &dat, b, err
@@ -108,7 +109,131 @@ func (c *Client) WoWCharacterPetsCollectionSummary(realmSlug, characterName stri
 	)
 
 	b, err = c.getURLBody(c.apiURL+
-		fmt.Sprintf("/profile/wow/character/%s/%s/collections/pets?locale=%s", realmSlug, characterName, c.locale),
+		fmt.Sprintf("/profile/wow/character/%s/%s/collections/pets?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCharacterEquipmentSummary returns a summary of the items equipped by a character
+func (c *Client) WoWCharacterEquipmentSummary(realmSlug, characterName string) (*wowp.CharacterEquipmentSummary, []byte, error) {
+	var (
+		dat wowp.CharacterEquipmentSummary
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+
+		fmt.Sprintf("/profile/wow/character/%s/%s/equipment?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCharacterHunterPetsSummary if the character is a hunter, returns a summary of the character's hunter pets. Otherwise, returns an HTTP 404 Not Found error
+func (c *Client) WoWCharacterHunterPetsSummary(realmSlug, characterName string) (*wowp.CharacterHunterPetsSummary, []byte, error) {
+	var (
+		dat wowp.CharacterHunterPetsSummary
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+
+		fmt.Sprintf("/profile/wow/character/%s/%s/hunter-pets?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCharacterMediaSummary returns a summary of the media assets available for a character (such as an avatar render)
+func (c *Client) WoWCharacterMediaSummary(realmSlug, characterName string) (*wowp.CharacterMediaSummary, []byte, error) {
+	var (
+		dat wowp.CharacterMediaSummary
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+
+		fmt.Sprintf("/profile/wow/character/%s/%s/character-media?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCharacterProfileSummary returns a profile summary for a character
+func (c *Client) WoWCharacterProfileSummary(realmSlug, characterName string) (*wowp.CharacterProfileSummary, []byte, error) {
+	var (
+		dat wowp.CharacterProfileSummary
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+
+		fmt.Sprintf("/profile/wow/character/%s/%s?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCharacterProfileStatus returns the status and a unique ID for a character
+// A client should delete information about a character from their application if any of the following conditions occur:
+// * an HTTP 404 Not Found error is returned
+// * the is_valid value is false
+// * the returned character ID doesn't match the previously recorded value for the character
+// The following example illustrates how to use this endpoint:
+// 1. A client requests and stores information about a character, including its unique character ID and the timestamp of the request.
+// 2. After 30 days, the client makes a request to the status endpoint to verify if the character information is still valid.
+// 3. If character cannot be found, is not valid, or the characters IDs do not match, the client removes the information from their application.
+// 4. If the character is valid and the character IDs match, the client retains the data for another 30 days.
+func (c *Client) WoWCharacterProfileStatus(realmSlug, characterName string) (*wowp.CharacterProfileStatus, []byte, error) {
+	var (
+		dat wowp.CharacterProfileStatus
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+
+		fmt.Sprintf("/profile/wow/character/%s/%s/status?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
 		c.profileNamespace)
 	if err != nil {
 		return &dat, b, err
@@ -131,7 +256,7 @@ func (c *Client) WoWCharacterMythicKeystoneProfile(realmSlug, characterName stri
 	)
 
 	b, err = c.getURLBody(c.apiURL+
-		fmt.Sprintf("/profile/wow/character/%s/%s/mythic-keystone-profile?locale=%s", realmSlug, characterName, c.locale),
+		fmt.Sprintf("/profile/wow/character/%s/%s/mythic-keystone-profile?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
 		c.profileNamespace)
 	if err != nil {
 		return &dat, b, err
@@ -155,7 +280,53 @@ func (c *Client) WoWCharacterMythicKeystoneProfileSeason(realmSlug, characterNam
 	)
 
 	b, err = c.getURLBody(c.apiURL+
-		fmt.Sprintf("/profile/wow/character/%s/%s/mythic-keystone-profile/season/%d?locale=%s", realmSlug, characterName, seasonID, c.locale),
+		fmt.Sprintf("/profile/wow/character/%s/%s/mythic-keystone-profile/season/%d?locale=%s", realmSlug, strings.ToLower(characterName), seasonID, c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCharacterPvPBracketStatistics returns the PvP bracket statistics for a character
+func (c *Client) WoWCharacterPvPBracketStatistics(realmSlug, characterName string, pvpBracket wowp.Bracket) (*wowp.CharacterPvPBracketStatistics, []byte, error) {
+	var (
+		dat wowp.CharacterPvPBracketStatistics
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+
+		fmt.Sprintf("/profile/wow/character/%s/%s/pvp-bracket/%s?locale=%s", realmSlug, strings.ToLower(characterName), pvpBracket, c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCharacterPvPSummary returns a PvP summary for a character
+func (c *Client) WoWCharacterPvPSummary(realmSlug, characterName string) (*wowp.CharacterPvPSummary, []byte, error) {
+	var (
+		dat wowp.CharacterPvPSummary
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+
+		fmt.Sprintf("/profile/wow/character/%s/%s/pvp-summary?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
 		c.profileNamespace)
 	if err != nil {
 		return &dat, b, err

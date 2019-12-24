@@ -94,28 +94,7 @@ fmt.Printf("%+v\n", dat)
 You can use the functions prefixed with "WoW" to acquire World of Warcraft information. For example, you can get information about your WoW character profile:
 
 ```go
-dat, _, err := blizz.WoWCharacterProfile("emerald-dream", "Limejelly",
-  []string{
-    wowc.FieldCharacterAchievements,
-    wowc.FieldCharacterAppearance,
-    wowc.FieldCharacterAudit,
-    wowc.FieldCharacterFeed,
-    wowc.FieldCharacterGuild,
-    wowc.FieldCharacterItems,
-    wowc.FieldCharacterMounts,
-    wowc.FieldCharacterPVP,
-    wowc.FieldCharacterPetSlots,
-    wowc.FieldCharacterPets,
-    wowc.FieldCharacterProfessions,
-    wowc.FieldCharacterProgression,
-    wowc.FieldCharacterQuests,
-    wowc.FieldCharacterReputation,
-    wowc.FieldCharacterStatistics,
-    wowc.FieldCharacterStats,
-    wowc.FieldCharacterTalents,
-    wowc.FieldCharacterTitle,
-  },
-)
+dat, _, err := blizz.WoWCharacterProfileSummary("emerald-dream", "wildz")
 if err != nil {
   fmt.Println(err)
 }
