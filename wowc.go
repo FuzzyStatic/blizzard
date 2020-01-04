@@ -14,7 +14,6 @@ const (
 	wowPath                          = "/wow"
 	wowUserPath                      = wowPath + "/user"
 	wowUserCharactersPath            = wowUserPath + "/characters"
-	wowAchievementPath               = wowPath + "/achievement"
 	wowAuctionDataPath               = wowPath + "/auction" + dataPath
 	wowBossPath                      = wowPath + "/boss"
 	wowChallengePath                 = wowPath + "/challenge"
@@ -46,7 +45,6 @@ const (
 	wowDataGuildPath                 = wowDataPath + "/guild"
 	wowDataGuildRewardsPath          = wowDataGuildPath + "/rewards"
 	wowDataGuildPerksPath            = wowDataGuildPath + "/perks"
-	wowDataGuildAchievementsPath     = wowDataGuildPath + "/achievements"
 	wowDataItemClassesPath           = wowDataPath + "/item/classes"
 	wowDataTalentsPath               = wowDataPath + "/talents"
 	wowDataPetTypesPath              = wowDataPath + "/pet/types"
@@ -100,25 +98,25 @@ func (c *Client) WoWUserCharacters(accessToken string) (*wowc.Profile, []byte, e
 }
 
 // WoWAchievement returns data about an individual achievement
-func (c *Client) WoWAchievement(achievementID int) (*wowc.Achievement, []byte, error) {
-	var (
-		dat wowc.Achievement
-		b   []byte
-		err error
-	)
+// func (c *Client) WoWAchievement(achievementID int) (*wowc.Achievement, []byte, error) {
+// 	var (
+// 		dat wowc.Achievement
+// 		b   []byte
+// 		err error
+// 	)
 
-	b, err = c.getURLBody(c.apiURL+wowAchievementPath+"/"+strconv.Itoa(achievementID)+"?"+localeQuery+c.locale.String(), "")
-	if err != nil {
-		return &dat, b, err
-	}
+// 	b, err = c.getURLBody(c.apiURL+wowAchievementPath+"/"+strconv.Itoa(achievementID)+"?"+localeQuery+c.locale.String(), "")
+// 	if err != nil {
+// 		return &dat, b, err
+// 	}
 
-	err = json.Unmarshal(b, &dat)
-	if err != nil {
-		return &dat, b, err
-	}
+// 	err = json.Unmarshal(b, &dat)
+// 	if err != nil {
+// 		return &dat, b, err
+// 	}
 
-	return &dat, b, nil
-}
+// 	return &dat, b, nil
+// }
 
 // WoWAuctionFiles returns list of auction URLs containing auction data
 func (c *Client) WoWAuctionFiles(realm string) (*wowc.AuctionFiles, []byte, error) {

@@ -81,7 +81,6 @@ const (
 const (
 	localeQuery = "locale="
 	dataPath    = "/data"
-	profilePath = "/profile"
 )
 
 // NewClient create new Blizzard structure. This structure will be used to acquire your access token and make API calls.

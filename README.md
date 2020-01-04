@@ -26,7 +26,7 @@ First, download the Blizzard library:
 go get github.com/FuzzyStatic/blizzard
 ```
 
-Start using the library by initiating a new Blizzard config structure for desired region and locale (client_id and client_secret can be acquired through your developer account at [https://develop.battle.net/](https://develop.battle.net/)) and requesting an access token:
+Start using the library by initiating a new Blizzard config structure for your desired region and locale (client_id and client_secret can be acquired through your developer account at [https://develop.battle.net/](https://develop.battle.net/)) and requesting an access token:
 
 ```go
 blizz := blizzard.NewClient("client_id", "client_secret", blizzard.US, blizzard.EnUS)
@@ -139,7 +139,7 @@ fmt.Printf("%+v\n", dat)
 
 ## Documentation
 
-See the [Blizzard API reference](https://develop.battle.net/documentation/api-reference) and the [godoc](http://godoc.org/github.com/FuzzyStatic/blizzard) for all the different datasets that can be acquired.
+See the [Blizzard API reference](https://develop.battle.net/documentation/guides) and the [godoc](http://godoc.org/github.com/FuzzyStatic/blizzard) for all the different datasets that can be acquired.
 
 ## Special Thanks
 

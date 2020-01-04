@@ -2,13 +2,9 @@ package blizzard
 
 import (
 	"encoding/json"
-	"strconv"
+	"fmt"
 
 	"github.com/FuzzyStatic/blizzard/sc2gd"
-)
-
-const (
-	sc2LeaguePath = dataPath + sc2Path + "/league"
 )
 
 // SC2LeagueData returns all SC2 league data from for seasonID, queue ID, team type, and league ID
@@ -19,7 +15,7 @@ func (c *Client) SC2LeagueData(seasonID int, queueID sc2gd.QueueID, teamType sc2
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+sc2LeaguePath+"/"+strconv.Itoa(seasonID)+"/"+strconv.Itoa(int(queueID))+"/"+strconv.Itoa(int(teamType))+"/"+strconv.Itoa(int(leagueID))+"?"+localeQuery+c.locale.String(), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/sc2/league/%d/%d/%d/%d?locale=%s", seasonID, queueID, teamType, leagueID, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}

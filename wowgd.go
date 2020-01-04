@@ -2,45 +2,178 @@ package blizzard
 
 import (
 	"encoding/json"
-	"strconv"
+	"fmt"
 
 	"github.com/FuzzyStatic/blizzard/wowgd"
 )
 
-const (
-	dataWowPath                        = dataPath + wowPath
-	indexPath                          = "/index"
-	wowConnectedRealmPath              = dataWowPath + "/connected-realm"
-	wowConnectedRealmIndexPath         = wowConnectedRealmPath + indexPath
-	wowKeystoneAffixPath               = dataWowPath + "/keystone-affix"
-	wowKeystoneAffixIndexPath          = wowKeystoneAffixPath + indexPath
-	wowLeaderboardHallOfFamePath       = dataWowPath + "/leaderboard/hall-of-fame"
-	wowMythicKeystonePath              = dataWowPath + "/mythic-keystone"
-	wowMythicKeystoneDungeonPath       = wowMythicKeystonePath + "/dungeon"
-	wowMythicKeystoneDungeonIndexPath  = wowMythicKeystoneDungeonPath + indexPath
-	wowMythicKeystoneIndexPath         = wowMythicKeystonePath + indexPath
-	periodPath                         = "/period"
-	wowMythicKeystonePeriodPath        = wowMythicKeystonePath + periodPath
-	wowMythicKeystonePeriodIndexPath   = wowMythicKeystonePeriodPath + indexPath
-	wowMythicKeystoneSeasonPath        = wowMythicKeystonePath + "/season"
-	wowMythicKeystoneSeasonIndexPath   = wowMythicKeystoneSeasonPath + indexPath
-	mythicLeaderboardPath              = "/mythic-leaderboard"
-	mythicLeaderboardIndexPath         = mythicLeaderboardPath + indexPath
-	wowPlayableClassPath               = dataWowPath + "/playable-class"
-	wowPlayableClassIndexPath          = wowPlayableClassPath + indexPath
-	pvpTalentSlotsPath                 = "/pvp-talent-slots"
-	wowPlayableSpecializationPath      = dataWowPath + "/playable-specialization"
-	wowPlayableSpecializationIndexPath = wowPlayableSpecializationPath + indexPath
-	wowPowerTypePath                   = dataWowPath + "/power-type"
-	wowPowerTypeIndexPath              = wowPowerTypePath + indexPath
-	wowRacePath                        = dataWowPath + "/playable-race"
-	wowRaceIndexPath                   = wowRacePath + indexPath
-	wowRealmPath                       = dataWowPath + "/realm"
-	wowRealmIndexPath                  = wowRealmPath + indexPath
-	wowRegionPath                      = dataWowPath + "/region"
-	wowRegionIndexPath                 = wowRegionPath + indexPath
-	wowTokenIndexPath                  = dataWowPath + "/token/index"
-)
+// WoWAchievementCategoriesIndex returns an index of achievement categories.
+func (c *Client) WoWAchievementCategoriesIndex() (*wowgd.AchievementCategoriesIndex, []byte, error) {
+	var (
+		dat wowgd.AchievementCategoriesIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/achievement-category/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWAchievementCategory returns an achievement category by ID.
+func (c *Client) WoWAchievementCategory(achievementCategoryID int) (*wowgd.AchievementCategory, []byte, error) {
+	var (
+		dat wowgd.AchievementCategory
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/achievement-category/%d?locale=%s", achievementCategoryID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWAchievementIndex returns an index of achievements.
+func (c *Client) WoWAchievementIndex() (*wowgd.AchievementIndex, []byte, error) {
+	var (
+		dat wowgd.AchievementIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/achievement/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWAchievement returns an achievement category by ID.
+func (c *Client) WoWAchievement(achievementID int) (*wowgd.Achievement, []byte, error) {
+	var (
+		dat wowgd.Achievement
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/achievement/%d?locale=%s", achievementID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWAchievementMedia returns media for an achievement by ID.
+func (c *Client) WoWAchievementMedia(achievementID int) (*wowgd.AchievementMedia, []byte, error) {
+	var (
+		dat wowgd.AchievementMedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/media/achievement/%d?locale=%s", achievementID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWAzeriteEssenceIndex returns an index of azerite essences.
+func (c *Client) WoWAzeriteEssenceIndex() (*wowgd.AzeriteEssenceIndex, []byte, error) {
+	var (
+		dat wowgd.AzeriteEssenceIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/azerite-essence/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWAzeriteEssencereturns an azerite essence by ID.
+func (c *Client) WoWAzeriteEssence(azeriteEssenceID int) (*wowgd.AzeriteEssence, []byte, error) {
+	var (
+		dat wowgd.AzeriteEssence
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/azerite-essence/%d?locale=%s", azeriteEssenceID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWAzeriteEssenceMedia returns media for an azerite essence by ID.
+func (c *Client) WoWAzeriteEssenceMedia(azeriteEssenceID int) (*wowgd.AzeriteEssenceMedia, []byte, error) {
+	var (
+		dat wowgd.AzeriteEssenceMedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/media/azerite-essence/%d?locale=%s", azeriteEssenceID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
 
 // WoWConnectedRealmIndex returns an index of connected realms
 func (c *Client) WoWConnectedRealmIndex() (*wowgd.ConnectedRealmIndex, []byte, error) {
@@ -50,7 +183,7 @@ func (c *Client) WoWConnectedRealmIndex() (*wowgd.ConnectedRealmIndex, []byte, e
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowConnectedRealmIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/connected-realm/index?locale=%s", c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -71,7 +204,7 @@ func (c *Client) WoWConnectedRealm(connectedRealmID int) (*wowgd.ConnectedRealm,
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowConnectedRealmPath+"/"+strconv.Itoa(connectedRealmID)+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/connected-realm/%d?locale=%s", connectedRealmID, c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -92,7 +225,7 @@ func (c *Client) WoWMythicKeystoneAffixIndex() (*wowgd.MythicKeystoneAffixIndex,
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowKeystoneAffixIndexPath+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/keystone-affix/index?locale=%s", c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -113,7 +246,7 @@ func (c *Client) WoWMythicKeystoneAffix(keystoneAffixID int) (*wowgd.MythicKeyst
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowKeystoneAffixPath+"/"+strconv.Itoa(keystoneAffixID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/keystone-affix/%d?locale=%s", keystoneAffixID, c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -134,7 +267,7 @@ func (c *Client) WoWMythicRaidLeaderboard(raid, faction string) (*wowgd.MythicRa
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowLeaderboardHallOfFamePath+"/"+raid+"/"+faction+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/leaderboard/hall-of-fame/%s/%s?locale=%s", raid, faction, c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -155,7 +288,7 @@ func (c *Client) WoWMythicKeystoneDungeonIndex() (*wowgd.MythicKeystoneDungeonIn
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowMythicKeystoneDungeonIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/mythic-keystone/dungeon/index?locale=%s", c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -176,7 +309,7 @@ func (c *Client) WoWMythicKeystoneDungeon(dungeonID int) (*wowgd.MythicKeystoneD
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowMythicKeystoneDungeonPath+"/"+strconv.Itoa(dungeonID)+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/mythic-keystone/dungeon/%d?locale=%s", dungeonID, c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -197,7 +330,7 @@ func (c *Client) WoWMythicKeystoneIndex() (*wowgd.MythicKeystoneIndex, []byte, e
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowMythicKeystoneIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/mythic-keystone/index?locale=%s", c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -218,7 +351,7 @@ func (c *Client) WoWMythicKeystonePeriodIndex() (*wowgd.MythicKeystonePeriodInde
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowMythicKeystonePeriodIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/mythic-keystone/period/index?locale=%s", c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -239,7 +372,7 @@ func (c *Client) WoWMythicKeystonePeriod(periodID int) (*wowgd.MythicKeystonePer
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowMythicKeystonePeriodPath+"/"+strconv.Itoa(periodID)+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/mythic-keystone/period/%d?locale=%s", periodID, c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -260,7 +393,7 @@ func (c *Client) WoWMythicKeystoneSeasonIndex() (*wowgd.MythicKeystoneSeasonInde
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowMythicKeystoneSeasonIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/mythic-keystone/season/index?locale=%s", c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -281,7 +414,7 @@ func (c *Client) WoWMythicKeystoneSeason(seasonID int) (*wowgd.MythicKeystoneSea
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowMythicKeystoneSeasonPath+"/"+strconv.Itoa(seasonID)+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/mythic-keystone/season/%d?locale=%s", seasonID, c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -302,7 +435,7 @@ func (c *Client) WoWMythicKeystoneLeaderboardIndex(connectedRealmID int) (*wowgd
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowConnectedRealmPath+"/"+strconv.Itoa(connectedRealmID)+"/"+mythicLeaderboardIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/connected-realm/%d/mythic-leaderboard/index?locale=%s", connectedRealmID, c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -323,7 +456,7 @@ func (c *Client) WoWMythicKeystoneLeaderboard(connectedRealmID, dungeonID, perio
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowConnectedRealmPath+"/"+strconv.Itoa(connectedRealmID)+"/"+mythicLeaderboardPath+"/"+strconv.Itoa(dungeonID)+periodPath+"/"+strconv.Itoa(period)+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/connected-realm/%d/mythic-leaderboard/%d/period/%d?locale=%s", connectedRealmID, dungeonID, period, c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -344,7 +477,7 @@ func (c *Client) WoWPlayableClassesIndex() (*wowgd.PlayableClassesIndex, []byte,
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowPlayableClassIndexPath+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/playable-class/index?locale=%s", c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -365,7 +498,7 @@ func (c *Client) WoWPlayableClass(classID int) (*wowgd.PlayableClass, []byte, er
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowPlayableClassPath+"/"+strconv.Itoa(classID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/playable-class/%d?locale=%s", classID, c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -378,15 +511,15 @@ func (c *Client) WoWPlayableClass(classID int) (*wowgd.PlayableClass, []byte, er
 	return &dat, b, nil
 }
 
-// WoWPlayableClassPVPTalentSlots returns the PvP talent slots for a playable class by ID
-func (c *Client) WoWPlayableClassPVPTalentSlots(classID int) (*wowgd.PlayableClassPVPTalentSlots, []byte, error) {
+// WoWPlayableClassPvPTalentSlots returns the PvP talent slots for a playable class by ID
+func (c *Client) WoWPlayableClassPvPTalentSlots(classID int) (*wowgd.PlayableClassPvPTalentSlots, []byte, error) {
 	var (
-		dat wowgd.PlayableClassPVPTalentSlots
+		dat wowgd.PlayableClassPvPTalentSlots
 		b   []byte
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowPlayableClassPath+"/"+strconv.Itoa(classID)+pvpTalentSlotsPath+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/playable-class/%d/pvp-talent-slots?locale=%s", classID, c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -399,7 +532,7 @@ func (c *Client) WoWPlayableClassPVPTalentSlots(classID int) (*wowgd.PlayableCla
 	return &dat, b, nil
 }
 
-// WoWPlayableSpecializationIndex returns an index of playable specializations
+// WoWPlayableSpecializationIndex returns an index of playable specializations.
 func (c *Client) WoWPlayableSpecializationIndex() (*wowgd.PlayableSpecializationIndex, []byte, error) {
 	var (
 		dat wowgd.PlayableSpecializationIndex
@@ -407,7 +540,7 @@ func (c *Client) WoWPlayableSpecializationIndex() (*wowgd.PlayableSpecialization
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowPlayableSpecializationIndexPath+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/playable-specialization/index?locale=%s", c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -420,7 +553,7 @@ func (c *Client) WoWPlayableSpecializationIndex() (*wowgd.PlayableSpecialization
 	return &dat, b, nil
 }
 
-// WoWPlayableSpecialization returns a playable specialization by ID
+// WoWPlayableSpecialization returns a playable specialization by ID.
 func (c *Client) WoWPlayableSpecialization(specID int) (*wowgd.PlayableSpecialization, []byte, error) {
 	var (
 		dat wowgd.PlayableSpecialization
@@ -428,7 +561,7 @@ func (c *Client) WoWPlayableSpecialization(specID int) (*wowgd.PlayableSpecializ
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowPlayableSpecializationPath+"/"+strconv.Itoa(specID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/playable-specialization/%d?locale=%s", specID, c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -441,7 +574,7 @@ func (c *Client) WoWPlayableSpecialization(specID int) (*wowgd.PlayableSpecializ
 	return &dat, b, nil
 }
 
-// WoWPowerTypesIndex returns an index of power types
+// WoWPowerTypesIndex returns an index of power types.
 func (c *Client) WoWPowerTypesIndex() (*wowgd.PowerTypesIndex, []byte, error) {
 	var (
 		dat wowgd.PowerTypesIndex
@@ -449,7 +582,7 @@ func (c *Client) WoWPowerTypesIndex() (*wowgd.PowerTypesIndex, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowPowerTypeIndexPath+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/power-type/index?locale=%s", c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -462,7 +595,7 @@ func (c *Client) WoWPowerTypesIndex() (*wowgd.PowerTypesIndex, []byte, error) {
 	return &dat, b, nil
 }
 
-// WoWPowerType returns a power type by ID
+// WoWPowerType returns a power type by ID.
 func (c *Client) WoWPowerType(powerTypeID int) (*wowgd.PowerType, []byte, error) {
 	var (
 		dat wowgd.PowerType
@@ -470,7 +603,7 @@ func (c *Client) WoWPowerType(powerTypeID int) (*wowgd.PowerType, []byte, error)
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowPowerTypePath+"/"+strconv.Itoa(powerTypeID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/power-type/%d?locale=%s", powerTypeID, c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -483,7 +616,7 @@ func (c *Client) WoWPowerType(powerTypeID int) (*wowgd.PowerType, []byte, error)
 	return &dat, b, nil
 }
 
-// WoWPlayableRacesIndex returns an index of races
+// WoWPlayableRacesIndex returns an index of races.
 func (c *Client) WoWPlayableRacesIndex() (*wowgd.PlayableRacesIndex, []byte, error) {
 	var (
 		dat wowgd.PlayableRacesIndex
@@ -491,7 +624,7 @@ func (c *Client) WoWPlayableRacesIndex() (*wowgd.PlayableRacesIndex, []byte, err
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowRaceIndexPath+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/playable-race/index?locale=%s", c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -504,7 +637,7 @@ func (c *Client) WoWPlayableRacesIndex() (*wowgd.PlayableRacesIndex, []byte, err
 	return &dat, b, nil
 }
 
-// WoWPlayableRace returns a race by ID
+// WoWPlayableRace returns a race by ID.
 func (c *Client) WoWPlayableRace(raceID int) (*wowgd.PlayableRace, []byte, error) {
 	var (
 		dat wowgd.PlayableRace
@@ -512,7 +645,7 @@ func (c *Client) WoWPlayableRace(raceID int) (*wowgd.PlayableRace, []byte, error
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowRacePath+"/"+strconv.Itoa(raceID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/playable-race/%d?locale=%s", raceID, c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -525,7 +658,7 @@ func (c *Client) WoWPlayableRace(raceID int) (*wowgd.PlayableRace, []byte, error
 	return &dat, b, nil
 }
 
-// WoWRealmIndex returns an index of realms
+// WoWRealmIndex returns an index of realms.
 func (c *Client) WoWRealmIndex() (*wowgd.RealmIndex, []byte, error) {
 	var (
 		dat wowgd.RealmIndex
@@ -533,7 +666,7 @@ func (c *Client) WoWRealmIndex() (*wowgd.RealmIndex, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowRealmIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/realm/index?locale=%s", c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -546,7 +679,7 @@ func (c *Client) WoWRealmIndex() (*wowgd.RealmIndex, []byte, error) {
 	return &dat, b, nil
 }
 
-// WoWRealm returns a single realm by slug or ID
+// WoWRealm returns a single realm by slug or ID.
 func (c *Client) WoWRealm(realmSlug string) (*wowgd.Realm, []byte, error) {
 	var (
 		dat wowgd.Realm
@@ -554,7 +687,7 @@ func (c *Client) WoWRealm(realmSlug string) (*wowgd.Realm, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowRealmPath+"/"+realmSlug+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/realm/%s?locale=%s", realmSlug, c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -567,7 +700,7 @@ func (c *Client) WoWRealm(realmSlug string) (*wowgd.Realm, []byte, error) {
 	return &dat, b, nil
 }
 
-// WoWRegionIndex returns an index of regions
+// WoWRegionIndex returns an index of regions.
 func (c *Client) WoWRegionIndex() (*wowgd.RegionIndex, []byte, error) {
 	var (
 		dat wowgd.RegionIndex
@@ -575,7 +708,7 @@ func (c *Client) WoWRegionIndex() (*wowgd.RegionIndex, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowRegionIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/region/index?locale=%s", c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -588,7 +721,7 @@ func (c *Client) WoWRegionIndex() (*wowgd.RegionIndex, []byte, error) {
 	return &dat, b, nil
 }
 
-// WoWRegion returns a single region by ID
+// WoWRegion returns a single region by ID.
 func (c *Client) WoWRegion(regionID int) (*wowgd.Region, []byte, error) {
 	var (
 		dat wowgd.Region
@@ -596,7 +729,7 @@ func (c *Client) WoWRegion(regionID int) (*wowgd.Region, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowRegionPath+"/"+strconv.Itoa(regionID)+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/region/%d?locale=%s", regionID, c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -617,7 +750,7 @@ func (c *Client) WoWToken() (*wowgd.Token, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowTokenIndexPath+"?"+localeQuery+c.locale.String(), c.dynamicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/token/index?locale=%s", c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}

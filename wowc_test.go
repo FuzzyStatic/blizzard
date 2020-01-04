@@ -19,17 +19,17 @@ func TestWoWUserCharacters(t *testing.T) {
 	}
 }
 
-func TestWoWAchievement(t *testing.T) {
-	dat, _, err := c.WoWAchievement(2144)
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
+// func TestWoWAchievement(t *testing.T) {
+// 	dat, _, err := c.WoWAchievement(2144)
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		t.Fail()
+// 	}
 
-	if printOutput != "" {
-		fmt.Printf("%+v\n", dat)
-	}
-}
+// 	if printOutput != "" {
+// 		fmt.Printf("%+v\n", dat)
+// 	}
+// }
 
 func TestWoWAuctionFiles(t *testing.T) {
 	dat, _, err := c.WoWAuctionFiles("medivh")

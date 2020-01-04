@@ -5,6 +5,102 @@ import (
 	"testing"
 )
 
+func TestWoWAchievementCategoriesIndex(t *testing.T) {
+	dat, _, err := c.WoWAchievementCategoriesIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWAchievementCategory(t *testing.T) {
+	dat, _, err := c.WoWAchievementCategory(81)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWAchievementIndex(t *testing.T) {
+	dat, _, err := c.WoWAchievementIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWAchievement(t *testing.T) {
+	dat, _, err := c.WoWAchievement(6)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWAchievementMedia(t *testing.T) {
+	dat, _, err := c.WoWAchievementMedia(6)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWAzeriteEssenceIndex(t *testing.T) {
+	dat, _, err := c.WoWAzeriteEssenceIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWAzeriteEssence(t *testing.T) {
+	dat, _, err := c.WoWAzeriteEssence(6)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWAzeriteEssenceMedia(t *testing.T) {
+	dat, _, err := c.WoWAzeriteEssenceMedia(6)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWConnectedRealmIndex(t *testing.T) {
 	dat, _, err := c.WoWConnectedRealmIndex()
 	if err != nil {
@@ -197,8 +293,8 @@ func TestWoWPlayableClass(t *testing.T) {
 	}
 }
 
-func TestWoWPlayableClassPVPTalentSlots(t *testing.T) {
-	dat, _, err := c.WoWPlayableClassPVPTalentSlots(7)
+func TestWoWPlayableClassPvPTalentSlots(t *testing.T) {
+	dat, _, err := c.WoWPlayableClassPvPTalentSlots(7)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

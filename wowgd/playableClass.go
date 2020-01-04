@@ -54,8 +54,8 @@ type PlayableClass struct {
 	} `json:"pvp_talent_slots"`
 }
 
-// PlayableClassPVPTalentSlots structure
-type PlayableClassPVPTalentSlots struct {
+// PlayableClassPvPTalentSlots structure
+type PlayableClassPvPTalentSlots struct {
 	Links struct {
 		Self struct {
 			Href string `json:"href"`
