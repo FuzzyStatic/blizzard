@@ -125,6 +125,126 @@ func TestWoWConnectedRealm(t *testing.T) {
 	}
 }
 
+func TestWoWCreatureFamiliesIndex(t *testing.T) {
+	dat, _, err := c.WoWCreatureFamiliesIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCreatureFamily(t *testing.T) {
+	dat, _, err := c.WoWCreatureFamily(1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCreatureTypesIndex(t *testing.T) {
+	dat, _, err := c.WoWCreatureTypesIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCreatureType(t *testing.T) {
+	dat, _, err := c.WoWCreatureType(1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCreature(t *testing.T) {
+	dat, _, err := c.WoWCreature(30)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCreatureDisplayMedia(t *testing.T) {
+	dat, _, err := c.WoWCreatureDisplayMedia(30221)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCreatureFamilyMedia(t *testing.T) {
+	dat, _, err := c.WoWCreatureFamilyMedia(1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWGuildCrestComponentsIndex(t *testing.T) {
+	dat, _, err := c.WoWGuildCrestComponentsIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWGuildCrestBorderMedia(t *testing.T) {
+	dat, _, err := c.WoWGuildCrestBorderMedia(0)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWGuildCrestEmblemMedia(t *testing.T) {
+	dat, _, err := c.WoWGuildCrestEmblemMedia(0)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWMythicKeystoneAffixIndex(t *testing.T) {
 	dat, _, err := c.WoWMythicKeystoneAffixIndex()
 	if err != nil {

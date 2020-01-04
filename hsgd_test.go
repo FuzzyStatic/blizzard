@@ -18,9 +18,11 @@ func TestHSCardsAll(t *testing.T) {
 }
 
 func TestHSCards(t *testing.T) {
-	dat, _, err := c.HSCards("rise-of-shadows", "mage", "legendary", "minion", "dragon", "battlecry", "kalecgos",
+	dat, _, err := c.HSCards(
+		"rise-of-shadows", "mage", "legendary", "minion", "dragon", "battlecry", "kalecgos",
 		[]int{10}, []int{4}, []int{10}, 1, 5,
-		CollectiblilityCollectible, SortName, OrderAsc)
+		CollectibilityCollectible, SortName, OrderAsc,
+	)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

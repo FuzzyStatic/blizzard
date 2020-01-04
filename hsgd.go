@@ -9,18 +9,18 @@ import (
 	"github.com/FuzzyStatic/blizzard/hsgd"
 )
 
-// Collectiblility type
-type Collectiblility string
+// Collectibility type
+type Collectibility string
 
-func (collectiblility Collectiblility) String() string {
-	return string(collectiblility)
+func (collectibility Collectibility) String() string {
+	return string(collectibility)
 }
 
-// Sort constants
+// Collectibility constants
 const (
-	CollectiblilityCollectible   = Collectiblility("1")
-	CollectiblilityUncollectible = Collectiblility("0")
-	CollectiblilityBoth          = Collectiblility("0,1")
+	CollectibilityCollectible   = Collectibility("1")
+	CollectibilityUncollectible = Collectibility("0")
+	CollectibilityBoth          = Collectibility("0,1")
 )
 
 // Sort - manaCost, attack, health, or name
@@ -96,7 +96,7 @@ func (c *Client) HSCardsAll() (*hsgd.CardSearch, []byte, error) {
 // For more information about the search parameters, see the Hearthstone Guide.
 func (c *Client) HSCards(setSlug, classSlug, raritySlug, typeSlug, minionTypeSlug, keywordSlug, textFilter string,
 	manaCost, attack, health []int, page, pageSize int,
-	collectiblility Collectiblility, sort Sort, order Order) (*hsgd.CardSearch, []byte, error) {
+	collectiblility Collectibility, sort Sort, order Order) (*hsgd.CardSearch, []byte, error) {
 	var (
 		dat hsgd.CardSearch
 		url string

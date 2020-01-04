@@ -133,7 +133,7 @@ func (c *Client) WoWAzeriteEssenceIndex() (*wowgd.AzeriteEssenceIndex, []byte, e
 	return &dat, b, nil
 }
 
-// WoWAzeriteEssencereturns an azerite essence by ID.
+// WoWAzeriteEssence returns an azerite essence by ID.
 func (c *Client) WoWAzeriteEssence(azeriteEssenceID int) (*wowgd.AzeriteEssence, []byte, error) {
 	var (
 		dat wowgd.AzeriteEssence
@@ -205,6 +205,216 @@ func (c *Client) WoWConnectedRealm(connectedRealmID int) (*wowgd.ConnectedRealm,
 	)
 
 	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/connected-realm/%d?locale=%s", connectedRealmID, c.locale), c.dynamicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCreatureFamiliesIndex returns an index of creature families.
+func (c *Client) WoWCreatureFamiliesIndex() (*wowgd.CreatureFamiliesIndex, []byte, error) {
+	var (
+		dat wowgd.CreatureFamiliesIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/creature-family/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCreatureFamily returns a creature family by ID.
+func (c *Client) WoWCreatureFamily(creatureFamilyID int) (*wowgd.CreatureFamily, []byte, error) {
+	var (
+		dat wowgd.CreatureFamily
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/creature-family/%d?locale=%s", creatureFamilyID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCreatureTypesIndex returns an index of creature types.
+func (c *Client) WoWCreatureTypesIndex() (*wowgd.CreatureTypesIndex, []byte, error) {
+	var (
+		dat wowgd.CreatureTypesIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/creature-type/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCreatureType returns a creature type by ID.
+func (c *Client) WoWCreatureType(creatureTypeID int) (*wowgd.CreatureType, []byte, error) {
+	var (
+		dat wowgd.CreatureType
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/creature-type/%d?locale=%s", creatureTypeID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCreature returns a creature type by ID.
+func (c *Client) WoWCreature(creatureID int) (*wowgd.Creature, []byte, error) {
+	var (
+		dat wowgd.Creature
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/creature/%d?locale=%s", creatureID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCreatureDisplayMedia returns media for a creature display by ID.
+func (c *Client) WoWCreatureDisplayMedia(creatureDisplayID int) (*wowgd.CreatureDisplayMedia, []byte, error) {
+	var (
+		dat wowgd.CreatureDisplayMedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/media/creature-display/%d?locale=%s", creatureDisplayID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCreatureFamilyMedia returns media for a creature family by ID.
+func (c *Client) WoWCreatureFamilyMedia(creatureFamilyID int) (*wowgd.CreatureFamilyMedia, []byte, error) {
+	var (
+		dat wowgd.CreatureFamilyMedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/media/creature-family/%d?locale=%s", creatureFamilyID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWGuildCrestComponentsIndex returns an index of guild crest media
+func (c *Client) WoWGuildCrestComponentsIndex() (*wowgd.GuildCrestComponentsIndex, []byte, error) {
+	var (
+		dat wowgd.GuildCrestComponentsIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/guild-crest/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWGuildCrestBorderMedia returns media for a guild crest border by ID
+func (c *Client) WoWGuildCrestBorderMedia(borderID int) (*wowgd.GuildCrestBorderMdedia, []byte, error) {
+	var (
+		dat wowgd.GuildCrestBorderMdedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/media/guild-crest/border/%d?locale=%s", borderID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWGuildCrestEmblemMedia returns media for a guild crest emblem by ID
+func (c *Client) WoWGuildCrestEmblemMedia(emblemID int) (*wowgd.GuildCrestEmblemMdedia, []byte, error) {
+	var (
+		dat wowgd.GuildCrestEmblemMdedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/media/guild-crest/emblem/%d?locale=%s", emblemID, c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}

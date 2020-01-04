@@ -2,38 +2,28 @@ package blizzard
 
 import (
 	"encoding/json"
+	"fmt"
 	"strconv"
 
 	"github.com/FuzzyStatic/blizzard/wowcgd"
 )
 
 const (
-	wowCreatureFamilyPath        = "/data/wow" + "/creature-family"
-	wowCreatureFamiliesIndexPath = wowCreatureFamilyPath + "/index"
-	wowCreatureTypePath          = "/data/wow" + "/creature-type"
-	wowCreatureTypesIndexPath    = wowCreatureTypePath + "/index"
-	wowCreaturePath              = "/data/wow" + "/creature"
-	wowMediaCreatureDisplayPath  = "/data/wow" + "/media/creature-display"
-	wowMediaCreatureFamilyPath   = "/data/wow" + "/media/creature-family"
-	wowGuildCrestPath            = "/data/wow" + "/guild-crest"
-	wowGuildCrestIndexPath       = wowGuildCrestPath + "/index"
-	wowMediaGuildCrestBorderPath = "/data/wow" + "/media/guild-crest/border"
-	wowMediaGuildCrestEmblemPath = "/data/wow" + "/media/guild-crest/emblem"
-	wowItemClassPath             = "/data/wow" + "/item-class"
-	wowItemClassIndexPath        = wowItemClassPath + "/index"
-	wowItemSubclassPath          = "/item-subclass"
-	wowDataItemPath              = "/data/wow" + "/item"
-	wowMediaItemPath             = "/data/wow" + "/media/item"
-	wowMediaPlayableClassPath    = "/data/wow" + "/media/playable-class"
-	wowPlayableClassPath         = "/data/wow" + "/playable-class"
-	wowPlayableClassIndexPath    = wowPlayableClassPath + "/index"
-	wowPowerTypePath             = "/data/wow" + "/power-type"
-	wowPowerTypeIndexPath        = wowPowerTypePath + "/index"
-	wowRacePath                  = "/data/wow" + "/playable-race"
-	wowRaceIndexPath             = wowRacePath + "/index"
+	wowItemClassPath          = "/data/wow/item-class"
+	wowItemClassIndexPath     = wowItemClassPath + "/index"
+	wowItemSubclassPath       = "/item-subclass"
+	wowDataItemPath           = "/data/wow/item"
+	wowMediaItemPath          = "/data/wow/media/item"
+	wowMediaPlayableClassPath = "/data/wow/media/playable-class"
+	wowPlayableClassPath      = "/data/wow/playable-class"
+	wowPlayableClassIndexPath = wowPlayableClassPath + "/index"
+	wowPowerTypePath          = "/data/wow/power-type"
+	wowPowerTypeIndexPath     = wowPowerTypePath + "/index"
+	wowRacePath               = "/data/wow/playable-race"
+	wowRaceIndexPath          = wowRacePath + "/index"
 )
 
-// ClassicWoWCreatureFamiliesIndex returns an index of creature families
+// ClassicWoWCreatureFamiliesIndex returns an index of creature families.
 func (c *Client) ClassicWoWCreatureFamiliesIndex() (*wowcgd.CreatureFamiliesIndex, []byte, error) {
 	var (
 		dat wowcgd.CreatureFamiliesIndex
@@ -41,7 +31,7 @@ func (c *Client) ClassicWoWCreatureFamiliesIndex() (*wowcgd.CreatureFamiliesInde
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowCreatureFamiliesIndexPath+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/creature-family/index?locale=%s", c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -54,7 +44,7 @@ func (c *Client) ClassicWoWCreatureFamiliesIndex() (*wowcgd.CreatureFamiliesInde
 	return &dat, b, nil
 }
 
-// ClassicWoWCreatureFamily returns a creature family by ID
+// ClassicWoWCreatureFamily returns a creature family by ID.
 func (c *Client) ClassicWoWCreatureFamily(creatureFamilyID int) (*wowcgd.CreatureFamily, []byte, error) {
 	var (
 		dat wowcgd.CreatureFamily
@@ -62,7 +52,7 @@ func (c *Client) ClassicWoWCreatureFamily(creatureFamilyID int) (*wowcgd.Creatur
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowCreatureFamilyPath+"/"+strconv.Itoa(creatureFamilyID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/creature-family/%d?locale=%s", creatureFamilyID, c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -75,7 +65,7 @@ func (c *Client) ClassicWoWCreatureFamily(creatureFamilyID int) (*wowcgd.Creatur
 	return &dat, b, nil
 }
 
-// ClassicWoWCreatureTypesIndex returns an index of creature types
+// ClassicWoWCreatureTypesIndex returns an index of creature types.
 func (c *Client) ClassicWoWCreatureTypesIndex() (*wowcgd.CreatureTypesIndex, []byte, error) {
 	var (
 		dat wowcgd.CreatureTypesIndex
@@ -83,7 +73,7 @@ func (c *Client) ClassicWoWCreatureTypesIndex() (*wowcgd.CreatureTypesIndex, []b
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowCreatureTypesIndexPath+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/creature-type/index?locale=%s", c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -96,7 +86,7 @@ func (c *Client) ClassicWoWCreatureTypesIndex() (*wowcgd.CreatureTypesIndex, []b
 	return &dat, b, nil
 }
 
-// ClassicWoWCreatureType returns a creature type by ID
+// ClassicWoWCreatureType returns a creature type by ID.
 func (c *Client) ClassicWoWCreatureType(creatureTypeID int) (*wowcgd.CreatureType, []byte, error) {
 	var (
 		dat wowcgd.CreatureType
@@ -104,7 +94,7 @@ func (c *Client) ClassicWoWCreatureType(creatureTypeID int) (*wowcgd.CreatureTyp
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowCreatureTypePath+"/"+strconv.Itoa(creatureTypeID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/creature-type/%d?locale=%s", creatureTypeID, c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -117,7 +107,7 @@ func (c *Client) ClassicWoWCreatureType(creatureTypeID int) (*wowcgd.CreatureTyp
 	return &dat, b, nil
 }
 
-// ClassicWoWCreature returns a creature type by ID
+// ClassicWoWCreature returns a creature type by ID.
 func (c *Client) ClassicWoWCreature(creatureID int) (*wowcgd.Creature, []byte, error) {
 	var (
 		dat wowcgd.Creature
@@ -125,7 +115,7 @@ func (c *Client) ClassicWoWCreature(creatureID int) (*wowcgd.Creature, []byte, e
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowCreaturePath+"/"+strconv.Itoa(creatureID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/creature/%d?locale=%s", creatureID, c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -138,7 +128,7 @@ func (c *Client) ClassicWoWCreature(creatureID int) (*wowcgd.Creature, []byte, e
 	return &dat, b, nil
 }
 
-// ClassicWoWCreatureDisplayMedia returns media for a creature display by ID
+// ClassicWoWCreatureDisplayMedia returns media for a creature display by ID.
 func (c *Client) ClassicWoWCreatureDisplayMedia(creatureDisplayID int) (*wowcgd.CreatureDisplayMedia, []byte, error) {
 	var (
 		dat wowcgd.CreatureDisplayMedia
@@ -146,7 +136,7 @@ func (c *Client) ClassicWoWCreatureDisplayMedia(creatureDisplayID int) (*wowcgd.
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowMediaCreatureDisplayPath+"/"+strconv.Itoa(creatureDisplayID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/media/creature-display/%d?locale=%s", creatureDisplayID, c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -159,7 +149,7 @@ func (c *Client) ClassicWoWCreatureDisplayMedia(creatureDisplayID int) (*wowcgd.
 	return &dat, b, nil
 }
 
-// ClassicWoWCreatureFamilyMedia returns media for a creature family by ID
+// ClassicWoWCreatureFamilyMedia returns media for a creature family by ID.
 func (c *Client) ClassicWoWCreatureFamilyMedia(creatureFamilyID int) (*wowcgd.CreatureFamilyMedia, []byte, error) {
 	var (
 		dat wowcgd.CreatureFamilyMedia
@@ -167,7 +157,7 @@ func (c *Client) ClassicWoWCreatureFamilyMedia(creatureFamilyID int) (*wowcgd.Cr
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowMediaCreatureFamilyPath+"/"+strconv.Itoa(creatureFamilyID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/media/creature-family/%d?locale=%s", creatureFamilyID, c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -188,7 +178,7 @@ func (c *Client) ClassicWoWGuildCrestComponentsIndex() (*wowcgd.GuildCrestCompon
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowGuildCrestIndexPath+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/guild-crest/index?locale=%s", c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -209,7 +199,7 @@ func (c *Client) ClassicWoWGuildCrestBorderMedia(borderID int) (*wowcgd.GuildCre
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowMediaGuildCrestBorderPath+"/"+strconv.Itoa(borderID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/media/guild-crest/border/%d?locale=%s", borderID, c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -230,7 +220,7 @@ func (c *Client) ClassicWoWGuildCrestEmblemMedia(emblemID int) (*wowcgd.GuildCre
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowMediaGuildCrestEmblemPath+"/"+strconv.Itoa(emblemID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/media/guild-crest/emblem/%d?locale=%s", emblemID, c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
