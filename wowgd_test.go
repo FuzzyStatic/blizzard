@@ -245,6 +245,90 @@ func TestWoWGuildCrestEmblemMedia(t *testing.T) {
 	}
 }
 
+func TestWoWItemClassesIndex(t *testing.T) {
+	dat, _, err := c.WoWItemClassesIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWItemClass(t *testing.T) {
+	dat, _, err := c.WoWItemClass(0)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWItemSubclass(t *testing.T) {
+	dat, _, err := c.WoWItemSubclass(0, 0)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWItem(t *testing.T) {
+	dat, _, err := c.WoWItem(19019)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWItemMedia(t *testing.T) {
+	dat, _, err := c.WoWItemMedia(19019)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWMountIndex(t *testing.T) {
+	dat, _, err := c.WoWMountIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWMount(t *testing.T) {
+	dat, _, err := c.WoWMount(6)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWMythicKeystoneAffixIndex(t *testing.T) {
 	dat, _, err := c.WoWMythicKeystoneAffixIndex()
 	if err != nil {
@@ -379,6 +463,30 @@ func TestWoWMythicKeystoneLeaderboardIndex(t *testing.T) {
 
 func TestWoWMythicKeystoneLeaderboard(t *testing.T) {
 	dat, _, err := c.WoWMythicKeystoneLeaderboard(11, 197, 641)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWPetIndex(t *testing.T) {
+	dat, _, err := c.WoWPetIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWPet(t *testing.T) {
+	dat, _, err := c.WoWPet(39)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

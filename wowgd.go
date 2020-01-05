@@ -3,6 +3,7 @@ package blizzard
 import (
 	"encoding/json"
 	"fmt"
+	"strconv"
 
 	"github.com/FuzzyStatic/blizzard/wowgd"
 )
@@ -364,7 +365,7 @@ func (c *Client) WoWCreatureFamilyMedia(creatureFamilyID int) (*wowgd.CreatureFa
 	return &dat, b, nil
 }
 
-// WoWGuildCrestComponentsIndex returns an index of guild crest media
+// WoWGuildCrestComponentsIndex returns an index of guild crest media.
 func (c *Client) WoWGuildCrestComponentsIndex() (*wowgd.GuildCrestComponentsIndex, []byte, error) {
 	var (
 		dat wowgd.GuildCrestComponentsIndex
@@ -385,7 +386,7 @@ func (c *Client) WoWGuildCrestComponentsIndex() (*wowgd.GuildCrestComponentsInde
 	return &dat, b, nil
 }
 
-// WoWGuildCrestBorderMedia returns media for a guild crest border by ID
+// WoWGuildCrestBorderMedia returns media for a guild crest border by ID.
 func (c *Client) WoWGuildCrestBorderMedia(borderID int) (*wowgd.GuildCrestBorderMdedia, []byte, error) {
 	var (
 		dat wowgd.GuildCrestBorderMdedia
@@ -406,7 +407,7 @@ func (c *Client) WoWGuildCrestBorderMedia(borderID int) (*wowgd.GuildCrestBorder
 	return &dat, b, nil
 }
 
-// WoWGuildCrestEmblemMedia returns media for a guild crest emblem by ID
+// WoWGuildCrestEmblemMedia returns media for a guild crest emblem by ID.
 func (c *Client) WoWGuildCrestEmblemMedia(emblemID int) (*wowgd.GuildCrestEmblemMdedia, []byte, error) {
 	var (
 		dat wowgd.GuildCrestEmblemMdedia
@@ -415,6 +416,153 @@ func (c *Client) WoWGuildCrestEmblemMedia(emblemID int) (*wowgd.GuildCrestEmblem
 	)
 
 	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/media/guild-crest/emblem/%d?locale=%s", emblemID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWItemClassesIndex returns an index of item classes.
+func (c *Client) WoWItemClassesIndex() (*wowgd.ItemClassesIndex, []byte, error) {
+	var (
+		dat wowgd.ItemClassesIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowItemClassIndexPath+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWItemClass returns an item class by ID.
+func (c *Client) WoWItemClass(itemClassID int) (*wowgd.ItemClass, []byte, error) {
+	var (
+		dat wowgd.ItemClass
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowItemClassPath+"/"+strconv.Itoa(itemClassID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWItemSubclass returns an item subclass by ID.
+func (c *Client) WoWItemSubclass(itemClassID, itemSubclassID int) (*wowgd.ItemSubclass, []byte, error) {
+	var (
+		dat wowgd.ItemSubclass
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowItemClassPath+"/"+strconv.Itoa(itemClassID)+"/"+wowItemSubclassPath+"/"+strconv.Itoa(itemSubclassID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWItem returns an item by ID.
+func (c *Client) WoWItem(itemID int) (*wowgd.Item, []byte, error) {
+	var (
+		dat wowgd.Item
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowDataItemPath+"/"+strconv.Itoa(itemID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWItemMedia returns media for an item by ID.
+func (c *Client) WoWItemMedia(itemID int) (*wowgd.ItemMedia, []byte, error) {
+	var (
+		dat wowgd.ItemMedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+wowMediaItemPath+"/"+strconv.Itoa(itemID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWMountIndex returns an index of mounts.
+func (c *Client) WoWMountIndex() (*wowgd.MountIndex, []byte, error) {
+	var (
+		dat wowgd.MountIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/mount/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWMount returns a mount by ID.
+func (c *Client) WoWMount(mountID int) (*wowgd.Mount, []byte, error) {
+	var (
+		dat wowgd.Mount
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/mount/%d?locale=%s", mountID, c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -667,6 +815,48 @@ func (c *Client) WoWMythicKeystoneLeaderboard(connectedRealmID, dungeonID, perio
 	)
 
 	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/connected-realm/%d/mythic-leaderboard/%d/period/%d?locale=%s", connectedRealmID, dungeonID, period, c.locale), c.dynamicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWPetIndex returns an index of pets.
+func (c *Client) WoWPetIndex() (*wowgd.PetIndex, []byte, error) {
+	var (
+		dat wowgd.PetIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/pet/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWPet returns a pet by ID.
+func (c *Client) WoWPet(petID int) (*wowgd.Pet, []byte, error) {
+	var (
+		dat wowgd.Pet
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/pet/%d?locale=%s", petID, c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}

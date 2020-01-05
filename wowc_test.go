@@ -158,17 +158,17 @@ func TestWoWGuildProfile(t *testing.T) {
 	}
 }
 
-func TestWoWItem(t *testing.T) {
-	dat, _, err := c.WoWItem(18803)
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
+// func TestWoWItem(t *testing.T) {
+// 	dat, _, err := c.WoWItem(18803)
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		t.Fail()
+// 	}
 
-	if printOutput != "" {
-		fmt.Printf("%+v\n", dat)
-	}
-}
+// 	if printOutput != "" {
+// 		fmt.Printf("%+v\n", dat)
+// 	}
+// }
 
 func TestWoWItemSet(t *testing.T) {
 	dat, _, err := c.WoWItemSet(1060)

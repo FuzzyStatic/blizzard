@@ -358,25 +358,25 @@ func (c *Client) WoWGuildProfile(realm, guildName string, optionalFields []strin
 }
 
 // WoWItem provides detailed item information, including item set information
-func (c *Client) WoWItem(itemID int) (*wowc.Item, []byte, error) {
-	var (
-		dat wowc.Item
-		b   []byte
-		err error
-	)
+// func (c *Client) WoWItem(itemID int) (*wowc.Item, []byte, error) {
+// 	var (
+// 		dat wowc.Item
+// 		b   []byte
+// 		err error
+// 	)
 
-	b, err = c.getURLBody(c.apiURL+wowItemPath+"/"+strconv.Itoa(itemID)+"?"+localeQuery+c.locale.String(), "")
-	if err != nil {
-		return &dat, b, err
-	}
+// 	b, err = c.getURLBody(c.apiURL+wowItemPath+"/"+strconv.Itoa(itemID)+"?"+localeQuery+c.locale.String(), "")
+// 	if err != nil {
+// 		return &dat, b, err
+// 	}
 
-	err = json.Unmarshal(b, &dat)
-	if err != nil {
-		return &dat, b, err
-	}
+// 	err = json.Unmarshal(b, &dat)
+// 	if err != nil {
+// 		return &dat, b, err
+// 	}
 
-	return &dat, b, nil
-}
+// 	return &dat, b, nil
+// }
 
 // WoWItemSet provides detailed item information, including item set information
 func (c *Client) WoWItemSet(setID int) (*wowc.ItemSet, []byte, error) {
