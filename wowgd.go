@@ -932,6 +932,48 @@ func (c *Client) WoWPlayableClassPvPTalentSlots(classID int) (*wowgd.PlayableCla
 	return &dat, b, nil
 }
 
+// WoWPlayableRacesIndex returns an index of races.
+func (c *Client) WoWPlayableRacesIndex() (*wowgd.PlayableRacesIndex, []byte, error) {
+	var (
+		dat wowgd.PlayableRacesIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/playable-race/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWPlayableRace returns a race by ID.
+func (c *Client) WoWPlayableRace(raceID int) (*wowgd.PlayableRace, []byte, error) {
+	var (
+		dat wowgd.PlayableRace
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/playable-race/%d?locale=%s", raceID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
 // WoWPlayableSpecializationIndex returns an index of playable specializations.
 func (c *Client) WoWPlayableSpecializationIndex() (*wowgd.PlayableSpecializationIndex, []byte, error) {
 	var (
@@ -1016,15 +1058,15 @@ func (c *Client) WoWPowerType(powerTypeID int) (*wowgd.PowerType, []byte, error)
 	return &dat, b, nil
 }
 
-// WoWPlayableRacesIndex returns an index of races.
-func (c *Client) WoWPlayableRacesIndex() (*wowgd.PlayableRacesIndex, []byte, error) {
+// WoWPvPSeasonIndex returns an index of PvP seasons.
+func (c *Client) WoWPvPSeasonIndex() (*wowgd.PvPSeasonIndex, []byte, error) {
 	var (
-		dat wowgd.PlayableRacesIndex
+		dat wowgd.PvPSeasonIndex
 		b   []byte
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/playable-race/index?locale=%s", c.locale), c.staticNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/pvp-season/index?locale=%s", c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -1037,15 +1079,141 @@ func (c *Client) WoWPlayableRacesIndex() (*wowgd.PlayableRacesIndex, []byte, err
 	return &dat, b, nil
 }
 
-// WoWPlayableRace returns a race by ID.
-func (c *Client) WoWPlayableRace(raceID int) (*wowgd.PlayableRace, []byte, error) {
+// WoWPvPSeason returns a PvP season by ID.
+func (c *Client) WoWPvPSeason(pvpSeasonID int) (*wowgd.PvPSeason, []byte, error) {
 	var (
-		dat wowgd.PlayableRace
+		dat wowgd.PvPSeason
 		b   []byte
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/playable-race/%d?locale=%s", raceID, c.locale), c.staticNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/pvp-season/%d?locale=%s", pvpSeasonID, c.locale), c.dynamicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWPvPLeaderboardsIndex returns an index of PvP leaderboards for a PvP season.
+func (c *Client) WoWPvPLeaderboardsIndex(pvpSeasonID int) (*wowgd.PvPLeaderboardsIndex, []byte, error) {
+	var (
+		dat wowgd.PvPLeaderboardsIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/pvp-season/%d/pvp-leaderboard/index?locale=%s", pvpSeasonID, c.locale), c.dynamicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWPvPLeaderboard returns the PvP leaderboard of a specific PvP bracket for a PvP season.
+func (c *Client) WoWPvPLeaderboard(pvpSeasonID int, pvpBracket wowgd.Bracket) (*wowgd.PvPLeaderboard, []byte, error) {
+	var (
+		dat wowgd.PvPLeaderboard
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/pvp-season/%d/pvp-leaderboard/%s?locale=%s", pvpSeasonID, pvpBracket, c.locale), c.dynamicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWPvPRewardsIndex returns an index of PvP rewards for a PvP season.
+func (c *Client) WoWPvPRewardsIndex(pvpSeasonID int) (*wowgd.PvPRewardsIndex, []byte, error) {
+	var (
+		dat wowgd.PvPRewardsIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/pvp-season/%d/pvp-reward/index?locale=%s", pvpSeasonID, c.locale), c.dynamicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWPvPTierMedia returns media for a PvP tier by ID.
+func (c *Client) WoWPvPTierMedia(pvpTierID int) (*wowgd.PvPTierMedia, []byte, error) {
+	var (
+		dat wowgd.PvPTierMedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/media/pvp-tier/%d?locale=%s", pvpTierID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWPvPTiersIndex returns an index of PvP tiers.
+func (c *Client) WoWPvPTiersIndex() (*wowgd.PvPTiersIndex, []byte, error) {
+	var (
+		dat wowgd.PvPTiersIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/pvp-tier/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWPvPTier returns a PvP tier by ID.
+func (c *Client) WoWPvPTier(pvpTierID int) (*wowgd.PvPTier, []byte, error) {
+	var (
+		dat wowgd.PvPTier
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/pvp-tier/%d?locale=%s", pvpTierID, c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -1130,6 +1298,132 @@ func (c *Client) WoWRegion(regionID int) (*wowgd.Region, []byte, error) {
 	)
 
 	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/region/%d?locale=%s", regionID, c.locale), c.dynamicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWReputationFactionsIndex returns an index of reputation factions.
+func (c *Client) WoWReputationFactionsIndex() (*wowgd.ReputationFactionsIndex, []byte, error) {
+	var (
+		dat wowgd.ReputationFactionsIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/reputation-faction/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWReputationFaction returns a single reputation faction by ID.
+func (c *Client) WoWReputationFaction(reputationFactionID int) (*wowgd.ReputationFaction, []byte, error) {
+	var (
+		dat wowgd.ReputationFaction
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/pvp-tier/%d?locale=%s", reputationFactionID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWReputationTiersIndex returns an index of reputation tiers.
+func (c *Client) WoWReputationTiersIndex() (*wowgd.ReputationTiersIndex, []byte, error) {
+	var (
+		dat wowgd.ReputationTiersIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/reputation-tiers/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWReputationTiers returns a single set of reputation tiers by ID.
+func (c *Client) WoWReputationTiers(reputationTiersID int) (*wowgd.ReputationTiers, []byte, error) {
+	var (
+		dat wowgd.ReputationTiers
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/reputation-tiers/%d?locale=%s", reputationTiersID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWTitlesIndex returns an index of titles.
+func (c *Client) WoWTitlesIndex() (*wowgd.TitlesIndex, []byte, error) {
+	var (
+		dat wowgd.TitlesIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/title/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWTitle returns a title by ID.
+func (c *Client) WoWTitle(titleID int) (*wowgd.Title, []byte, error) {
+	var (
+		dat wowgd.Title
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/title/%d?locale=%s", titleID, c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}

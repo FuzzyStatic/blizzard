@@ -3,6 +3,8 @@ package blizzard
 import (
 	"fmt"
 	"testing"
+
+	"github.com/FuzzyStatic/blizzard/wowgd"
 )
 
 func TestWoWAchievementCategoriesIndex(t *testing.T) {
@@ -533,6 +535,30 @@ func TestWoWPlayableClassPvPTalentSlots(t *testing.T) {
 	}
 }
 
+func TestWoWPlayableRacesIndex(t *testing.T) {
+	dat, _, err := c.WoWPlayableRacesIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWPlayableRace(t *testing.T) {
+	dat, _, err := c.WoWPlayableRace(2)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWPlayableSpecializationIndex(t *testing.T) {
 	dat, _, err := c.WoWPlayableSpecializationIndex()
 	if err != nil {
@@ -581,8 +607,8 @@ func TestWoWPowerType(t *testing.T) {
 	}
 }
 
-func TestWoWPlayableRacesIndex(t *testing.T) {
-	dat, _, err := c.WoWPlayableRacesIndex()
+func TestWoWPvPSeasonIndex(t *testing.T) {
+	dat, _, err := c.WoWPvPSeasonIndex()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -593,8 +619,152 @@ func TestWoWPlayableRacesIndex(t *testing.T) {
 	}
 }
 
-func TestWoWPlayableRace(t *testing.T) {
-	dat, _, err := c.WoWPlayableRace(2)
+func TestWoWPvPSeason(t *testing.T) {
+	dat, _, err := c.WoWPvPSeason(27)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWPvPLeaderboardsIndex(t *testing.T) {
+	dat, _, err := c.WoWPvPLeaderboardsIndex(27)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWPvPLeaderboard(t *testing.T) {
+	dat, _, err := c.WoWPvPLeaderboard(27, wowgd.BracketRBG)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWPvPRewardsIndex(t *testing.T) {
+	dat, _, err := c.WoWPvPRewardsIndex(27)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWPvPTierMedia(t *testing.T) {
+	dat, _, err := c.WoWPvPTierMedia(1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWPvPTiersIndex(t *testing.T) {
+	dat, _, err := c.WoWPvPTiersIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWPvPTier(t *testing.T) {
+	dat, _, err := c.WoWPvPTier(1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWReputationFactionsIndex(t *testing.T) {
+	dat, _, err := c.WoWReputationFactionsIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWReputationFaction(t *testing.T) {
+	dat, _, err := c.WoWReputationFaction(21)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWReputationTiersIndex(t *testing.T) {
+	dat, _, err := c.WoWReputationTiersIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWReputationTiers(t *testing.T) {
+	dat, _, err := c.WoWReputationTiers(2)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWTitlesIndex(t *testing.T) {
+	dat, _, err := c.WoWTitlesIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWTitle(t *testing.T) {
+	dat, _, err := c.WoWTitle(1)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
