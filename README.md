@@ -195,8 +195,6 @@ func Authorize(w http.ResponseWriter, r *http.Request) {
     return
   }
 
-  fmt.Println(token)
-
   e := json.NewEncoder(w)
   e.SetIndent("", "  ")
   err = e.Encode(*token)
@@ -226,18 +224,10 @@ func main() {
   blizz = blizzard.NewClient("client_id", "client_secret", blizzard.US, blizzard.EnUS)
   cfg = blizz.AuthorizeConfig("http://<mydomain>:9094/oauth2", oauth.ProfileD3, oauth.ProfileSC2, oauth.ProfileWoW)
 
-  // 1 - We attempt to hit our Homepage route
-  // if we attempt to hit this unauthenticated, it
-  // will automatically redirect to our Auth
-  // server and prompt for login credentials
   http.HandleFunc("/", HomePage)
-
-  // 2 - This displays our state, code and
-  // token and expiry time that we get back
-  // from our Authorization server
   http.HandleFunc("/oauth2", Authorize)
 
-  // 3 - We start up our Client on port 9094
+  // We start up our Client on port 9094
   log.Println("Client is running at 9094 port.")
   log.Fatal(http.ListenAndServe(":9094", nil))
 }
