@@ -26,7 +26,7 @@ func init() {
 
 	c = NewClient(clientID, clientSecret, US, EnUS)
 
-	err := c.AccessTokenReq()
+	err := c.Token()
 	if err != nil {
 		fmt.Println(err)
 		return

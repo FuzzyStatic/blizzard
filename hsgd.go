@@ -9,66 +9,6 @@ import (
 	"github.com/FuzzyStatic/blizzard/hsgd"
 )
 
-// Collectibility type
-type Collectibility string
-
-func (collectibility Collectibility) String() string {
-	return string(collectibility)
-}
-
-// Collectibility constants
-const (
-	CollectibilityCollectible   = Collectibility("1")
-	CollectibilityUncollectible = Collectibility("0")
-	CollectibilityBoth          = Collectibility("0,1")
-)
-
-// Sort - manaCost, attack, health, or name
-type Sort string
-
-func (sort Sort) String() string {
-	return string(sort)
-}
-
-// Sort constants
-const (
-	SortManaCost = Sort("manaCost")
-	SortAttack   = Sort("attack")
-	SortHealth   = Sort("health")
-	SortName     = Sort("name")
-)
-
-// Order - asc or desc
-type Order string
-
-func (order Order) String() string {
-	return string(order)
-}
-
-// Order constants
-const (
-	OrderAsc  = Order("asc")
-	OrderDesc = Order("desc")
-)
-
-// MetadataType - sets, setGroups, types, rarities, classes, minionTypes, and keywords
-type MetadataType string
-
-func (metadataType MetadataType) String() string {
-	return string(metadataType)
-}
-
-// MetadataType constants
-const (
-	MetadataTypeSets        = MetadataType("sets")
-	MetadataTypeSetGroups   = MetadataType("setGroups")
-	MetadataTypeTypes       = MetadataType("types")
-	MetadataTypeRarities    = MetadataType("rarities")
-	MetadataTypeClasses     = MetadataType("classes")
-	MetadataTypeMinionTypes = MetadataType("minionTypes")
-	MetadataTypeKeywords    = MetadataType("keywords")
-)
-
 // HSCardsAll returns an up-to-date list of all cards matching the search criteria.
 // For more information about the search parameters, see the Hearthstone Guide.
 func (c *Client) HSCardsAll() (*hsgd.CardSearch, []byte, error) {
@@ -96,7 +36,7 @@ func (c *Client) HSCardsAll() (*hsgd.CardSearch, []byte, error) {
 // For more information about the search parameters, see the Hearthstone Guide.
 func (c *Client) HSCards(setSlug, classSlug, raritySlug, typeSlug, minionTypeSlug, keywordSlug, textFilter string,
 	manaCost, attack, health []int, page, pageSize int,
-	collectiblility Collectibility, sort Sort, order Order) (*hsgd.CardSearch, []byte, error) {
+	collectiblility hsgd.Collectibility, sort hsgd.Sort, order hsgd.Order) (*hsgd.CardSearch, []byte, error) {
 	var (
 		dat hsgd.CardSearch
 		url string
@@ -247,7 +187,7 @@ func (c *Client) HSMetadataSets() (*[]hsgd.Set, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", MetadataTypeSets, c.locale), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", hsgd.MetadataTypeSets, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -269,7 +209,7 @@ func (c *Client) HSMetadataSetGroups() (*[]hsgd.SetGroup, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", MetadataTypeSetGroups, c.locale), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", hsgd.MetadataTypeSetGroups, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -291,7 +231,7 @@ func (c *Client) HSMetadataTypes() (*[]hsgd.Type, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", MetadataTypeTypes, c.locale), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", hsgd.MetadataTypeTypes, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -313,7 +253,7 @@ func (c *Client) HSMetadataRarities() (*[]hsgd.Rarity, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", MetadataTypeRarities, c.locale), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", hsgd.MetadataTypeRarities, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -335,7 +275,7 @@ func (c *Client) HSMetadataClasses() (*[]hsgd.Class, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", MetadataTypeClasses, c.locale), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", hsgd.MetadataTypeClasses, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -357,7 +297,7 @@ func (c *Client) HSMetadataMinionTypes() (*[]hsgd.MinionType, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", MetadataTypeMinionTypes, c.locale), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", hsgd.MetadataTypeMinionTypes, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
@@ -379,7 +319,7 @@ func (c *Client) HSMetadataKeywords() (*[]hsgd.Keyword, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", MetadataTypeKeywords, c.locale), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/metadata/%s?locale=%s", hsgd.MetadataTypeKeywords, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}

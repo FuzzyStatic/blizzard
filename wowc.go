@@ -8,6 +8,7 @@ import (
 	"strconv"
 
 	"github.com/FuzzyStatic/blizzard/wowc"
+	"golang.org/x/oauth2"
 )
 
 const (
@@ -51,7 +52,7 @@ const (
 )
 
 // WoWUserCharacters returns all characters for user's Access Token
-func (c *Client) WoWUserCharacters(accessToken string) (*wowc.Profile, []byte, error) {
+func (c *Client) WoWUserCharacters(token *oauth2.Token) (*wowc.Profile, []byte, error) {
 	var (
 		dat wowc.Profile
 		req *http.Request
@@ -60,17 +61,11 @@ func (c *Client) WoWUserCharacters(accessToken string) (*wowc.Profile, []byte, e
 		err error
 	)
 
-	err = c.updateAccessTokenIfExp()
+	req, err = http.NewRequest("GET", c.apiURL+wowUserCharactersPath+"?access_token="+token.AccessToken, nil)
 	if err != nil {
 		return &dat, b, err
 	}
 
-	req, err = http.NewRequest("GET", c.apiURL+wowUserCharactersPath+"?access_token="+accessToken, nil)
-	if err != nil {
-		return &dat, b, err
-	}
-
-	//req.Header.Set("Authorization", "Bearer "+accessToken)
 	req.Header.Set("Accept", "application/json")
 
 	res, err = c.client.Do(req)

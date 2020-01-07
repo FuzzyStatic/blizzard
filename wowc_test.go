@@ -7,17 +7,23 @@ import (
 	"github.com/FuzzyStatic/blizzard/wowc"
 )
 
-func TestWoWUserCharacters(t *testing.T) {
-	dat, _, err := c.WoWUserCharacters(c.oauth.AccessTokenRequest.AccessToken)
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
+// func TestWoWUserCharacters(t *testing.T) {
+// 	err := c.Token()
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		t.Fail()
+// 	}
 
-	if printOutput != "" {
-		fmt.Printf("%+v\n", dat)
-	}
-}
+// 	dat, _, err := c.WoWUserCharacters(c.oauth.Token)
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		t.Fail()
+// 	}
+
+// 	if printOutput != "" {
+// 		fmt.Printf("%+v\n", dat)
+// 	}
+// }
 
 // func TestWoWAchievement(t *testing.T) {
 // 	dat, _, err := c.WoWAchievement(2144)

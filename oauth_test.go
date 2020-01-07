@@ -3,11 +3,10 @@ package blizzard
 import (
 	"fmt"
 	"testing"
-	"time"
 )
 
 func TestAccessTokenReq(t *testing.T) {
-	err := c.AccessTokenReq()
+	err := c.Token()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -19,7 +18,7 @@ func TestAccessTokenReq(t *testing.T) {
 }
 
 func TestUpdateAccessTokenIfExp(t *testing.T) {
-	err := c.AccessTokenReq()
+	err := c.Token()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -35,8 +34,8 @@ func TestUpdateAccessTokenIfExp(t *testing.T) {
 		fmt.Printf("%+v\n", c.oauth)
 	}
 
-	c.oauth.AccessTokenRequest.ExpiresIn = 0
-	c.oauth.ExpiresAt = time.Now().UTC()
+	// c.oauth.Token.ExpiresIn = 0
+	// c.oauth.ExpiresAt = time.Now().UTC()
 
 	if printOutput != "" {
 		fmt.Printf("%+v\n", c.oauth)
@@ -53,17 +52,23 @@ func TestUpdateAccessTokenIfExp(t *testing.T) {
 	}
 }
 
-func TestUserInfoHeader(t *testing.T) {
-	body, err := c.UserInfoHeader()
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
+// func TestUserInfoHeader(t *testing.T) {
+// 	err := c.Token()
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		t.Fail()
+// 	}
 
-	if printOutput != "" {
-		fmt.Printf("%s\n", body)
-	}
-}
+// 	dat, _, err := c.UserInfoHeader(c.oauth.Token)
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		t.Fail()
+// 	}
+
+// 	if printOutput != "" {
+// 		fmt.Printf("%+v\n", dat)
+// 	}
+// }
 
 func TestTokenValidation(t *testing.T) {
 	dat, _, err := c.TokenValidation()

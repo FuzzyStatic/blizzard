@@ -92,7 +92,6 @@ func NewClient(clientID, clientSecret string, region Region, locale Locale) *Cli
 		oauth: OAuth{
 			ClientID:     clientID,
 			ClientSecret: clientSecret,
-			ExpiresAt:    time.Now(),
 		},
 		locale: locale,
 	}
@@ -148,7 +147,7 @@ func (c *Client) getURLBody(url, namespace string) ([]byte, error) {
 		return nil, err
 	}
 
-	req.Header.Set("Authorization", "Bearer "+c.oauth.AccessTokenRequest.AccessToken)
+	req.Header.Set("Authorization", "Bearer "+c.oauth.Token.AccessToken)
 	req.Header.Set("Accept", "application/json")
 
 	if namespace != "" {

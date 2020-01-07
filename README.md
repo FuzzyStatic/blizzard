@@ -15,6 +15,7 @@
     - [Fetching StarCraft 2 Data](#fetching-starcraft-2-data)
     - [Fetching World of Warcraft Data](#fetching-world-of-warcraft-data)
     - [Fetching World of Warcraft Classic Data](#fetching-world-of-warcraft-classic-data)
+  - [Authorization for User Data](#authorization-for-user-data)
   - [Documentation](#documentation)
   - [Special Thanks](#special-thanks)
 
@@ -31,7 +32,7 @@ Start using the library by initiating a new Blizzard config structure for your d
 ```go
 blizz := blizzard.NewClient("client_id", "client_secret", blizzard.US, blizzard.EnUS)
 
-err := blizz.AccessTokenReq()
+err := blizz.Token()
 if err != nil {
   fmt.Println(err)
 }
@@ -135,6 +136,111 @@ if err != nil {
 }
 
 fmt.Printf("%+v\n", dat)
+```
+
+## Authorization for User Data
+
+To use the `UserInfoHeader` or `WoWUserCharacters` functions to acquire data about other users (and not your own), you must use the OAuth2 redirect method to get an authorized token. This is useful for building websites that display more personal or individualized data. The following code snippet is an example on how to acquire authorized tokens for other users. Before the redirect URI will work, you will have to add it to your client settings at <https://develop.battle.net/access>:
+
+```go
+package main
+
+import (
+  "context"
+  "encoding/json"
+  "fmt"
+  "log"
+  "net/http"
+
+  "github.com/FuzzyStatic/blizzard"
+  "github.com/FuzzyStatic/blizzard/oauth"
+  "golang.org/x/oauth2"
+)
+
+var (
+  cfg   oauth2.Config
+  blizz *blizzard.Client
+)
+
+// Homepage
+func HomePage(w http.ResponseWriter, r *http.Request) {
+  fmt.Println("Homepage Hit!")
+  u := cfg.AuthCodeURL("my_random_state")
+  http.Redirect(w, r, u, http.StatusFound)
+}
+
+// Authorize
+func Authorize(w http.ResponseWriter, r *http.Request) {
+  err := r.ParseForm()
+  if err != nil {
+    http.Error(w, err.Error(), http.StatusInternalServerError)
+    return
+  }
+
+  state := r.Form.Get("state")
+  if state != "my_random_state" {
+    http.Error(w, "State invalid", http.StatusBadRequest)
+    return
+  }
+
+  code := r.Form.Get("code")
+  if code == "" {
+    http.Error(w, "Code not found", http.StatusBadRequest)
+    return
+  }
+
+  token, err := cfg.Exchange(context.Background(), code)
+  if err != nil {
+    http.Error(w, err.Error(), http.StatusInternalServerError)
+    return
+  }
+
+  fmt.Println(token)
+
+  e := json.NewEncoder(w)
+  e.SetIndent("", "  ")
+  err = e.Encode(*token)
+  if err != nil {
+    http.Error(w, err.Error(), http.StatusInternalServerError)
+    return
+  }
+
+  dat1, _, err := blizz.UserInfoHeader(token)
+  if err != nil {
+    http.Error(w, err.Error(), http.StatusInternalServerError)
+    return
+  }
+
+  fmt.Printf("%+v\n", dat1)
+
+  dat2, _, err := blizz.WoWUserCharacters(token)
+  if err != nil {
+    http.Error(w, err.Error(), http.StatusInternalServerError)
+    return
+  }
+
+  fmt.Printf("%+v\n", dat2)
+}
+
+func main() {
+  blizz = blizzard.NewClient("client_id", "client_secret", blizzard.US, blizzard.EnUS)
+  cfg = blizz.AuthorizeConfig("http://<mydomain>:9094/oauth2", oauth.ProfileD3, oauth.ProfileSC2, oauth.ProfileWoW)
+
+  // 1 - We attempt to hit our Homepage route
+  // if we attempt to hit this unauthenticated, it
+  // will automatically redirect to our Auth
+  // server and prompt for login credentials
+  http.HandleFunc("/", HomePage)
+
+  // 2 - This displays our state, code and
+  // token and expiry time that we get back
+  // from our Authorization server
+  http.HandleFunc("/oauth2", Authorize)
+
+  // 3 - We start up our Client on port 9094
+  log.Println("Client is running at 9094 port.")
+  log.Fatal(http.ListenAndServe(":9094", nil))
+}
 ```
 
 ## Documentation
