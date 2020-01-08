@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strings"
-	"time"
 
 	"github.com/FuzzyStatic/blizzard/oauth"
 	"golang.org/x/oauth2"
@@ -44,12 +43,8 @@ func (c *Client) AuthorizeConfig(redirectURI string, profiles ...oauth.Profile) 
 	return cfg
 }
 
-// func (c *Client) SetToken(token *oauth2.Token) {
-// 	c.oauth.Token = token
-// }
-
-// Token retrieves new OAuth2 Token
-func (c *Client) Token() error {
+// AccessTokenRequest retrieves new OAuth2 Token
+func (c *Client) AccessTokenRequest() error {
 	var (
 		req *http.Request
 		res *http.Response
@@ -62,7 +57,6 @@ func (c *Client) Token() error {
 		return err
 	}
 
-	req.SetBasicAuth(c.oauth.ClientID, c.oauth.ClientSecret)
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	res, err = c.client.Do(req)
@@ -79,20 +73,6 @@ func (c *Client) Token() error {
 	err = json.Unmarshal(b, &c.oauth.Token)
 	if err != nil {
 		return err
-	}
-
-	return nil
-}
-
-// updateAccessTokenIfExp updates Access Token if expired
-func (c *Client) updateAccessTokenIfExp() error {
-	var err error
-
-	if c.oauth.Token.Expiry.Sub(time.Now().UTC()) < 60 {
-		err = c.Token()
-		if err != nil {
-			return err
-		}
 	}
 
 	return nil
@@ -138,7 +118,7 @@ func (c *Client) UserInfoHeader(token *oauth2.Token) (*oauth.UserInfo, []byte, e
 }
 
 // TokenValidation verify that a given bearer token is valid and retrieve metadata about the token including the client_id used to create the token, expiration timestamp, and scopes granted to the token
-func (c *Client) TokenValidation() (*oauth.TokenValidation, []byte, error) {
+func (c *Client) TokenValidation(token *oauth2.Token) (*oauth.TokenValidation, []byte, error) {
 	var (
 		dat oauth.TokenValidation
 		req *http.Request
@@ -147,12 +127,7 @@ func (c *Client) TokenValidation() (*oauth.TokenValidation, []byte, error) {
 		err error
 	)
 
-	err = c.updateAccessTokenIfExp()
-	if err != nil {
-		return &dat, b, err
-	}
-
-	req, err = http.NewRequest("GET", c.oauthURL+fmt.Sprintf("/oauth/check_token?token=%s", c.oauth.Token.AccessToken), nil)
+	req, err = http.NewRequest("GET", c.oauthURL+fmt.Sprintf("/oauth/check_token?token=%s", token.AccessToken), nil)
 	if err != nil {
 		return &dat, b, err
 	}

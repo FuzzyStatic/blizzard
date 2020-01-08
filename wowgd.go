@@ -3,7 +3,6 @@ package blizzard
 import (
 	"encoding/json"
 	"fmt"
-	"strconv"
 
 	"github.com/FuzzyStatic/blizzard/wowgd"
 )
@@ -436,7 +435,7 @@ func (c *Client) WoWItemClassesIndex() (*wowgd.ItemClassesIndex, []byte, error) 
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowItemClassIndexPath+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/item-class/index?locale=%s", c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -457,7 +456,7 @@ func (c *Client) WoWItemClass(itemClassID int) (*wowgd.ItemClass, []byte, error)
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowItemClassPath+"/"+strconv.Itoa(itemClassID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/item-class/%d?locale=%s", itemClassID, c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -478,7 +477,10 @@ func (c *Client) WoWItemSubclass(itemClassID, itemSubclassID int) (*wowgd.ItemSu
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowItemClassPath+"/"+strconv.Itoa(itemClassID)+"/"+wowItemSubclassPath+"/"+strconv.Itoa(itemSubclassID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	b, err = c.getURLBody(
+		c.apiURL+fmt.Sprintf("/data/wow/item-class/%d/item-subclass/%d?locale=%s", itemClassID, itemSubclassID, c.locale),
+		c.staticNamespace,
+	)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -499,7 +501,7 @@ func (c *Client) WoWItem(itemID int) (*wowgd.Item, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowDataItemPath+"/"+strconv.Itoa(itemID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/item/%d?locale=%s", itemID, c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -520,7 +522,7 @@ func (c *Client) WoWItemMedia(itemID int) (*wowgd.ItemMedia, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowMediaItemPath+"/"+strconv.Itoa(itemID)+"?"+localeQuery+c.locale.String(), c.staticNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/media/item/%d?locale=%s", itemID, c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}

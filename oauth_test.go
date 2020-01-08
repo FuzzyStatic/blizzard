@@ -5,43 +5,8 @@ import (
 	"testing"
 )
 
-func TestAccessTokenReq(t *testing.T) {
-	err := c.Token()
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
-
-	if printOutput != "" {
-		fmt.Printf("%+v\n", c.oauth)
-	}
-}
-
-func TestUpdateAccessTokenIfExp(t *testing.T) {
-	err := c.Token()
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
-
-	err = c.updateAccessTokenIfExp()
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
-
-	if printOutput != "" {
-		fmt.Printf("%+v\n", c.oauth)
-	}
-
-	// c.oauth.Token.ExpiresIn = 0
-	// c.oauth.ExpiresAt = time.Now().UTC()
-
-	if printOutput != "" {
-		fmt.Printf("%+v\n", c.oauth)
-	}
-
-	err = c.updateAccessTokenIfExp()
+func TestAccessTokenRequest(t *testing.T) {
+	err := c.AccessTokenRequest()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -70,14 +35,14 @@ func TestUpdateAccessTokenIfExp(t *testing.T) {
 // 	}
 // }
 
-func TestTokenValidation(t *testing.T) {
-	dat, _, err := c.TokenValidation()
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
+// func TestTokenValidation(t *testing.T) {
+// 	dat, _, err := c.TokenValidation(c.oauth.Token)
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		t.Fail()
+// 	}
 
-	if printOutput != "" {
-		fmt.Printf("%+v\n", dat)
-	}
-}
+// 	if printOutput != "" {
+// 		fmt.Printf("%+v\n", dat)
+// 	}
+// }

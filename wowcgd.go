@@ -3,24 +3,8 @@ package blizzard
 import (
 	"encoding/json"
 	"fmt"
-	"strconv"
 
 	"github.com/FuzzyStatic/blizzard/wowcgd"
-)
-
-const (
-	wowItemClassPath          = "/data/wow/item-class"
-	wowItemClassIndexPath     = wowItemClassPath + "/index"
-	wowItemSubclassPath       = "/item-subclass"
-	wowDataItemPath           = "/data/wow/item"
-	wowMediaItemPath          = "/data/wow/media/item"
-	wowMediaPlayableClassPath = "/data/wow/media/playable-class"
-	wowPlayableClassPath      = "/data/wow/playable-class"
-	wowPlayableClassIndexPath = wowPlayableClassPath + "/index"
-	wowPowerTypePath          = "/data/wow/power-type"
-	wowPowerTypeIndexPath     = wowPowerTypePath + "/index"
-	wowRacePath               = "/data/wow/playable-race"
-	wowRaceIndexPath          = wowRacePath + "/index"
 )
 
 // ClassicWoWCreatureFamiliesIndex returns an index of creature families.
@@ -241,7 +225,7 @@ func (c *Client) ClassicWoWItemClassesIndex() (*wowcgd.ItemClassesIndex, []byte,
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowItemClassIndexPath+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/item-class/index?locale=%s", c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -262,7 +246,7 @@ func (c *Client) ClassicWoWItemClass(itemClassID int) (*wowcgd.ItemClass, []byte
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowItemClassPath+"/"+strconv.Itoa(itemClassID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/item-class/%d?locale=%s", itemClassID, c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -283,7 +267,10 @@ func (c *Client) ClassicWoWItemSubclass(itemClassID, itemSubclassID int) (*wowcg
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowItemClassPath+"/"+strconv.Itoa(itemClassID)+"/"+wowItemSubclassPath+"/"+strconv.Itoa(itemSubclassID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(
+		c.apiURL+fmt.Sprintf("/data/wow/item-class/%d/item-subclass/%d?locale=%s", itemClassID, itemSubclassID, c.locale),
+		c.staticClassicNamespace,
+	)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -304,7 +291,7 @@ func (c *Client) ClassicWoWItem(itemID int) (*wowcgd.Item, []byte, error) {
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowDataItemPath+"/"+strconv.Itoa(itemID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/item/%d?locale=%s", itemID, c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -325,7 +312,7 @@ func (c *Client) ClassicWoWItemMedia(itemID int) (*wowcgd.ItemMedia, []byte, err
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowMediaItemPath+"/"+strconv.Itoa(itemID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/media/item/%d?locale=%s", itemID, c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -346,7 +333,7 @@ func (c *Client) ClassicWoWPlayableClassesIndex() (*wowcgd.PlayableClassesIndex,
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowPlayableClassIndexPath+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/playable-class/index?locale=%s", c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -367,7 +354,7 @@ func (c *Client) ClassicWoWPlayableClass(classID int) (*wowcgd.PlayableClass, []
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowPlayableClassPath+"/"+strconv.Itoa(classID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/playable-class/%d?locale=%s", classID, c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -388,7 +375,7 @@ func (c *Client) ClassicWoWPlayableClassMedia(playableClassID int) (*wowcgd.Play
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowMediaPlayableClassPath+"/"+strconv.Itoa(playableClassID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/media/playable-class/%d?locale=%s", playableClassID, c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -409,7 +396,7 @@ func (c *Client) ClassicWoWPlayableRacesIndex() (*wowcgd.PlayableRacesIndex, []b
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowRaceIndexPath+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/playable-race/index?locale=%s", c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -430,7 +417,7 @@ func (c *Client) ClassicWoWPlayableRace(raceID int) (*wowcgd.PlayableRace, []byt
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowRacePath+"/"+strconv.Itoa(raceID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/playable-race/%d?locale=%s", raceID, c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -451,7 +438,7 @@ func (c *Client) ClassicWoWPowerTypesIndex() (*wowcgd.PowerTypesIndex, []byte, e
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowPowerTypeIndexPath+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/power-type/index?locale=%s", c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -472,7 +459,7 @@ func (c *Client) ClassicWoWPowerType(powerTypeID int) (*wowcgd.PowerType, []byte
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+wowPowerTypePath+"/"+strconv.Itoa(powerTypeID)+"?"+localeQuery+c.locale.String(), c.staticClassicNamespace)
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/power-type/%d?locale=%s", powerTypeID, c.locale), c.staticClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}

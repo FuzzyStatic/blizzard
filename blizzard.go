@@ -2,11 +2,13 @@
 package blizzard
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"time"
+
+	"golang.org/x/oauth2/clientcredentials"
 )
 
 // For testing
@@ -86,9 +88,6 @@ const (
 // NewClient create new Blizzard structure. This structure will be used to acquire your access token and make API calls.
 func NewClient(clientID, clientSecret string, region Region, locale Locale) *Client {
 	var c = Client{
-		client: &http.Client{
-			Timeout: time.Second * time.Duration(60),
-		},
 		oauth: OAuth{
 			ClientID:     clientID,
 			ClientSecret: clientSecret,
@@ -97,6 +96,14 @@ func NewClient(clientID, clientSecret string, region Region, locale Locale) *Cli
 	}
 
 	c.SetRegion(region)
+
+	cfg := clientcredentials.Config{
+		ClientID:     c.oauth.ClientID,
+		ClientSecret: c.oauth.ClientSecret,
+		TokenURL:     c.oauthURL + "/oauth/token",
+	}
+
+	c.client = cfg.Client(context.Background())
 
 	return &c
 }
@@ -137,17 +144,11 @@ func (c *Client) getURLBody(url, namespace string) ([]byte, error) {
 		err  error
 	)
 
-	err = c.updateAccessTokenIfExp()
-	if err != nil {
-		return nil, err
-	}
-
 	req, err = http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	req.Header.Set("Authorization", "Bearer "+c.oauth.Token.AccessToken)
 	req.Header.Set("Accept", "application/json")
 
 	if namespace != "" {

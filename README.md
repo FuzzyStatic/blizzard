@@ -9,13 +9,13 @@
 - [blizzard](#blizzard)
   - [Table of Contents](#table-of-contents)
   - [Getting Started](#getting-started)
-    - [Fetching OAuth Data](#fetching-oauth-data)
     - [Fetching Diablo 3 Data](#fetching-diablo-3-data)
     - [Fetching Hearthstone Data](#fetching-hearthstone-data)
     - [Fetching StarCraft 2 Data](#fetching-starcraft-2-data)
     - [Fetching World of Warcraft Data](#fetching-world-of-warcraft-data)
     - [Fetching World of Warcraft Classic Data](#fetching-world-of-warcraft-classic-data)
   - [Authorization for User Data](#authorization-for-user-data)
+    - [Fetching OAuth Data](#fetching-oauth-data)
   - [Documentation](#documentation)
   - [Special Thanks](#special-thanks)
 
@@ -32,23 +32,10 @@ Start using the library by initiating a new Blizzard config structure for your d
 ```go
 blizz := blizzard.NewClient("client_id", "client_secret", blizzard.US, blizzard.EnUS)
 
-err := blizz.Token()
+err := blizz.AccessTokenRequest()
 if err != nil {
   fmt.Println(err)
 }
-```
-
-### Fetching OAuth Data
-
-Now you can fetch data from the Blizzard API. For example, you validate your token:
-
-```go
-dat, _, err := blizz.TokenValidation()
-if err != nil {
-  fmt.Println(err)
-}
-
-fmt.Printf("%+v\n", dat)
 ```
 
 ### Fetching Diablo 3 Data
@@ -231,6 +218,19 @@ func main() {
   log.Println("Client is running at 9094 port.")
   log.Fatal(http.ListenAndServe(":9094", nil))
 }
+```
+
+### Fetching OAuth Data
+
+Now you can validate those tokens with the OAuth API:
+
+```go
+dat, _, err := blizz.TokenValidation(token)
+if err != nil {
+  fmt.Println(err)
+}
+
+fmt.Printf("%+v\n", dat)
 ```
 
 ## Documentation
