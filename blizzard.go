@@ -17,6 +17,7 @@ var c *Client
 // Client regional API URLs, locale, client ID, client secret
 type Client struct {
 	client                 *http.Client
+	cfg                    clientcredentials.Config
 	oauth                  OAuth
 	oauthURL               string
 	apiURL                 string
@@ -95,15 +96,12 @@ func NewClient(clientID, clientSecret string, region Region, locale Locale) *Cli
 		locale: locale,
 	}
 
-	c.SetRegion(region)
-
-	cfg := clientcredentials.Config{
+	c.cfg = clientcredentials.Config{
 		ClientID:     c.oauth.ClientID,
 		ClientSecret: c.oauth.ClientSecret,
-		TokenURL:     c.oauthURL + "/oauth/token",
 	}
 
-	c.client = cfg.Client(context.Background())
+	c.SetRegion(region)
 
 	return &c
 }
@@ -133,6 +131,9 @@ func (c *Client) SetRegion(region Region) {
 		c.staticNamespace = fmt.Sprintf("static-%s", region)
 		c.staticClassicNamespace = fmt.Sprintf("static-classic-%s", region)
 	}
+
+	c.cfg.TokenURL = c.oauthURL + "/oauth/token"
+	c.client = c.cfg.Client(context.Background())
 }
 
 // getURLBody processes simple GET request based on URL
