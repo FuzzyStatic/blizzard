@@ -35,14 +35,14 @@ func TestAccessTokenRequest(t *testing.T) {
 // 	}
 // }
 
-// func TestTokenValidation(t *testing.T) {
-// 	dat, _, err := c.TokenValidation(c.oauth.Token)
-// 	if err != nil {
-// 		fmt.Println(err)
-// 		t.Fail()
-// 	}
+func TestTokenValidation(t *testing.T) {
+	dat, _, err := c.TokenValidation(c.oauth.Token)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
 
-// 	if printOutput != "" {
-// 		fmt.Printf("%+v\n", dat)
-// 	}
-// }
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}

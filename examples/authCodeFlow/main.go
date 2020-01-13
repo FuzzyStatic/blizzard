@@ -61,10 +61,16 @@ func Authorize(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	validation, _, err := blizz.TokenValidation(token)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+
+	fmt.Printf("%+v\n", validation)
+
 	userInfo, _, err := blizz.UserInfoHeader(token)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
 	}
 
 	fmt.Printf("%+v\n", userInfo)
@@ -72,7 +78,6 @@ func Authorize(w http.ResponseWriter, r *http.Request) {
 	wowProfile, _, err := blizz.WoWUserCharacters(token)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
 	}
 
 	fmt.Printf("%+v\n", wowProfile)

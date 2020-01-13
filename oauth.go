@@ -1,6 +1,7 @@
 package blizzard
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -26,7 +27,7 @@ func (c *Client) AuthorizeConfig(redirectURI string, profiles ...oauth.Profile) 
 		scopes = append(scopes, string(profile))
 	}
 
-	cfg := oauth2.Config{
+	c.authorizedCfg = oauth2.Config{
 		ClientID:     c.oauth.ClientID,
 		ClientSecret: c.oauth.ClientSecret,
 		Scopes:       scopes,
@@ -37,7 +38,7 @@ func (c *Client) AuthorizeConfig(redirectURI string, profiles ...oauth.Profile) 
 		},
 	}
 
-	return cfg
+	return c.authorizedCfg
 }
 
 // AccessTokenRequest retrieves new OAuth2 Token
@@ -78,11 +79,12 @@ func (c *Client) AccessTokenRequest() error {
 // UserInfoHeader teturns basic information about the user associated with the current bearer token
 func (c *Client) UserInfoHeader(token *oauth2.Token) (*oauth.UserInfo, []byte, error) {
 	var (
-		dat oauth.UserInfo
-		req *http.Request
-		res *http.Response
-		b   []byte
-		err error
+		dat    oauth.UserInfo
+		req    *http.Request
+		client *http.Client
+		res    *http.Response
+		b      []byte
+		err    error
 	)
 
 	req, err = http.NewRequest("GET", c.oauthURL+"/oauth/userinfo", nil)
@@ -90,10 +92,9 @@ func (c *Client) UserInfoHeader(token *oauth2.Token) (*oauth.UserInfo, []byte, e
 		return &dat, b, err
 	}
 
-	req.Header.Set("Authorization", "Bearer "+token.AccessToken)
-	req.Header.Set("Accept", "application/json")
+	client = c.authorizedCfg.Client(context.Background(), token)
 
-	res, err = c.client.Do(req)
+	res, err = client.Do(req)
 	if err != nil {
 		return &dat, b, err
 	}

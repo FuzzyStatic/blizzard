@@ -1,6 +1,7 @@
 package blizzard
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"io/ioutil"
@@ -54,21 +55,22 @@ const (
 // WoWUserCharacters returns all characters for user's Access Token
 func (c *Client) WoWUserCharacters(token *oauth2.Token) (*wowc.Profile, []byte, error) {
 	var (
-		dat wowc.Profile
-		req *http.Request
-		res *http.Response
-		b   []byte
-		err error
+		dat    wowc.Profile
+		req    *http.Request
+		client *http.Client
+		res    *http.Response
+		b      []byte
+		err    error
 	)
 
-	req, err = http.NewRequest("GET", c.apiURL+wowUserCharactersPath+"?access_token="+token.AccessToken, nil)
+	req, err = http.NewRequest("GET", c.apiURL+wowUserCharactersPath, nil)
 	if err != nil {
 		return &dat, b, err
 	}
 
-	req.Header.Set("Accept", "application/json")
+	client = c.authorizedCfg.Client(context.Background(), token)
 
-	res, err = c.client.Do(req)
+	res, err = client.Do(req)
 	if err != nil {
 		return &dat, b, err
 	}

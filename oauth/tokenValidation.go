@@ -2,10 +2,9 @@ package oauth
 
 // TokenValidation contains token validation data
 type TokenValidation struct {
-	Scope       []interface{} `json:"scope"`
-	Exp         int           `json:"exp"`
-	Authorities []struct {
-		Authority string `json:"authority"`
-	} `json:"authorities"`
-	ClientID string `json:"client_id"`
+	Exp         int      `json:"exp"`
+	Username    string   `json:"user_name"`
+	Authorities []string `json:"authorities"`
+	ClientID    string   `json:"client_id"`
+	Scope       []string `json:"scope"`
 }

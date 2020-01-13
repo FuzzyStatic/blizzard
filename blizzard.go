@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
 )
 
@@ -18,6 +19,7 @@ var c *Client
 type Client struct {
 	client                 *http.Client
 	cfg                    clientcredentials.Config
+	authorizedCfg          oauth2.Config
 	oauth                  OAuth
 	oauthURL               string
 	apiURL                 string
