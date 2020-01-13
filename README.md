@@ -127,7 +127,7 @@ fmt.Printf("%+v\n", dat)
 
 ## Authorization for User Data
 
-To use the `UserInfoHeader` or `WoWUserCharacters` functions to acquire data about other users (and not your own), you must use the OAuth2 redirect method to get an authorized token. This is useful for building websites that display more personal or individualized data. The following code snippet is an example on how to acquire authorized tokens for other users. Before the redirect URI will work, you will have to add it to your client settings at <https://develop.battle.net/access>:
+To use the `UserInfoHeader` or `WoWUserCharacters` functions to acquire data about other users (and not your own), you must use the OAuth2 redirect method to get an authorized token. This is useful for building websites that display more personal or individualized data. The following code snippet is an example on how to acquire authorized tokens for other users. A working example can be found in the [examples/authCodeFlow](https://github.com/FuzzyStatic/blizzard/tree/master/examples/authCodeFlow) directory. Before the redirect URI will work, you will have to add it to your client settings at <https://develop.battle.net/access>:
 
 ```go
 package main

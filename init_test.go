@@ -15,7 +15,7 @@ func init() {
 	}
 
 	clientSecret := os.Getenv("CLIENT_SECRET")
-	if clientID == "" {
+	if clientSecret == "" {
 		log.Fatal("Set the environment variable CLIENT_SECRET before retrying.")
 	}
 

@@ -31,9 +31,6 @@ func (c *Client) AuthorizeConfig(redirectURI string, profiles ...oauth.Profile) 
 		ClientSecret: c.oauth.ClientSecret,
 		Scopes:       scopes,
 		RedirectURL:  redirectURI,
-		// This points to our Authorization Server
-		// if our Client ID and Client Secret are valid
-		// it will attempt to authorize our user
 		Endpoint: oauth2.Endpoint{
 			AuthURL:  c.oauthURL + "/oauth/authorize",
 			TokenURL: c.oauthURL + "/oauth/token",
@@ -106,8 +103,6 @@ func (c *Client) UserInfoHeader(token *oauth2.Token) (*oauth.UserInfo, []byte, e
 	if err != nil {
 		return &dat, b, err
 	}
-
-	fmt.Println(string(b))
 
 	err = json.Unmarshal(b, &dat)
 	if err != nil {
