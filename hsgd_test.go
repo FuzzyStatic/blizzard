@@ -64,7 +64,7 @@ func TestHSCardByIDOrSlug(t *testing.T) {
 }
 
 func TestHSCardBackSearchAllLocales(t *testing.T) {
-	dat, _, err := c.HSCardBackSearchAllLocales(hsgd.OrderAsc)
+	dat, _, err := c.HSCardBackSearchAllLocales(hsgd.CardBackCategoryBase, "", hsgd.SortName, hsgd.OrderAsc)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -76,7 +76,7 @@ func TestHSCardBackSearchAllLocales(t *testing.T) {
 }
 
 func TestHSCardBackSearch(t *testing.T) {
-	dat, _, err := c.HSCardBackSearch(hsgd.OrderAsc)
+	dat, _, err := c.HSCardBackSearch("", "", hsgd.SortName, hsgd.OrderAsc)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

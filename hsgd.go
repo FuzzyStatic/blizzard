@@ -209,8 +209,9 @@ func (c *Client) HSCardByIDOrSlug(idOrSlug string, gameMode hsgd.GameMode) (*hsg
 }
 
 // HSCardBackSearchAllLocales returns an up-to-date list of all card backs matching the search criteria for all locales.
+// Input values left blank, 0, or nil will return all values for the type.
 // For more information about the search parameters, see the Card Search Guide (https://develop.battle.net/documentation/hearthstone/guides/card-search).
-func (c *Client) HSCardBackSearchAllLocales(order hsgd.Order) (*hsgd.CardBackSearchAllLocales, []byte, error) {
+func (c *Client) HSCardBackSearchAllLocales(cardBackCategory hsgd.CardBackCategory, textFilter string, sort hsgd.Sort, order hsgd.Order) (*hsgd.CardBackSearchAllLocales, []byte, error) {
 	var (
 		dat hsgd.CardBackSearchAllLocales
 		url string
@@ -218,7 +219,18 @@ func (c *Client) HSCardBackSearchAllLocales(order hsgd.Order) (*hsgd.CardBackSea
 		err error
 	)
 
-	url = c.apiURL + fmt.Sprintf("/hearthstone/cardbacks?order=%s", order)
+	url = c.apiURL + "/hearthstone/cardbacks"
+
+	if cardBackCategory != "" {
+		url = url + fmt.Sprintf("?cardBackCategory=%s", cardBackCategory)
+	}
+
+	if textFilter != "" {
+		url = url + fmt.Sprintf("&type=%s", textFilter)
+	}
+
+	url = url + fmt.Sprintf("&sort=%s", sort)
+	url = url + fmt.Sprintf("&order=%s", order)
 
 	b, err = c.getURLBody(url, "")
 	if err != nil {
@@ -234,8 +246,9 @@ func (c *Client) HSCardBackSearchAllLocales(order hsgd.Order) (*hsgd.CardBackSea
 }
 
 // HSCardBackSearch returns an up-to-date list of all card backs matching the search criteria.
+// Input values left blank, 0, or nil will return all values for the type.
 // For more information about the search parameters, see the Card Search Guide (https://develop.battle.net/documentation/hearthstone/guides/card-search).
-func (c *Client) HSCardBackSearch(order hsgd.Order) (*hsgd.CardBackSearch, []byte, error) {
+func (c *Client) HSCardBackSearch(cardBackCategory hsgd.CardBackCategory, textFilter string, sort hsgd.Sort, order hsgd.Order) (*hsgd.CardBackSearch, []byte, error) {
 	var (
 		dat hsgd.CardBackSearch
 		url string
@@ -244,6 +257,16 @@ func (c *Client) HSCardBackSearch(order hsgd.Order) (*hsgd.CardBackSearch, []byt
 	)
 
 	url = c.apiURL + fmt.Sprintf("/hearthstone/cardbacks?locale=%s", c.locale)
+
+	if cardBackCategory != "" {
+		url = url + fmt.Sprintf("?cardBackCategory=%s", cardBackCategory)
+	}
+
+	if textFilter != "" {
+		url = url + fmt.Sprintf("&type=%s", textFilter)
+	}
+
+	url = url + fmt.Sprintf("&sort=%s", sort)
 	url = url + fmt.Sprintf("&order=%s", order)
 
 	b, err = c.getURLBody(url, "")

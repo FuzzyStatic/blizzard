@@ -81,7 +81,7 @@ func (tier Tier) String() string {
 	return string(tier)
 }
 
-// GameMode constants
+// Tier constants
 const (
 	TierHero = Tier("hero")
 	Tier1    = Tier("1")
@@ -90,4 +90,28 @@ const (
 	Tier4    = Tier("4")
 	Tier5    = Tier("5")
 	Tier6    = Tier("6")
+)
+
+// CardBackCategory - base, achieve, fireside, heroes, season, legend, esports, game_license, promotion, pre_purchase, blizzard, golden, events
+type CardBackCategory string
+
+func (cardBackCategory CardBackCategory) String() string {
+	return string(cardBackCategory)
+}
+
+// CardBackCategory constants
+const (
+	CardBackCategoryBase        = CardBackCategory("base")
+	CardBackCategoryAchieve     = CardBackCategory("achieve")
+	CardBackCategoryFireside    = CardBackCategory("fireside")
+	CardBackCategoryHeroes      = CardBackCategory("heroes")
+	CardBackCategorySeason      = CardBackCategory("season")
+	CardBackCategoryLegend      = CardBackCategory("legend")
+	CardBackCategoryEsports     = CardBackCategory("esports")
+	CardBackCategoryGameLicense = CardBackCategory("game_license")
+	CardBackCategoryPromotion   = CardBackCategory("promotion")
+	CardBackCategoryPrePurchase = CardBackCategory("pre_purchase")
+	CardBackCategoryBlizzard    = CardBackCategory("blizzard")
+	CardBackCategoryGolden      = CardBackCategory("golden")
+	CardBackCategoryEvents      = CardBackCategory("events")
 )
