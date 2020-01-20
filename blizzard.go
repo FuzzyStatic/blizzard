@@ -67,19 +67,20 @@ func (locale Locale) String() string {
 
 // Locale constants
 const (
-	EnUS = Locale("en_US")
-	EsMX = Locale("es_MX")
-	PtBR = Locale("pt_BR")
-	EnGB = Locale("en_GB")
-	EsES = Locale("es_ES")
-	FrFR = Locale("fr_FR")
-	RuRU = Locale("ru_RU")
 	DeDE = Locale("de_DE")
-	PtPT = Locale("pt_PT")
+	EnUS = Locale("en_US")
+	EsES = Locale("es_ES")
+	EsMX = Locale("es_MX")
+	FrFR = Locale("fr_FR")
 	ItIT = Locale("it_IT")
+	JaJP = Locale("ja_JP")
 	KoKR = Locale("ko_KR")
-	ZhTW = Locale("zh_TW")
+	PlPL = Locale("pl_PL")
+	PtBR = Locale("pt_BR")
+	RuRU = Locale("ru_RU")
+	ThTH = Locale("th_TH")
 	ZhCN = Locale("zh_CN")
+	ZhTW = Locale("zh_TW")
 )
 
 // Path constants

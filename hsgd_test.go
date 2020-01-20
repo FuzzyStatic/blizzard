@@ -7,8 +7,8 @@ import (
 	"github.com/FuzzyStatic/blizzard/hsgd"
 )
 
-func TestHSCardsAll(t *testing.T) {
-	dat, _, err := c.HSCardsAll()
+func TestHSCardsSearch(t *testing.T) {
+	dat, _, err := c.HSCardsSearch()
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -19,8 +19,8 @@ func TestHSCardsAll(t *testing.T) {
 	}
 }
 
-func TestHSCards(t *testing.T) {
-	dat, _, err := c.HSCards(
+func TestHSDetailedCardsSearch(t *testing.T) {
+	dat, _, err := c.HSDetailedCardsSearch(
 		"rise-of-shadows", "mage", "legendary", "minion", "dragon", "battlecry", "kalecgos",
 		[]int{10}, []int{4}, []int{10}, 1, 5,
 		hsgd.CollectibilityCollectible, hsgd.SortName, hsgd.OrderAsc,
@@ -35,8 +35,48 @@ func TestHSCards(t *testing.T) {
 	}
 }
 
+func TestHSBattlegroundsCardsSearch(t *testing.T) {
+	dat, _, err := c.HSBattlegroundsCardsSearch(
+		"", "", "", "", "",
+		[]int{}, []int{}, []int{}, 0, 0,
+		[]hsgd.Tier{hsgd.TierHero, hsgd.Tier3}, "", "", "",
+	)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestHSCardByIDOrSlug(t *testing.T) {
-	dat, _, err := c.HSCardByIDOrSlug("52119-arch-villain-rafaam")
+	dat, _, err := c.HSCardByIDOrSlug("52119-arch-villain-rafaam", hsgd.GameModeConstructed)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestHSCardBackSearchAllLocales(t *testing.T) {
+	dat, _, err := c.HSCardBackSearchAllLocales(hsgd.OrderAsc)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestHSCardBackSearch(t *testing.T) {
+	dat, _, err := c.HSCardBackSearch(hsgd.OrderAsc)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

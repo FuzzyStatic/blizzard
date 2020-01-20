@@ -60,3 +60,34 @@ const (
 	MetadataTypeMinionTypes = MetadataType("minionTypes")
 	MetadataTypeKeywords    = MetadataType("keywords")
 )
+
+// GameMode - constructed or battlegrounds
+type GameMode string
+
+func (gameMode GameMode) String() string {
+	return string(gameMode)
+}
+
+// GameMode constants
+const (
+	GameModeConstructed   = GameMode("constructed")
+	GameModeBattlegrounds = GameMode("battlegrounds")
+)
+
+// Tier - hero, 1, 2, 3, 4, 5, or 6
+type Tier string
+
+func (tier Tier) String() string {
+	return string(tier)
+}
+
+// GameMode constants
+const (
+	TierHero = Tier("hero")
+	Tier1    = Tier("1")
+	Tier2    = Tier("2")
+	Tier3    = Tier("3")
+	Tier4    = Tier("4")
+	Tier5    = Tier("5")
+	Tier6    = Tier("6")
+)

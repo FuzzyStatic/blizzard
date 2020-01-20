@@ -3,15 +3,14 @@ package blizzard
 import (
 	"encoding/json"
 	"fmt"
-	"strconv"
 	"strings"
 
 	"github.com/FuzzyStatic/blizzard/hsgd"
 )
 
-// HSCardsAll returns an up-to-date list of all cards matching the search criteria.
-// For more information about the search parameters, see the Hearthstone Guide.
-func (c *Client) HSCardsAll() (*hsgd.CardSearch, []byte, error) {
+// HSCardsSearch returns an up-to-date list of all card.
+// For more information about the search parameters, see the Card Search Guide (https://develop.battle.net/documentation/hearthstone/guides/card-search).
+func (c *Client) HSCardsSearch() (*hsgd.CardSearch, []byte, error) {
 	var (
 		dat hsgd.CardSearch
 		b   []byte
@@ -31,10 +30,10 @@ func (c *Client) HSCardsAll() (*hsgd.CardSearch, []byte, error) {
 	return &dat, b, nil
 }
 
-// HSCards returns an up-to-date list of all cards matching the search criteria.
+// HSDetailedCardsSearch returns an up-to-date list of all cards matching the search criteria.
 // Input values left blank, 0, or nil will return all values for the type.
-// For more information about the search parameters, see the Hearthstone Guide.
-func (c *Client) HSCards(setSlug, classSlug, raritySlug, typeSlug, minionTypeSlug, keywordSlug, textFilter string,
+// For more information about the search parameters, see the Card Search Guide (https://develop.battle.net/documentation/hearthstone/guides/card-search).
+func (c *Client) HSDetailedCardsSearch(setSlug, classSlug, raritySlug, typeSlug, minionTypeSlug, keywordSlug, textFilter string,
 	manaCost, attack, health []int, page, pageSize int,
 	collectiblility hsgd.Collectibility, sort hsgd.Sort, order hsgd.Order) (*hsgd.CardSearch, []byte, error) {
 	var (
@@ -47,56 +46,132 @@ func (c *Client) HSCards(setSlug, classSlug, raritySlug, typeSlug, minionTypeSlu
 	url = c.apiURL + fmt.Sprintf("/hearthstone/cards?locale=%s", c.locale)
 
 	if setSlug != "" {
-		url = url + "&" + "set=" + setSlug
+		url = url + fmt.Sprintf("&set=%s", setSlug)
 	}
 
 	if classSlug != "" {
-		url = url + "&" + "class=" + classSlug
+		url = url + fmt.Sprintf("&class=%s", classSlug)
 	}
 
 	if raritySlug != "" {
-		url = url + "&" + "rarity=" + raritySlug
+		url = url + fmt.Sprintf("&rarity=%s", raritySlug)
 	}
 
 	if typeSlug != "" {
-		url = url + "&" + "type=" + typeSlug
+		url = url + fmt.Sprintf("&type=%s", typeSlug)
 	}
 
 	if minionTypeSlug != "" {
-		url = url + "&" + "minionType=" + minionTypeSlug
+		url = url + fmt.Sprintf("&minionType=%s", minionTypeSlug)
 	}
 
 	if keywordSlug != "" {
-		url = url + "&" + "keyword=" + keywordSlug
+		url = url + fmt.Sprintf("&keyword=%s", keywordSlug)
 	}
 
 	if textFilter != "" {
-		url = url + "&" + "textFilter=" + textFilter
+		url = url + fmt.Sprintf("&textFilter=%s", textFilter)
 	}
 
 	if manaCost != nil {
-		url = url + "&" + "manaCost=" + strings.Trim(strings.Join(strings.Fields(fmt.Sprint(manaCost)), ","), "[]")
+		url = url + fmt.Sprintf("&manaCost=%s", strings.Trim(strings.Join(strings.Fields(fmt.Sprint(manaCost)), ","), "[]"))
 	}
 
 	if attack != nil {
-		url = url + "&" + "attack=" + strings.Trim(strings.Join(strings.Fields(fmt.Sprint(attack)), ","), "[]")
+		url = url + fmt.Sprintf("&attack=%s", strings.Trim(strings.Join(strings.Fields(fmt.Sprint(attack)), ","), "[]"))
 	}
 
 	if health != nil {
-		url = url + "&" + "health=" + strings.Trim(strings.Join(strings.Fields(fmt.Sprint(health)), ","), "[]")
+		url = url + fmt.Sprintf("&health=%s", strings.Trim(strings.Join(strings.Fields(fmt.Sprint(health)), ","), "[]"))
 	}
 
 	if page != 0 {
-		url = url + "&" + "page=" + strconv.Itoa(page)
+		url = url + fmt.Sprintf("&page=%d", page)
 	}
 
 	if pageSize != 0 {
-		url = url + "&" + "pageSize=" + strconv.Itoa(pageSize)
+		url = url + fmt.Sprintf("&pageSize=%d", pageSize)
 	}
 
-	url = url + "&" + "collectible=" + string(collectiblility)
-	url = url + "&" + "sort=" + string(sort)
-	url = url + "&" + "order=" + string(order)
+	url = url + fmt.Sprintf("&collectible=%s", collectiblility)
+	url = url + fmt.Sprintf("&sort=%s", sort)
+	url = url + fmt.Sprintf("&order=%s", order)
+
+	b, err = c.getURLBody(url, "")
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// HSBattlegroundsCardsSearch returns an up-to-date list of all cards matching the search criteria for the specified game mode.
+// Input values left blank, 0, or nil will return all values for the type.
+// For more information about the search parameters, see the Card Search Guide (https://develop.battle.net/documentation/hearthstone/guides/card-search).
+func (c *Client) HSBattlegroundsCardsSearch(raritySlug, typeSlug, minionTypeSlug, keywordSlug, textFilter string,
+	manaCost, attack, health []int, page, pageSize int,
+	tier []hsgd.Tier, collectiblility hsgd.Collectibility, sort hsgd.Sort, order hsgd.Order) (*hsgd.CardSearch, []byte, error) {
+	var (
+		dat hsgd.CardSearch
+		url string
+		b   []byte
+		err error
+	)
+
+	url = c.apiURL + fmt.Sprintf("/hearthstone/cards?locale=%s&gameMode=%s", c.locale, hsgd.GameModeBattlegrounds)
+
+	if raritySlug != "" {
+		url = url + fmt.Sprintf("&rarity=%s", raritySlug)
+	}
+
+	if typeSlug != "" {
+		url = url + fmt.Sprintf("&type=%s", typeSlug)
+	}
+
+	if minionTypeSlug != "" {
+		url = url + fmt.Sprintf("&minionType=%s", minionTypeSlug)
+	}
+
+	if keywordSlug != "" {
+		url = url + fmt.Sprintf("&keyword=%s", keywordSlug)
+	}
+
+	if textFilter != "" {
+		url = url + fmt.Sprintf("&textFilter=%s", textFilter)
+	}
+
+	if manaCost != nil {
+		url = url + fmt.Sprintf("&manaCost=%s", strings.Trim(strings.Join(strings.Fields(fmt.Sprint(manaCost)), ","), "[]"))
+	}
+
+	if attack != nil {
+		url = url + fmt.Sprintf("&attack=%s", strings.Trim(strings.Join(strings.Fields(fmt.Sprint(attack)), ","), "[]"))
+	}
+
+	if health != nil {
+		url = url + fmt.Sprintf("&health=%s", strings.Trim(strings.Join(strings.Fields(fmt.Sprint(health)), ","), "[]"))
+	}
+
+	if page != 0 {
+		url = url + fmt.Sprintf("&page=%d", page)
+	}
+
+	if pageSize != 0 {
+		url = url + fmt.Sprintf("&pageSize=%d", pageSize)
+	}
+
+	if health != nil {
+		url = url + fmt.Sprintf("&tier=%s", strings.Trim(strings.Join(strings.Fields(fmt.Sprint(tier)), ","), "[]"))
+	}
+
+	url = url + fmt.Sprintf("&collectible=%s", collectiblility)
+	url = url + fmt.Sprintf("&sort=%s", sort)
+	url = url + fmt.Sprintf("&order=%s", order)
 
 	b, err = c.getURLBody(url, "")
 	if err != nil {
@@ -112,15 +187,66 @@ func (c *Client) HSCards(setSlug, classSlug, raritySlug, typeSlug, minionTypeSlu
 }
 
 // HSCardByIDOrSlug returns card by ID or slug.
-// For more information about the search parameters, see the Hearthstone Guide.
-func (c *Client) HSCardByIDOrSlug(idOrSlug string) (*hsgd.Card, []byte, error) {
+// For more information about the search parameters, see the Card Search Guide (https://develop.battle.net/documentation/hearthstone/guides/card-search).
+func (c *Client) HSCardByIDOrSlug(idOrSlug string, gameMode hsgd.GameMode) (*hsgd.Card, []byte, error) {
 	var (
 		dat hsgd.Card
 		b   []byte
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/cards/%s?locale=%s", idOrSlug, c.locale), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/cards/%s?locale=%s&gameMode=%s", idOrSlug, c.locale, gameMode), "")
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// HSCardBackSearchAllLocales returns an up-to-date list of all card backs matching the search criteria for all locales.
+// For more information about the search parameters, see the Card Search Guide (https://develop.battle.net/documentation/hearthstone/guides/card-search).
+func (c *Client) HSCardBackSearchAllLocales(order hsgd.Order) (*hsgd.CardBackSearchAllLocales, []byte, error) {
+	var (
+		dat hsgd.CardBackSearchAllLocales
+		url string
+		b   []byte
+		err error
+	)
+
+	url = c.apiURL + fmt.Sprintf("/hearthstone/cardbacks?order=%s", order)
+
+	b, err = c.getURLBody(url, "")
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// HSCardBackSearch returns an up-to-date list of all card backs matching the search criteria.
+// For more information about the search parameters, see the Card Search Guide (https://develop.battle.net/documentation/hearthstone/guides/card-search).
+func (c *Client) HSCardBackSearch(order hsgd.Order) (*hsgd.CardBackSearch, []byte, error) {
+	var (
+		dat hsgd.CardBackSearch
+		url string
+		b   []byte
+		err error
+	)
+
+	url = c.apiURL + fmt.Sprintf("/hearthstone/cardbacks?locale=%s", c.locale)
+	url = url + fmt.Sprintf("&order=%s", order)
+
+	b, err = c.getURLBody(url, "")
 	if err != nil {
 		return &dat, b, err
 	}

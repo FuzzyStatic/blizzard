@@ -21,14 +21,12 @@ var (
 	blizz        *blizzard.Client
 )
 
-// Homepage
-func HomePage(w http.ResponseWriter, r *http.Request) {
+func homepage(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Homepage Hit!")
 	http.Redirect(w, r, cfg.AuthCodeURL("my_random_state"), http.StatusFound)
 }
 
-// Authorize
-func Authorize(w http.ResponseWriter, r *http.Request) {
+func authorize(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -104,8 +102,8 @@ func main() {
 	blizz = blizzard.NewClient(clientID, clientSecret, blizzard.US, blizzard.EnUS)
 	cfg = blizz.AuthorizeConfig(fmt.Sprintf("http://%s:9094/oauth2", myDomain), oauth.ProfileD3, oauth.ProfileSC2, oauth.ProfileWoW)
 
-	http.HandleFunc("/", HomePage)
-	http.HandleFunc("/oauth2", Authorize)
+	http.HandleFunc("/", homepage)
+	http.HandleFunc("/oauth2", authorize)
 
 	// We start up our Client on port 9094
 	log.Println("Client is running at 9094 port.")
