@@ -8,7 +8,7 @@ import (
 	"github.com/FuzzyStatic/blizzard/hsgd"
 )
 
-// HSCardsSearch returns an up-to-date list of all card.
+// HSCardsSearch returns an up-to-date list of all cards matching the search criteria.
 // For more information about the search parameters, see the Card Search Guide (https://develop.battle.net/documentation/hearthstone/guides/card-search).
 func (c *Client) HSCardsSearch() (*hsgd.CardSearch, []byte, error) {
 	var (
