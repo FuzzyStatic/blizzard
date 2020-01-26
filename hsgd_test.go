@@ -75,6 +75,18 @@ func TestHSCardBackSearchAllLocales(t *testing.T) {
 	}
 }
 
+func TestHSCardBackByIDOrSlug(t *testing.T) {
+	dat, _, err := c.HSCardBackByIDOrSlug("155-pizza-stone")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestHSCardBackSearch(t *testing.T) {
 	dat, _, err := c.HSCardBackSearch("", "", hsgd.SortName, hsgd.OrderAsc)
 	if err != nil {

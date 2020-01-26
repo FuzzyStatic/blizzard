@@ -1,5 +1,6 @@
 package hsgd
 
+// CardBackSearchAllLocales structure
 type CardBackSearchAllLocales struct {
 	CardBacks []struct {
 		ID           int `json:"id"`
@@ -44,16 +45,20 @@ type CardBackSearchAllLocales struct {
 	Page      int `json:"page"`
 }
 
+// CardBackSearch structure
 type CardBackSearch struct {
-	CardBacks []struct {
-		ID           int    `json:"id"`
-		SortCategory int    `json:"sortCategory"`
-		Text         string `json:"text"`
-		Name         string `json:"name"`
-		Image        string `json:"image"`
-		Slug         string `json:"slug"`
-	} `json:"cardBacks"`
-	CardCount int `json:"cardCount"`
-	PageCount int `json:"pageCount"`
-	Page      int `json:"page"`
+	CardBacks []CardBack `json:"cardBacks"`
+	CardCount int        `json:"cardCount"`
+	PageCount int        `json:"pageCount"`
+	Page      int        `json:"page"`
+}
+
+// CardBack structure
+type CardBack struct {
+	ID           int    `json:"id"`
+	SortCategory int    `json:"sortCategory"`
+	Text         string `json:"text"`
+	Name         string `json:"name"`
+	Image        string `json:"image"`
+	Slug         string `json:"slug"`
 }

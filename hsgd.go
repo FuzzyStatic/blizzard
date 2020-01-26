@@ -282,6 +282,27 @@ func (c *Client) HSCardBackSearch(cardBackCategory hsgd.CardBackCategory, textFi
 	return &dat, b, nil
 }
 
+// HSCardBackByIDOrSlug returns a specific card back by using card back ID or slug.
+func (c *Client) HSCardBackByIDOrSlug(idOrSlug string) (*hsgd.CardBack, []byte, error) {
+	var (
+		dat hsgd.CardBack
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/cardbacks/%s\\?locale=%s", idOrSlug, c.locale), "")
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
 // HSDeck Finds a deck by its deck code.
 // For more information, see the Hearthstone Guide.
 func (c *Client) HSDeck(deckCode string) (*hsgd.Deck, []byte, error) {
