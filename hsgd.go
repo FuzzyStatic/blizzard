@@ -290,7 +290,7 @@ func (c *Client) HSCardBackByIDOrSlug(idOrSlug string) (*hsgd.CardBack, []byte, 
 		err error
 	)
 
-	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/cardbacks/%s\\?locale=%s", idOrSlug, c.locale), "")
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/hearthstone/cardbacks/%s?locale=%s", idOrSlug, c.locale), "")
 	if err != nil {
 		return &dat, b, err
 	}
