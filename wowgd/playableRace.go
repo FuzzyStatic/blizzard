@@ -12,6 +12,7 @@ type PlayableRacesIndex struct {
 			Href string `json:"href"`
 		} `json:"key"`
 		Name string `json:"name"`
+		ID   int    `json:"id"`
 	} `json:"races"`
 }
 
