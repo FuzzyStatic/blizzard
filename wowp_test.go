@@ -67,6 +67,42 @@ func TestWoWCharacterPetsCollectionSummary(t *testing.T) {
 	}
 }
 
+func TestWoWCharacterEncountersSummary(t *testing.T) {
+	dat, _, err := c.WoWCharacterEncountersSummary("tichondrius", "wizprotector")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCharacterDungeons(t *testing.T) {
+	dat, _, err := c.WoWCharacterDungeons("tichondrius", "wizprotector")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCharacterRaids(t *testing.T) {
+	dat, _, err := c.WoWCharacterRaids("tichondrius", "wizprotector")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWCharacterEquipmentSummary(t *testing.T) {
 	dat, _, err := c.WoWCharacterEquipmentSummary("illidan", "Wildz")
 	if err != nil {

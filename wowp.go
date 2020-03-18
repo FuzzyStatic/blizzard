@@ -123,6 +123,75 @@ func (c *Client) WoWCharacterPetsCollectionSummary(realmSlug, characterName stri
 	return &dat, b, nil
 }
 
+// WoWCharacterEncountersSummary returns a summary of a character's encounters.
+func (c *Client) WoWCharacterEncountersSummary(realmSlug, characterName string) (*wowp.CharacterEncountersSummary, []byte, error) {
+	var (
+		dat wowp.CharacterEncountersSummary
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+
+		fmt.Sprintf("/profile/wow/character/%s/%s/encounters?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCharacterDungeons returns a summary of a character's completed dungeons.
+func (c *Client) WoWCharacterDungeons(realmSlug, characterName string) (*wowp.CharacterDungeons, []byte, error) {
+	var (
+		dat wowp.CharacterDungeons
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+
+		fmt.Sprintf("/profile/wow/character/%s/%s/encounters/dungeons?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCharacterRaids returns a summary of a character's completed raids.
+func (c *Client) WoWCharacterRaids(realmSlug, characterName string) (*wowp.CharacterRaids, []byte, error) {
+	var (
+		dat wowp.CharacterRaids
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+
+		fmt.Sprintf("/profile/wow/character/%s/%s/encounters/raids?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
 // WoWCharacterEquipmentSummary returns a summary of the items equipped by a character.
 func (c *Client) WoWCharacterEquipmentSummary(realmSlug, characterName string) (*wowp.CharacterEquipmentSummary, []byte, error) {
 	var (
