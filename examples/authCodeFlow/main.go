@@ -72,13 +72,6 @@ func authorize(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Printf("%+v\n", userInfo)
-
-	wowProfile, _, err := blizz.WoWUserCharacters(token)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
-
-	fmt.Printf("%+v\n", wowProfile)
 }
 
 func init() {
