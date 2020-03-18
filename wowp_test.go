@@ -231,6 +231,30 @@ func TestWoWCharacterPvPSummary(t *testing.T) {
 	}
 }
 
+func TestWoWCharacterQuests(t *testing.T) {
+	dat, _, err := c.WoWCharacterQuests("tichondrius", "wizprotector")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCharacterCompletedQuests(t *testing.T) {
+	dat, _, err := c.WoWCharacterCompletedQuests("tichondrius", "wizprotector")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWCharacterReputationsSummary(t *testing.T) {
 	dat, _, err := c.WoWCharacterReputationsSummary("illidan", "Wildz")
 	if err != nil {

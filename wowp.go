@@ -409,6 +409,52 @@ func (c *Client) WoWCharacterPvPSummary(realmSlug, characterName string) (*wowp.
 	return &dat, b, nil
 }
 
+// WoWCharacterQuests returns a character's active quests as well as a link to the character's completed quests.
+func (c *Client) WoWCharacterQuests(realmSlug, characterName string) (*wowp.CharacterQuests, []byte, error) {
+	var (
+		dat wowp.CharacterQuests
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+
+		fmt.Sprintf("/profile/wow/character/%s/%s/quests?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCharacterCompletedQuests returns a list of quests that a character has completed.
+func (c *Client) WoWCharacterCompletedQuests(realmSlug, characterName string) (*wowp.CharacterCompletedQuests, []byte, error) {
+	var (
+		dat wowp.CharacterCompletedQuests
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+
+		fmt.Sprintf("/profile/wow/character/%s/%s/quests/completed?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
 // WoWCharacterReputationsSummary returns a summary of a character's reputations.
 func (c *Client) WoWCharacterReputationsSummary(realmSlug, characterName string) (*wowp.CharacterReputationsSummary, []byte, error) {
 	var (
