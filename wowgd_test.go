@@ -307,6 +307,78 @@ func TestWoWItemMedia(t *testing.T) {
 	}
 }
 
+func TestWoWJournalExpansionsIndex(t *testing.T) {
+	dat, _, err := c.WoWJournalExpansionsIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWJournalExpansion(t *testing.T) {
+	dat, _, err := c.WoWJournalExpansion(396)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWJournalEncountersIndex(t *testing.T) {
+	dat, _, err := c.WoWJournalEncountersIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWJournalEncounter(t *testing.T) {
+	dat, _, err := c.WoWJournalEncounter(396)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWJournalInstancesIndex(t *testing.T) {
+	dat, _, err := c.WoWJournalInstancesIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWJournalInstance(t *testing.T) {
+	dat, _, err := c.WoWJournalInstance(63)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWMountIndex(t *testing.T) {
 	dat, _, err := c.WoWMountIndex()
 	if err != nil {

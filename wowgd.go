@@ -535,6 +535,135 @@ func (c *Client) WoWItemMedia(itemID int) (*wowgd.ItemMedia, []byte, error) {
 	return &dat, b, nil
 }
 
+// WoWJournalExpansionsIndex returns an index of journal expansions.
+func (c *Client) WoWJournalExpansionsIndex() (*wowgd.JournalExpansionsIndex, []byte, error) {
+	var (
+		dat wowgd.JournalExpansionsIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/journal-expansion/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWJournalExpansion returns a journal expansion by ID.
+func (c *Client) WoWJournalExpansion(journalExpansionID int) (*wowgd.JournalExpansion, []byte, error) {
+	var (
+		dat wowgd.JournalExpansion
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/journal-expansion/%d?locale=%s",
+		journalExpansionID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// JournalEncountersIndex returns an index of journal encounters.
+func (c *Client) WoWJournalEncountersIndex() (*wowgd.JournalEncountersIndex, []byte, error) {
+	var (
+		dat wowgd.JournalEncountersIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/journal-encounter/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWJournalEncounter returns a journal expansion by ID.
+func (c *Client) WoWJournalEncounter(journalEncounterID int) (*wowgd.JournalEncounter, []byte, error) {
+	var (
+		dat wowgd.JournalEncounter
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/journal-encounter/%d?locale=%s",
+		journalEncounterID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// JournalInstancesIndex returns an index of journal instances.
+func (c *Client) WoWJournalInstancesIndex() (*wowgd.JournalInstancesIndex, []byte, error) {
+	var (
+		dat wowgd.JournalInstancesIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/journal-instance/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWJournalInstance returns a journal instance.
+func (c *Client) WoWJournalInstance(journalInstanceID int) (*wowgd.JournalInstance, []byte, error) {
+	var (
+		dat wowgd.JournalInstance
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/journal-instance/%d?locale=%s",
+		journalInstanceID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
 // WoWMountIndex returns an index of mounts.
 func (c *Client) WoWMountIndex() (*wowgd.MountIndex, []byte, error) {
 	var (
