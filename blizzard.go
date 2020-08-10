@@ -170,8 +170,7 @@ func (c *Client) getURLBody(url, namespace string) ([]byte, error) {
 		return nil, err
 	}
 
-	switch res.StatusCode {
-	case http.StatusNotFound:
+	if res.StatusCode != http.StatusOK {
 		return nil, errors.New(res.Status)
 	}
 
