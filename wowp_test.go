@@ -8,7 +8,7 @@ import (
 )
 
 func TestWoWCharacterAchievementsSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterAchievementsSummary("illidan", "Wildz")
+	dat, _, err := c.WoWCharacterAchievementsSummary("illidan", "Darkee")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -20,7 +20,7 @@ func TestWoWCharacterAchievementsSummary(t *testing.T) {
 }
 
 func TestWoWCharacterAppearanceSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterAppearanceSummary("illidan", "Wildz")
+	dat, _, err := c.WoWCharacterAppearanceSummary("illidan", "Darkee")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -32,7 +32,7 @@ func TestWoWCharacterAppearanceSummary(t *testing.T) {
 }
 
 func TestWoWCharacterCollectionsIndex(t *testing.T) {
-	dat, _, err := c.WoWCharacterCollectionsIndex("illidan", "Wildz")
+	dat, _, err := c.WoWCharacterCollectionsIndex("illidan", "Darkee")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -44,7 +44,7 @@ func TestWoWCharacterCollectionsIndex(t *testing.T) {
 }
 
 func TestWoWCharacterMountsCollectionSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterMountsCollectionSummary("illidan", "Wildz")
+	dat, _, err := c.WoWCharacterMountsCollectionSummary("illidan", "Darkee")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -56,7 +56,7 @@ func TestWoWCharacterMountsCollectionSummary(t *testing.T) {
 }
 
 func TestWoWCharacterPetsCollectionSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterPetsCollectionSummary("illidan", "Wildz")
+	dat, _, err := c.WoWCharacterPetsCollectionSummary("illidan", "Darkee")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -68,7 +68,7 @@ func TestWoWCharacterPetsCollectionSummary(t *testing.T) {
 }
 
 func TestWoWCharacterEncountersSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterEncountersSummary("tichondrius", "wizprotector")
+	dat, _, err := c.WoWCharacterEncountersSummary("illidan", "Darkee")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -104,7 +104,7 @@ func TestWoWCharacterRaids(t *testing.T) {
 }
 
 func TestWoWCharacterEquipmentSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterEquipmentSummary("illidan", "Wildz")
+	dat, _, err := c.WoWCharacterEquipmentSummary("illidan", "Darkee")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -116,7 +116,7 @@ func TestWoWCharacterEquipmentSummary(t *testing.T) {
 }
 
 func TestWoWCharacterHunterPetsSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterHunterPetsSummary("illidan", "defraudedguy")
+	dat, _, err := c.WoWCharacterHunterPetsSummary("illidan", "Defraudedguy")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -128,7 +128,7 @@ func TestWoWCharacterHunterPetsSummary(t *testing.T) {
 }
 
 func TestWoWCharacterMediaSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterMediaSummary("illidan", "Wildz")
+	dat, _, err := c.WoWCharacterMediaSummary("illidan", "Darkee")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -140,7 +140,7 @@ func TestWoWCharacterMediaSummary(t *testing.T) {
 }
 
 func TestWoWCharacterProfileSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterProfileSummary("illidan", "Wildz")
+	dat, _, err := c.WoWCharacterProfileSummary("illidan", "Darkee")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -152,7 +152,7 @@ func TestWoWCharacterProfileSummary(t *testing.T) {
 }
 
 func TestWoWCharacterProfileStatus(t *testing.T) {
-	dat, _, err := c.WoWCharacterProfileStatus("illidan", "Wildz")
+	dat, _, err := c.WoWCharacterProfileStatus("illidan", "Darkee")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -164,7 +164,7 @@ func TestWoWCharacterProfileStatus(t *testing.T) {
 }
 
 func TestWoWCharacterMythicKeystoneProfile(t *testing.T) {
-	dat, _, err := c.WoWCharacterMythicKeystoneProfile("illidan", "Wildz")
+	dat, _, err := c.WoWCharacterMythicKeystoneProfile("illidan", "Darkee")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -176,7 +176,7 @@ func TestWoWCharacterMythicKeystoneProfile(t *testing.T) {
 }
 
 func TestWoWCharacterMythicKeystoneProfileSeason(t *testing.T) {
-	dat, _, err := c.WoWCharacterMythicKeystoneProfileSeason("illidan", "Wildz", 1)
+	dat, _, err := c.WoWCharacterMythicKeystoneProfileSeason("illidan", "Darkee", 1)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -232,7 +232,7 @@ func TestWoWCharacterPvPSummary(t *testing.T) {
 }
 
 func TestWoWCharacterQuests(t *testing.T) {
-	dat, _, err := c.WoWCharacterQuests("tichondrius", "wizprotector")
+	dat, _, err := c.WoWCharacterQuests("illidan", "Darkee")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -244,7 +244,7 @@ func TestWoWCharacterQuests(t *testing.T) {
 }
 
 func TestWoWCharacterCompletedQuests(t *testing.T) {
-	dat, _, err := c.WoWCharacterCompletedQuests("tichondrius", "wizprotector")
+	dat, _, err := c.WoWCharacterCompletedQuests("illidan", "Darkee")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -256,7 +256,7 @@ func TestWoWCharacterCompletedQuests(t *testing.T) {
 }
 
 func TestWoWCharacterReputationsSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterReputationsSummary("illidan", "Wildz")
+	dat, _, err := c.WoWCharacterReputationsSummary("illidan", "Darkee")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -268,7 +268,7 @@ func TestWoWCharacterReputationsSummary(t *testing.T) {
 }
 
 func TestWoWCharacterSpecializationsSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterSpecializationsSummary("illidan", "Wildz")
+	dat, _, err := c.WoWCharacterSpecializationsSummary("illidan", "Darkee")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -280,7 +280,7 @@ func TestWoWCharacterSpecializationsSummary(t *testing.T) {
 }
 
 func TestWoWCharacterStatisticsSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterStatisticsSummary("illidan", "Wildz")
+	dat, _, err := c.WoWCharacterStatisticsSummary("illidan", "Darkee")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -292,7 +292,7 @@ func TestWoWCharacterStatisticsSummary(t *testing.T) {
 }
 
 func TestWoWCharacterTitlesSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterTitlesSummary("illidan", "Wildz")
+	dat, _, err := c.WoWCharacterTitlesSummary("illidan", "Darkee")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
