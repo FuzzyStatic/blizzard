@@ -80,7 +80,7 @@ func TestWoWCharacterEncountersSummary(t *testing.T) {
 }
 
 func TestWoWCharacterDungeons(t *testing.T) {
-	dat, _, err := c.WoWCharacterDungeons("tichondrius", "wizprotector")
+	dat, _, err := c.WoWCharacterDungeons("illidan", "Darkee")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -92,7 +92,7 @@ func TestWoWCharacterDungeons(t *testing.T) {
 }
 
 func TestWoWCharacterRaids(t *testing.T) {
-	dat, _, err := c.WoWCharacterRaids("tichondrius", "wizprotector")
+	dat, _, err := c.WoWCharacterRaids("illidan", "Darkee")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

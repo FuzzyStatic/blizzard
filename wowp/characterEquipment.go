@@ -35,7 +35,7 @@ type CharacterEquipmentSummary struct {
 		} `json:"slot"`
 		Quantity  int   `json:"quantity"`
 		Context   int   `json:"context"`
-		BonusList []int `json:"bonus_list,omitempty"`
+		BonusList []int `json:"bonus_list"`
 		Quality   struct {
 			Type string `json:"type"`
 			Name string `json:"name"`
@@ -43,11 +43,6 @@ type CharacterEquipmentSummary struct {
 		Name                 string `json:"name"`
 		ModifiedAppearanceID int    `json:"modified_appearance_id,omitempty"`
 		AzeriteDetails       struct {
-			PercentageToNextLevel float64 `json:"percentage_to_next_level"`
-			Level                 struct {
-				Value         int    `json:"value"`
-				DisplayString string `json:"display_string"`
-			} `json:"level"`
 			SelectedPowers []struct {
 				ID           int `json:"id"`
 				Tier         int `json:"tier"`
@@ -61,12 +56,57 @@ type CharacterEquipmentSummary struct {
 					} `json:"spell"`
 					Description string `json:"description"`
 					CastTime    string `json:"cast_time"`
-				} `json:"spell_tooltip,omitempty"`
+				} `json:"spell_tooltip"`
+				IsDisplayHidden bool `json:"is_display_hidden,omitempty"`
 			} `json:"selected_powers"`
-			SelectedPowersString string `json:"selected_powers_string"`
+			SelectedPowersString  string  `json:"selected_powers_string"`
+			PercentageToNextLevel float64 `json:"percentage_to_next_level"`
+			SelectedEssences      []struct {
+				Slot             int `json:"slot"`
+				Rank             int `json:"rank"`
+				MainSpellTooltip struct {
+					Spell struct {
+						Key struct {
+							Href string `json:"href"`
+						} `json:"key"`
+						Name string `json:"name"`
+						ID   int    `json:"id"`
+					} `json:"spell"`
+					Description string `json:"description"`
+					CastTime    string `json:"cast_time"`
+					Range       string `json:"range"`
+				} `json:"main_spell_tooltip,omitempty"`
+				PassiveSpellTooltip struct {
+					Spell struct {
+						Key struct {
+							Href string `json:"href"`
+						} `json:"key"`
+						Name string `json:"name"`
+						ID   int    `json:"id"`
+					} `json:"spell"`
+					Description string `json:"description"`
+					CastTime    string `json:"cast_time"`
+				} `json:"passive_spell_tooltip"`
+				Essence struct {
+					Key struct {
+						Href string `json:"href"`
+					} `json:"key"`
+					Name string `json:"name"`
+					ID   int    `json:"id"`
+				} `json:"essence"`
+				Media struct {
+					Key struct {
+						Href string `json:"href"`
+					} `json:"key"`
+					ID int `json:"id"`
+				} `json:"media"`
+			} `json:"selected_essences"`
+			Level struct {
+				Value         int    `json:"value"`
+				DisplayString string `json:"display_string"`
+			} `json:"level"`
 		} `json:"azerite_details,omitempty"`
-		NameDescription string `json:"name_description,omitempty"`
-		Media           struct {
+		Media struct {
 			Key struct {
 				Href string `json:"href"`
 			} `json:"key"`
@@ -95,17 +135,33 @@ type CharacterEquipmentSummary struct {
 			Name string `json:"name"`
 		} `json:"binding"`
 		Armor struct {
-			Value         int    `json:"value"`
-			DisplayString string `json:"display_string"`
+			Value   int `json:"value"`
+			Display struct {
+				DisplayString string `json:"display_string"`
+				Color         struct {
+					R int     `json:"r"`
+					G int     `json:"g"`
+					B int     `json:"b"`
+					A float64 `json:"a"`
+				} `json:"color"`
+			} `json:"display"`
 		} `json:"armor,omitempty"`
 		Stats []struct {
 			Type struct {
 				Type string `json:"type"`
 				Name string `json:"name"`
 			} `json:"type"`
-			Value         int    `json:"value"`
-			DisplayString string `json:"display_string"`
-			IsNegated     bool   `json:"is_negated,omitempty"`
+			Value   int `json:"value"`
+			Display struct {
+				DisplayString string `json:"display_string"`
+				Color         struct {
+					R int     `json:"r"`
+					G int     `json:"g"`
+					B int     `json:"b"`
+					A float64 `json:"a"`
+				} `json:"color"`
+			} `json:"display"`
+			IsNegated bool `json:"is_negated,omitempty"`
 		} `json:"stats"`
 		Level struct {
 			Value         int    `json:"value"`
@@ -126,6 +182,15 @@ type CharacterEquipmentSummary struct {
 			Value         int    `json:"value"`
 			DisplayString string `json:"display_string"`
 		} `json:"durability,omitempty"`
+		NameDescription struct {
+			DisplayString string `json:"display_string"`
+			Color         struct {
+				R int     `json:"r"`
+				G int     `json:"g"`
+				B int     `json:"b"`
+				A float64 `json:"a"`
+			} `json:"color"`
+		} `json:"name_description,omitempty"`
 		UniqueEquipped string `json:"unique_equipped,omitempty"`
 		Spells         []struct {
 			Spell struct {
@@ -139,7 +204,27 @@ type CharacterEquipmentSummary struct {
 		} `json:"spells,omitempty"`
 		Description      string `json:"description,omitempty"`
 		IsSubclassHidden bool   `json:"is_subclass_hidden,omitempty"`
-		SellPrice        struct {
+		Sockets          []struct {
+			SocketType struct {
+				Type string `json:"type"`
+				Name string `json:"name"`
+			} `json:"socket_type"`
+			Item struct {
+				Key struct {
+					Href string `json:"href"`
+				} `json:"key"`
+				Name string `json:"name"`
+				ID   int    `json:"id"`
+			} `json:"item"`
+			DisplayString string `json:"display_string"`
+			Media         struct {
+				Key struct {
+					Href string `json:"href"`
+				} `json:"key"`
+				ID int `json:"id"`
+			} `json:"media"`
+		} `json:"sockets,omitempty"`
+		SellPrice struct {
 			Value          int `json:"value"`
 			DisplayStrings struct {
 				Header string `json:"header"`
@@ -148,6 +233,7 @@ type CharacterEquipmentSummary struct {
 				Copper string `json:"copper"`
 			} `json:"display_strings"`
 		} `json:"sell_price,omitempty"`
+		IsCorrupted  bool `json:"is_corrupted,omitempty"`
 		Enchantments []struct {
 			DisplayString string `json:"display_string"`
 			SourceItem    struct {
@@ -169,8 +255,18 @@ type CharacterEquipmentSummary struct {
 				Value         int    `json:"value"`
 				DisplayString string `json:"display_string"`
 			} `json:"level"`
+			Faction struct {
+				Value struct {
+					Type string `json:"type"`
+					Name string `json:"name"`
+				} `json:"value"`
+				DisplayString string `json:"display_string"`
+			} `json:"faction"`
 			Skill struct {
 				Profession struct {
+					Key struct {
+						Href string `json:"href"`
+					} `json:"key"`
 					Name string `json:"name"`
 					ID   int    `json:"id"`
 				} `json:"profession"`
@@ -178,26 +274,6 @@ type CharacterEquipmentSummary struct {
 				DisplayString string `json:"display_string"`
 			} `json:"skill"`
 		} `json:"requirements,omitempty"`
-		Sockets []struct {
-			SocketType struct {
-				Type string `json:"type"`
-				Name string `json:"name"`
-			} `json:"socket_type"`
-			Item struct {
-				Key struct {
-					Href string `json:"href"`
-				} `json:"key"`
-				Name string `json:"name"`
-				ID   int    `json:"id"`
-			} `json:"item"`
-			DisplayString string `json:"display_string"`
-			Media         struct {
-				Key struct {
-					Href string `json:"href"`
-				} `json:"key"`
-				ID int `json:"id"`
-			} `json:"media"`
-		} `json:"sockets,omitempty"`
 		Weapon struct {
 			Damage struct {
 				MinValue      int    `json:"min_value"`
