@@ -1,12 +1,51 @@
 package blizzard
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"net/http"
 	"strings"
 
 	"github.com/FuzzyStatic/blizzard/wowp"
+	"golang.org/x/oauth2"
 )
+
+// WoWAccountProfileSummary Returns a profile summary for an account.
+func (c *Client) WoWAccountProfileSummary(token *oauth2.Token) (*wowp.AccountProfileSummary, []byte, error) {
+	var (
+		dat wowp.AccountProfileSummary
+		b   []byte
+		err error
+	)
+
+	req, err := http.NewRequest("GET", c.apiURL+
+		fmt.Sprintf("/profile/user/wow?namespace=%s&locale=%s", c.profileNamespace, c.locale), nil)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	client := c.authorizedCfg.Client(context.Background(), token)
+
+	res, err := client.Do(req)
+	if err != nil {
+		return &dat, b, err
+	}
+	defer res.Body.Close()
+
+	b, err = ioutil.ReadAll(res.Body)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
 
 // WoWCharacterAchievementsSummary returns a summary of the achievements a character has completed.
 func (c *Client) WoWCharacterAchievementsSummary(realmSlug, characterName string) (*wowp.CharacterAchievementsSummary, []byte, error) {

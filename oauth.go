@@ -76,7 +76,7 @@ func (c *Client) AccessTokenRequest() error {
 	return nil
 }
 
-// UserInfoHeader teturns basic information about the user associated with the current bearer token
+// UserInfoHeader returns basic information about the user associated with the current bearer token
 func (c *Client) UserInfoHeader(token *oauth2.Token) (*oauth.UserInfo, []byte, error) {
 	var (
 		dat    oauth.UserInfo
