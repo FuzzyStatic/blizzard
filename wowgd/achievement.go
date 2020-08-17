@@ -103,11 +103,48 @@ type Achievement struct {
 	Points        int    `json:"points"`
 	IsAccountWide bool   `json:"is_account_wide"`
 	Criteria      struct {
-		ID          int    `json:"id"`
-		Description string `json:"description"`
-		Amount      int    `json:"amount"`
+		ID          int         `json:"id"`
+		Description interface{} `json:"description"`
+		Amount      int         `json:"amount"`
+		Operator    struct {
+			Type string `json:"type"`
+			Name string `json:"name"`
+		} `json:"operator"`
+		ChildCriteria []struct {
+			ID          int    `json:"id"`
+			Description string `json:"description"`
+			Amount      int    `json:"amount"`
+			Achievement struct {
+				Key struct {
+					Href string `json:"href"`
+				} `json:"key"`
+				Name string `json:"name"`
+				ID   int    `json:"id"`
+			} `json:"achievement,omitempty"`
+			Operator struct {
+				Type string `json:"type"`
+				Name string `json:"name"`
+			} `json:"operator,omitempty"`
+			ChildCriteria []struct {
+				ID          int    `json:"id"`
+				Description string `json:"description"`
+				Amount      int    `json:"amount"`
+				Faction     struct {
+					Type string `json:"type"`
+					Name string `json:"name"`
+				} `json:"faction"`
+				Achievement struct {
+					Key struct {
+						Href string `json:"href"`
+					} `json:"key"`
+					Name string `json:"name"`
+					ID   int    `json:"id"`
+				} `json:"achievement"`
+			} `json:"child_criteria,omitempty"`
+		} `json:"child_criteria"`
 	} `json:"criteria"`
-	NextAchievement struct {
+	RewardDescription string `json:"reward_description"`
+	NextAchievement   struct {
 		Key struct {
 			Href string `json:"href"`
 		} `json:"key"`
