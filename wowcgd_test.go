@@ -268,3 +268,39 @@ func TestClassicWoWPowerType(t *testing.T) {
 		fmt.Printf("%+v\n", dat)
 	}
 }
+
+func TestClassicWoWRealmIndex(t *testing.T) {
+	dat, _, err := c.ClassicWoWRealmIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestClassicWoWRealm(t *testing.T) {
+	dat, _, err := c.ClassicWoWRealm("tichondrius")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestClassicWoWRegionIndex(t *testing.T) {
+	dat, _, err := c.ClassicWoWRegionIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
