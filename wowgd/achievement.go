@@ -103,9 +103,9 @@ type Achievement struct {
 	Points        int    `json:"points"`
 	IsAccountWide bool   `json:"is_account_wide"`
 	Criteria      struct {
-		ID          int         `json:"id"`
-		Description interface{} `json:"description"`
-		Amount      int         `json:"amount"`
+		ID          int    `json:"id"`
+		Description string `json:"description"`
+		Amount      int    `json:"amount"`
 		Operator    struct {
 			Type string `json:"type"`
 			Name string `json:"name"`
