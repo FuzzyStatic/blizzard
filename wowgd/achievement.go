@@ -83,6 +83,25 @@ type AchievementIndex struct {
 	} `json:"achievements"`
 }
 
+// ChildCriteria struct used for representing nested Achievement criteria
+type ChildCriteria []struct {
+	ID          int    `json:"id"`
+	Description string `json:"description"`
+	Amount      int    `json:"amount"`
+	Achievement struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		Name string `json:"name"`
+		ID   int    `json:"id"`
+	} `json:"achievement,omitempty"`
+	Operator struct {
+		Type string `json:"type"`
+		Name string `json:"name"`
+	} `json:"operator,omitempty"`
+	ChildCriteria ChildCriteria `json:"child_criteria,omitempty"`
+}
+
 // Achievement structure
 type Achievement struct {
 	Links struct {
@@ -110,38 +129,7 @@ type Achievement struct {
 			Type string `json:"type"`
 			Name string `json:"name"`
 		} `json:"operator"`
-		ChildCriteria []struct {
-			ID          int    `json:"id"`
-			Description string `json:"description"`
-			Amount      int    `json:"amount"`
-			Achievement struct {
-				Key struct {
-					Href string `json:"href"`
-				} `json:"key"`
-				Name string `json:"name"`
-				ID   int    `json:"id"`
-			} `json:"achievement,omitempty"`
-			Operator struct {
-				Type string `json:"type"`
-				Name string `json:"name"`
-			} `json:"operator,omitempty"`
-			ChildCriteria []struct {
-				ID          int    `json:"id"`
-				Description string `json:"description"`
-				Amount      int    `json:"amount"`
-				Faction     struct {
-					Type string `json:"type"`
-					Name string `json:"name"`
-				} `json:"faction"`
-				Achievement struct {
-					Key struct {
-						Href string `json:"href"`
-					} `json:"key"`
-					Name string `json:"name"`
-					ID   int    `json:"id"`
-				} `json:"achievement"`
-			} `json:"child_criteria,omitempty"`
-		} `json:"child_criteria"`
+		ChildCriteria ChildCriteria `json:"child_criteria,omitempty"`
 	} `json:"criteria"`
 	RewardDescription string `json:"reward_description"`
 	NextAchievement   struct {
