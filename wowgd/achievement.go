@@ -88,6 +88,10 @@ type ChildCriteria []struct {
 	ID          int    `json:"id"`
 	Description string `json:"description"`
 	Amount      int    `json:"amount"`
+	Faction     struct {
+		Type string `json:"type"`
+		Name string `json:"name"`
+	} `json:"faction,omitempty"`
 	Achievement struct {
 		Key struct {
 			Href string `json:"href"`
@@ -125,7 +129,11 @@ type Achievement struct {
 		ID          int    `json:"id"`
 		Description string `json:"description"`
 		Amount      int    `json:"amount"`
-		Operator    struct {
+		Faction     struct {
+			Type string `json:"type"`
+			Name string `json:"name"`
+		} `json:"faction,omitempty"`
+		Operator struct {
 			Type string `json:"type"`
 			Name string `json:"name"`
 		} `json:"operator"`
