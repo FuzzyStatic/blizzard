@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/FuzzyStatic/blizzard/wowcgd"
+	"github.com/FuzzyStatic/blizzard/wowgd"
 )
 
 // ClassicWoWCreatureFamiliesIndex returns an index of creature families.
@@ -460,6 +461,69 @@ func (c *Client) ClassicWoWPowerType(powerTypeID int) (*wowcgd.PowerType, []byte
 	)
 
 	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/power-type/%d?locale=%s", powerTypeID, c.locale), c.staticClassicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWRealmIndex returns an index of realms.
+func (c *Client) ClassicWoWRealmIndex() (*wowgd.RealmIndex, []byte, error) {
+	var (
+		dat wowgd.RealmIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/realm/index?locale=%s", c.locale), c.dynamicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWRealm returns a single realm by slug or ID.
+func (c *Client) ClassicWoWRealm(realmSlug string) (*wowgd.Realm, []byte, error) {
+	var (
+		dat wowgd.Realm
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/realm/%s?locale=%s", realmSlug, c.locale), c.dynamicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWRegionIndex returns an index of regions.
+func (c *Client) ClassicWoWRegionIndex() (*wowgd.RegionIndex, []byte, error) {
+	var (
+		dat wowgd.RegionIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/region/index?locale=%s", c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
