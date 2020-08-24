@@ -202,10 +202,10 @@ type CharacterEquipmentSummary struct {
 			} `json:"spell"`
 			Description  string `json:"description"`
 			DisplayColor struct {
-				R int `json:"r"`
-				G int `json:"g"`
-				B int `json:"b"`
-				A int `json:"a"`
+				R int     `json:"r"`
+				G int     `json:"g"`
+				B int     `json:"b"`
+				A float64 `json:"a"`
 			} `json:"display_color"`
 		} `json:"spells,omitempty"`
 		Description      string `json:"description,omitempty"`
