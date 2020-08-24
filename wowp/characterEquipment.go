@@ -200,7 +200,13 @@ type CharacterEquipmentSummary struct {
 				Name string `json:"name"`
 				ID   int    `json:"id"`
 			} `json:"spell"`
-			Description string `json:"description"`
+			Description  string `json:"description"`
+			DisplayColor struct {
+				R int `json:"r"`
+				G int `json:"g"`
+				B int `json:"b"`
+				A int `json:"a"`
+			} `json:"display_color"`
 		} `json:"spells,omitempty"`
 		Description      string `json:"description,omitempty"`
 		IsSubclassHidden bool   `json:"is_subclass_hidden,omitempty"`
