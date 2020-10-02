@@ -571,6 +571,54 @@ func TestWoWPet(t *testing.T) {
 	}
 }
 
+func TestWoWPetMedia(t *testing.T) {
+	dat, _, err := c.WoWPetMedia(39)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWPetAbilityIndex(t *testing.T) {
+	dat, _, err := c.WoWPetAbilityIndex()
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWPetAbilty(t *testing.T) {
+	dat, _, err := c.WoWPetAbility(110)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWPetAbilityMedia(t *testing.T) {
+	dat, _, err := c.WoWPetAbilityMedia(110)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWPlayableClassesIndex(t *testing.T) {
 	dat, _, err := c.WoWPlayableClassesIndex()
 	if err != nil {

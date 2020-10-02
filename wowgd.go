@@ -578,7 +578,7 @@ func (c *Client) WoWJournalExpansion(journalExpansionID int) (*wowgd.JournalExpa
 	return &dat, b, nil
 }
 
-// JournalEncountersIndex returns an index of journal encounters.
+// WoWJournalEncountersIndex returns an index of journal encounters.
 func (c *Client) WoWJournalEncountersIndex() (*wowgd.JournalEncountersIndex, []byte, error) {
 	var (
 		dat wowgd.JournalEncountersIndex
@@ -621,7 +621,7 @@ func (c *Client) WoWJournalEncounter(journalEncounterID int) (*wowgd.JournalEnco
 	return &dat, b, nil
 }
 
-// JournalInstancesIndex returns an index of journal instances.
+// WoWJournalInstancesIndex returns an index of journal instances.
 func (c *Client) WoWJournalInstancesIndex() (*wowgd.JournalInstancesIndex, []byte, error) {
 	var (
 		dat wowgd.JournalInstancesIndex
@@ -988,6 +988,90 @@ func (c *Client) WoWPet(petID int) (*wowgd.Pet, []byte, error) {
 	)
 
 	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/pet/%d?locale=%s", petID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWPetMedia returns media information for a pet ID.
+func (c *Client) WoWPetMedia(petID int) (*wowgd.PetMedia, []byte, error) {
+	var (
+		dat wowgd.PetMedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/media/pet/%d?locale=%s", petID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWPetAbilityIndex returns an index of pet abilities.
+func (c *Client) WoWPetAbilityIndex() (*wowgd.PetAbilityIndex, []byte, error) {
+	var (
+		dat wowgd.PetAbilityIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/pet-ability/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWPetAbility returns a pet ability by ID.
+func (c *Client) WoWPetAbility(petAbilityID int) (*wowgd.PetAbility, []byte, error) {
+	var (
+		dat wowgd.PetAbility
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/pet-ability/%d?locale=%s", petAbilityID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWPetAbilityMedia returns media information for a pet ID.
+func (c *Client) WoWPetAbilityMedia(petAbilityID int) (*wowgd.PetMedia, []byte, error) {
+	var (
+		dat wowgd.PetMedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/media/pet-ability/%d?locale=%s", petAbilityID, c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
