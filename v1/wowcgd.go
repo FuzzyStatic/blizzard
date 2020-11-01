@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/FuzzyStatic/blizzard/wowcgd"
-	"github.com/FuzzyStatic/blizzard/wowgd"
+	"github.com/FuzzyStatic/blizzard/v1/wowcgd"
+	"github.com/FuzzyStatic/blizzard/v1/wowgd"
 )
 
 // ClassicWoWCreatureFamiliesIndex returns an index of creature families.

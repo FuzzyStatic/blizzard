@@ -83,12 +83,6 @@ const (
 	ZhTW = Locale("zh_TW")
 )
 
-// Path constants
-const (
-	localeQuery = "locale="
-	dataPath    = "/data"
-)
-
 // NewClient create new Blizzard structure. This structure will be used to acquire your access token and make API calls.
 func NewClient(clientID, clientSecret string, region Region, locale Locale) *Client {
 	var c = Client{

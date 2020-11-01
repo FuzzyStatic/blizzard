@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/FuzzyStatic/blizzard/hsgd"
+	"github.com/FuzzyStatic/blizzard/v1/hsgd"
 )
 
 func TestHSCardsSearch(t *testing.T) {

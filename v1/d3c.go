@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/FuzzyStatic/blizzard/d3c"
+	"github.com/FuzzyStatic/blizzard/v1/d3c"
 )
 
 // D3ActIndex returns an index of acts

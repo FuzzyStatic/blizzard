@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/FuzzyStatic/blizzard/wowgd"
+	"github.com/FuzzyStatic/blizzard/v1/wowgd"
 )
 
 // WoWAchievementCategoriesIndex returns an index of achievement categories.

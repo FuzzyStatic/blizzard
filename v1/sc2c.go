@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/FuzzyStatic/blizzard/sc2c"
+	"github.com/FuzzyStatic/blizzard/v1/sc2c"
 )
 
 // SC2StaticProfile returns all static SC2 profile data (achievements, categories, criteria, and rewards)
