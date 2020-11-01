@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/FuzzyStatic/blizzard"
+	"github.com/FuzzyStatic/blizzard/v1"
 )
 
 var (
