@@ -24,7 +24,7 @@
 First, download the Blizzard library:
 
 ```shell
-go get github.com/FuzzyStatic/blizzard/v1
+go get github.com/FuzzyStatic/blizzard/v2
 ```
 
 Start using the library by initiating a new Blizzard config structure for your desired region and locale (client_id and client_secret can be acquired through your developer account at [https://develop.battle.net/](https://develop.battle.net/)) and requesting an access token:
@@ -32,7 +32,7 @@ Start using the library by initiating a new Blizzard config structure for your d
 ```go
 blizz := blizzard.NewClient("client_id", "client_secret", blizzard.US, blizzard.EnUS)
 
-err := blizz.AccessTokenRequest()
+err := blizz.AccessTokenRequest(ctx)
 if err != nil {
   fmt.Println(err)
 }
@@ -43,7 +43,7 @@ if err != nil {
 You can use the functions prefixed with "D3" to acquire Diablo 3 information. For example, you can get information about the current D3 hardcore necromancer leaderboards:
 
 ```go
-dat, _, err := blizz.D3SeasonLeaderboardHardcoreNecromancer(15)
+dat, _, err := blizz.D3SeasonLeaderboardHardcoreNecromancer(ctx, 15)
 if err != nil {
   fmt.Println(err)
 }
@@ -56,7 +56,7 @@ fmt.Printf("%+v\n", dat)
 You can use the functions prefixed with "HS" to acquire Hearthstone information. For example, you can get information about all the Hearthstone cards:
 
 ```go
-dat, _, err := blizz.HSCardsAll()
+dat, _, err := blizz.HSCardsAll(ctx)
 if err != nil {
   fmt.Println(err)
 }
@@ -69,7 +69,7 @@ fmt.Printf("%+v\n", dat)
 You can use the functions prefixed with "SC2" to acquire StarCraft 2 information. For example, you can get information about the current SC2 grandmaster ladder:
 
 ```go
-dat, _, err := blizz.SC2LadderGrandmaster(blizzard.EU)
+dat, _, err := blizz.SC2LadderGrandmaster(ctx, blizzard.EU)
 if err != nil {
   fmt.Println(err)
 }
@@ -82,7 +82,7 @@ fmt.Printf("%+v\n", dat)
 You can use the functions prefixed with "WoW" to acquire World of Warcraft information. For example, you can get information about your WoW character profile:
 
 ```go
-dat, _, err := blizz.WoWCharacterProfileSummary("illidan", "wildz")
+dat, _, err := blizz.WoWCharacterProfileSummary(ctx, "illidan", "wildz")
 if err != nil {
   fmt.Println(err)
 }
@@ -93,7 +93,7 @@ fmt.Printf("%+v\n", dat)
 or get information about specific spells:
 
 ```go
-dat, _, err := blizz.WoWSpell(17086)
+dat, _, err := blizz.WoWSpell(ctx, 17086)
 if err != nil {
   fmt.Println(err)
 }
@@ -104,7 +104,7 @@ fmt.Printf("%+v\n", dat)
 or the PvP leaderboards:
 
 ```go
-dat, _, err := blizz.WoWCharacterPvPBracketStatistics(wowp.Bracket3v3)
+dat, _, err := blizz.WoWCharacterPvPBracketStatistics(ctx, wowp.Bracket3v3)
 if err != nil {
   fmt.Println(err)
 }
@@ -117,7 +117,7 @@ fmt.Printf("%+v\n", dat)
 You can use the functions prefixed with "ClassicWoW" to acquire World of Warcraft Classic information. For example, you can get information about WoW Classic creature data:
 
 ```go
-dat, _, err := blizz.ClassicWoWCreature(30)
+dat, _, err := blizz.ClassicWoWCreature(ctx, 30)
 if err != nil {
   fmt.Println(err)
 }
@@ -225,7 +225,7 @@ func main() {
 Now you can validate those tokens with the OAuth API:
 
 ```go
-dat, _, err := blizz.TokenValidation(token)
+dat, _, err := blizz.TokenValidation(ctx, token)
 if err != nil {
   fmt.Println(err)
 }
