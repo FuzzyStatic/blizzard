@@ -24,7 +24,7 @@
 First, download the Blizzard library:
 
 ```shell
-go get github.com/FuzzyStatic/blizzard
+go get github.com/FuzzyStatic/blizzard/v1
 ```
 
 Start using the library by initiating a new Blizzard config structure for your desired region and locale (client_id and client_secret can be acquired through your developer account at [https://develop.battle.net/](https://develop.battle.net/)) and requesting an access token:
