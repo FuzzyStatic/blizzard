@@ -71,3 +71,46 @@ type CharacterAchievementsSummary struct {
 		} `json:"realm"`
 	} `json:"character"`
 }
+
+// Statistics struct used for representing nested Statistics
+type Statistics []struct {
+	ID                   int     `json:"id"`
+	Name                 string  `json:"name"`
+	LastUpdatedTimestamp int64   `json:"last_updated_timestamp"`
+	Quantity             float64 `json:"quantity"`
+	Description          string  `json:"description,omitempty"`
+}
+
+// CharacterAchievementsStatistics structure
+type CharacterAchievementsStatistics struct {
+	Links struct {
+		Self struct {
+			Href string `json:"href"`
+		} `json:"self"`
+	} `json:"_links"`
+	Character struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		Name  string `json:"name"`
+		ID    int    `json:"id"`
+		Realm struct {
+			Key struct {
+				Href string `json:"href"`
+			} `json:"key"`
+			Name string `json:"name"`
+			ID   int    `json:"id"`
+			Slug string `json:"slug"`
+		} `json:"realm"`
+	} `json:"character"`
+	Categories []struct {
+		ID            int    `json:"id"`
+		Name          string `json:"name"`
+		SubCategories []struct {
+			ID         int        `json:"id"`
+			Name       string     `json:"name"`
+			Statistics Statistics `json:"statistics"`
+		} `json:"sub_categories,omitempty"`
+		Statistics Statistics `json:"statistics,omitempty"`
+	} `json:"categories"`
+}

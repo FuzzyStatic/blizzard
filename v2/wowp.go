@@ -70,6 +70,29 @@ func (c *Client) WoWCharacterAchievementsSummary(ctx context.Context, realmSlug,
 	return &dat, b, nil
 }
 
+// WoWCharacterAchievementsStatistics returns a character's statistics as they pertain to achievements.
+func (c *Client) WoWCharacterAchievementsStatistics(ctx context.Context, realmSlug, characterName string) (*wowp.CharacterAchievementsStatistics, []byte, error) {
+	var (
+		dat wowp.CharacterAchievementsStatistics
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+
+		fmt.Sprintf("/profile/wow/character/%s/%s/achievements/statistics?locale=%s", realmSlug, strings.ToLower(characterName), c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
 // WoWCharacterAppearanceSummary returns a summary of a character's appearance settings.
 func (c *Client) WoWCharacterAppearanceSummary(ctx context.Context, realmSlug, characterName string) (*wowp.CharacterAppearanceSummary, []byte, error) {
 	var (
