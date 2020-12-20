@@ -20,6 +20,18 @@ func TestWoWCharacterAchievementsSummary(t *testing.T) {
 	}
 }
 
+func TestWoWCharacterAchievementsStatistics(t *testing.T) {
+	dat, _, err := c.WoWCharacterAchievementsStatistics(context.Background(), "illidan", "Darkee")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWCharacterAppearanceSummary(t *testing.T) {
 	dat, _, err := c.WoWCharacterAppearanceSummary(context.Background(), "illidan", "Darkee")
 	if err != nil {
