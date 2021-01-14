@@ -129,7 +129,7 @@ func TestWoWCharacterEquipmentSummary(t *testing.T) {
 }
 
 func TestWoWCharacterHunterPetsSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterHunterPetsSummary(context.Background(), "illidan", "Defraudedguy")
+	dat, _, err := c.WoWCharacterHunterPetsSummary(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
