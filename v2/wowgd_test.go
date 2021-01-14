@@ -453,7 +453,7 @@ func TestWoWMythicKeystoneDungeonIndex(t *testing.T) {
 }
 
 func TestWoWMythicKeystoneDungeon(t *testing.T) {
-	dat, _, err := c.WoWMythicKeystoneDungeon(context.Background(), 353)
+	dat, _, err := c.WoWMythicKeystoneDungeon(context.Background(), 375)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
