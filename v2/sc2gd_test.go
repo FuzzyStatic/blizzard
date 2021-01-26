@@ -19,3 +19,15 @@ func TestSC2LeagueData(t *testing.T) {
 		fmt.Printf("%+v\n", dat)
 	}
 }
+
+func TestSC2LadderData(t *testing.T) {
+	dat, _, err := c.SC2LadderData(context.Background(), 292787)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
