@@ -27,3 +27,25 @@ func (c *Client) SC2LeagueData(seasonID int, queueID sc2gd.QueueID, teamType sc2
 
 	return &dat, b, nil
 }
+
+// SC2LadderData returns SC2 ladder for given division's ladderID.
+// This API is undocumented by Blizzard, so it may be unstable.
+func (c *Client) SC2LadderData(ladderID int) (*sc2gd.Ladder, []byte, error) {
+	var (
+		dat sc2gd.Ladder
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/sc2/ladder/%d?locale=%s", ladderID, c.locale), "")
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}

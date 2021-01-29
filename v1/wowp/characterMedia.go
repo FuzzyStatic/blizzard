@@ -22,7 +22,8 @@ type CharacterMediaSummary struct {
 			Slug string `json:"slug"`
 		} `json:"realm"`
 	} `json:"character"`
-	AvatarURL string `json:"avatar_url"`
-	BustURL   string `json:"bust_url"`
-	RenderURL string `json:"render_url"`
+	Assets []struct {
+		Key   string `json:"key"`
+		Value string `json:"value"`
+	} `json:"assets"`
 }
