@@ -1,6 +1,7 @@
 package blizzard
 
 import (
+	"context"
 	"fmt"
 	"testing"
 
@@ -117,6 +118,90 @@ func TestWoWConnectedRealmIndex(t *testing.T) {
 
 func TestWoWConnectedRealm(t *testing.T) {
 	dat, _, err := c.WoWConnectedRealm(11)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCovenantsIndex(t *testing.T) {
+	dat, _, err := c.WoWCovenantsIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCovenant(t *testing.T) {
+	dat, _, err := c.WoWCovenant(1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCovenantMedia(t *testing.T) {
+	dat, _, err := c.WoWCovenantMedia(1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCovenantSoulbindsIndex(t *testing.T) {
+	dat, _, err := c.WoWCovenantSoulbindsIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCovenantSoulbind(t *testing.T) {
+	dat, _, err := c.WoWCovenantSoulbind(1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCovenantConduitsIndex(t *testing.T) {
+	dat, _, err := c.WoWCovenantConduitsIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCovenantConduit(t *testing.T) {
+	dat, _, err := c.WoWCovenantConduit(13)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

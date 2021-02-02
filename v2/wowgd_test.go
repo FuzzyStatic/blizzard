@@ -128,6 +128,90 @@ func TestWoWConnectedRealm(t *testing.T) {
 	}
 }
 
+func TestWoWCovenantsIndex(t *testing.T) {
+	dat, _, err := c.WoWCovenantsIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCovenant(t *testing.T) {
+	dat, _, err := c.WoWCovenant(context.Background(), 1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCovenantMedia(t *testing.T) {
+	dat, _, err := c.WoWCovenantMedia(context.Background(), 1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCovenantSoulbindsIndex(t *testing.T) {
+	dat, _, err := c.WoWCovenantSoulbindsIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCovenantSoulbind(t *testing.T) {
+	dat, _, err := c.WoWCovenantSoulbind(context.Background(), 1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCovenantConduitsIndex(t *testing.T) {
+	dat, _, err := c.WoWCovenantConduitsIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCovenantConduit(t *testing.T) {
+	dat, _, err := c.WoWCovenantConduit(context.Background(), 13)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWCreatureFamiliesIndex(t *testing.T) {
 	dat, _, err := c.WoWCreatureFamiliesIndex(context.Background())
 	if err != nil {

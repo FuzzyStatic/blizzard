@@ -1,6 +1,7 @@
 package blizzard
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 
@@ -205,6 +206,153 @@ func (c *Client) WoWConnectedRealm(connectedRealmID int) (*wowgd.ConnectedRealm,
 	)
 
 	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/connected-realm/%d?locale=%s", connectedRealmID, c.locale), c.dynamicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCovenantsIndex returns an index of covenants.
+func (c *Client) WoWCovenantsIndex(ctx context.Context) (*wowgd.CovenantsIndex, []byte, error) {
+	var (
+		dat wowgd.CovenantsIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/covenant/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCovenant returns a covenant by ID.
+func (c *Client) WoWCovenant(covenantID int) (*wowgd.Covenant, []byte, error) {
+	var (
+		dat wowgd.Covenant
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/covenant/%d?locale=%s", covenantID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCovenantMedia returns media for a covenant by ID.
+func (c *Client) WoWCovenantMedia(covenantID int) (*wowgd.CovenantMedia, []byte, error) {
+	var (
+		dat wowgd.CovenantMedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/media/covenant/%d?locale=%s", covenantID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCovenantSoulbindsIndex returns an index of soulbinds.
+func (c *Client) WoWCovenantSoulbindsIndex(ctx context.Context) (*wowgd.CovenantSoulbindsIndex, []byte, error) {
+	var (
+		dat wowgd.CovenantSoulbindsIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/covenant/soulbind/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCovenantSoulbind returns a soulbind by ID.
+func (c *Client) WoWCovenantSoulbind(soulbindID int) (*wowgd.CovenantSoulbind, []byte, error) {
+	var (
+		dat wowgd.CovenantSoulbind
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/covenant/soulbind/%d?locale=%s", soulbindID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCovenantConduitsIndex returns an index of conduits.
+func (c *Client) WoWCovenantConduitsIndex(ctx context.Context) (*wowgd.CovenantConduitsIndex, []byte, error) {
+	var (
+		dat wowgd.CovenantConduitsIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/covenant/conduit/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWCovenantConduit returns a conduit by ID.
+func (c *Client) WoWCovenantConduit(conduitID int) (*wowgd.CovenantConduit, []byte, error) {
+	var (
+		dat wowgd.CovenantConduit
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(c.apiURL+fmt.Sprintf("/data/wow/covenant/conduit/%d?locale=%s", conduitID, c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
