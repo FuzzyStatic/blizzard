@@ -68,6 +68,18 @@ func TestWoWAchievementMedia(t *testing.T) {
 	}
 }
 
+func TestWoWAuctions(t *testing.T) {
+	dat, _, err := c.WoWAuctions(context.Background(), 1138)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWAzeriteEssenceIndex(t *testing.T) {
 	dat, _, err := c.WoWAzeriteEssenceIndex(context.Background())
 	if err != nil {
@@ -104,8 +116,8 @@ func TestWoWAzeriteEssenceMedia(t *testing.T) {
 	}
 }
 
-func TestWoWConnectedRealmIndex(t *testing.T) {
-	dat, _, err := c.WoWConnectedRealmIndex(context.Background())
+func TestWoWConnectedRealmsIndex(t *testing.T) {
+	dat, _, err := c.WoWConnectedRealmsIndex(context.Background())
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

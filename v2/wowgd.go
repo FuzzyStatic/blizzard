@@ -113,6 +113,27 @@ func (c *Client) WoWAchievementMedia(ctx context.Context, achievementID int) (*w
 	return &dat, b, nil
 }
 
+// WoWAuctions returns all active auctions for a connected realm. See the Connected Realm API for information about retrieving a list of connected realm IDs. Auction house data updates at a set interval. The value was initially set at 1 hour; however, it might change over time without notice. Depending on the number of active auctions on the specified connected realm, the response from this endpoint may be rather large, sometimes exceeding 10 MB..
+func (c *Client) WoWAuctions(ctx context.Context, connectedRealmID int) (*wowgd.AuctionHouse, []byte, error) {
+	var (
+		dat wowgd.AuctionHouse
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/connected-realm/%d/auctions?locale=%s", connectedRealmID, c.locale), c.dynamicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
 // WoWAzeriteEssenceIndex returns an index of azerite essences.
 func (c *Client) WoWAzeriteEssenceIndex(ctx context.Context) (*wowgd.AzeriteEssenceIndex, []byte, error) {
 	var (
@@ -176,10 +197,10 @@ func (c *Client) WoWAzeriteEssenceMedia(ctx context.Context, azeriteEssenceID in
 	return &dat, b, nil
 }
 
-// WoWConnectedRealmIndex returns an index of connected realms
-func (c *Client) WoWConnectedRealmIndex(ctx context.Context) (*wowgd.ConnectedRealmIndex, []byte, error) {
+// WoWConnectedRealmsIndex returns an index of connected realms
+func (c *Client) WoWConnectedRealmsIndex(ctx context.Context) (*wowgd.ConnectedRealmsIndex, []byte, error) {
 	var (
-		dat wowgd.ConnectedRealmIndex
+		dat wowgd.ConnectedRealmsIndex
 		b   []byte
 		err error
 	)
@@ -217,6 +238,27 @@ func (c *Client) WoWConnectedRealm(ctx context.Context, connectedRealmID int) (*
 
 	return &dat, b, nil
 }
+
+// // WoWConnectedRealmsSearch performs a search of connected realms.
+// func (c *Client) WoWConnectedRealmsSearch(ctx context.Context) (*wowgd.ConnectedRealmsSearch, []byte, error) {
+// 	var (
+// 		dat wowgd.ConnectedRealmsSearch
+// 		b   []byte
+// 		err error
+// 	)
+
+// 	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/search/connected-realm?locale=%s", c.locale), c.dynamicNamespace)
+// 	if err != nil {
+// 		return &dat, b, err
+// 	}
+
+// 	err = json.Unmarshal(b, &dat)
+// 	if err != nil {
+// 		return &dat, b, err
+// 	}
+
+// 	return &dat, b, nil
+// }
 
 // WoWCovenantsIndex returns an index of covenants.
 func (c *Client) WoWCovenantsIndex(ctx context.Context) (*wowgd.CovenantsIndex, []byte, error) {
