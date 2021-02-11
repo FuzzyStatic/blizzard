@@ -10,3 +10,14 @@ const (
 	Bracket3v3 Bracket = "3v3"
 	BracketRBG Bracket = "rbg"
 )
+
+// TimeLeft string
+type TimeLeft string
+
+// TimeLeft field for Auction House structure
+const (
+	TimeLeftShort    TimeLeft = "SHORT"
+	TimeLeftMedium   TimeLeft = "MEDIUM"
+	TimeLeftLong     TimeLeft = "LONG"
+	TimeLeftVeryLong TimeLeft = "VERY_LONG"
+)

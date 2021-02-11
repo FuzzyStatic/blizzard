@@ -9,7 +9,7 @@ import (
 )
 
 func TestWoWCharacterAchievementsSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterAchievementsSummary(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterAchievementsSummary(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -21,7 +21,7 @@ func TestWoWCharacterAchievementsSummary(t *testing.T) {
 }
 
 func TestWoWCharacterAchievementsStatistics(t *testing.T) {
-	dat, _, err := c.WoWCharacterAchievementsStatistics(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterAchievementsStatistics(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -33,7 +33,7 @@ func TestWoWCharacterAchievementsStatistics(t *testing.T) {
 }
 
 func TestWoWCharacterAppearanceSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterAppearanceSummary(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterAppearanceSummary(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -45,7 +45,7 @@ func TestWoWCharacterAppearanceSummary(t *testing.T) {
 }
 
 func TestWoWCharacterCollectionsIndex(t *testing.T) {
-	dat, _, err := c.WoWCharacterCollectionsIndex(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterCollectionsIndex(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -57,7 +57,7 @@ func TestWoWCharacterCollectionsIndex(t *testing.T) {
 }
 
 func TestWoWCharacterMountsCollectionSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterMountsCollectionSummary(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterMountsCollectionSummary(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -69,7 +69,7 @@ func TestWoWCharacterMountsCollectionSummary(t *testing.T) {
 }
 
 func TestWoWCharacterPetsCollectionSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterPetsCollectionSummary(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterPetsCollectionSummary(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -81,7 +81,7 @@ func TestWoWCharacterPetsCollectionSummary(t *testing.T) {
 }
 
 func TestWoWCharacterEncountersSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterEncountersSummary(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterEncountersSummary(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -93,7 +93,7 @@ func TestWoWCharacterEncountersSummary(t *testing.T) {
 }
 
 func TestWoWCharacterDungeons(t *testing.T) {
-	dat, _, err := c.WoWCharacterDungeons(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterDungeons(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -105,7 +105,7 @@ func TestWoWCharacterDungeons(t *testing.T) {
 }
 
 func TestWoWCharacterRaids(t *testing.T) {
-	dat, _, err := c.WoWCharacterRaids(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterRaids(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -117,7 +117,7 @@ func TestWoWCharacterRaids(t *testing.T) {
 }
 
 func TestWoWCharacterEquipmentSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterEquipmentSummary(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterEquipmentSummary(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -141,7 +141,7 @@ func TestWoWCharacterHunterPetsSummary(t *testing.T) {
 }
 
 func TestWoWCharacterMediaSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterMediaSummary(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterMediaSummary(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -153,7 +153,7 @@ func TestWoWCharacterMediaSummary(t *testing.T) {
 }
 
 func TestWoWCharacterProfileSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterProfileSummary(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterProfileSummary(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -165,7 +165,7 @@ func TestWoWCharacterProfileSummary(t *testing.T) {
 }
 
 func TestWoWCharacterProfileStatus(t *testing.T) {
-	dat, _, err := c.WoWCharacterProfileStatus(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterProfileStatus(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -177,7 +177,7 @@ func TestWoWCharacterProfileStatus(t *testing.T) {
 }
 
 func TestWoWCharacterMythicKeystoneProfile(t *testing.T) {
-	dat, _, err := c.WoWCharacterMythicKeystoneProfile(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterMythicKeystoneProfile(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -189,7 +189,7 @@ func TestWoWCharacterMythicKeystoneProfile(t *testing.T) {
 }
 
 func TestWoWCharacterMythicKeystoneProfileSeason(t *testing.T) {
-	dat, _, err := c.WoWCharacterMythicKeystoneProfileSeason(context.Background(), "illidan", "Darkee", 1)
+	dat, _, err := c.WoWCharacterMythicKeystoneProfileSeason(context.Background(), "illidan", "covlol", 1)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -245,7 +245,7 @@ func TestWoWCharacterPvPSummary(t *testing.T) {
 }
 
 func TestWoWCharacterQuests(t *testing.T) {
-	dat, _, err := c.WoWCharacterQuests(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterQuests(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -257,7 +257,7 @@ func TestWoWCharacterQuests(t *testing.T) {
 }
 
 func TestWoWCharacterCompletedQuests(t *testing.T) {
-	dat, _, err := c.WoWCharacterCompletedQuests(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterCompletedQuests(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -269,7 +269,7 @@ func TestWoWCharacterCompletedQuests(t *testing.T) {
 }
 
 func TestWoWCharacterReputationsSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterReputationsSummary(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterReputationsSummary(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -281,7 +281,7 @@ func TestWoWCharacterReputationsSummary(t *testing.T) {
 }
 
 func TestWoWCharacterSpecializationsSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterSpecializationsSummary(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterSpecializationsSummary(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -293,7 +293,7 @@ func TestWoWCharacterSpecializationsSummary(t *testing.T) {
 }
 
 func TestWoWCharacterStatisticsSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterStatisticsSummary(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterStatisticsSummary(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -305,7 +305,7 @@ func TestWoWCharacterStatisticsSummary(t *testing.T) {
 }
 
 func TestWoWCharacterTitlesSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterTitlesSummary(context.Background(), "illidan", "Darkee")
+	dat, _, err := c.WoWCharacterTitlesSummary(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
