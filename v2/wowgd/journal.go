@@ -194,3 +194,16 @@ type JournalInstance struct {
 		Type string `json:"type"`
 	} `json:"category"`
 }
+
+// JournalInstanceMedia structure
+type JournalInstanceMedia struct {
+	Links struct {
+		Self struct {
+			Href string `json:"href"`
+		} `json:"self"`
+	} `json:"_links"`
+	Assets []struct {
+		Key   string `json:"key"`
+		Value string `json:"value"`
+	} `json:"assets"`
+}

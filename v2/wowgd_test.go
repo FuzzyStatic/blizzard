@@ -380,6 +380,18 @@ func TestWoWJournalInstance(t *testing.T) {
 	}
 }
 
+func TestWoWJournalInstanceMedia(t *testing.T) {
+	dat, _, err := c.WoWJournalInstanceMedia(context.Background(), 968)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWMountIndex(t *testing.T) {
 	dat, _, err := c.WoWMountIndex(context.Background())
 	if err != nil {
