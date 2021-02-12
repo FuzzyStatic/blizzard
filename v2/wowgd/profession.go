@@ -116,8 +116,8 @@ type Recipe struct {
 		Quantity int `json:"quantity"`
 	} `json:"reagents"`
 	CraftedQuantity struct {
-		Minimum int `json:"minimum"`
-		Maximum int `json:"maximum"`
+		Minimum float32 `json:"minimum"`
+		Maximum float32 `json:"maximum"`
 	} `json:"crafted_quantity"`
 }
 
