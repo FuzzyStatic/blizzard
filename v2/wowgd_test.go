@@ -488,6 +488,66 @@ func TestWoWJournalInstanceMedia(t *testing.T) {
 	}
 }
 
+func TestWoWModifiedCraftingIndex(t *testing.T) {
+	dat, _, err := c.WoWModifiedCraftingIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWModifiedCraftingCategoryIndex(t *testing.T) {
+	dat, _, err := c.WoWModifiedCraftingCategoryIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWModifiedCraftingCategory(t *testing.T) {
+	dat, _, err := c.WoWModifiedCraftingCategory(context.Background(), 1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWModifiedCraftingReagentSlotTypeIndex(t *testing.T) {
+	dat, _, err := c.WoWModifiedCraftingReagentSlotTypeIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWModifiedCraftingReagentSlotType(t *testing.T) {
+	dat, _, err := c.WoWModifiedCraftingReagentSlotType(context.Background(), 16)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWMountIndex(t *testing.T) {
 	dat, _, err := c.WoWMountIndex(context.Background())
 	if err != nil {
@@ -836,6 +896,78 @@ func TestWoWPowerType(t *testing.T) {
 	}
 }
 
+func TestWoWProfessionsIndex(t *testing.T) {
+	dat, _, err := c.WoWProfessionsIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWProfession(t *testing.T) {
+	dat, _, err := c.WoWProfession(context.Background(), 164)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWProfessionMedia(t *testing.T) {
+	dat, _, err := c.WoWProfessionMedia(context.Background(), 164)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWProfessionSkillTier(t *testing.T) {
+	dat, _, err := c.WoWProfessionSkillTier(context.Background(), 164, 2477)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWRecipe(t *testing.T) {
+	dat, _, err := c.WoWRecipe(context.Background(), 1631)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWRecipeMedia(t *testing.T) {
+	dat, _, err := c.WoWRecipeMedia(context.Background(), 1631)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWPvPSeasonIndex(t *testing.T) {
 	dat, _, err := c.WoWPvPSeasonIndex(context.Background())
 	if err != nil {
@@ -932,6 +1064,102 @@ func TestWoWPvPTier(t *testing.T) {
 	}
 }
 
+func TestWoWQuestsIndex(t *testing.T) {
+	dat, _, err := c.WoWQuestsIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWQuest(t *testing.T) {
+	dat, _, err := c.WoWQuest(context.Background(), 2)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWQuestCategoriesIndex(t *testing.T) {
+	dat, _, err := c.WoWQuestCategoriesIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWQuestCategory(t *testing.T) {
+	dat, _, err := c.WoWQuestCategory(context.Background(), 1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWQuestAreasIndex(t *testing.T) {
+	dat, _, err := c.WoWQuestAreasIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWQuestArea(t *testing.T) {
+	dat, _, err := c.WoWQuestArea(context.Background(), 1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWQuestTypesIndex(t *testing.T) {
+	dat, _, err := c.WoWQuestTypesIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWQuestType(t *testing.T) {
+	dat, _, err := c.WoWQuestType(context.Background(), 1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWReputationFactionsIndex(t *testing.T) {
 	dat, _, err := c.WoWReputationFactionsIndex(context.Background())
 	if err != nil {
@@ -970,6 +1198,138 @@ func TestWoWReputationTiersIndex(t *testing.T) {
 
 func TestWoWReputationTiers(t *testing.T) {
 	dat, _, err := c.WoWReputationTiers(context.Background(), 2)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWSpell(t *testing.T) {
+	dat, _, err := c.WoWSpell(context.Background(), 196607)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWSpellMedia(t *testing.T) {
+	dat, _, err := c.WoWSpellMedia(context.Background(), 196607)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWTalentsIndex(t *testing.T) {
+	dat, _, err := c.WoWTalentsIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWTalent(t *testing.T) {
+	dat, _, err := c.WoWTalent(context.Background(), 23106)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWPvPTalentIndex(t *testing.T) {
+	dat, _, err := c.WoWPvPTalentIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWPvPTalent(t *testing.T) {
+	dat, _, err := c.WoWPvPTalent(context.Background(), 11)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWTechTalentTreeIndex(t *testing.T) {
+	dat, _, err := c.WoWTechTalentTreeIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWTechTalentTree(t *testing.T) {
+	dat, _, err := c.WoWTechTalentTree(context.Background(), 272)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWTechTalentIndex(t *testing.T) {
+	dat, _, err := c.WoWTechTalentIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWTechTalent(t *testing.T) {
+	dat, _, err := c.WoWTechTalent(context.Background(), 863)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWTechTalentMedia(t *testing.T) {
+	dat, _, err := c.WoWTechTalentMedia(context.Background(), 863)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

@@ -877,6 +877,122 @@ func (c *Client) WoWJournalInstanceMedia(ctx context.Context,
 	return &dat, b, nil
 }
 
+// WoWModifiedCraftingIndex returns the parent index for Modified Crafting.
+func (c *Client) WoWModifiedCraftingIndex(ctx context.Context) (*wowgd.ModifiedCraftingIndex, []byte,
+	error) {
+	var (
+		dat wowgd.ModifiedCraftingIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/modified-crafting/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWModifiedCraftingCategoryIndex returns the index of Modified Crafting categories.
+func (c *Client) WoWModifiedCraftingCategoryIndex(ctx context.Context) (*wowgd.ModifiedCraftingCategoryIndex, []byte, error) {
+	var (
+		dat wowgd.ModifiedCraftingCategoryIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+
+		fmt.Sprintf("/data/wow/modified-crafting/category/index?locale=%s",
+			c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWModifiedCraftingCategory returns a Modified Crafting category by ID.
+func (c *Client) WoWModifiedCraftingCategory(ctx context.Context, categoryID int) (*wowgd.ModifiedCraftingCategory, []byte, error) {
+	var (
+		dat wowgd.ModifiedCraftingCategory
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+
+		fmt.Sprintf("/data/wow/modified-crafting/category/%d?locale=%s", categoryID,
+			c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWModifiedCraftingReagentSlotTypeIndex returns the index of Modified Crafting reagent slot types.
+func (c *Client) WoWModifiedCraftingReagentSlotTypeIndex(ctx context.Context) (*wowgd.
+ModifiedCraftingReagentSlotTypeIndex, []byte, error) {
+	var (
+		dat wowgd.ModifiedCraftingReagentSlotTypeIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+
+		fmt.Sprintf("/data/wow/modified-crafting/reagent-slot-type/index?locale=%s",
+			c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWModifiedCraftingReagentSlotType returns a Modified Crafting reagent slot type by ID.
+func (c *Client) WoWModifiedCraftingReagentSlotType(ctx context.Context, slotTypeID int) (*wowgd.
+ModifiedCraftingReagentSlotType, []byte, error) {
+	var (
+		dat wowgd.ModifiedCraftingReagentSlotType
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+
+		fmt.Sprintf("/data/wow/modified-crafting/reagent-slot-type/%d?locale=%s", slotTypeID,
+			c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
 // WoWMountIndex returns an index of mounts.
 func (c *Client) WoWMountIndex(ctx context.Context) (*wowgd.MountIndex, []byte, error) {
 	var (
@@ -1486,6 +1602,145 @@ func (c *Client) WoWPowerType(ctx context.Context, powerTypeID int) (*wowgd.Powe
 	return &dat, b, nil
 }
 
+// WoWProfessionsIndex returns an index of professions.
+func (c *Client) WoWProfessionsIndex(ctx context.Context) (*wowgd.ProfessionsIndex, []byte, error) {
+	var (
+		dat wowgd.ProfessionsIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/profession/index?locale=%s",
+		c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWProfession returns a profession by ID.
+func (c *Client) WoWProfession(ctx context.Context, professionID int) (*wowgd.Profession, []byte,
+	error) {
+	var (
+		dat wowgd.Profession
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/profession/%d?locale=%s",
+		professionID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWProfessionMedia returns media for a profession by ID.
+func (c *Client) WoWProfessionMedia(ctx context.Context, professionID int) (*wowgd.ProfessionMedia, []byte,
+	error) {
+	var (
+		dat wowgd.ProfessionMedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/media/profession/%d?locale=%s",
+		professionID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWProfessionSkillTier returns a skill tier for a profession by ID.
+func (c *Client) WoWProfessionSkillTier(ctx context.Context, professionID int,
+	skillTierID int) (*wowgd.ProfessionSkillTier,
+	[]byte,
+	error) {
+	var (
+		dat wowgd.ProfessionSkillTier
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/profession/%d/skill-tier/%d?locale=%s",
+		professionID, skillTierID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWRecipe returns a recipe by ID.
+func (c *Client) WoWRecipe(ctx context.Context, recipeID int) (*wowgd.Recipe, []byte,
+	error) {
+	var (
+		dat wowgd.Recipe
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/recipe/%d?locale=%s",
+		recipeID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWRecipeMedia returns media for a recipe by ID.
+func (c *Client) WoWRecipeMedia(ctx context.Context, recipeID int) (*wowgd.RecipeMedia, []byte,
+	error) {
+	var (
+		dat wowgd.RecipeMedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/media/recipe/%d?locale=%s",
+		recipeID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
 // WoWPvPSeasonIndex returns an index of PvP seasons.
 func (c *Client) WoWPvPSeasonIndex(ctx context.Context) (*wowgd.PvPSeasonIndex, []byte, error) {
 	var (
@@ -1654,6 +1909,183 @@ func (c *Client) WoWPvPTier(ctx context.Context, pvpTierID int) (*wowgd.PvPTier,
 	return &dat, b, nil
 }
 
+// WoWQuestsIndex returns the parent index for quests.
+func (c *Client) WoWQuestsIndex(ctx context.Context) (*wowgd.QuestsIndex, []byte, error) {
+	var (
+		dat wowgd.QuestsIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/quest/index?locale=%s", c.locale),
+		c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWQuest returns a quest by ID.
+func (c *Client) WoWQuest(ctx context.Context, questID int) (*wowgd.Quest, []byte, error) {
+	var (
+		dat wowgd.Quest
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/quest/%d?locale=%s",
+		questID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWQuestCategoriesIndex returns an index of quest categories (such as quests for a specific class, profession, or storyline).
+func (c *Client) WoWQuestCategoriesIndex(ctx context.Context) (*wowgd.QuestCategoriesIndex, []byte, error) {
+	var (
+		dat wowgd.QuestCategoriesIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/quest/category/index?locale=%s",
+		c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWQuestCategory returns a quest category by ID.
+func (c *Client) WoWQuestCategory(ctx context.Context, questCategoryID int) (*wowgd.QuestCategory,
+	[]byte, error) {
+	var (
+		dat wowgd.QuestCategory
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/quest/category/%d?locale=%s",
+		questCategoryID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWQuestAreasIndex returns an index of quest areas.
+func (c *Client) WoWQuestAreasIndex(ctx context.Context) (*wowgd.QuestAreasIndex, []byte, error) {
+	var (
+		dat wowgd.QuestAreasIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/quest/area/index?locale=%s",
+		c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWQuestArea returns a quest area by ID.
+func (c *Client) WoWQuestArea(ctx context.Context, questAreaID int) (*wowgd.QuestArea, []byte, error) {
+	var (
+		dat wowgd.QuestArea
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/quest/area/%d?locale=%s",
+		questAreaID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWQuestTypesIndex returns an index of quest types (such as PvP quests, raid quests, or account quests).
+func (c *Client) WoWQuestTypesIndex(ctx context.Context) (*wowgd.QuestTypesIndex, []byte, error) {
+	var (
+		dat wowgd.QuestTypesIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/quest/type/index?locale=%s",
+		c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWQuestType returns a quest type by ID.
+func (c *Client) WoWQuestType(ctx context.Context, questTypeID int) (*wowgd.QuestType, []byte, error) {
+	var (
+		dat wowgd.QuestType
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/quest/type/%d?locale=%s",
+		questTypeID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
 // WoWRealmIndex returns an index of realms.
 func (c *Client) WoWRealmIndex(ctx context.Context) (*wowgd.RealmIndex, []byte, error) {
 	var (
@@ -1810,6 +2242,257 @@ func (c *Client) WoWReputationTiers(ctx context.Context, reputationTiersID int) 
 	)
 
 	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/reputation-tiers/%d?locale=%s", reputationTiersID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWSpell returns a spell by ID.
+func (c *Client) WoWSpell(ctx context.Context, spellID int) (*wowgd.Spell, []byte, error) {
+	var (
+		dat wowgd.Spell
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/spell/%d?locale=%s", spellID,
+		c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWSpellMedia returns media for a spell by ID.
+func (c *Client) WoWSpellMedia(ctx context.Context, spellID int) (*wowgd.SpellMedia, []byte,
+	error) {
+	var (
+		dat wowgd.SpellMedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/media/spell/%d?locale=%s", spellID,
+		c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWTalentsIndex returns an index of talents.
+func (c *Client) WoWTalentsIndex(ctx context.Context) (*wowgd.TalentsIndex, []byte,
+	error) {
+	var (
+		dat wowgd.TalentsIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/talent/?locale=%s",
+		c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWTalent returns a talent by ID.
+func (c *Client) WoWTalent(ctx context.Context, talentID int) (*wowgd.Talent, []byte,
+	error) {
+	var (
+		dat wowgd.Talent
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/talent/%d?locale=%s", talentID,
+		c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWPvPTalentIndex returns an index of PvP talents.
+func (c *Client) WoWPvPTalentIndex(ctx context.Context) (*wowgd.PvPTalentsIndex, []byte,
+	error) {
+	var (
+		dat wowgd.PvPTalentsIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/pvp-talent/?locale=%s",
+		c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWPvPTalent returns a PvP talent by ID.
+func (c *Client) WoWPvPTalent(ctx context.Context, pvpTalentID int) (*wowgd.PvPTalent, []byte,
+	error) {
+	var (
+		dat wowgd.PvPTalent
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/pvp-talent/%d?locale=%s", pvpTalentID,
+		c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWTechTalentTreeIndex returns an index of tech talent trees.
+func (c *Client) WoWTechTalentTreeIndex(ctx context.Context) (*wowgd.TechTalentTreeIndex, []byte, error) {
+	var (
+		dat wowgd.TechTalentTreeIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/tech-talent-tree/index?locale=%s",
+		c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWTechTalentTree returns a tech talent tree by ID.
+func (c *Client) WoWTechTalentTree(ctx context.Context, techTalentTreeID int) (*wowgd.TechTalentTree, []byte,
+	error) {
+	var (
+		dat wowgd.TechTalentTree
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/tech-talent-tree/%d?locale=%s",
+		techTalentTreeID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWTechTalentIndex returns an index of tech talents.
+func (c *Client) WoWTechTalentIndex(ctx context.Context) (*wowgd.TechTalentIndex, []byte,
+	error) {
+	var (
+		dat wowgd.TechTalentIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/tech-talent/index?locale=%s",
+		c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWTechTalent returns a tech talent by ID.
+func (c *Client) WoWTechTalent(ctx context.Context, techTalentID int) (*wowgd.TechTalent, []byte,
+	error) {
+	var (
+		dat wowgd.TechTalent
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/tech-talent/%d?locale=%s",
+		techTalentID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWTechTalentMedia returns media for a tech talent by ID.
+func (c *Client) WoWTechTalentMedia(ctx context.Context, techTalentID int) (*wowgd.TechTalentMedia, []byte,
+	error) {
+	var (
+		dat wowgd.TechTalentMedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/media/tech-talent/%d?locale=%s",
+		techTalentID, c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
