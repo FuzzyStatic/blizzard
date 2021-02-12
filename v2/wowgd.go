@@ -854,6 +854,29 @@ func (c *Client) WoWJournalInstance(ctx context.Context, journalInstanceID int) 
 	return &dat, b, nil
 }
 
+// WoWJournalInstanceMedia returns media for a journal instance by ID.
+func (c *Client) WoWJournalInstanceMedia(ctx context.Context,
+	journalInstanceID int) (*wowgd.JournalInstanceMedia, []byte, error) {
+	var (
+		dat wowgd.JournalInstanceMedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/media/journal-instance/%d?locale=%s",
+		journalInstanceID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
 // WoWMountIndex returns an index of mounts.
 func (c *Client) WoWMountIndex(ctx context.Context) (*wowgd.MountIndex, []byte, error) {
 	var (
