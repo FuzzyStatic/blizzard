@@ -6,8 +6,51 @@ import (
 	"fmt"
 
 	"github.com/FuzzyStatic/blizzard/v2/wowcgd"
-	"github.com/FuzzyStatic/blizzard/v2/wowgd"
 )
+
+// ClassicWoWConnectedRealmsIndex returns an index of connected realms.
+func (c *Client) ClassicWoWConnectedRealmsIndex(ctx context.Context) (*wowcgd.ConnectedRealmsIndex, []byte, error) {
+	var (
+		dat wowcgd.ConnectedRealmsIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/connected-realm/index?locale=%s",
+		c.locale), c.staticClassicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWConnectedRealm returns a connected realm by ID.
+func (c *Client) ClassicWoWConnectedRealm(ctx context.Context, connectedRealmID int) (*wowcgd.ConnectedRealm, []byte, error) {
+	var (
+		dat wowcgd.ConnectedRealm
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/connected-realm/%d?locale=%s",
+		connectedRealmID, c.locale), c.staticClassicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
 
 // ClassicWoWCreatureFamiliesIndex returns an index of creature families.
 func (c *Client) ClassicWoWCreatureFamiliesIndex(ctx context.Context) (*wowcgd.CreatureFamiliesIndex, []byte, error) {
@@ -475,9 +518,9 @@ func (c *Client) ClassicWoWPowerType(ctx context.Context, powerTypeID int) (*wow
 }
 
 // ClassicWoWRealmIndex returns an index of realms.
-func (c *Client) ClassicWoWRealmIndex(ctx context.Context) (*wowgd.RealmIndex, []byte, error) {
+func (c *Client) ClassicWoWRealmIndex(ctx context.Context) (*wowcgd.RealmIndex, []byte, error) {
 	var (
-		dat wowgd.RealmIndex
+		dat wowcgd.RealmIndex
 		b   []byte
 		err error
 	)
@@ -496,9 +539,9 @@ func (c *Client) ClassicWoWRealmIndex(ctx context.Context) (*wowgd.RealmIndex, [
 }
 
 // ClassicWoWRealm returns a single realm by slug or ID.
-func (c *Client) ClassicWoWRealm(ctx context.Context, realmSlug string) (*wowgd.Realm, []byte, error) {
+func (c *Client) ClassicWoWRealm(ctx context.Context, realmSlug string) (*wowcgd.Realm, []byte, error) {
 	var (
-		dat wowgd.Realm
+		dat wowcgd.Realm
 		b   []byte
 		err error
 	)
@@ -517,14 +560,36 @@ func (c *Client) ClassicWoWRealm(ctx context.Context, realmSlug string) (*wowgd.
 }
 
 // ClassicWoWRegionIndex returns an index of regions.
-func (c *Client) ClassicWoWRegionIndex(ctx context.Context) (*wowgd.RegionIndex, []byte, error) {
+func (c *Client) ClassicWoWRegionIndex(ctx context.Context) (*wowcgd.RegionIndex, []byte, error) {
 	var (
-		dat wowgd.RegionIndex
+		dat wowcgd.RegionIndex
 		b   []byte
 		err error
 	)
 
 	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/region/index?locale=%s", c.locale), c.dynamicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// ClassicWoWRegion returns a region by ID.
+func (c *Client) ClassicWoWRegion(ctx context.Context, regionID int) (*wowcgd.Region, []byte, error) {
+	var (
+		dat wowcgd.Region
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/region/%d?locale=%s",
+		regionID, c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
