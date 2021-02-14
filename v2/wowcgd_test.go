@@ -6,6 +6,30 @@ import (
 	"testing"
 )
 
+func TestClassicWoWConnectedRealmsIndex(t *testing.T) {
+	dat, _, err := c.ClassicWoWConnectedRealmsIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestClassicWoWConnectedRealm(t *testing.T) {
+	dat, _, err := c.ClassicWoWConnectedRealm(context.Background(), 4388)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestClassicWoWCreatureFamiliesIndex(t *testing.T) {
 	dat, _, err := c.ClassicWoWCreatureFamiliesIndex(context.Background())
 	if err != nil {
@@ -296,6 +320,18 @@ func TestClassicWoWRealm(t *testing.T) {
 
 func TestClassicWoWRegionIndex(t *testing.T) {
 	dat, _, err := c.ClassicWoWRegionIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestClassicWoWRegion(t *testing.T) {
+	dat, _, err := c.ClassicWoWRegion(context.Background(), 41)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
