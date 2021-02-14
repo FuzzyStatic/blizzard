@@ -152,6 +152,32 @@ func TestWoWCharacterMediaSummary(t *testing.T) {
 	}
 }
 
+func TestMythicKeystoneProfileIndex(t *testing.T) {
+	dat, _, err := c.WoWMythicKeystoneProfileIndex(
+		context.Background(), "illidan", "covlol")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestMythicKeystoneSeasonDetails(t *testing.T) {
+	dat, _, err := c.WoWMythicKeystoneSeasonDetails(
+		context.Background(), "illidan", "covlol", 1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWCharacterProfileSummary(t *testing.T) {
 	dat, _, err := c.WoWCharacterProfileSummary(context.Background(), "illidan", "covlol")
 	if err != nil {
@@ -280,8 +306,21 @@ func TestWoWCharacterReputationsSummary(t *testing.T) {
 	}
 }
 
+func TestWoWCharacterSoulbinds(t *testing.T) {
+	dat, _, err := c.WoWCharacterSoulbinds(context.Background(), "illidan", "covlol")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWCharacterSpecializationsSummary(t *testing.T) {
-	dat, _, err := c.WoWCharacterSpecializationsSummary(context.Background(), "illidan", "covlol")
+	dat, _, err := c.WoWCharacterSpecializationsSummary(
+		context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
