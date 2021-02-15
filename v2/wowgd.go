@@ -1477,6 +1477,27 @@ func (c *Client) WoWPlayableClass(ctx context.Context, classID int) (*wowgd.Play
 	return &dat, b, nil
 }
 
+// WoWPlayableClassMedia returns media for a playable class by ID.
+func (c *Client) WoWPlayableClassMedia(ctx context.Context, classID int) (*wowgd.PlayableClassMedia, []byte, error) {
+	var (
+		dat wowgd.PlayableClassMedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/media/playable-class/%d?locale=%s", classID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
 // WoWPlayableClassPvPTalentSlots returns the PvP talent slots for a playable class by ID
 func (c *Client) WoWPlayableClassPvPTalentSlots(ctx context.Context, classID int) (*wowgd.PlayableClassPvPTalentSlots, []byte, error) {
 	var (

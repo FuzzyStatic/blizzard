@@ -824,6 +824,18 @@ func TestWoWPlayableClass(t *testing.T) {
 	}
 }
 
+func TestWoWPlayableClassMedia(t *testing.T) {
+	dat, _, err := c.WoWPlayableClassMedia(context.Background(), 7)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWPlayableClassPvPTalentSlots(t *testing.T) {
 	dat, _, err := c.WoWPlayableClassPvPTalentSlots(context.Background(), 7)
 	if err != nil {
