@@ -307,7 +307,7 @@ func TestClassicWoWRealmIndex(t *testing.T) {
 }
 
 func TestClassicWoWRealm(t *testing.T) {
-	dat, _, err := c.ClassicWoWRealm(context.Background(), "tichondrius")
+	dat, _, err := c.ClassicWoWRealm(context.Background(), "westfall")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

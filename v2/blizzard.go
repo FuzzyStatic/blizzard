@@ -17,18 +17,17 @@ var c *Client
 
 // Client regional API URLs, locale, client ID, client secret
 type Client struct {
-	client                 *http.Client
-	cfg                    clientcredentials.Config
-	authorizedCfg          oauth2.Config
-	oauth                  OAuth
-	oauthURL               string
-	apiURL                 string
-	dynamicNamespace       string
-	profileNamespace       string
-	staticNamespace        string
-	staticClassicNamespace string
-	region                 Region
-	locale                 Locale
+	client                                          *http.Client
+	cfg                                             clientcredentials.Config
+	authorizedCfg                                   oauth2.Config
+	oauth                                           OAuth
+	oauthURL                                        string
+	apiURL                                          string
+	dynamicNamespace, staticNamespace               string
+	profileNamespace                                string
+	dynamicClassicNamespace, staticClassicNamespace string
+	region                                          Region
+	locale                                          Locale
 }
 
 // Region type
@@ -117,6 +116,7 @@ func (c *Client) SetRegion(region Region) {
 		c.oauthURL = "https://www.battlenet.com.cn"
 		c.apiURL = "https://gateway.battlenet.com.cn"
 		c.dynamicNamespace = "dynamic-zh"
+		c.dynamicClassicNamespace = "dynamic-classic-zh"
 		c.profileNamespace = "profile-zh"
 		c.staticNamespace = "static-zh"
 		c.staticClassicNamespace = "static-classic-zh"
@@ -124,6 +124,7 @@ func (c *Client) SetRegion(region Region) {
 		c.oauthURL = fmt.Sprintf("https://%s.battle.net", region)
 		c.apiURL = fmt.Sprintf("https://%s.api.blizzard.com", region)
 		c.dynamicNamespace = fmt.Sprintf("dynamic-%s", region)
+		c.dynamicClassicNamespace = fmt.Sprintf("dynamic-classic-%s", region)
 		c.profileNamespace = fmt.Sprintf("profile-%s", region)
 		c.staticNamespace = fmt.Sprintf("static-%s", region)
 		c.staticClassicNamespace = fmt.Sprintf("static-classic-%s", region)
@@ -141,6 +142,8 @@ func (c *Client) getURLBody(ctx context.Context, url, namespace string) ([]byte,
 		body []byte
 		err  error
 	)
+
+	fmt.Println(url)
 
 	req, err = http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

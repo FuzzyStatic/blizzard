@@ -17,7 +17,7 @@ func (c *Client) ClassicWoWConnectedRealmsIndex(ctx context.Context) (*wowcgd.Co
 	)
 
 	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/connected-realm/index?locale=%s",
-		c.locale), c.staticClassicNamespace)
+		c.locale), c.dynamicClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -39,7 +39,7 @@ func (c *Client) ClassicWoWConnectedRealm(ctx context.Context, connectedRealmID 
 	)
 
 	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/connected-realm/%d?locale=%s",
-		connectedRealmID, c.locale), c.staticClassicNamespace)
+		connectedRealmID, c.locale), c.dynamicClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -525,7 +525,7 @@ func (c *Client) ClassicWoWRealmIndex(ctx context.Context) (*wowcgd.RealmIndex, 
 		err error
 	)
 
-	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/realm/index?locale=%s", c.locale), c.dynamicNamespace)
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/realm/index?locale=%s", c.locale), c.dynamicClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -546,7 +546,7 @@ func (c *Client) ClassicWoWRealm(ctx context.Context, realmSlug string) (*wowcgd
 		err error
 	)
 
-	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/realm/%s?locale=%s", realmSlug, c.locale), c.dynamicNamespace)
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/realm/%s?locale=%s", realmSlug, c.locale), c.dynamicClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -567,7 +567,7 @@ func (c *Client) ClassicWoWRegionIndex(ctx context.Context) (*wowcgd.RegionIndex
 		err error
 	)
 
-	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/region/index?locale=%s", c.locale), c.dynamicNamespace)
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/region/index?locale=%s", c.locale), c.dynamicClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -589,7 +589,7 @@ func (c *Client) ClassicWoWRegion(ctx context.Context, regionID int) (*wowcgd.Re
 	)
 
 	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/region/%d?locale=%s",
-		regionID, c.locale), c.dynamicNamespace)
+		regionID, c.locale), c.dynamicClassicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
