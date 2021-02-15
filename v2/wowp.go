@@ -13,8 +13,7 @@ import (
 )
 
 // WoWAccountProfileSummary Returns a profile summary for an account.
-func (c *Client) WoWAccountProfileSummary(ctx context.Context,
-	token *oauth2.Token) (dat *wowp.AccountProfileSummary, b []byte, err error) {
+func (c *Client) WoWAccountProfileSummary(ctx context.Context, token *oauth2.Token) (dat *wowp.AccountProfileSummary, b []byte, err error) {
 	var (
 		req *http.Request
 		res *http.Response
