@@ -596,6 +596,18 @@ func TestWoWMythicKeystoneAffix(t *testing.T) {
 	}
 }
 
+func TestWoWMythicKeystoneAffixMedia(t *testing.T) {
+	dat, _, err := c.WoWMythicKeystoneAffixMedia(context.Background(), 3)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWMythicRaidLeaderboard(t *testing.T) {
 	dat, _, err := c.WoWMythicRaidLeaderboard(context.Background(), "uldir", "alliance")
 	if err != nil {

@@ -1077,6 +1077,28 @@ func (c *Client) WoWMythicKeystoneAffix(ctx context.Context, keystoneAffixID int
 	return &dat, b, nil
 }
 
+// WoWMythicKeystoneAffixMedia returns media for a mythic keystone affix by ID.
+func (c *Client) WoWMythicKeystoneAffixMedia(ctx context.Context, keystoneAffixID int) (*wowgd.MythicKeystoneAffixMedia, []byte, error) {
+	var (
+		dat wowgd.MythicKeystoneAffixMedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/media/keystone-affix/%d?locale=%s",
+		keystoneAffixID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
 // WoWMythicRaidLeaderboard returns the leaderboard for a given raid and faction
 func (c *Client) WoWMythicRaidLeaderboard(ctx context.Context, raid, faction string) (*wowgd.MythicRaidLeaderboard, []byte, error) {
 	var (
