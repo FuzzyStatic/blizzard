@@ -947,7 +947,7 @@ func (c *Client) WoWModifiedCraftingCategory(ctx context.Context, categoryID int
 
 // WoWModifiedCraftingReagentSlotTypeIndex returns the index of Modified Crafting reagent slot types.
 func (c *Client) WoWModifiedCraftingReagentSlotTypeIndex(ctx context.Context) (*wowgd.
-ModifiedCraftingReagentSlotTypeIndex, []byte, error) {
+	ModifiedCraftingReagentSlotTypeIndex, []byte, error) {
 	var (
 		dat wowgd.ModifiedCraftingReagentSlotTypeIndex
 		b   []byte
@@ -971,7 +971,7 @@ ModifiedCraftingReagentSlotTypeIndex, []byte, error) {
 
 // WoWModifiedCraftingReagentSlotType returns a Modified Crafting reagent slot type by ID.
 func (c *Client) WoWModifiedCraftingReagentSlotType(ctx context.Context, slotTypeID int) (*wowgd.
-ModifiedCraftingReagentSlotType, []byte, error) {
+	ModifiedCraftingReagentSlotType, []byte, error) {
 	var (
 		dat wowgd.ModifiedCraftingReagentSlotType
 		b   []byte

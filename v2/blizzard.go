@@ -143,8 +143,6 @@ func (c *Client) getURLBody(ctx context.Context, url, namespace string) ([]byte,
 		err  error
 	)
 
-	fmt.Println(url)
-
 	req, err = http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, err

@@ -1,5 +1,6 @@
 package wowgd
 
+// AuctionHouse structure
 type AuctionHouse struct {
 	Links struct {
 		Self struct {

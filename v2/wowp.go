@@ -13,34 +13,38 @@ import (
 )
 
 // WoWAccountProfileSummary Returns a profile summary for an account.
-func (c *Client) WoWAccountProfileSummary(ctx context.Context, token *oauth2.Token) (dat *wowp.AccountProfileSummary, b []byte, err error) {
+func (c *Client) WoWAccountProfileSummary(ctx context.Context, token *oauth2.Token) (*wowp.AccountProfileSummary, []byte, error) {
 	var (
-		req *http.Request
-		res *http.Response
+		dat wowp.AccountProfileSummary
+		b   []byte
+		err error
 	)
 
-	req, err = http.NewRequest("GET", c.apiURL+
+	req, err := http.NewRequest("GET", c.apiURL+
 		fmt.Sprintf("/profile/user/wow?namespace=%s&locale=%s", c.profileNamespace, c.locale), nil)
 	if err != nil {
-		return
+		return &dat, b, err
 	}
 
-	client := c.authorizedCfg.Client(ctx, token)
-	if res, err = client.Do(req); err != nil {
-		return
-	}
-	defer func() {
-		if derr := res.Body.Close(); derr != nil {
-			err = derr
-		}
-	}()
+	client := c.authorizedCfg.Client(context.Background(), token)
 
-	if b, err = ioutil.ReadAll(res.Body); err != nil {
-		return
+	res, err := client.Do(req)
+	if err != nil {
+		return &dat, b, err
+	}
+	defer res.Body.Close()
+
+	b, err = ioutil.ReadAll(res.Body)
+	if err != nil {
+		return &dat, b, err
 	}
 
 	err = json.Unmarshal(b, &dat)
-	return
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
 }
 
 // WoWCharacterAchievementsSummary returns a summary of the achievements a character has completed.
@@ -320,9 +324,7 @@ func (c *Client) WoWCharacterMediaSummary(ctx context.Context, realmSlug, charac
 }
 
 // WoWMythicKeystoneProfileIndex returns the Mythic Keystone season details for a character.
-//
-// Returns a 404 Not Found for characters that have not yet completed a Mythic Keystone dungeon for the
-// specified season.
+// Returns a 404 Not Found for characters that have not yet completed a Mythic Keystone dungeon for the specified season.
 func (c *Client) WoWMythicKeystoneProfileIndex(ctx context.Context, realmSlug,
 	characterName string) (*wowp.CharacterMythicKeystoneProfile, []byte, error) {
 	var (
