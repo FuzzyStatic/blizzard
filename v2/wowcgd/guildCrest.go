@@ -25,8 +25,8 @@ type GuildCrestComponentsIndex struct {
 	} `json:"borders"`
 }
 
-// GuildCrestBorderMdedia structure
-type GuildCrestBorderMdedia struct {
+// GuildCrestBorderMedia structure
+type GuildCrestBorderMedia struct {
 	Links struct {
 		Self struct {
 			Href string `json:"href"`
@@ -38,8 +38,8 @@ type GuildCrestBorderMdedia struct {
 	} `json:"assets"`
 }
 
-// GuildCrestEmblemMdedia structure
-type GuildCrestEmblemMdedia struct {
+// GuildCrestEmblemMedia structure
+type GuildCrestEmblemMedia struct {
 	Links struct {
 		Self struct {
 			Href string `json:"href"`

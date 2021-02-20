@@ -1,6 +1,6 @@
 package wowp
 
-// CharacterProfessionsSummary
+// CharacterProfessionsSummary structure
 type CharacterProfessionsSummary struct {
 	Links struct {
 		Self struct {
