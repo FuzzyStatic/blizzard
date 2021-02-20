@@ -368,6 +368,30 @@ func TestWoWItemClass(t *testing.T) {
 	}
 }
 
+func TestWoWItemSetsIndex(t *testing.T) {
+	dat, _, err := c.WoWItemSetsIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWItemSet(t *testing.T) {
+	dat, _, err := c.WoWItemClass(context.Background(), 1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWItemSubclass(t *testing.T) {
 	dat, _, err := c.WoWItemSubclass(context.Background(), 0, 0)
 	if err != nil {
@@ -608,18 +632,6 @@ func TestWoWMythicKeystoneAffixMedia(t *testing.T) {
 	}
 }
 
-func TestWoWMythicRaidLeaderboard(t *testing.T) {
-	dat, _, err := c.WoWMythicRaidLeaderboard(context.Background(), "uldir", "alliance")
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
-
-	if printOutput != "" {
-		fmt.Printf("%+v\n", dat)
-	}
-}
-
 func TestWoWMythicKeystoneDungeonIndex(t *testing.T) {
 	dat, _, err := c.WoWMythicKeystoneDungeonIndex(context.Background())
 	if err != nil {
@@ -718,6 +730,18 @@ func TestWoWMythicKeystoneLeaderboardIndex(t *testing.T) {
 
 func TestWoWMythicKeystoneLeaderboard(t *testing.T) {
 	dat, _, err := c.WoWMythicKeystoneLeaderboard(context.Background(), 11, 197, 641)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWMythicRaidLeaderboard(t *testing.T) {
+	dat, _, err := c.WoWMythicRaidLeaderboard(context.Background(), "uldir", "alliance")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -886,6 +910,18 @@ func TestWoWPlayableSpecializationIndex(t *testing.T) {
 
 func TestWoWPlayableSpecialization(t *testing.T) {
 	dat, _, err := c.WoWPlayableSpecialization(context.Background(), 262)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWPlayableSpecializationMedia(t *testing.T) {
+	dat, _, err := c.WoWPlayableSpecializationMedia(context.Background(), 262)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -1184,6 +1220,54 @@ func TestWoWQuestType(t *testing.T) {
 	}
 }
 
+func TestWoWRealmIndex(t *testing.T) {
+	dat, _, err := c.WoWRealmIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWRealm(t *testing.T) {
+	dat, _, err := c.WoWRealm(context.Background(), "tichondrius")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWRegionIndex(t *testing.T) {
+	dat, _, err := c.WoWRegionIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWRegion(t *testing.T) {
+	dat, _, err := c.WoWRegion(context.Background(), 1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWReputationFactionsIndex(t *testing.T) {
 	dat, _, err := c.WoWReputationFactionsIndex(context.Background())
 	if err != nil {
@@ -1280,8 +1364,8 @@ func TestWoWTalent(t *testing.T) {
 	}
 }
 
-func TestWoWPvPTalentIndex(t *testing.T) {
-	dat, _, err := c.WoWPvPTalentIndex(context.Background())
+func TestWoWPvPTalentsIndex(t *testing.T) {
+	dat, _, err := c.WoWPvPTalentsIndex(context.Background())
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -1378,54 +1462,6 @@ func TestWoWTitlesIndex(t *testing.T) {
 
 func TestWoWTitle(t *testing.T) {
 	dat, _, err := c.WoWTitle(context.Background(), 1)
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
-
-	if printOutput != "" {
-		fmt.Printf("%+v\n", dat)
-	}
-}
-
-func TestWoWRealmIndex(t *testing.T) {
-	dat, _, err := c.WoWRealmIndex(context.Background())
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
-
-	if printOutput != "" {
-		fmt.Printf("%+v\n", dat)
-	}
-}
-
-func TestWoWRealm(t *testing.T) {
-	dat, _, err := c.WoWRealm(context.Background(), "tichondrius")
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
-
-	if printOutput != "" {
-		fmt.Printf("%+v\n", dat)
-	}
-}
-
-func TestWoWRegionIndex(t *testing.T) {
-	dat, _, err := c.WoWRegionIndex(context.Background())
-	if err != nil {
-		fmt.Println(err)
-		t.Fail()
-	}
-
-	if printOutput != "" {
-		fmt.Printf("%+v\n", dat)
-	}
-}
-
-func TestWoWRegion(t *testing.T) {
-	dat, _, err := c.WoWRegion(context.Background(), 1)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

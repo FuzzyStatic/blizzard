@@ -176,6 +176,27 @@ func (c *Client) WoWAzeriteEssence(ctx context.Context, azeriteEssenceID int) (*
 	return &dat, b, nil
 }
 
+// WoWAzeriteEssenceSearch performs a search of azerite essences.
+// func (c *Client) WoWAzeriteEssenceSearch(ctx context.Context) (*wowgd.AzeriteEssenceSearch, []byte, error) {
+// 	var (
+// 		dat wowgd.AzeriteEssenceSearch
+// 		b   []byte
+// 		err error
+// 	)
+
+// 	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/search/connected-realm?locale=%s", c.locale), c.staticNamespace)
+// 	if err != nil {
+// 		return &dat, b, err
+// 	}
+
+// 	err = json.Unmarshal(b, &dat)
+// 	if err != nil {
+// 		return &dat, b, err
+// 	}
+
+// 	return &dat, b, nil
+// }
+
 // WoWAzeriteEssenceMedia returns media for an azerite essence by ID.
 func (c *Client) WoWAzeriteEssenceMedia(ctx context.Context, azeriteEssenceID int) (*wowgd.AzeriteEssenceMedia, []byte, error) {
 	var (
@@ -659,6 +680,48 @@ func (c *Client) WoWItemClass(ctx context.Context, itemClassID int) (*wowgd.Item
 	return &dat, b, nil
 }
 
+// WoWItemSetsIndex returns an index of item sets.
+func (c *Client) WoWItemSetsIndex(ctx context.Context) (*wowgd.ItemSetsIndex, []byte, error) {
+	var (
+		dat wowgd.ItemSetsIndex
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/item-set/index?locale=%s", c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWItemSet returns an item set by ID.
+func (c *Client) WoWItemSet(ctx context.Context, itemSetID int) (*wowgd.ItemSet, []byte, error) {
+	var (
+		dat wowgd.ItemSet
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/item-set/%d?locale=%s", itemSetID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
 // WoWItemSubclass returns an item subclass by ID.
 func (c *Client) WoWItemSubclass(ctx context.Context, itemClassID, itemSubclassID int) (*wowgd.ItemSubclass, []byte, error) {
 	var (
@@ -1099,27 +1162,6 @@ func (c *Client) WoWMythicKeystoneAffixMedia(ctx context.Context, keystoneAffixI
 	return &dat, b, nil
 }
 
-// WoWMythicRaidLeaderboard returns the leaderboard for a given raid and faction
-func (c *Client) WoWMythicRaidLeaderboard(ctx context.Context, raid, faction string) (*wowgd.MythicRaidLeaderboard, []byte, error) {
-	var (
-		dat wowgd.MythicRaidLeaderboard
-		b   []byte
-		err error
-	)
-
-	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/leaderboard/hall-of-fame/%s/%s?locale=%s", raid, faction, c.locale), c.dynamicNamespace)
-	if err != nil {
-		return &dat, b, err
-	}
-
-	err = json.Unmarshal(b, &dat)
-	if err != nil {
-		return &dat, b, err
-	}
-
-	return &dat, b, nil
-}
-
 // WoWMythicKeystoneDungeonIndex returns an index of Mythic Keystone dungeons
 func (c *Client) WoWMythicKeystoneDungeonIndex(ctx context.Context) (*wowgd.MythicKeystoneDungeonIndex, []byte, error) {
 	var (
@@ -1297,6 +1339,27 @@ func (c *Client) WoWMythicKeystoneLeaderboard(ctx context.Context, connectedReal
 	)
 
 	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/connected-realm/%d/mythic-leaderboard/%d/period/%d?locale=%s", connectedRealmID, dungeonID, period, c.locale), c.dynamicNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWMythicRaidLeaderboard returns the leaderboard for a given raid and faction
+func (c *Client) WoWMythicRaidLeaderboard(ctx context.Context, raid, faction string) (*wowgd.MythicRaidLeaderboard, []byte, error) {
+	var (
+		dat wowgd.MythicRaidLeaderboard
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/leaderboard/hall-of-fame/%s/%s?locale=%s", raid, faction, c.locale), c.dynamicNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -1591,6 +1654,27 @@ func (c *Client) WoWPlayableSpecialization(ctx context.Context, specID int) (*wo
 	)
 
 	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/playable-specialization/%d?locale=%s", specID, c.locale), c.staticNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
+// WoWPlayableSpecializationMedia returns media for a playable specialization by ID.
+func (c *Client) WoWPlayableSpecializationMedia(ctx context.Context, specID int) (*wowgd.PlayableSpecializationMedia, []byte, error) {
+	var (
+		dat wowgd.PlayableSpecializationMedia
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+fmt.Sprintf("/data/wow/media/playable-specialization/%d?locale=%s", specID, c.locale), c.staticNamespace)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -2388,8 +2472,8 @@ func (c *Client) WoWTalent(ctx context.Context, talentID int) (*wowgd.Talent, []
 	return &dat, b, nil
 }
 
-// WoWPvPTalentIndex returns an index of PvP talents.
-func (c *Client) WoWPvPTalentIndex(ctx context.Context) (*wowgd.PvPTalentsIndex, []byte,
+// WoWPvPTalentsIndex returns an index of PvP talents.
+func (c *Client) WoWPvPTalentsIndex(ctx context.Context) (*wowgd.PvPTalentsIndex, []byte,
 	error) {
 	var (
 		dat wowgd.PvPTalentsIndex

@@ -729,6 +729,29 @@ func (c *Client) WoWGuild(ctx context.Context, realmSlug, nameSlug string) (*wow
 	return &dat, b, nil
 }
 
+// WoWGuildActivity returns a single guild's activity by name and realm.
+func (c *Client) WoWGuildActivity(ctx context.Context, realmSlug, nameSlug string) (*wowp.GuildActivity, []byte, error) {
+	var (
+		dat wowp.GuildActivity
+		b   []byte
+		err error
+	)
+
+	b, err = c.getURLBody(ctx, c.apiURL+
+		fmt.Sprintf("/data/wow/guild/%s/%s/activity?locale=%s", realmSlug, strings.Replace(strings.ToLower(nameSlug), " ", "-", -1), c.locale),
+		c.profileNamespace)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	err = json.Unmarshal(b, &dat)
+	if err != nil {
+		return &dat, b, err
+	}
+
+	return &dat, b, nil
+}
+
 // WoWGuildAchievements returns a single guild's achievements by name and realm.
 func (c *Client) WoWGuildAchievements(ctx context.Context, realmSlug, nameSlug string) (*wowp.GuildAchievements, []byte, error) {
 	var (

@@ -34,6 +34,45 @@ type ItemClass struct {
 	} `json:"item_subclasses"`
 }
 
+// ItemSetsIndex structure
+type ItemSetsIndex struct {
+	Links struct {
+		Self struct {
+			Href string `json:"href"`
+		} `json:"self"`
+	} `json:"_links"`
+	ItemSets []struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		Name string `json:"name"`
+		ID   int    `json:"id"`
+	} `json:"item_sets"`
+}
+
+// ItemSetsIndex structure
+type ItemSet struct {
+	Links struct {
+		Self struct {
+			Href string `json:"href"`
+		} `json:"self"`
+	} `json:"_links"`
+	ID    int    `json:"id"`
+	Name  string `json:"name"`
+	Items []struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		Name string `json:"name"`
+		ID   int    `json:"id"`
+	} `json:"items"`
+	Effects []struct {
+		DisplayString string `json:"display_string"`
+		RequiredCount int    `json:"required_count"`
+	} `json:"effects"`
+	IsEffectActive bool `json:"is_effect_active"`
+}
+
 // ItemSubclass structure
 type ItemSubclass struct {
 	Links struct {

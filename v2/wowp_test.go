@@ -364,6 +364,18 @@ func TestWoWGuild(t *testing.T) {
 	}
 }
 
+func TestWoWGuildActivity(t *testing.T) {
+	dat, _, err := c.WoWGuildActivity(context.Background(), "illidan", "Complexity Limit")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWGuildAchievements(t *testing.T) {
 	dat, _, err := c.WoWGuildAchievements(context.Background(), "illidan", "Complexity Limit")
 	if err != nil {
