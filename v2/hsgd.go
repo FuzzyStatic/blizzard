@@ -11,9 +11,8 @@ import (
 // HSCardsSearch returns an up-to-date list of all cards matching the search criteria.
 // For more information about the search parameters, see the Card Search Guide (https://develop.battle.net/documentation/hearthstone/guides/card-search).
 func (c *Client) HSCardsSearch(ctx context.Context) (*hsgd.CardSearch, []byte, error) {
-	dat, b, err := c.getStructData(ctx,
+	dat, b, err := c.getStructDataNoNamespace(ctx,
 		fmt.Sprintf("/hearthstone/cards"),
-		"",
 		&hsgd.CardSearch{},
 	)
 	return dat.(*hsgd.CardSearch), b, err
@@ -66,9 +65,8 @@ func (c *Client) HSDetailedCardsSearch(ctx context.Context, setSlug, classSlug, 
 		pathAndQuery = pathAndQuery + fmt.Sprintf("&pageSize=%d", pageSize)
 	}
 
-	dat, b, err := c.getStructData(ctx,
+	dat, b, err := c.getStructDataNoNamespace(ctx,
 		pathAndQuery,
-		"",
 		&hsgd.CardSearch{},
 	)
 	return dat.(*hsgd.CardSearch), b, err
@@ -118,9 +116,8 @@ func (c *Client) HSBattlegroundsCardsSearch(ctx context.Context, raritySlug, typ
 		pathAndQuery = pathAndQuery + fmt.Sprintf("&tier=%s", strings.Trim(strings.Join(strings.Fields(fmt.Sprint(tier)), ","), "[]"))
 	}
 
-	dat, b, err := c.getStructData(ctx,
+	dat, b, err := c.getStructDataNoNamespace(ctx,
 		pathAndQuery,
-		"",
 		&hsgd.CardSearch{},
 	)
 	return dat.(*hsgd.CardSearch), b, err
@@ -129,9 +126,8 @@ func (c *Client) HSBattlegroundsCardsSearch(ctx context.Context, raritySlug, typ
 // HSCardByIDOrSlug returns card by ID or slug.
 // For more information about the search parameters, see the Card Search Guide (https://develop.battle.net/documentation/hearthstone/guides/card-search).
 func (c *Client) HSCardByIDOrSlug(ctx context.Context, idOrSlug string, gameMode hsgd.GameMode) (*hsgd.Card, []byte, error) {
-	dat, b, err := c.getStructData(ctx,
+	dat, b, err := c.getStructDataNoNamespace(ctx,
 		fmt.Sprintf("/hearthstone/cards/%s?gameMode=%s", idOrSlug, gameMode),
-		"",
 		&hsgd.Card{},
 	)
 	return dat.(*hsgd.Card), b, err
@@ -152,9 +148,8 @@ func (c *Client) HSCardBackSearchAllLocales(ctx context.Context, cardBackCategor
 		pathAndQuery = pathAndQuery + fmt.Sprintf("&type=%s", textFilter)
 	}
 
-	dat, b, err := c.getStructDataNoLocale(ctx,
+	dat, b, err := c.getStructDataNoNamespaceNoLocale(ctx,
 		pathAndQuery,
-		"",
 		&hsgd.CardBackSearchAllLocales{},
 	)
 	return dat.(*hsgd.CardBackSearchAllLocales), b, err
@@ -175,9 +170,8 @@ func (c *Client) HSCardBackSearch(ctx context.Context, cardBackCategory hsgd.Car
 		pathAndQuery = pathAndQuery + fmt.Sprintf("&type=%s", textFilter)
 	}
 
-	dat, b, err := c.getStructData(ctx,
+	dat, b, err := c.getStructDataNoNamespace(ctx,
 		pathAndQuery,
-		"",
 		&hsgd.CardBackSearch{},
 	)
 	return dat.(*hsgd.CardBackSearch), b, err
@@ -185,9 +179,8 @@ func (c *Client) HSCardBackSearch(ctx context.Context, cardBackCategory hsgd.Car
 
 // HSCardBackByIDOrSlug returns a specific card back by using card back ID or slug.
 func (c *Client) HSCardBackByIDOrSlug(ctx context.Context, idOrSlug string) (*hsgd.CardBack, []byte, error) {
-	dat, b, err := c.getStructData(ctx,
+	dat, b, err := c.getStructDataNoNamespace(ctx,
 		fmt.Sprintf("/hearthstone/cardbacks/%s", idOrSlug),
-		"",
 		&hsgd.CardBack{},
 	)
 	return dat.(*hsgd.CardBack), b, err
@@ -196,9 +189,8 @@ func (c *Client) HSCardBackByIDOrSlug(ctx context.Context, idOrSlug string) (*hs
 // HSDeck Finds a deck by its deck code.
 // For more information, see the Hearthstone Guide.
 func (c *Client) HSDeck(ctx context.Context, deckCode string) (*hsgd.Deck, []byte, error) {
-	dat, b, err := c.getStructData(ctx,
+	dat, b, err := c.getStructDataNoNamespace(ctx,
 		fmt.Sprintf("/hearthstone/deck/%s", deckCode),
-		"",
 		&hsgd.Deck{},
 	)
 	return dat.(*hsgd.Deck), b, err
@@ -208,9 +200,8 @@ func (c *Client) HSDeck(ctx context.Context, deckCode string) (*hsgd.Deck, []byt
 // Metadata includes the card set, set group (for example, Standard or Year of the Dragon), rarity, class, card type, minion type, and keywords.
 // For more information, see the Hearthstone Guide.
 func (c *Client) HSMetadata(ctx context.Context) (*hsgd.Metadata, []byte, error) {
-	dat, b, err := c.getStructData(ctx,
+	dat, b, err := c.getStructDataNoNamespace(ctx,
 		fmt.Sprintf("/hearthstone/metadata"),
-		"",
 		&hsgd.Metadata{},
 	)
 	return dat.(*hsgd.Metadata), b, err
@@ -219,9 +210,8 @@ func (c *Client) HSMetadata(ctx context.Context) (*hsgd.Metadata, []byte, error)
 // HSMetadataSets returns information about set metadata.
 // For more information, see the Hearthstone Guide.
 func (c *Client) HSMetadataSets(ctx context.Context) (*[]hsgd.Set, []byte, error) {
-	dat, b, err := c.getStructData(ctx,
+	dat, b, err := c.getStructDataNoNamespace(ctx,
 		fmt.Sprintf("/hearthstone/metadata/%s", hsgd.MetadataTypeSets),
-		"",
 		&[]hsgd.Set{},
 	)
 	return dat.(*[]hsgd.Set), b, err
@@ -230,9 +220,8 @@ func (c *Client) HSMetadataSets(ctx context.Context) (*[]hsgd.Set, []byte, error
 // HSMetadataSetGroups returns information about set group metadata.
 // For more information, see the Hearthstone Guide.
 func (c *Client) HSMetadataSetGroups(ctx context.Context) (*[]hsgd.SetGroup, []byte, error) {
-	dat, b, err := c.getStructData(ctx,
+	dat, b, err := c.getStructDataNoNamespace(ctx,
 		fmt.Sprintf("/hearthstone/metadata/%s", hsgd.MetadataTypeSetGroups),
-		"",
 		&[]hsgd.SetGroup{},
 	)
 	return dat.(*[]hsgd.SetGroup), b, err
@@ -241,9 +230,8 @@ func (c *Client) HSMetadataSetGroups(ctx context.Context) (*[]hsgd.SetGroup, []b
 // HSMetadataTypes returns information about type metadata.
 // For more information, see the Hearthstone Guide.
 func (c *Client) HSMetadataTypes(ctx context.Context) (*[]hsgd.Type, []byte, error) {
-	dat, b, err := c.getStructData(ctx,
+	dat, b, err := c.getStructDataNoNamespace(ctx,
 		fmt.Sprintf("/hearthstone/metadata/%s", hsgd.MetadataTypeTypes),
-		"",
 		&[]hsgd.Type{},
 	)
 	return dat.(*[]hsgd.Type), b, err
@@ -252,9 +240,8 @@ func (c *Client) HSMetadataTypes(ctx context.Context) (*[]hsgd.Type, []byte, err
 // HSMetadataRarities returns information about rarity metadata.
 // For more information, see the Hearthstone Guide.
 func (c *Client) HSMetadataRarities(ctx context.Context) (*[]hsgd.Rarity, []byte, error) {
-	dat, b, err := c.getStructData(ctx,
+	dat, b, err := c.getStructDataNoNamespace(ctx,
 		fmt.Sprintf("/hearthstone/metadata/%s", hsgd.MetadataTypeRarities),
-		"",
 		&[]hsgd.Rarity{},
 	)
 	return dat.(*[]hsgd.Rarity), b, err
@@ -263,9 +250,8 @@ func (c *Client) HSMetadataRarities(ctx context.Context) (*[]hsgd.Rarity, []byte
 // HSMetadataClasses returns information about class metadata.
 // For more information, see the Hearthstone Guide.
 func (c *Client) HSMetadataClasses(ctx context.Context) (*[]hsgd.Class, []byte, error) {
-	dat, b, err := c.getStructData(ctx,
+	dat, b, err := c.getStructDataNoNamespace(ctx,
 		fmt.Sprintf("/hearthstone/metadata/%s", hsgd.MetadataTypeClasses),
-		"",
 		&[]hsgd.Class{},
 	)
 	return dat.(*[]hsgd.Class), b, err
@@ -274,9 +260,8 @@ func (c *Client) HSMetadataClasses(ctx context.Context) (*[]hsgd.Class, []byte, 
 // HSMetadataMinionTypes returns information about minion type metadata.
 // For more information, see the Hearthstone Guide.
 func (c *Client) HSMetadataMinionTypes(ctx context.Context) (*[]hsgd.MinionType, []byte, error) {
-	dat, b, err := c.getStructData(ctx,
+	dat, b, err := c.getStructDataNoNamespace(ctx,
 		fmt.Sprintf("/hearthstone/metadata/%s", hsgd.MetadataTypeMinionTypes),
-		"",
 		&[]hsgd.MinionType{},
 	)
 	return dat.(*[]hsgd.MinionType), b, err
@@ -285,9 +270,8 @@ func (c *Client) HSMetadataMinionTypes(ctx context.Context) (*[]hsgd.MinionType,
 // HSMetadataKeywords returns information about keyword metadata.
 // For more information, see the Hearthstone Guide.
 func (c *Client) HSMetadataKeywords(ctx context.Context) (*[]hsgd.Keyword, []byte, error) {
-	dat, b, err := c.getStructData(ctx,
+	dat, b, err := c.getStructDataNoNamespace(ctx,
 		fmt.Sprintf("/hearthstone/metadata/%s", hsgd.MetadataTypeKeywords),
-		"",
 		&[]hsgd.Keyword{},
 	)
 	return dat.(*[]hsgd.Keyword), b, err

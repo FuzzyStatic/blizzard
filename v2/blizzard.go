@@ -221,9 +221,9 @@ func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace stri
 	return dat, body, nil
 }
 
-// getStructDataNoLocale processes simple GET request based on pathAndQuery an returns the structured data.
-// Does not use a Locale.
-func (c *Client) getStructDataNoLocale(ctx context.Context, pathAndQuery, namespace string, dat interface{}) (interface{}, []byte, error) {
+// getStructDataNoNamespace processes simple GET request based on pathAndQuery an returns the structured data.
+// Does not use a namespace.
+func (c *Client) getStructDataNoNamespace(ctx context.Context, pathAndQuery string, dat interface{}) (interface{}, []byte, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", c.apiHost+pathAndQuery, nil)
 	if err != nil {
 		return dat, nil, err
@@ -231,9 +231,42 @@ func (c *Client) getStructDataNoLocale(ctx context.Context, pathAndQuery, namesp
 
 	req.Header.Set("Accept", "application/json")
 
-	if namespace != "" {
-		req.Header.Set("Battlenet-Namespace", namespace)
+	q := req.URL.Query()
+	q.Set("locale", c.locale.String())
+	req.URL.RawQuery = q.Encode()
+
+	res, err := c.client.Do(req)
+	if err != nil {
+		return dat, nil, err
 	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return dat, nil, err
+	}
+
+	if res.StatusCode != http.StatusOK {
+		return dat, body, errors.New(res.Status)
+	}
+
+	err = json.Unmarshal(body, &dat)
+	if err != nil {
+		return dat, body, err
+	}
+
+	return dat, body, nil
+}
+
+// getStructDataNoNamespace processes simple GET request based on pathAndQuery an returns the structured data.
+// Does not use a namespace or Locale
+func (c *Client) getStructDataNoNamespaceNoLocale(ctx context.Context, pathAndQuery string, dat interface{}) (interface{}, []byte, error) {
+	req, err := http.NewRequestWithContext(ctx, "GET", c.apiHost+pathAndQuery, nil)
+	if err != nil {
+		return dat, nil, err
+	}
+
+	req.Header.Set("Accept", "application/json")
 
 	res, err := c.client.Do(req)
 	if err != nil {
