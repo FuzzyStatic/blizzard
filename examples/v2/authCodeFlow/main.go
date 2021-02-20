@@ -86,7 +86,7 @@ func init() {
 	}
 
 	myDomain = os.Getenv("MY_DOMAIN")
-	if clientSecret == "" {
+	if myDomain == "" {
 		log.Fatal("Set the environment variable MY_DOMAIN before retrying.")
 	}
 }

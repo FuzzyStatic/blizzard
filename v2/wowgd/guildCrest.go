@@ -25,7 +25,7 @@ type GuildCrestComponentsIndex struct {
 	} `json:"borders"`
 }
 
-// GuildCrestBorderMdedia structure
+// GuildCrestBorderMedia structure
 type GuildCrestBorderMedia struct {
 	Links struct {
 		Self struct {

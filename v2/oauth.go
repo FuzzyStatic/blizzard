@@ -57,7 +57,7 @@ func (c *Client) AccessTokenRequest(ctx context.Context) error {
 
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
-	res, err = c.client.Do(req)
+	res, err = c.httpClient.Do(req)
 	if err != nil {
 		return err
 	}
@@ -130,7 +130,7 @@ func (c *Client) TokenValidation(ctx context.Context, token *oauth2.Token) (*oau
 
 	req.Header.Set("Accept", "application/json")
 
-	res, err = c.client.Do(req)
+	res, err = c.httpClient.Do(req)
 	if err != nil {
 		return &dat, b, err
 	}

@@ -50,7 +50,7 @@ type ItemSetsIndex struct {
 	} `json:"item_sets"`
 }
 
-// ItemSetsIndex structure
+// ItemSet structure
 type ItemSet struct {
 	Links struct {
 		Self struct {

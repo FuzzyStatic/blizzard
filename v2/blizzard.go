@@ -19,7 +19,7 @@ var c *Client
 
 // Client regional API URLs, locale, client ID, client secret
 type Client struct {
-	client                                          *http.Client
+	httpClient                                      *http.Client
 	cfg                                             clientcredentials.Config
 	authorizedCfg                                   oauth2.Config
 	oauth                                           OAuth
@@ -101,6 +101,8 @@ func NewClient(clientID, clientSecret string, region Region, locale Locale) *Cli
 
 	c.SetRegion(region)
 
+	c.httpClient = &http.Client{}
+
 	return &c
 }
 
@@ -143,40 +145,40 @@ func (c *Client) SetRegion(region Region) {
 	}
 
 	c.cfg.TokenURL = c.oauthHost + "/oauth/token"
-	c.client = c.cfg.Client(context.Background())
+	c.httpClient = c.cfg.Client(context.Background())
 }
 
-// GetRegion returns the Region of the client
+// GetOAuthHost returns the OAuth host of the client
 func (c *Client) GetOAuthHost() string {
 	return c.oauthHost
 }
 
-// GetRegion returns the Region of the client
+// GetAPIHost returns the API host of the client
 func (c *Client) GetAPIHost() string {
 	return c.apiHost
 }
 
-// GetRegion returns the Region of the client
+// GetDynamicNamespace returns the dynamic namespace of the client
 func (c *Client) GetDynamicNamespace() string {
 	return c.dynamicNamespace
 }
 
-// GetRegion returns the Region of the client
+// GetDynamicClassicNamespace returns the classic dynamic namespace of the client
 func (c *Client) GetDynamicClassicNamespace() string {
 	return c.dynamicClassicNamespace
 }
 
-// GetRegion returns the Region of the client
+// GetProfileNamespace returns the profile namespace of the client
 func (c *Client) GetProfileNamespace() string {
 	return c.profileNamespace
 }
 
-// GetRegion returns the Region of the client
+// GetStaticNamespace returns the static namespace of the client
 func (c *Client) GetStaticNamespace() string {
 	return c.staticNamespace
 }
 
-// GetRegion returns the Region of the client
+// GetStaticClassicNamespace returns the classic static namespace of the client
 func (c *Client) GetStaticClassicNamespace() string {
 	return c.staticClassicNamespace
 }
@@ -198,7 +200,7 @@ func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace stri
 		req.Header.Set("Battlenet-Namespace", namespace)
 	}
 
-	res, err := c.client.Do(req)
+	res, err := c.httpClient.Do(req)
 	if err != nil {
 		return dat, nil, err
 	}
@@ -235,7 +237,7 @@ func (c *Client) getStructDataNoNamespace(ctx context.Context, pathAndQuery stri
 	q.Set("locale", c.locale.String())
 	req.URL.RawQuery = q.Encode()
 
-	res, err := c.client.Do(req)
+	res, err := c.httpClient.Do(req)
 	if err != nil {
 		return dat, nil, err
 	}
@@ -268,7 +270,7 @@ func (c *Client) getStructDataNoNamespaceNoLocale(ctx context.Context, pathAndQu
 
 	req.Header.Set("Accept", "application/json")
 
-	res, err := c.client.Do(req)
+	res, err := c.httpClient.Do(req)
 	if err != nil {
 		return dat, nil, err
 	}
