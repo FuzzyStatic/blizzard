@@ -101,8 +101,6 @@ func NewClient(clientID, clientSecret string, region Region, locale Locale) *Cli
 
 	c.SetRegion(region)
 
-	c.httpClient = &http.Client{}
-
 	return &c
 }
 
