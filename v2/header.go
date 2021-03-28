@@ -60,13 +60,17 @@ func getHeader(httpHeader http.Header) (*Header, error) {
 		XTraceParentSpanID:      httpHeader.Get(HeaderKeyXTraceSpanID),
 		XTraceTraceID:           httpHeader.Get(HeaderKeyXTraceTraceID),
 	}
-	header.Date, err = time.Parse(time.RFC1123, httpHeader.Get(HeaderKeyDate))
-	if err != nil {
-		return &header, err
+	if httpHeader.Get(HeaderKeyDate) != "" {
+		header.Date, err = time.Parse(time.RFC1123, httpHeader.Get(HeaderKeyDate))
+		if err != nil {
+			header.Date = time.Time{}
+		}
 	}
-	header.LastModified, err = time.Parse(time.RFC1123, httpHeader.Get(HeaderKeyLastModified))
-	if err != nil {
-		return &header, err
+	if httpHeader.Get(HeaderKeyLastModified) != "" {
+		header.LastModified, err = time.Parse(time.RFC1123, httpHeader.Get(HeaderKeyLastModified))
+		if err != nil {
+			header.LastModified = time.Time{}
+		}
 	}
 	return &header, nil
 }
