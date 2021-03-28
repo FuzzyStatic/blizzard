@@ -44,10 +44,10 @@ func (c *Client) AuthorizeConfig(redirectURI string, profiles ...oauth.Profile) 
 // AccessTokenRequest retrieves new OAuth2 Token
 func (c *Client) AccessTokenRequest(ctx context.Context) error {
 	var (
-		req *http.Request
-		res *http.Response
-		b   []byte
-		err error
+		req  *http.Request
+		res  *http.Response
+		body []byte
+		err  error
 	)
 
 	req, err = http.NewRequestWithContext(ctx, "POST", c.oauthHost+"/oauth/token", strings.NewReader("grant_type=client_credentials"))
@@ -55,6 +55,11 @@ func (c *Client) AccessTokenRequest(ctx context.Context) error {
 		return err
 	}
 
+	q := req.URL.Query()
+	q.Set("grant_type", "client_credentials")
+	req.URL.RawQuery = q.Encode()
+
+	req.SetBasicAuth(c.oauth.ClientID, c.oauth.ClientSecret)
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	res, err = c.httpClient.Do(req)
@@ -63,12 +68,12 @@ func (c *Client) AccessTokenRequest(ctx context.Context) error {
 	}
 	defer res.Body.Close()
 
-	b, err = ioutil.ReadAll(res.Body)
+	body, err = ioutil.ReadAll(res.Body)
 	if err != nil {
 		return err
 	}
 
-	err = json.Unmarshal(b, &c.oauth.Token)
+	err = json.Unmarshal(body, &c.oauth.Token)
 	if err != nil {
 		return err
 	}
