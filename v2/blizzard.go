@@ -182,7 +182,7 @@ func (c *Client) GetStaticClassicNamespace() string {
 }
 
 // getStructData processes simple GET request based on pathAndQuery an returns the structured data.
-func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace string, dat interface{}) (interface{}, []byte, error) {
+func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace string, dat interface{}) (interface{}, *Header, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", c.apiHost+pathAndQuery, nil)
 	if err != nil {
 		return dat, nil, err
@@ -210,20 +210,25 @@ func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace stri
 	}
 
 	if res.StatusCode != http.StatusOK {
-		return dat, body, errors.New(res.Status)
+		return dat, nil, errors.New(res.Status)
 	}
 
 	err = json.Unmarshal(body, &dat)
 	if err != nil {
-		return dat, body, err
+		return dat, nil, err
 	}
 
-	return dat, body, nil
+	header, err := getHeader(res.Header)
+	if err != nil {
+		return dat, nil, err
+	}
+
+	return dat, header, nil
 }
 
 // getStructDataNoNamespace processes simple GET request based on pathAndQuery an returns the structured data.
 // Does not use a namespace.
-func (c *Client) getStructDataNoNamespace(ctx context.Context, pathAndQuery string, dat interface{}) (interface{}, []byte, error) {
+func (c *Client) getStructDataNoNamespace(ctx context.Context, pathAndQuery string, dat interface{}) (interface{}, *Header, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", c.apiHost+pathAndQuery, nil)
 	if err != nil {
 		return dat, nil, err
@@ -247,20 +252,25 @@ func (c *Client) getStructDataNoNamespace(ctx context.Context, pathAndQuery stri
 	}
 
 	if res.StatusCode != http.StatusOK {
-		return dat, body, errors.New(res.Status)
+		return dat, nil, errors.New(res.Status)
 	}
 
 	err = json.Unmarshal(body, &dat)
 	if err != nil {
-		return dat, body, err
+		return dat, nil, err
 	}
 
-	return dat, body, nil
+	header, err := getHeader(res.Header)
+	if err != nil {
+		return dat, nil, err
+	}
+
+	return dat, header, nil
 }
 
 // getStructDataNoNamespace processes simple GET request based on pathAndQuery an returns the structured data.
 // Does not use a namespace or Locale
-func (c *Client) getStructDataNoNamespaceNoLocale(ctx context.Context, pathAndQuery string, dat interface{}) (interface{}, []byte, error) {
+func (c *Client) getStructDataNoNamespaceNoLocale(ctx context.Context, pathAndQuery string, dat interface{}) (interface{}, *Header, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", c.apiHost+pathAndQuery, nil)
 	if err != nil {
 		return dat, nil, err
@@ -280,21 +290,26 @@ func (c *Client) getStructDataNoNamespaceNoLocale(ctx context.Context, pathAndQu
 	}
 
 	if res.StatusCode != http.StatusOK {
-		return dat, body, errors.New(res.Status)
+		return dat, nil, errors.New(res.Status)
 	}
 
 	err = json.Unmarshal(body, &dat)
 	if err != nil {
-		return dat, body, err
+		return dat, nil, err
 	}
 
-	return dat, body, nil
+	header, err := getHeader(res.Header)
+	if err != nil {
+		return dat, nil, err
+	}
+
+	return dat, header, nil
 }
 
 // getStructDataOAuth processes simple GET request based on pathAndQuery an returns the structured data.
 // Uses OAuth2.
 func (c *Client) getStructDataOAuth(ctx context.Context, pathAndQuery, namespace string,
-	token *oauth2.Token, dat interface{}) (interface{}, []byte, error) {
+	token *oauth2.Token, dat interface{}) (interface{}, *Header, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", c.apiHost+pathAndQuery, nil)
 	if err != nil {
 		return dat, nil, err
@@ -324,15 +339,20 @@ func (c *Client) getStructDataOAuth(ctx context.Context, pathAndQuery, namespace
 	}
 
 	if res.StatusCode != http.StatusOK {
-		return dat, body, errors.New(res.Status)
+		return dat, nil, errors.New(res.Status)
 	}
 
 	err = json.Unmarshal(body, &dat)
 	if err != nil {
-		return dat, body, err
+		return dat, nil, err
 	}
 
-	return dat, body, nil
+	header, err := getHeader(res.Header)
+	if err != nil {
+		return dat, nil, err
+	}
+
+	return dat, header, nil
 }
 
 func formatAccount(account string) string {
