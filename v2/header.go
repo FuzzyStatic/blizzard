@@ -64,7 +64,7 @@ func getHeader(httpHeader http.Header) (*Header, error) {
 	if err != nil {
 		return &header, err
 	}
-	header.LastModified, err = time.Parse(time.RFC1123, httpHeader.Get(HeaderKeyDate))
+	header.LastModified, err = time.Parse(time.RFC1123, httpHeader.Get(HeaderKeyLastModified))
 	if err != nil {
 		return &header, err
 	}
