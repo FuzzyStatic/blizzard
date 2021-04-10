@@ -1,4 +1,3 @@
-// Package header contains header information for Blizzard API calls
 package blizzard
 
 import (
@@ -6,6 +5,11 @@ import (
 	"time"
 )
 
+const (
+	headerTimeFormat = "Mon, _2 Jan 2006 15:04:05 MST"
+)
+
+// Header Keys
 const (
 	HeaderKeyBattlenetNamespace   = "Battlenet-Namespace"
 	HeaderKeyBattlenetSchema      = "Battlenet-Schema"
@@ -61,13 +65,13 @@ func getHeader(httpHeader http.Header) (*Header, error) {
 		XTraceTraceID:           httpHeader.Get(HeaderKeyXTraceTraceID),
 	}
 	if httpHeader.Get(HeaderKeyDate) != "" {
-		header.Date, err = time.Parse(time.RFC1123, httpHeader.Get(HeaderKeyDate))
+		header.Date, err = time.Parse(headerTimeFormat, httpHeader.Get(HeaderKeyDate))
 		if err != nil {
 			header.Date = time.Time{}
 		}
 	}
 	if httpHeader.Get(HeaderKeyLastModified) != "" {
-		header.LastModified, err = time.Parse(time.RFC1123, httpHeader.Get(HeaderKeyLastModified))
+		header.LastModified, err = time.Parse(headerTimeFormat, httpHeader.Get(HeaderKeyLastModified))
 		if err != nil {
 			header.LastModified = time.Time{}
 		}

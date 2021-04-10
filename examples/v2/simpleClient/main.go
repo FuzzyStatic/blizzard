@@ -28,7 +28,12 @@ func init() {
 }
 
 func main() {
-	blizz = blizzard.NewClient(clientID, clientSecret, blizzard.US, blizzard.EnUS)
+	blizz = blizzard.NewClient(
+		clientID,
+		clientSecret,
+		blizzard.US,
+		blizzard.EnUS,
+	)
 
 	err := blizz.AccessTokenRequest(context.Background())
 	if err != nil {
