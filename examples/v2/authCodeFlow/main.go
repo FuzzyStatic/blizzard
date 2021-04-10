@@ -92,7 +92,13 @@ func init() {
 }
 
 func main() {
-	blizz = blizzard.NewClient(clientID, clientSecret, blizzard.US, blizzard.EnUS)
+	blizz = blizzard.NewClient(
+		clientID,
+		clientSecret,
+		blizzard.US,
+		blizzard.EnUS,
+	)
+
 	cfg = blizz.AuthorizeConfig(fmt.Sprintf("http://%s:9094/oauth2", myDomain), oauth.ProfileD3, oauth.ProfileSC2, oauth.ProfileWoW)
 
 	http.HandleFunc("/", homepage)

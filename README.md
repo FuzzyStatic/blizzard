@@ -16,6 +16,7 @@
     - [Fetching World of Warcraft Classic Data](#fetching-world-of-warcraft-classic-data)
   - [Authorization for User Data](#authorization-for-user-data)
     - [Fetching OAuth Data](#fetching-oauth-data)
+  - [Header Information](#header-information)
   - [Documentation](#documentation)
   - [Special Thanks](#special-thanks)
 
@@ -30,7 +31,12 @@ go get github.com/FuzzyStatic/blizzard/v2
 Start using the library by initiating a new Blizzard config structure for your desired region and locale (client_id and client_secret can be acquired through your developer account at [https://develop.battle.net/](https://develop.battle.net/)) and requesting an access token:
 
 ```go
-blizz := blizzard.NewClient("client_id", "client_secret", blizzard.US, blizzard.EnUS)
+blizz := blizzard.NewClient(
+  "client_id", 
+  "client_secret", 
+  blizzard.US, 
+  blizzard.EnUS,
+)
 
 err := blizz.AccessTokenRequest(ctx)
 if err != nil {
@@ -231,6 +237,21 @@ if err != nil {
 }
 
 fmt.Printf("%+v\n", dat)
+```
+
+## Header Information
+
+Each API call will return HTTP response header information, if any. Use the second return variable to get a structure containing the response header information.
+
+```go
+dat, header, err := c.WoWAuctions(context.Background(), 1138)
+if err != nil {
+  fmt.Println(err)
+}
+
+fmt.Println(header.BattlenetNamespace)
+fmt.Println(header.LastModified)
+...
 ```
 
 ## Documentation
