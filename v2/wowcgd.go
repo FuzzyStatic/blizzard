@@ -286,3 +286,23 @@ func (c *Client) ClassicWoWRegion(ctx context.Context, regionID int) (*wowcgd.Re
 	)
 	return dat.(*wowcgd.Region), header, err
 }
+
+// ClassicRealmSearch searches for realms
+func (c Client) ClassicRealmSearch(ctx context.Context, opts ...SearchOpt) (*wowcgd.RealmSearch, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/search/realm%s", buildSearchParams(opts...)),
+		c.GetDynamicClassicNamespace(),
+		&wowcgd.RealmSearch{},
+	)
+	return dat.(*wowcgd.RealmSearch), header, err
+}
+
+// ClassicConnectedRealmSearch searchers for connected realms
+func (c Client) ClassicConnectedRealmSearch(ctx context.Context, opts ...SearchOpt) (*wowcgd.ConnectedRealmsSearch, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/search/connected-realm%s", buildSearchParams(opts...)),
+		c.GetDynamicClassicNamespace(),
+		&wowcgd.ConnectedRealmsSearch{},
+	)
+	return dat.(*wowcgd.ConnectedRealmsSearch), header, err
+}

@@ -181,6 +181,18 @@ func (c *Client) GetStaticClassicNamespace() string {
 	return c.staticClassicNamespace
 }
 
+// buildSearchParams builds params for searches
+func buildSearchParams(opts ...SearchOpt) string {
+	if len(opts) == 0 {
+		return ""
+	}
+	var params []string
+	for _, opt := range opts {
+		opt.Apply(&params)
+	}
+	return "?" + strings.Join(params, "&")
+}
+
 // getStructData processes simple GET request based on pathAndQuery an returns the structured data.
 func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace string, dat interface{}) (interface{}, *Header, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", c.apiHost+pathAndQuery, nil)

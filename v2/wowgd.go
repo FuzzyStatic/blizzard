@@ -1241,3 +1241,23 @@ func (c *Client) WoWToken(ctx context.Context) (*wowgd.Token, *Header, error) {
 	)
 	return dat.(*wowgd.Token), header, err
 }
+
+// RealmSearch searches for realms
+func (c Client) RealmSearch(ctx context.Context, opts ...SearchOpt) (*wowgd.RealmSearch, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/search/realm%s", buildSearchParams(opts...)),
+		c.GetDynamicClassicNamespace(),
+		&wowgd.RealmSearch{},
+	)
+	return dat.(*wowgd.RealmSearch), header, err
+}
+
+// ConnectedRealmSearch searchers for connected realms
+func (c Client) ConnectedRealmSearch(ctx context.Context, opts ...SearchOpt) (*wowgd.ConnectedRealmsSearch, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/search/connected-realm%s", buildSearchParams(opts...)),
+		c.GetDynamicClassicNamespace(),
+		&wowgd.ConnectedRealmsSearch{},
+	)
+	return dat.(*wowgd.ConnectedRealmsSearch), header, err
+}
