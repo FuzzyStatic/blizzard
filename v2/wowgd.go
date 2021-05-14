@@ -1252,7 +1252,7 @@ func (c Client) RealmSearch(ctx context.Context, opts ...SearchOpt) (*wowgd.Real
 	return dat.(*wowgd.RealmSearch), header, err
 }
 
-// ConnectedRealmSearch searchers for connected realms
+// ConnectedRealmSearch searches for connected realms
 func (c Client) ConnectedRealmSearch(ctx context.Context, opts ...SearchOpt) (*wowgd.ConnectedRealmsSearch, *Header, error) {
 	dat, header, err := c.getStructData(ctx,
 		fmt.Sprintf("/data/wow/search/connected-realm%s", buildSearchParams(opts...)),
