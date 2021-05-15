@@ -8,7 +8,7 @@ import (
 	"os"
 
 	"github.com/FuzzyStatic/blizzard/v2"
-	"github.com/FuzzyStatic/blizzard/v2/search"
+	"github.com/FuzzyStatic/blizzard/v2/wowsearch"
 )
 
 var (
@@ -29,10 +29,10 @@ func main() {
 
 	realmSearch, _, err := blizz.ClassicRealmSearch(
 		context.TODO(),
-		search.Page(1),
-		search.PageSize(5),
-		search.OrderBy("name.EN_US:asc"),
-		search.Field().
+		wowsearch.Page(1),
+		wowsearch.PageSize(5),
+		wowsearch.OrderBy("name.EN_US:asc"),
+		wowsearch.Field().
 			AND("timezone", "Europe/Paris").
 			AND("data.locale", "enGB").
 			NOT("type.type", "PVP").

@@ -10,7 +10,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/FuzzyStatic/blizzard/v2/search"
+	"github.com/FuzzyStatic/blizzard/v2/wowsearch"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
 )
@@ -183,7 +183,7 @@ func (c *Client) GetStaticClassicNamespace() string {
 }
 
 // buildSearchParams builds params for searches
-func buildSearchParams(opts ...search.Opt) string {
+func buildSearchParams(opts ...wowsearch.Opt) string {
 	if len(opts) == 0 {
 		return ""
 	}

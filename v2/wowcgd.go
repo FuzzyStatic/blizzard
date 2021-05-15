@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/FuzzyStatic/blizzard/v2/search"
 	"github.com/FuzzyStatic/blizzard/v2/wowcgd"
+	"github.com/FuzzyStatic/blizzard/v2/wowsearch"
 )
 
 // ClassicWoWConnectedRealmsIndex returns an index of connected realms.
@@ -289,7 +289,7 @@ func (c *Client) ClassicWoWRegion(ctx context.Context, regionID int) (*wowcgd.Re
 }
 
 // ClassicRealmSearch searches for realms
-func (c Client) ClassicRealmSearch(ctx context.Context, opts ...search.Opt) (*wowcgd.RealmSearch, *Header, error) {
+func (c Client) ClassicRealmSearch(ctx context.Context, opts ...wowsearch.Opt) (*wowcgd.RealmSearch, *Header, error) {
 	dat, header, err := c.getStructData(ctx,
 		fmt.Sprintf("/data/wow/search/realm%s", buildSearchParams(opts...)),
 		c.GetDynamicClassicNamespace(),
@@ -299,7 +299,7 @@ func (c Client) ClassicRealmSearch(ctx context.Context, opts ...search.Opt) (*wo
 }
 
 // ClassicConnectedRealmSearch searches for connected realms
-func (c Client) ClassicConnectedRealmSearch(ctx context.Context, opts ...search.Opt) (*wowcgd.ConnectedRealmsSearch, *Header, error) {
+func (c Client) ClassicConnectedRealmSearch(ctx context.Context, opts ...wowsearch.Opt) (*wowcgd.ConnectedRealmsSearch, *Header, error) {
 	dat, header, err := c.getStructData(ctx,
 		fmt.Sprintf("/data/wow/search/connected-realm%s", buildSearchParams(opts...)),
 		c.GetDynamicClassicNamespace(),

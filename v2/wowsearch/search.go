@@ -1,4 +1,4 @@
-package search
+package wowsearch
 
 import (
 	"fmt"
@@ -15,7 +15,7 @@ type Opt interface {
 //
 // Example:
 //
-//  search.Field().AND("timezone","Europe/Paris").AND("locale", "enGB").NOT("type.type", "PVP")
+//  wowsearch.Field().AND("timezone","Europe/Paris").AND("locale", "enGB").NOT("type.type", "PVP")
 func Field() *FieldSelector {
 	return &FieldSelector{}
 }
@@ -28,7 +28,7 @@ type FieldSelector struct {
 //
 // Example:
 //
-//  search.Field().AND("id","123").AND("type","PVP")
+//  wowsearch.Field().AND("id","123").AND("type","PVP")
 func (s *FieldSelector) AND(field, value string) *FieldSelector {
 	s.parts = append(s.parts, fmt.Sprintf("%s=%s", uqe(field), uqe(value)))
 	return s
@@ -38,8 +38,8 @@ func (s *FieldSelector) AND(field, value string) *FieldSelector {
 //
 // Example:
 //
-//  search.Field().OR("str","5","10")
-//  search.Field().OR("type","man","bear","pig")
+//  wowsearch.Field().OR("str","5","10")
+//  wowsearch.Field().OR("type","man","bear","pig")
 func (s *FieldSelector) OR(field string, values ...string) *FieldSelector {
 	for i, val := range values {
 		values[i] = uqe(val)
@@ -52,8 +52,8 @@ func (s *FieldSelector) OR(field string, values ...string) *FieldSelector {
 //
 // Example:
 //
-//  search.NOT("race","orc")
-//  search.NOT("race","human")
+//  wowsearch.NOT("race","orc")
+//  wowsearch.NOT("race","human")
 func (s *FieldSelector) NOT(field, value string) *FieldSelector {
 	s.parts = append(s.parts, fmt.Sprintf("%s!=%s", uqe(field), uqe(value)))
 	return s
@@ -63,7 +63,7 @@ func (s *FieldSelector) NOT(field, value string) *FieldSelector {
 //
 // Example:
 //
-//  search.RANGE("str",2,99)
+//  wowsearch.RANGE("str",2,99)
 func (s *FieldSelector) RANGE(field string, start, stop int) *FieldSelector {
 	s.parts = append(s.parts, fmt.Sprintf("%s=[%d,%d]", uqe(field), start, stop))
 	return s
@@ -73,7 +73,7 @@ func (s *FieldSelector) RANGE(field string, start, stop int) *FieldSelector {
 //
 // Example:
 //
-//  search.MIN("str",10)
+//  wowsearch.MIN("str",10)
 func (s *FieldSelector) MIN(field string, value int) *FieldSelector {
 	s.parts = append(s.parts, fmt.Sprintf("%s=[%d,]", uqe(field), value))
 	return s
@@ -83,7 +83,7 @@ func (s *FieldSelector) MIN(field string, value int) *FieldSelector {
 //
 // Example:
 //
-//  search.MAX("str",100)
+//  wowsearch.MAX("str",100)
 func (s *FieldSelector) MAX(field string, value int) *FieldSelector {
 	s.parts = append(s.parts, fmt.Sprintf("%s=[,%d]", uqe(field), value))
 	return s
@@ -97,7 +97,7 @@ func (s *FieldSelector) Apply(v *[]string) {
 //
 // Example:
 //
-//  search.Page(10)
+//  wowsearch.Page(10)
 func Page(page int) Opt {
 	if page < 1 {
 		page = 1
@@ -118,9 +118,9 @@ func (s *PageSelector) Apply(v *[]string) {
 //
 // Example:
 //
-//  search.PageSize(20) // Will return 20 items
-//  search.PageSize(1337) // Size will be set to 1000
-//  search.PageSize(-2) // Size will be set to 1
+//  wowsearch.PageSize(20) // Will return 20 items
+//  wowsearch.PageSize(1337) // Size will be set to 1000
+//  wowsearch.PageSize(-2) // Size will be set to 1
 func PageSize(size int) *PageSizeSelector {
 	switch {
 	case size < 1:
@@ -143,11 +143,11 @@ func (s *PageSizeSelector) Apply(v *[]string) {
 //
 // Example:
 //
-//  search.OrderBy("field1")
-//  search.OrderBy("field1:asc")
-//  search.OrderBy("field1:desc")
-//  search.OrderBy("field1", "field2")
-//  search.OrderBy("field1:desc", "field2:asc")
+//  wowsearch.OrderBy("field1")
+//  wowsearch.OrderBy("field1:asc")
+//  wowsearch.OrderBy("field1:desc")
+//  wowsearch.OrderBy("field1", "field2")
+//  wowsearch.OrderBy("field1:desc", "field2:asc")
 func OrderBy(fields ...string) *OrderBySelector {
 	return &OrderBySelector{fields: fields}
 }
