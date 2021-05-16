@@ -163,6 +163,45 @@ func (s *OrderBySelector) Apply(v *[]string) {
 	*v = append(*v, fmt.Sprintf("orderby=%s", strings.Join(s.fields, ",")))
 }
 
+// Used only for media documents.
+// Specifies the type of media document (item, spell, creature-display, etc) to query.
+//
+// Example:
+//
+//  wowsearch.Tag("item")
+func Tag(value string) *TagSelector {
+	return &TagSelector{value: value}
+}
+
+type TagSelector struct {
+	value string
+}
+
+func (s *TagSelector) Apply(v *[]string) {
+	*v = append(*v, fmt.Sprintf("_tag=%s", uqe(s.value)))
+}
+
+// Used only for media documents.
+// Specifies the type of media document (item, spell, creature-display, etc) to query.
+//
+// Example:
+//
+//  wowsearch.Tag("item")
+func Tags(value ...string) *TagsSelector {
+	return &TagsSelector{values: value}
+}
+
+type TagsSelector struct {
+	values []string
+}
+
+func (s *TagsSelector) Apply(v *[]string) {
+	for i, val := range s.values {
+		s.values[i] = uqe(val)
+	}
+	*v = append(*v, fmt.Sprintf("_tags=%s", strings.Join(s.values, ",")))
+}
+
 // uqe is just a shorter name for url.QueryEscape
 func uqe(val string) string {
 	return url.QueryEscape(val)

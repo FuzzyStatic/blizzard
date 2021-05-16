@@ -238,32 +238,6 @@ func TestFieldSelector_MAX(t *testing.T) {
 	}
 }
 
-/*
-func TestFieldSelector_Apply(t *testing.T) {
-	type fields struct {
-		parts []string
-	}
-	type args struct {
-		v *[]string
-	}
-	tests := []struct {
-		name   string
-		fields fields
-		args   args
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			s := &FieldSelector{
-				parts: tt.fields.parts,
-			}
-			s.Apply(tt.args.v)
-		})
-	}
-}
-*/
-
 func TestPage(t *testing.T) {
 	type args struct {
 		page int
@@ -301,31 +275,6 @@ func TestPage(t *testing.T) {
 	}
 }
 
-/*
-func TestPageSelector_Apply(t *testing.T) {
-	type fields struct {
-		page int
-	}
-	type args struct {
-		v *[]string
-	}
-	tests := []struct {
-		name   string
-		fields fields
-		args   args
-	}{
-		{// TODO: Add test cases.}
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			s := &PageSelector{
-				page: tt.fields.page,
-			}
-			s.Apply(tt.args.v)
-		})
-	}
-}
-*/
 func TestPageSize(t *testing.T) {
 	type args struct {
 		size int
@@ -366,31 +315,6 @@ func TestPageSize(t *testing.T) {
 	}
 }
 
-/*
-func TestPageSizeSelector_Apply(t *testing.T) {
-	type fields struct {
-		size int
-	}
-	type args struct {
-		v *[]string
-	}
-	tests := []struct {
-		name   string
-		fields fields
-		args   args
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			s := &PageSizeSelector{
-				size: tt.fields.size,
-			}
-			s.Apply(tt.args.v)
-		})
-	}
-}
-*/
 func TestOrderBy(t *testing.T) {
 	type args struct {
 		fields []string
@@ -419,31 +343,54 @@ func TestOrderBy(t *testing.T) {
 	}
 }
 
-/*
-func TestOrderBySelector_Apply(t *testing.T) {
-	type fields struct {
-		fields []string
-	}
+func TestTag(t *testing.T) {
 	type args struct {
-		v *[]string
+		value string
 	}
 	tests := []struct {
-		name   string
-		fields fields
-		args   args
+		name string
+		args args
+		want *TagSelector
 	}{
-		// TODO: Add test cases.
+		{
+			name: "test Tag",
+			args: args{value: "image"},
+			want: &TagSelector{value: "image"},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := &OrderBySelector{
-				fields: tt.fields.fields,
+			if got := Tag(tt.args.value); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Tag() = %v, want %v", got, tt.want)
 			}
-			s.Apply(tt.args.v)
 		})
 	}
 }
-*/
+
+func TestTags(t *testing.T) {
+	type args struct {
+		value []string
+	}
+	tests := []struct {
+		name string
+		args args
+		want *TagsSelector
+	}{
+		{
+			name: "test Tags",
+			args: args{value: []string{"image", "item"}},
+			want: &TagsSelector{values: []string{"image", "item"}},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Tags(tt.args.value...); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Tags() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
 func Test_uqe(t *testing.T) {
 	type args struct {
 		val string
@@ -465,6 +412,230 @@ func Test_uqe(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := uqe(tt.args.val); got != tt.want {
 				t.Errorf("uqe() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestFieldSelector_Apply(t *testing.T) {
+
+	type fields struct {
+		parts []string
+	}
+	type args struct {
+		v *[]string
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   *[]string
+	}{
+		{
+			name: "test field apply",
+			fields: fields{
+				parts: []string{"a=b", "c=d"},
+			},
+			args: args{
+				v: &[]string{},
+			},
+			want: &[]string{"a=b&c=d"},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			s := &FieldSelector{
+				parts: tt.fields.parts,
+			}
+			s.Apply(tt.args.v)
+			if !reflect.DeepEqual(tt.args.v, tt.want) {
+				t.Errorf("Apply() = %v, want %v", tt.args.v, tt.want)
+			}
+		})
+	}
+}
+
+func TestPageSelector_Apply(t *testing.T) {
+	type fields struct {
+		page int
+	}
+	type args struct {
+		v *[]string
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   *[]string
+	}{
+		{
+			name: "test Page Apply",
+			fields: fields{
+				page: 1,
+			},
+			args: args{
+				v: &[]string{},
+			},
+			want: &[]string{"_page=1"},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			s := &PageSelector{
+				page: tt.fields.page,
+			}
+			s.Apply(tt.args.v)
+			if !reflect.DeepEqual(tt.args.v, tt.want) {
+				t.Errorf("Apply() = %v, want %v", tt.args.v, tt.want)
+			}
+		})
+
+	}
+}
+
+func TestPageSizeSelector_Apply(t *testing.T) {
+	type fields struct {
+		size int
+	}
+	type args struct {
+		v *[]string
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   *[]string
+	}{
+		{
+			name: "test PageSize Apply",
+			fields: fields{
+				size: 1,
+			},
+			args: args{
+				v: &[]string{},
+			},
+			want: &[]string{"_pageSize=1"},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			s := &PageSizeSelector{
+				size: tt.fields.size,
+			}
+			s.Apply(tt.args.v)
+			if !reflect.DeepEqual(tt.args.v, tt.want) {
+				t.Errorf("Apply() = %v, want %v", tt.args.v, tt.want)
+			}
+		})
+	}
+}
+
+func TestOrderBySelector_Apply(t *testing.T) {
+	type fields struct {
+		fields []string
+	}
+	type args struct {
+		v *[]string
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   *[]string
+	}{
+		{
+			name: "test OrderBy Apply",
+			fields: fields{
+				fields: []string{"field1:asc", "field2:desc"},
+			},
+			args: args{
+				v: &[]string{},
+			},
+			want: &[]string{"orderby=field1%3Aasc,field2%3Adesc"},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			s := &OrderBySelector{
+				fields: tt.fields.fields,
+			}
+			s.Apply(tt.args.v)
+			if !reflect.DeepEqual(tt.args.v, tt.want) {
+				t.Errorf("Apply() = %v, want %v", tt.args.v, tt.want)
+			}
+		})
+	}
+}
+
+func TestTagSelector_Apply(t *testing.T) {
+	type fields struct {
+		value string
+	}
+	type args struct {
+		v *[]string
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   *[]string
+	}{
+		{
+			name: "test Tag Apply",
+			fields: fields{
+				value: "spell",
+			},
+			args: args{
+				v: &[]string{},
+			},
+			want: &[]string{"_tag=spell"},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			s := &TagSelector{
+				value: tt.fields.value,
+			}
+			s.Apply(tt.args.v)
+			if !reflect.DeepEqual(tt.args.v, tt.want) {
+				t.Errorf("Apply() = %v, want %v", tt.args.v, tt.want)
+			}
+		})
+	}
+}
+
+func TestTagsSelector_Apply(t *testing.T) {
+	type fields struct {
+		values []string
+	}
+	type args struct {
+		v *[]string
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   *[]string
+	}{
+		{
+			name: "test TagsApply",
+			fields: fields{
+				values: []string{"spell", "item"},
+			},
+			args: args{
+				v: &[]string{},
+			},
+			want: &[]string{"_tags=spell,item"},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			s := &TagsSelector{
+				values: tt.fields.values,
+			}
+			s.Apply(tt.args.v)
+			if !reflect.DeepEqual(tt.args.v, tt.want) {
+				t.Errorf("Apply() = %v, want %v", tt.args.v, tt.want)
 			}
 		})
 	}
