@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/FuzzyStatic/blizzard/v2/wowsearch"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
 )
@@ -179,6 +180,18 @@ func (c *Client) GetStaticNamespace() string {
 // GetStaticClassicNamespace returns the classic static namespace of the client
 func (c *Client) GetStaticClassicNamespace() string {
 	return c.staticClassicNamespace
+}
+
+// buildSearchParams builds params for searches
+func buildSearchParams(opts ...wowsearch.Opt) string {
+	if len(opts) == 0 {
+		return ""
+	}
+	var params []string
+	for _, opt := range opts {
+		opt.Apply(&params)
+	}
+	return "?" + strings.Join(params, "&")
 }
 
 // getStructData processes simple GET request based on pathAndQuery an returns the structured data.

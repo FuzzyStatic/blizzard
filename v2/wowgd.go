@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/FuzzyStatic/blizzard/v2/wowgd"
+	"github.com/FuzzyStatic/blizzard/v2/wowsearch"
 )
 
 // WoWAchievementCategoriesIndex returns an index of achievement categories.
@@ -1240,4 +1241,24 @@ func (c *Client) WoWToken(ctx context.Context) (*wowgd.Token, *Header, error) {
 		&wowgd.Token{},
 	)
 	return dat.(*wowgd.Token), header, err
+}
+
+// RealmSearch searches for realms
+func (c Client) RealmSearch(ctx context.Context, opts ...wowsearch.Opt) (*wowgd.RealmSearch, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/search/realm%s", buildSearchParams(opts...)),
+		c.GetDynamicClassicNamespace(),
+		&wowgd.RealmSearch{},
+	)
+	return dat.(*wowgd.RealmSearch), header, err
+}
+
+// ConnectedRealmSearch searches for connected realms
+func (c Client) ConnectedRealmSearch(ctx context.Context, opts ...wowsearch.Opt) (*wowgd.ConnectedRealmsSearch, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/search/connected-realm%s", buildSearchParams(opts...)),
+		c.GetDynamicClassicNamespace(),
+		&wowgd.ConnectedRealmsSearch{},
+	)
+	return dat.(*wowgd.ConnectedRealmsSearch), header, err
 }
