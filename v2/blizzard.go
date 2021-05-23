@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"net"
 	"net/http"
 	"strings"
 	"time"
@@ -125,7 +126,6 @@ func NewClient(clientID, clientSecret string, region Region, locale Locale, opts
 			retry.Attempts(3),
 			retry.Delay(100 * time.Millisecond),
 			retry.DelayType(retry.BackOffDelay),
-			retry.MaxJitter(0 * time.Millisecond),
 			retry.RetryIf(func(err error) bool {
 				switch {
 				case err.Error() == "429 Too Many Requests":
@@ -183,7 +183,19 @@ func (c *Client) SetRegion(region Region) {
 	}
 
 	c.cfg.TokenURL = c.oauthHost + "/oauth/token"
-	c.httpClient = c.cfg.Client(context.Background())
+
+	defaultTransport := &http.Transport{
+		Dial:                (&net.Dialer{KeepAlive: 10 * time.Second}).Dial,
+		MaxIdleConns:        6,
+		MaxIdleConnsPerHost: 2,
+	}
+
+	httpClient := &http.Client{
+		Timeout:   10 * time.Second,
+		Transport: defaultTransport,
+	}
+	ctx := context.WithValue(context.TODO(), oauth2.HTTPClient, httpClient)
+	c.httpClient = c.cfg.Client(ctx)
 }
 
 // GetOAuthHost returns the OAuth host of the client
