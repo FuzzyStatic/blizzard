@@ -126,6 +126,7 @@ func NewClient(clientID, clientSecret string, region Region, locale Locale, opts
 			retry.Attempts(3),
 			retry.Delay(100 * time.Millisecond),
 			retry.DelayType(retry.BackOffDelay),
+			retry.MaxJitter(0),
 			retry.RetryIf(func(err error) bool {
 				switch {
 				case err.Error() == "429 Too Many Requests":
@@ -135,7 +136,7 @@ func NewClient(clientID, clientSecret string, region Region, locale Locale, opts
 				case err.Error() == "404 Not Found":
 					return false
 				default:
-					return false // We cannot retry this away
+					return false // unhandled error
 				}
 			}),
 		}

@@ -9,7 +9,6 @@ import (
 	"time"
 
 	"github.com/FuzzyStatic/blizzard/v2"
-	"github.com/FuzzyStatic/blizzard/v2/wowsearch"
 	"github.com/avast/retry-go"
 )
 
@@ -38,6 +37,7 @@ func main() {
 			retry.Attempts(3),
 			retry.Delay(100*time.Millisecond),
 			retry.DelayType(retry.BackOffDelay),
+			retry.MaxJitter(0),
 			retry.RetryIf(func(err error) bool {
 				switch {
 				case err.Error() == "429 Too Many Requests":
@@ -53,25 +53,14 @@ func main() {
 		),
 	)
 
-	realmSearch, _, err := blizz.ClassicRealmSearch(
-		context.TODO(),
-		wowsearch.Page(1),
-		wowsearch.PageSize(5),
-		wowsearch.OrderBy("name.EN_US:asc"),
-		wowsearch.Field().
-			AND("timezone", "Europe/Paris").
-			AND("data.locale", "enGB").
-			NOT("type.type", "PVP").
-			NOT("id", "4756||4757").
-			OR("type.type", "NORMAL", "RP"),
-	)
+	mount, _, err := blizz.WoWMountIndex(context.TODO())
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
-	out, err := json.MarshalIndent(realmSearch, "", "  ")
+	out, err := json.MarshalIndent(mount, "", "  ")
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	fmt.Println(string(out[:]))
