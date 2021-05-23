@@ -9,14 +9,22 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/FuzzyStatic/blizzard/v2/wowsearch"
+	"github.com/avast/retry-go"
+
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
+	"golang.org/x/time/rate"
 )
 
 // For testing
 var c *Client
+
+type ClientOpts interface {
+	Apply(c *Client)
+}
 
 // Client regional API URLs, locale, client ID, client secret
 type Client struct {
@@ -31,6 +39,8 @@ type Client struct {
 	dynamicClassicNamespace, staticClassicNamespace string
 	region                                          Region
 	locale                                          Locale
+	retryopts                                       []retry.Option
+	ratelimiter                                     *rate.Limiter
 }
 
 // Region type
@@ -86,7 +96,7 @@ const (
 )
 
 // NewClient create new Blizzard structure. This structure will be used to acquire your access token and make API calls.
-func NewClient(clientID, clientSecret string, region Region, locale Locale) *Client {
+func NewClient(clientID, clientSecret string, region Region, locale Locale, opts ...ClientOpts) *Client {
 	var c = Client{
 		oauth: OAuth{
 			ClientID:     clientID,
@@ -101,6 +111,35 @@ func NewClient(clientID, clientSecret string, region Region, locale Locale) *Cli
 	}
 
 	c.SetRegion(region)
+
+	for _, opt := range opts {
+		opt.Apply(&c)
+	}
+
+	if c.ratelimiter == nil {
+		c.ratelimiter = rate.NewLimiter(rate.Every(1*time.Second/100), 10)
+	}
+
+	if len(c.retryopts) == 0 {
+		c.retryopts = []retry.Option{
+			retry.Attempts(3),
+			retry.Delay(100 * time.Millisecond),
+			retry.DelayType(retry.BackOffDelay),
+			retry.MaxJitter(0 * time.Millisecond),
+			retry.RetryIf(func(err error) bool {
+				switch {
+				case err.Error() == "429 Too Many Requests":
+					return true // recoverable error, retry
+				case err.Error() == "403 Forbidden":
+					return false
+				case err.Error() == "404 Not Found":
+					return false
+				default:
+					return false // We cannot retry this away
+				}
+			}),
+		}
+	}
 
 	return &c
 }
@@ -194,13 +233,20 @@ func buildSearchParams(opts ...wowsearch.Opt) string {
 	return "?" + strings.Join(params, "&")
 }
 
+func (c *Client) getRetryOpts(ctx context.Context) []retry.Option {
+	opts := []retry.Option{
+		retry.Context(ctx),
+	}
+	return append(opts, c.retryopts...)
+}
+
 // getStructData processes simple GET request based on pathAndQuery an returns the structured data.
 func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace string, dat interface{}) (interface{}, *Header, error) {
+
 	req, err := http.NewRequestWithContext(ctx, "GET", c.apiHost+pathAndQuery, nil)
 	if err != nil {
 		return dat, nil, err
 	}
-
 	req.Header.Set("Accept", "application/json")
 
 	q := req.URL.Query()
@@ -211,10 +257,24 @@ func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace stri
 		req.Header.Set("Battlenet-Namespace", namespace)
 	}
 
-	res, err := c.httpClient.Do(req)
+	var res *http.Response
+	err = retry.Do(
+		func() (err error) {
+			if err := c.ratelimiter.Wait(ctx); err != nil {
+				return err
+			}
+			res, err = c.httpClient.Do(req)
+			if err != nil && res != nil {
+				res.Body.Close()
+			}
+			return
+		},
+		c.getRetryOpts(ctx)...,
+	)
 	if err != nil {
 		return dat, nil, err
 	}
+
 	defer res.Body.Close()
 
 	body, err := ioutil.ReadAll(res.Body)
@@ -237,6 +297,7 @@ func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace stri
 	}
 
 	return dat, header, nil
+
 }
 
 // getStructDataNoNamespace processes simple GET request based on pathAndQuery an returns the structured data.
