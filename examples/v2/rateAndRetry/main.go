@@ -30,7 +30,7 @@ func main() {
 		bnetSECRET,
 		blizzard.EU,
 		blizzard.EnUS,
-		// This is the client default rate config, we allow 100 requests per second, and a burst of the
+		// This is the client default rate config, we allow 100 requests per second, and a burst budget of 10 requests
 		blizzard.NewRateOpt(1*time.Second/100, 10),
 		// This is the client default retry config
 		blizzard.NewRetryOpt(
