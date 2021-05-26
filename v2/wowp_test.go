@@ -164,8 +164,8 @@ func TestMythicKeystoneProfileIndex(t *testing.T) {
 	}
 }
 
-func TestMythicKeystoneSeasonDetails(t *testing.T) {
-	dat, _, err := c.WoWMythicKeystoneSeasonDetails(context.Background(), "illidan", "covlol", 1)
+func TestWoWMythicKeystoneSeasonDetails(t *testing.T) {
+	dat, _, err := c.WoWMythicKeystoneSeasonDetails(context.Background(), "illidan", "covlol", 3)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -213,7 +213,7 @@ func TestWoWCharacterMythicKeystoneProfile(t *testing.T) {
 }
 
 func TestWoWCharacterMythicKeystoneProfileSeason(t *testing.T) {
-	dat, _, err := c.WoWCharacterMythicKeystoneProfileSeason(context.Background(), "illidan", "covlol", 1)
+	dat, _, err := c.WoWCharacterMythicKeystoneProfileSeason(context.Background(), "illidan", "covlol", 3)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
