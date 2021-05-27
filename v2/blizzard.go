@@ -8,9 +8,12 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 	"strings"
 
+	"github.com/FuzzyStatic/blizzard/v2/wowp"
 	"github.com/FuzzyStatic/blizzard/v2/wowsearch"
+	"github.com/kr/pretty"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
 )
@@ -226,15 +229,51 @@ func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace stri
 		return dat, nil, errors.New(res.Status)
 	}
 
-	err = json.Unmarshal(body, &dat)
-	if err != nil {
-		return dat, nil, err
-	}
-
 	header, err := getHeader(res.Header)
 	if err != nil {
 		return dat, nil, err
 	}
+
+	switch dat.(type) {
+	case *wowp.CharacterProfileSummary:
+		bnSchRev, err := strconv.ParseInt(header.BattlenetSchemaRevision, 10, 64)
+		if err != nil {
+			return dat, nil, err
+		}
+
+		fmt.Println(bnSchRev)
+
+		if bnSchRev < 24 {
+			fmt.Println("true")
+			var temp *wowp.CharacterProfileSummaryPreRev24
+			err = json.Unmarshal(body, &temp)
+			if err != nil {
+				return dat, nil, err
+			}
+
+			var activeTitle wowp.ActiveTitlePreRev24
+			err = json.Unmarshal(body, &activeTitle)
+			if err != nil {
+				return dat, nil, err
+			}
+
+			wowp.ConvertCharacterProfileSummaryPreRev24(activeTitle.ActiveTitle,
+				temp, dat.(*wowp.CharacterProfileSummary))
+			break
+		}
+
+		err = json.Unmarshal(body, &dat)
+		if err != nil {
+			return dat, nil, err
+		}
+	default:
+		err = json.Unmarshal(body, &dat)
+		if err != nil {
+			return dat, nil, err
+		}
+	}
+
+	pretty.Println(dat)
 
 	return dat, header, nil
 }
@@ -268,12 +307,12 @@ func (c *Client) getStructDataNoNamespace(ctx context.Context, pathAndQuery stri
 		return dat, nil, errors.New(res.Status)
 	}
 
-	err = json.Unmarshal(body, &dat)
+	header, err := getHeader(res.Header)
 	if err != nil {
 		return dat, nil, err
 	}
 
-	header, err := getHeader(res.Header)
+	err = json.Unmarshal(body, &dat)
 	if err != nil {
 		return dat, nil, err
 	}
@@ -306,12 +345,12 @@ func (c *Client) getStructDataNoNamespaceNoLocale(ctx context.Context, pathAndQu
 		return dat, nil, errors.New(res.Status)
 	}
 
-	err = json.Unmarshal(body, &dat)
+	header, err := getHeader(res.Header)
 	if err != nil {
 		return dat, nil, err
 	}
 
-	header, err := getHeader(res.Header)
+	err = json.Unmarshal(body, &dat)
 	if err != nil {
 		return dat, nil, err
 	}
@@ -355,12 +394,12 @@ func (c *Client) getStructDataOAuth(ctx context.Context, pathAndQuery, namespace
 		return dat, nil, errors.New(res.Status)
 	}
 
-	err = json.Unmarshal(body, &dat)
+	header, err := getHeader(res.Header)
 	if err != nil {
 		return dat, nil, err
 	}
 
-	header, err := getHeader(res.Header)
+	err = json.Unmarshal(body, &dat)
 	if err != nil {
 		return dat, nil, err
 	}
