@@ -13,7 +13,6 @@ import (
 
 	"github.com/FuzzyStatic/blizzard/v2/wowp"
 	"github.com/FuzzyStatic/blizzard/v2/wowsearch"
-	"github.com/kr/pretty"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
 )
@@ -241,8 +240,6 @@ func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace stri
 			return dat, nil, err
 		}
 
-		fmt.Println(bnSchRev)
-
 		if bnSchRev < 24 {
 			fmt.Println("true")
 			var temp *wowp.CharacterProfileSummaryPreRev24
@@ -272,8 +269,6 @@ func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace stri
 			return dat, nil, err
 		}
 	}
-
-	pretty.Println(dat)
 
 	return dat, header, nil
 }
