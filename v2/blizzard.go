@@ -184,6 +184,16 @@ func (c *Client) GetStaticClassicNamespace() string {
 	return c.staticClassicNamespace
 }
 
+// GetHTTPClient returns the http.Client used for making requests
+func (c *Client) GetHTTPClient() *http.Client {
+	return c.httpClient
+}
+
+// SetHTTPClient sets the http.Client used for making requests
+func (c *Client) SetHTTPClient(h *http.Client) {
+	c.httpClient = h
+}
+
 // buildSearchParams builds params for searches
 func buildSearchParams(opts ...wowsearch.Opt) string {
 	if len(opts) == 0 {
