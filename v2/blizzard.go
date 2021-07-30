@@ -189,7 +189,10 @@ func (c *Client) GetHTTPClient() *http.Client {
 	return c.httpClient
 }
 
-// SetHTTPClient sets the http.Client used for making requests
+// SetHTTPClient sets the http.Client used for making requests.
+// Calling `SetRegion` will overwrite this client.
+// It is recommended to wrap the client returned by `GetHTTPClient` because
+// the default one handles the oauth flow (see `golang.org/x/oauth2.NewClient`).
 func (c *Client) SetHTTPClient(h *http.Client) {
 	c.httpClient = h
 }
