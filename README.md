@@ -258,7 +258,7 @@ fmt.Printf("%+v\n", dat)
 Each API call will return HTTP response header information, if any. Use the second return variable to get a structure containing the response header information.
 
 ```go
-dat, header, err := c.WoWAuctions(context.Background(), 1138)
+dat, header, err := usBlizzClient.WoWAuctions(context.Background(), 1138)
 if err != nil {
   fmt.Println(err)
 }
