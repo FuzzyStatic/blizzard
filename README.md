@@ -25,20 +25,34 @@
 First, download the Blizzard library:
 
 ```shell
-go get github.com/FuzzyStatic/blizzard/v2
+go get github.com/FuzzyStatic/blizzard/v3
 ```
 
 Start using the library by initiating a new Blizzard config structure for your desired region and locale (client_id and client_secret can be acquired through your developer account at [https://develop.battle.net/](https://develop.battle.net/)) and requesting an access token:
 
 ```go
-blizz := blizzard.NewClient(
-  "client_id", 
-  "client_secret", 
-  blizzard.US, 
-  blizzard.EnUS,
-)
+usBlizzClient := blizzard.NewClient(blizzard.Config{
+  ClientID:     "my_client_id",
+  ClientSecret: "my_client_secret",
+  HTTPClient:   http.DefaultClient,
+  Region:       blizzard.US,
+  Locale:       blizzard.EnUS,
+})
 
-err := blizz.AccessTokenRequest(ctx)
+err := usBlizzClient.AccessTokenRequest(ctx)
+if err != nil {
+  fmt.Println(err)
+}
+
+euBlizzClient := blizzard.NewClient(blizzard.Config{
+  ClientID:     "my_client_id",
+  ClientSecret: "my_client_secret",
+  HTTPClient:   http.DefaultClient,
+  Region:       blizzard.EU,
+  Locale:       blizzard.EnGB,
+})
+
+err := euBlizzClient.AccessTokenRequest(ctx)
 if err != nil {
   fmt.Println(err)
 }
@@ -49,7 +63,7 @@ if err != nil {
 You can use the functions prefixed with "D3" to acquire Diablo 3 information. For example, you can get information about the current D3 hardcore necromancer leaderboards:
 
 ```go
-dat, _, err := blizz.D3SeasonLeaderboardHardcoreNecromancer(ctx, 15)
+dat, _, err := usBlizzClient.D3SeasonLeaderboardHardcoreNecromancer(ctx, 15)
 if err != nil {
   fmt.Println(err)
 }
@@ -62,7 +76,7 @@ fmt.Printf("%+v\n", dat)
 You can use the functions prefixed with "HS" to acquire Hearthstone information. For example, you can get information about all the Hearthstone cards:
 
 ```go
-dat, _, err := blizz.HSCardsAll(ctx)
+dat, _, err := usBlizzClient.HSCardsAll(ctx)
 if err != nil {
   fmt.Println(err)
 }
@@ -75,7 +89,7 @@ fmt.Printf("%+v\n", dat)
 You can use the functions prefixed with "SC2" to acquire StarCraft 2 information. For example, you can get information about the current SC2 grandmaster ladder:
 
 ```go
-dat, _, err := blizz.SC2LadderGrandmaster(ctx, blizzard.EU)
+dat, _, err := usBlizzClient.SC2LadderGrandmaster(ctx, blizzard.EU)
 if err != nil {
   fmt.Println(err)
 }
@@ -88,7 +102,7 @@ fmt.Printf("%+v\n", dat)
 You can use the functions prefixed with "WoW" to acquire World of Warcraft information. For example, you can get information about your WoW character profile:
 
 ```go
-dat, _, err := blizz.WoWCharacterProfileSummary(ctx, "illidan", "wildz")
+dat, _, err := usBlizzClient.WoWCharacterProfileSummary(ctx, "illidan", "wildz")
 if err != nil {
   fmt.Println(err)
 }
@@ -99,7 +113,7 @@ fmt.Printf("%+v\n", dat)
 or get information about specific spells:
 
 ```go
-dat, _, err := blizz.WoWSpell(ctx, 17086)
+dat, _, err := usBlizzClient.WoWSpell(ctx, 17086)
 if err != nil {
   fmt.Println(err)
 }
@@ -110,7 +124,7 @@ fmt.Printf("%+v\n", dat)
 or the PvP leaderboards:
 
 ```go
-dat, _, err := blizz.WoWCharacterPvPBracketStatistics(ctx, wowp.Bracket3v3)
+dat, _, err := usBlizzClient.WoWCharacterPvPBracketStatistics(ctx, wowp.Bracket3v3)
 if err != nil {
   fmt.Println(err)
 }
@@ -123,7 +137,7 @@ fmt.Printf("%+v\n", dat)
 You can use the functions prefixed with "ClassicWoW" to acquire World of Warcraft Classic information. For example, you can get information about WoW Classic creature data:
 
 ```go
-dat, _, err := blizz.ClassicWoWCreature(ctx, 30)
+dat, _, err := usBlizzClient.ClassicWoWCreature(ctx, 30)
 if err != nil {
   fmt.Println(err)
 }
@@ -151,8 +165,8 @@ import (
 )
 
 var (
-  cfg   oauth2.Config
-  blizz *blizzard.Client
+  cfg           oauth2.Config
+  usBlizzClient *blizzard.Client
 )
 
 // Homepage
@@ -196,7 +210,7 @@ func Authorize(w http.ResponseWriter, r *http.Request) {
     return
   }
 
-  dat1, _, err := blizz.UserInfoHeader(token)
+  dat1, _, err := usBlizzClient.UserInfoHeader(token)
   if err != nil {
     http.Error(w, err.Error(), http.StatusInternalServerError)
     return
@@ -204,7 +218,7 @@ func Authorize(w http.ResponseWriter, r *http.Request) {
 
   fmt.Printf("%+v\n", dat1)
 
-  dat2, _, err := blizz.WoWUserCharacters(token)
+  dat2, _, err := usBlizzClient.WoWUserCharacters(token)
   if err != nil {
     http.Error(w, err.Error(), http.StatusInternalServerError)
     return
@@ -215,7 +229,7 @@ func Authorize(w http.ResponseWriter, r *http.Request) {
 
 func main() {
   blizz = blizzard.NewClient("client_id", "client_secret", blizzard.US, blizzard.EnUS)
-  cfg = blizz.AuthorizeConfig("http://<mydomain>:9094/oauth2", oauth.ProfileD3, oauth.ProfileSC2, oauth.ProfileWoW)
+  cfg = usBlizzClient.AuthorizeConfig("http://<mydomain>:9094/oauth2", oauth.ProfileD3, oauth.ProfileSC2, oauth.ProfileWoW)
 
   http.HandleFunc("/", HomePage)
   http.HandleFunc("/oauth2", Authorize)
@@ -231,7 +245,7 @@ func main() {
 Now you can validate those tokens with the OAuth API:
 
 ```go
-dat, _, err := blizz.TokenValidation(ctx, token)
+dat, _, err := usBlizzClient.TokenValidation(ctx, token)
 if err != nil {
   fmt.Println(err)
 }
