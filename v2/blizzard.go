@@ -240,8 +240,7 @@ func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace stri
 			return dat, nil, err
 		}
 
-		if bnSchRev < 24 {
-			fmt.Println("true")
+		if bnSchRev > 23 {
 			var temp *wowp.CharacterProfileSummaryPreRev24
 			err = json.Unmarshal(body, &temp)
 			if err != nil {
