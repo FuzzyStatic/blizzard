@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"strconv"
 	"strings"
 
 	"github.com/FuzzyStatic/blizzard/v2/wowp"
@@ -235,34 +234,19 @@ func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace stri
 
 	switch dat.(type) {
 	case *wowp.CharacterProfileSummary:
-		bnSchRev, err := strconv.ParseInt(header.BattlenetSchemaRevision, 10, 64)
-		if err != nil {
+		var activeTitle wowp.ActiveTitlePreRev24
+		if err = json.Unmarshal(body, &activeTitle); err != nil || activeTitle.ActiveTitle == "" {
+			err = json.Unmarshal(body, &dat)
 			return dat, nil, err
 		}
 
-		if bnSchRev < 24 {
-			fmt.Println("true")
-			var temp *wowp.CharacterProfileSummaryPreRev24
-			err = json.Unmarshal(body, &temp)
-			if err != nil {
-				return dat, nil, err
-			}
-
-			var activeTitle wowp.ActiveTitlePreRev24
-			err = json.Unmarshal(body, &activeTitle)
-			if err != nil {
-				return dat, nil, err
-			}
-
+		var temp *wowp.CharacterProfileSummaryPreRev24
+		if err = json.Unmarshal(body, &temp); err == nil {
 			wowp.ConvertCharacterProfileSummaryPreRev24(activeTitle.ActiveTitle,
 				temp, dat.(*wowp.CharacterProfileSummary))
-			break
 		}
+		return dat, nil, err
 
-		err = json.Unmarshal(body, &dat)
-		if err != nil {
-			return dat, nil, err
-		}
 	default:
 		err = json.Unmarshal(body, &dat)
 		if err != nil {
