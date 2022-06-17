@@ -439,6 +439,11 @@ func (c *Client) WoWJournalInstanceMedia(ctx context.Context, journalInstanceID 
 	return dat.(*wowgd.JournalInstanceMedia), header, err
 }
 
+func (c *Client) WoWMediaSearch(ctx context.Context, tags, orderBy string, page int) (*wowgd.MediaSearch, *Header, error) {
+	dat, header, err := c.getStructData(ctx, fmt.Sprintf("/data/wow/search/media?tags=%s&orderby=%s&_page=%d&access_token=%s", tags, orderBy, page, c.oauth.Token.AccessToken), c.GetStaticNamespace(), &wowgd.MediaSearch{})
+	return dat.(*wowgd.MediaSearch), header, err
+}
+
 // WoWModifiedCraftingIndex returns the parent index for Modified Crafting.
 func (c *Client) WoWModifiedCraftingIndex(ctx context.Context) (*wowgd.ModifiedCraftingIndex, *Header, error) {
 	dat, header, err := c.getStructData(ctx,

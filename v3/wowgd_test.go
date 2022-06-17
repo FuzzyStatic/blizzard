@@ -512,6 +512,18 @@ func TestWoWJournalInstanceMedia(t *testing.T) {
 	}
 }
 
+func TestWoWMediaSearch(t *testing.T) {
+	dat, _, err := usClient.WoWMediaSearch(context.Background(), "item", "id", 1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWModifiedCraftingIndex(t *testing.T) {
 	dat, _, err := usClient.WoWModifiedCraftingIndex(context.Background())
 	if err != nil {
