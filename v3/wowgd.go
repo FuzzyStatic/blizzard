@@ -439,8 +439,13 @@ func (c *Client) WoWJournalInstanceMedia(ctx context.Context, journalInstanceID 
 	return dat.(*wowgd.JournalInstanceMedia), header, err
 }
 
+// WoWMediaSearch returns media search data.
 func (c *Client) WoWMediaSearch(ctx context.Context, tags, orderBy string, page int) (*wowgd.MediaSearch, *Header, error) {
-	dat, header, err := c.getStructData(ctx, fmt.Sprintf("/data/wow/search/media?tags=%s&orderby=%s&_page=%d&access_token=%s", tags, orderBy, page, c.oauth.Token.AccessToken), c.GetStaticNamespace(), &wowgd.MediaSearch{})
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/search/media?tags=%s&orderby=%s&_page=%d&access_token=%s", tags, orderBy, page, c.oauth.Token.AccessToken),
+		c.GetStaticNamespace(),
+		&wowgd.MediaSearch{},
+	)
 	return dat.(*wowgd.MediaSearch), header, err
 }
 
