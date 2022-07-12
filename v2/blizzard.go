@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 
@@ -218,7 +218,7 @@ func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace stri
 	}
 	defer res.Body.Close()
 
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		return dat, nil, err
 	}
@@ -277,7 +277,7 @@ func (c *Client) getStructDataNoNamespace(ctx context.Context, pathAndQuery stri
 	}
 	defer res.Body.Close()
 
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		return dat, nil, err
 	}
@@ -315,7 +315,7 @@ func (c *Client) getStructDataNoNamespaceNoLocale(ctx context.Context, pathAndQu
 	}
 	defer res.Body.Close()
 
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		return dat, nil, err
 	}
@@ -364,7 +364,7 @@ func (c *Client) getStructDataOAuth(ctx context.Context, pathAndQuery, namespace
 	}
 	defer res.Body.Close()
 
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		return dat, nil, err
 	}

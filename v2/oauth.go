@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 
@@ -68,7 +68,7 @@ func (c *Client) AccessTokenRequest(ctx context.Context) error {
 	}
 	defer res.Body.Close()
 
-	body, err = ioutil.ReadAll(res.Body)
+	body, err = io.ReadAll(res.Body)
 	if err != nil {
 		return err
 	}
@@ -105,7 +105,7 @@ func (c *Client) UserInfoHeader(token *oauth2.Token) (*oauth.UserInfo, []byte, e
 	}
 	defer res.Body.Close()
 
-	b, err = ioutil.ReadAll(res.Body)
+	b, err = io.ReadAll(res.Body)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -141,7 +141,7 @@ func (c *Client) TokenValidation(ctx context.Context, token *oauth2.Token) (*oau
 	}
 	defer res.Body.Close()
 
-	b, err = ioutil.ReadAll(res.Body)
+	b, err = io.ReadAll(res.Body)
 	if err != nil {
 		return &dat, b, err
 	}
