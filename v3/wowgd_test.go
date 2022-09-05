@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/FuzzyStatic/blizzard/wowgd"
+	"github.com/FuzzyStatic/blizzard/wowsearch"
 )
 
 func TestWoWAchievementCategoriesIndex(t *testing.T) {
@@ -413,6 +414,26 @@ func TestWoWItem(t *testing.T) {
 
 	if printOutput != "" {
 		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWItemSearch(t *testing.T) {
+	dat, _, err := usClient.WoWItemSearch(context.Background(),
+		wowsearch.Page(1),
+		wowsearch.PageSize(5),
+		wowsearch.OrderBy("level:desc"),
+		wowsearch.Field().
+			AND("item_class.id", "0").
+			AND("item_subclass.id", "5||7||8||2||3||0||1||9").
+			NOT("sell_price", "0"))
+
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		t.Logf("%+v\n", dat)
 	}
 }
 
