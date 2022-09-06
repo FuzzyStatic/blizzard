@@ -359,6 +359,18 @@ func (c *Client) WoWItem(ctx context.Context, itemID int) (*wowgd.Item, *Header,
 	return dat.(*wowgd.Item), header, err
 }
 
+// WoWItemSearch item search data.
+func (c *Client) WoWItemSearch(ctx context.Context, opts ...wowsearch.Opt) (*wowgd.ItemSearch, *Header, error) {
+	dat, header, err := c.getStructData(
+		ctx,
+		fmt.Sprintf("/data/wow/search/item%s", buildSearchParams(opts...)),
+		c.GetStaticNamespace(),
+		&wowgd.ItemSearch{},
+	)
+
+	return dat.(*wowgd.ItemSearch), header, err
+}
+
 // WoWItemMedia returns media for an item by ID.
 func (c *Client) WoWItemMedia(ctx context.Context, itemID int) (*wowgd.ItemMedia, *Header, error) {
 	dat, header, err := c.getStructData(ctx,
