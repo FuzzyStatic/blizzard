@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/FuzzyStatic/blizzard/wow"
 	"github.com/FuzzyStatic/blizzard/wowp"
 	"golang.org/x/oauth2"
 )
@@ -244,7 +245,7 @@ func (c *Client) WoWCharacterMythicKeystoneProfileSeason(ctx context.Context, re
 
 // WoWCharacterPvPBracketStatistics returns the PvP bracket statistics for a character.
 func (c *Client) WoWCharacterPvPBracketStatistics(ctx context.Context,
-	realmSlug, characterName string, pvpBracket wowp.Bracket) (*wowp.CharacterPvPBracketStatistics, *Header, error) {
+	realmSlug, characterName string, pvpBracket wow.Bracket) (*wowp.CharacterPvPBracketStatistics, *Header, error) {
 	dat, header, err := c.getStructData(ctx,
 		fmt.Sprintf("/profile/wow/character/%s/%s/pvp-bracket/%s", realmSlug, strings.ToLower(characterName), pvpBracket),
 		c.GetProfileNamespace(),

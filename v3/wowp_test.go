@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/FuzzyStatic/blizzard/wowp"
+	"github.com/FuzzyStatic/blizzard/wow"
 )
 
 func TestWoWCharacterAchievementsSummary(t *testing.T) {
@@ -225,7 +225,7 @@ func TestWoWCharacterMythicKeystoneProfileSeason(t *testing.T) {
 }
 
 func TestWoWCharacterPvPBracketStatistics(t *testing.T) {
-	dat, _, err := usClient.WoWCharacterPvPBracketStatistics(context.Background(), "tichondrius", "tmpikaboo", wowp.Bracket2v2)
+	dat, _, err := usClient.WoWCharacterPvPBracketStatistics(context.Background(), "tichondrius", "tmpikaboo", wow.Bracket2v2)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -235,7 +235,7 @@ func TestWoWCharacterPvPBracketStatistics(t *testing.T) {
 		fmt.Printf("%+v\n", dat)
 	}
 
-	dat, _, err = usClient.WoWCharacterPvPBracketStatistics(context.Background(), "tichondrius", "tmpikaboo", wowp.Bracket3v3)
+	dat, _, err = usClient.WoWCharacterPvPBracketStatistics(context.Background(), "tichondrius", "tmpikaboo", wow.Bracket3v3)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
@@ -245,7 +245,7 @@ func TestWoWCharacterPvPBracketStatistics(t *testing.T) {
 		fmt.Printf("%+v\n", dat)
 	}
 
-	dat, _, err = usClient.WoWCharacterPvPBracketStatistics(context.Background(), "icecrown", "soballer", wowp.BracketRBG)
+	dat, _, err = usClient.WoWCharacterPvPBracketStatistics(context.Background(), "icecrown", "soballer", wow.BracketRBG)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

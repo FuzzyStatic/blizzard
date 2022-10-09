@@ -65,7 +65,7 @@ type CharacterAppearanceSummary struct {
 					R int     `json:"r"`
 					G int     `json:"g"`
 					B int     `json:"b"`
-					A float64 `json:"a"`
+					A float32 `json:"a"`
 				} `json:"rgba"`
 			} `json:"color"`
 		} `json:"emblem"`
