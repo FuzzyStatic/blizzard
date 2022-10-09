@@ -4,6 +4,8 @@ import (
 	"context"
 	"fmt"
 	"testing"
+
+	"github.com/FuzzyStatic/blizzard/wow"
 )
 
 func TestClassicWoWConnectedRealmsIndex(t *testing.T) {
@@ -284,6 +286,112 @@ func TestClassicWoWPowerTypesIndex(t *testing.T) {
 
 func TestClassicWoWPowerType(t *testing.T) {
 	dat, _, err := usClient.ClassicWoWPowerType(context.Background(), 0)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestClassicWoWPvPSeasonsIndex(t *testing.T) {
+	dat, _, err := usClient.ClassicWoWPvPSeasonsIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestClassicWoWPvPSeason(t *testing.T) {
+	dat, _, err := usClient.ClassicWoWPvPSeason(context.Background(), 4)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestClassicWoWPvPRegionIndex(t *testing.T) {
+	dat, _, err := usClient.ClassicWoWPvPRegionIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestClassicWoWPvPRegionalSeasonIndex(t *testing.T) {
+	dat, _, err := usClient.ClassicWoWPvPRegionalSeasonIndex(context.Background(), 1)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestClassicWoWPvPRegionalSeason(t *testing.T) {
+	dat, _, err := usClient.ClassicWoWPvPRegionalSeason(context.Background(), 1, 4)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestClassicWoWPvPLeaderboardsIndex(t *testing.T) {
+	dat, _, err := usClient.ClassicWoWPvPLeaderboardsIndex(context.Background(), 1, 4)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestClassicWoWPvPLeaderboards(t *testing.T) {
+	dat, _, err := usClient.ClassicWoWPvPLeaderboards(context.Background(), 1, 4, wow.Bracket2v2)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+
+	dat, _, err = usClient.ClassicWoWPvPLeaderboards(context.Background(), 1, 4, wow.Bracket3v3)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestClassicWoWPvPRewardsIndex(t *testing.T) {
+	dat, _, err := usClient.ClassicWoWPvPRewardsIndex(context.Background(), 1, 4)
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()

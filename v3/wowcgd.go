@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/FuzzyStatic/blizzard/wow"
 	"github.com/FuzzyStatic/blizzard/wowcgd"
 	"github.com/FuzzyStatic/blizzard/wowsearch"
 )
@@ -256,6 +257,86 @@ func (c *Client) ClassicWoWPowerType(ctx context.Context, powerTypeID int) (*wow
 		&wowcgd.PowerType{},
 	)
 	return dat.(*wowcgd.PowerType), header, err
+}
+
+// ClassicWoWPvPSeasonsIndex returns an index of PvP seasons.
+func (c *Client) ClassicWoWPvPSeasonsIndex(ctx context.Context) (*wowcgd.PvPSeasonIndex, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		"/data/wow/pvp-season/index",
+		c.GetDynamicClassicNamespace(),
+		&wowcgd.PvPSeasonIndex{},
+	)
+	return dat.(*wowcgd.PvPSeasonIndex), header, err
+}
+
+// ClassicWoWPvPSeason returns a PvP season by ID.
+func (c *Client) ClassicWoWPvPSeason(ctx context.Context, pvpSeasonID int) (*wowcgd.PvPSeason, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/pvp-season/%d", pvpSeasonID),
+		c.GetDynamicClassicNamespace(),
+		&wowcgd.PvPSeason{},
+	)
+	return dat.(*wowcgd.PvPSeason), header, err
+}
+
+// ClassicWoWPvPRegionIndex returns an index of PvP Regions.
+func (c *Client) ClassicWoWPvPRegionIndex(ctx context.Context) (*wowcgd.PvPRegionIndex, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		"/data/wow/pvp-region/index",
+		c.GetDynamicClassicNamespace(),
+		&wowcgd.PvPRegionIndex{},
+	)
+	return dat.(*wowcgd.PvPRegionIndex), header, err
+}
+
+// ClassicWoWPvPRegionalSeasonIndex returns an index of PvP Seasons in a PvP region.
+func (c *Client) ClassicWoWPvPRegionalSeasonIndex(ctx context.Context, pvpRegionID int) (*wowcgd.PvPRegionalSeasonIndex, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/pvp-region/%d/pvp-season/index", pvpRegionID),
+		c.GetDynamicClassicNamespace(),
+		&wowcgd.PvPRegionalSeasonIndex{},
+	)
+	return dat.(*wowcgd.PvPRegionalSeasonIndex), header, err
+}
+
+// ClassicWoWPvPRegionalSeason returns a PvP season by region ID and season ID.
+func (c *Client) ClassicWoWPvPRegionalSeason(ctx context.Context, pvpRegionID, pvpSeasonID int) (*wowcgd.PvPRegionSeason, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/pvp-region/%d/pvp-season/%d", pvpRegionID, pvpSeasonID),
+		c.GetDynamicClassicNamespace(),
+		&wowcgd.PvPRegionSeason{},
+	)
+	return dat.(*wowcgd.PvPRegionSeason), header, err
+}
+
+// ClassicWoWPvPLeaderboardsIndex returns an index of PvP leaderboards for a PvP season in a given PvP region.
+func (c *Client) ClassicWoWPvPLeaderboardsIndex(ctx context.Context, pvpRegionID, pvpSeasonID int) (*wowcgd.PvPLeaderboardsIndex, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/pvp-region/%d/pvp-season/%d/pvp-leaderboard/index", pvpRegionID, pvpSeasonID),
+		c.GetDynamicClassicNamespace(),
+		&wowcgd.PvPLeaderboardsIndex{},
+	)
+	return dat.(*wowcgd.PvPLeaderboardsIndex), header, err
+}
+
+// ClassicWoWPvPLeaderboards returns the PvP leaderboard of a specific PvP bracket for a PvP season in a given PvP region.
+func (c *Client) ClassicWoWPvPLeaderboards(ctx context.Context, pvpRegionID, pvpSeasonID int, pvpBracket wow.Bracket) (*wowcgd.PvPLeaderboards, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/pvp-region/%d/pvp-season/%d/pvp-leaderboard/%s", pvpRegionID, pvpSeasonID, pvpBracket),
+		c.GetDynamicClassicNamespace(),
+		&wowcgd.PvPLeaderboards{},
+	)
+	return dat.(*wowcgd.PvPLeaderboards), header, err
+}
+
+// ClassicWoWPvPRewardsIndex returns an index of PvP rewards for a PvP season in a given PvP region.
+func (c *Client) ClassicWoWPvPRewardsIndex(ctx context.Context, pvpRegionID, pvpSeasonID int) (*wowcgd.PvPRewardsIndex, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/pvp-region/%d/pvp-season/%d/pvp-reward/index", pvpRegionID, pvpSeasonID),
+		c.GetDynamicClassicNamespace(),
+		&wowcgd.PvPRewardsIndex{},
+	)
+	return dat.(*wowcgd.PvPRewardsIndex), header, err
 }
 
 // ClassicWoWRealmIndex returns an index of realms.
