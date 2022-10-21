@@ -1,6 +1,6 @@
 # blizzard
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/FuzzyStatic/blizzard/v3.svg)](https://pkg.go.dev/github.com/FuzzyStatic/blizzard/v3) [![Go Report Card](https://goreportcard.com/badge/github.com/FuzzyStatic/blizzard)](https://goreportcard.com/report/github.com/FuzzyStatic/blizzard) [![Build Status](https://travis-ci.org/FuzzyStatic/blizzard.svg?branch=master)](https://travis-ci.org/FuzzyStatic/blizzard)
+[![Go Reference](https://pkg.go.dev/badge/github.com/FuzzyStatic/blizzard/v3.svg)](https://pkg.go.dev/github.com/FuzzyStatic/blizzard/v3) [![Go Report Card](https://goreportcard.com/badge/github.com/FuzzyStatic/blizzard)](https://goreportcard.com/report/github.com/FuzzyStatic/blizzard)
 
 > This is a Go client library for gathering [Blizzard API reference](https://develop.battle.net/documentation/api-reference) data
 

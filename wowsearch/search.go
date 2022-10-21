@@ -17,6 +17,7 @@ func Field() *FieldSelector {
 	return &FieldSelector{}
 }
 
+// FieldSelector structure
 type FieldSelector struct {
 	parts []string
 }
@@ -81,10 +82,12 @@ func Page(page int) Opt {
 	return &PageSelector{page: page}
 }
 
+// PageSelector structure
 type PageSelector struct {
 	page int
 }
 
+// Apply appends page selection
 func (s *PageSelector) Apply(v *[]string) {
 	*v = append(*v, fmt.Sprintf("_page=%d", s.page))
 }
@@ -104,10 +107,12 @@ func PageSize(size int) *PageSizeSelector {
 	return &PageSizeSelector{size: size}
 }
 
+// PageSizeSelector structure
 type PageSizeSelector struct {
 	size int
 }
 
+// PageSizeSelector appends page size selection
 func (s *PageSizeSelector) Apply(v *[]string) {
 	*v = append(*v, fmt.Sprintf("_pageSize=%d", s.size))
 }
@@ -122,10 +127,12 @@ func OrderBy(fields ...string) *OrderBySelector {
 	return &OrderBySelector{fields: fields}
 }
 
+// OrderBySelector structure
 type OrderBySelector struct {
 	fields []string
 }
 
+// Apply appends order by selection
 func (s *OrderBySelector) Apply(v *[]string) {
 	for i, val := range s.fields {
 		s.fields[i] = url.QueryEscape(val)
@@ -140,10 +147,12 @@ func Tag(value string) *TagSelector {
 	return &TagSelector{value: value}
 }
 
+// TagSelector structure
 type TagSelector struct {
 	value string
 }
 
+// apply appends tag selection
 func (s *TagSelector) Apply(v *[]string) {
 	*v = append(*v, fmt.Sprintf("_tag=%s", url.QueryEscape(s.value)))
 }
@@ -155,10 +164,12 @@ func Tags(value ...string) *TagsSelector {
 	return &TagsSelector{values: value}
 }
 
+// TagsSelector structure
 type TagsSelector struct {
 	values []string
 }
 
+// Apply appends tags selection
 func (s *TagsSelector) Apply(v *[]string) {
 	for i, val := range s.values {
 		s.values[i] = url.QueryEscape(val)

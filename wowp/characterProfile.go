@@ -237,6 +237,7 @@ type CharacterProfileStatus struct {
 	IsValid bool `json:"is_valid"`
 }
 
+// ConvertCharacterProfileSummaryPreRev24 converts profile summary to pre revision 24
 func ConvertCharacterProfileSummaryPreRev24(activeTitle string,
 	cpspr *CharacterProfileSummaryPreRev24, cps *CharacterProfileSummary) {
 	cps.Links = cpspr.Links

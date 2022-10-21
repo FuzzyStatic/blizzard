@@ -66,38 +66,23 @@ type Client struct {
 	locale                                          Locale
 }
 
+//go:generate stringer -type=Region -linecomment
+
 // Region type
 type Region int
 
 // Region constants (1=US, 2=EU, 3=KO and TW, 5=CN) DO NOT REARRANGE
 const (
-	_ Region = iota
-	US
-	EU
-	KR
-	TW
-	CN
+	_  Region = iota
+	US        // us
+	EU        // eu
+	KR        // kr
+	TW        // tw
+	CN        // cn
 )
-
-func (region Region) String() string {
-	var rr = []string{
-		"",
-		"us",
-		"eu",
-		"kr",
-		"tw",
-		"cn",
-	}
-
-	return rr[region]
-}
 
 // Locale generic locale string
 type Locale string
-
-func (locale Locale) String() string {
-	return string(locale)
-}
 
 // Locale constants
 const (
@@ -124,6 +109,10 @@ const (
 	// China locales
 	ZhCN = Locale("zh_CN")
 )
+
+func (locale Locale) String() string {
+	return string(locale)
+}
 
 // NewClient create new Blizzard structure. This structure will be used to acquire your access token and make API calls.
 func NewClient(cfg Config) (*Client, error) {

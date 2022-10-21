@@ -29,7 +29,7 @@ func (c *Client) ClassicWoWConnectedRealm(ctx context.Context, connectedRealmID 
 	return dat.(*wowcgd.ConnectedRealm), header, err
 }
 
-// ClassicConnectedRealmSearch searches for connected realms
+// ClassicWoWConnectedRealmSearch searches for connected realms
 func (c *Client) ClassicWoWConnectedRealmSearch(ctx context.Context, opts ...wowsearch.Opt) (*wowcgd.ConnectedRealmsSearch, *Header, error) {
 	dat, header, err := c.getStructData(ctx,
 		fmt.Sprintf("/data/wow/search/connected-realm%s", buildSearchParams(opts...)),
@@ -359,7 +359,7 @@ func (c *Client) ClassicWoWRealm(ctx context.Context, realmSlug string) (*wowcgd
 	return dat.(*wowcgd.Realm), header, err
 }
 
-// ClassicRealmSearch searches for realms
+// ClassicWoWRealmSearch searches for realms
 func (c *Client) ClassicWoWRealmSearch(ctx context.Context, opts ...wowsearch.Opt) (*wowcgd.RealmSearch, *Header, error) {
 	dat, header, err := c.getStructData(ctx,
 		fmt.Sprintf("/data/wow/search/realm%s", buildSearchParams(opts...)),
