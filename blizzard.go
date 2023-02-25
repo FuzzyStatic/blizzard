@@ -261,8 +261,6 @@ func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace stri
 		req.Header.Set("Battlenet-Namespace", namespace)
 	}
 
-	fmt.Println(req.URL)
-
 	res, err := c.httpClient.Do(req)
 	if err != nil {
 		return dat, nil, err
