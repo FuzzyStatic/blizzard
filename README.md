@@ -270,7 +270,7 @@ fmt.Println(header.LastModified)
 
 ## Documentation
 
-See the [Blizzard API reference](https://develop.battle.net/documentation/guides) and the [Go reference](https://pkg.go.dev/github.com/FuzzyStatic/blizzard/v2) for all the different datasets that can be acquired.
+See the [Blizzard API reference](https://develop.battle.net/documentation/guides) and the [Go reference](https://pkg.go.dev/github.com/FuzzyStatic/blizzard/v3) for all the different datasets that can be acquired.
 
 ## Special Thanks
 
