@@ -629,6 +629,24 @@ func TestWoWMount(t *testing.T) {
 	}
 }
 
+func TestWoWMountSearch(t *testing.T) {
+	dat, _, err := usClient.WoWMountSearch(context.Background(),
+		wowsearch.Page(1),
+		wowsearch.PageSize(100),
+		wowsearch.OrderBy("id"),
+		wowsearch.Field().
+			AND("name.en_US", "Turtle"))
+
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWMythicKeystoneAffixIndex(t *testing.T) {
 	dat, _, err := usClient.WoWMythicKeystoneAffixIndex(context.Background())
 	if err != nil {
