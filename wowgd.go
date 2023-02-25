@@ -532,6 +532,18 @@ func (c *Client) WoWMount(ctx context.Context, mountID int) (*wowgd.Mount, *Head
 	return dat.(*wowgd.Mount), header, err
 }
 
+// WoWMountSearch mount search data.
+func (c *Client) WoWMountSearch(ctx context.Context, opts ...wowsearch.Opt) (*wowgd.MountSearch, *Header, error) {
+	dat, header, err := c.getStructData(
+		ctx,
+		fmt.Sprintf("/data/wow/search/mount%s", buildSearchParams(opts...)),
+		c.GetStaticNamespace(),
+		&wowgd.MountSearch{},
+	)
+
+	return dat.(*wowgd.MountSearch), header, err
+}
+
 // WoWMythicKeystoneAffixIndex returns an index of Keystone affixes
 func (c *Client) WoWMythicKeystoneAffixIndex(ctx context.Context) (*wowgd.MythicKeystoneAffixIndex, *Header, error) {
 	dat, header, err := c.getStructData(ctx,
