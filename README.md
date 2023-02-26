@@ -87,7 +87,7 @@ fmt.Printf("%+v\n", dat)
 
 ### Fetching Overwatch League Data
 
-You can use the functions prefixed with "OWL" to acquire StarCraft 2 information. For example, you can get information about the Overwatch LEague:
+You can use the functions prefixed with "OWL" to acquire Overwatch League information. For example, you can get information about the Overwatch League:
 
 ```go
 dat, _, err := usBlizzClient.OWLSummaryData(ctx)
