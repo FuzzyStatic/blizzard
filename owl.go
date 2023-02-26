@@ -57,14 +57,14 @@ func (c *Client) OWLSummaryData(ctx context.Context) (*owl.SummaryData, *Header,
 	}
 
 	var dat owl.SummaryData
-	for v := range td.Players {
-		var player owl.Player
+	for _, v := range td.Players {
 		b, err := json.Marshal(v)
 		if err != nil {
 			return nil, nil, err
 		}
 
-		err = json.Unmarshal(b, &player)
+		var player owl.Player
+		json.Unmarshal(b, &player)
 		if err != nil {
 			return nil, nil, err
 		}
@@ -72,13 +72,13 @@ func (c *Client) OWLSummaryData(ctx context.Context) (*owl.SummaryData, *Header,
 		dat.Players = append(dat.Players, player)
 	}
 
-	for v := range td.Teams {
-		var team owl.Team
+	for _, v := range td.Teams {
 		b, err := json.Marshal(v)
 		if err != nil {
 			return nil, nil, err
 		}
 
+		var team owl.Team
 		err = json.Unmarshal(b, &team)
 		if err != nil {
 			return nil, nil, err
