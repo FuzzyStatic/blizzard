@@ -11,6 +11,7 @@
   - [Getting Started](#getting-started)
     - [Fetching Diablo 3 Data](#fetching-diablo-3-data)
     - [Fetching Hearthstone Data](#fetching-hearthstone-data)
+    - [Fetching Overwatch Data](#fetching-overwatch-data)
     - [Fetching StarCraft 2 Data](#fetching-starcraft-2-data)
     - [Fetching World of Warcraft Data](#fetching-world-of-warcraft-data)
     - [Fetching World of Warcraft Classic Data](#fetching-world-of-warcraft-classic-data)
@@ -77,6 +78,19 @@ You can use the functions prefixed with "HS" to acquire Hearthstone information.
 
 ```go
 dat, _, err := usBlizzClient.HSCardsAll(ctx)
+if err != nil {
+  fmt.Println(err)
+}
+
+fmt.Printf("%+v\n", dat)
+```
+
+### Fetching Overwatch League Data
+
+You can use the functions prefixed with "OWL" to acquire StarCraft 2 information. For example, you can get information about the Overwatch LEague:
+
+```go
+dat, _, err := usBlizzClient.OWLSummaryData(ctx)
 if err != nil {
   fmt.Println(err)
 }
