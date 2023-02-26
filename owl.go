@@ -8,7 +8,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/FuzzyStatic/blizzard/owl"
+	"github.com/FuzzyStatic/blizzard/v3/owl"
 )
 
 // TempData is used because the OWL structure is key by just ID numbers without a proper field key.
