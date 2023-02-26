@@ -1,6 +1,6 @@
 # blizzard
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/FuzzyStatic/blizzard.svg)](https://pkg.go.dev/github.com/FuzzyStatic/blizzard) [![Go Report Card](https://goreportcard.com/badge/github.com/FuzzyStatic/blizzard)](https://goreportcard.com/report/github.com/FuzzyStatic/blizzard)
+[![Go Reference](https://pkg.go.dev/badge/github.com/FuzzyStatic/blizzard/v3.svg)](https://pkg.go.dev/github.com/FuzzyStatic/blizzard/v3) [![Go Report Card](https://goreportcard.com/badge/github.com/FuzzyStatic/blizzard/v3)](https://goreportcard.com/report/github.com/FuzzyStatic/blizzard/v3)
 
 > This is a Go client library for gathering [Blizzard API reference](https://develop.battle.net/documentation/api-reference) data
 
@@ -26,13 +26,13 @@
 First, download the Blizzard library:
 
 ```shell
-go get github.com/FuzzyStatic/blizzard
+go get github.com/FuzzyStatic/blizzard/v3
 ```
 
 Start using the library by initiating a new Blizzard config structure for your desired region and locale (client_id and client_secret can be acquired through your developer account at [https://develop.battle.net/](https://develop.battle.net/)) and requesting an access token:
 
 ```go
-usBlizzClient := blizzard.NewClient(blizzard.Config{
+usBlizzClient, err := blizzard.NewClient(blizzard.Config{
   ClientID:     "my_client_id",
   ClientSecret: "my_client_secret",
   HTTPClient:   http.DefaultClient,
@@ -40,12 +40,12 @@ usBlizzClient := blizzard.NewClient(blizzard.Config{
   Locale:       blizzard.EnUS,
 })
 
-err := usBlizzClient.AccessTokenRequest(ctx)
+err = usBlizzClient.AccessTokenRequest(ctx)
 if err != nil {
   fmt.Println(err)
 }
 
-euBlizzClient := blizzard.NewClient(blizzard.Config{
+euBlizzClient, err := blizzard.NewClient(blizzard.Config{
   ClientID:     "my_client_id",
   ClientSecret: "my_client_secret",
   HTTPClient:   http.DefaultClient,
@@ -53,7 +53,7 @@ euBlizzClient := blizzard.NewClient(blizzard.Config{
   Locale:       blizzard.EnGB,
 })
 
-err := euBlizzClient.AccessTokenRequest(ctx)
+err = euBlizzClient.AccessTokenRequest(ctx)
 if err != nil {
   fmt.Println(err)
 }
@@ -173,8 +173,8 @@ import (
   "log"
   "net/http"
 
-  "github.com/FuzzyStatic/blizzard"
-  "github.com/FuzzyStatic/blizzard/oauth"
+  "github.com/FuzzyStatic/blizzard/v3"
+  "github.com/FuzzyStatic/blizzard/v3/oauth"
   "golang.org/x/oauth2"
 )
 

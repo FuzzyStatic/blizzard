@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/FuzzyStatic/blizzard/sc2c"
+	"github.com/FuzzyStatic/blizzard/v3/sc2c"
 )
 
 // SC2StaticProfile returns all static SC2 profile data (ctx context.Context, achievements, categories, criteria, and rewards)

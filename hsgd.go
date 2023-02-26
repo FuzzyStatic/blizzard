@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/FuzzyStatic/blizzard/hsgd"
+	"github.com/FuzzyStatic/blizzard/v3/hsgd"
 )
 
 // HSCardsSearch returns an up-to-date list of all cards matching the search criteria.

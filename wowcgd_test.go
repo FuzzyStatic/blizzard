@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/FuzzyStatic/blizzard/wow"
+	"github.com/FuzzyStatic/blizzard/v3/wow"
 )
 
 func TestClassicWoWConnectedRealmsIndex(t *testing.T) {

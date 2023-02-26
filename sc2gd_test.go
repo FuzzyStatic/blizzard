@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/FuzzyStatic/blizzard/sc2gd"
+	"github.com/FuzzyStatic/blizzard/v3/sc2gd"
 )
 
 func TestSC2LeagueData(t *testing.T) {

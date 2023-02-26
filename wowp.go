@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/FuzzyStatic/blizzard/wow"
-	"github.com/FuzzyStatic/blizzard/wowp"
+	"github.com/FuzzyStatic/blizzard/v3/wow"
+	"github.com/FuzzyStatic/blizzard/v3/wowp"
 	"golang.org/x/oauth2"
 )
 
