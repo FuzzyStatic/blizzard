@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
 
@@ -16,7 +17,7 @@ type TempData struct {
 	Teams   map[string]interface{} `json:"teams"`
 }
 
-// OWLSummaryData Returns a summary of OWL stats where you can get entity IDs (playerId, matchId, segmentId, and teamId)
+// OWLSummaryData Returns a summary of OWL stats where you can get entity IDs (playerId, matchId, segmentId, and teamId).
 func (c *Client) OWLSummaryData(ctx context.Context) (*owl.SummaryData, *Header, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", c.apiHost+"/owl/v1/owl2", nil)
 	if err != nil {
@@ -87,4 +88,13 @@ func (c *Client) OWLSummaryData(ctx context.Context) (*owl.SummaryData, *Header,
 	}
 
 	return &dat, header, nil
+}
+
+// OWLPlayersAPI returns stats for a player.
+func (c *Client) OWLPlayersAPI(ctx context.Context, playerId int) (*owl.PlayersAPI, *Header, error) {
+	dat, header, err := c.getStructDataNoNamespace(ctx,
+		fmt.Sprintf("/owl/v1/players/%d", playerId),
+		&owl.PlayersAPI{},
+	)
+	return dat.(*owl.PlayersAPI), header, err
 }

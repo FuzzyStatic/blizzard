@@ -11,7 +11,7 @@
   - [Getting Started](#getting-started)
     - [Fetching Diablo 3 Data](#fetching-diablo-3-data)
     - [Fetching Hearthstone Data](#fetching-hearthstone-data)
-    - [Fetching Overwatch Data](#fetching-overwatch-data)
+    - [Fetching Overwatch League Data](#fetching-overwatch-league-data)
     - [Fetching StarCraft 2 Data](#fetching-starcraft-2-data)
     - [Fetching World of Warcraft Data](#fetching-world-of-warcraft-data)
     - [Fetching World of Warcraft Classic Data](#fetching-world-of-warcraft-classic-data)

@@ -17,3 +17,15 @@ func TestOWLSummaryData(t *testing.T) {
 		fmt.Printf("%+v\n", dat)
 	}
 }
+
+func TestOWLPlayersAPI(t *testing.T) {
+	dat, _, err := usClient.OWLPlayersAPI(context.Background(), 15401)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}

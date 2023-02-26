@@ -150,10 +150,48 @@ type Player struct {
 				HealingDone    int `json:"healingDone"`
 				DamageTaken    int `json:"damageTaken"`
 				Deaths         int `json:"deaths"`
+				UltsUsed       int `json:"ultsUsed"`
+				UltsEarned     int `json:"ultsEarned"`
 				TimePlayed     int `json:"timePlayed"`
 				CriticalHits   int `json:"criticalHits"`
 				ShotsHit       int `json:"shotsHit"`
 			} `json:"reaper"`
+			Roadhog struct {
+				HeroDamageDone    int `json:"heroDamageDone"`
+				DamageTaken       int `json:"damageTaken"`
+				FinalBlows        int `json:"finalBlows"`
+				Eliminations      int `json:"eliminations"`
+				Deaths            int `json:"deaths"`
+				TimeSpentOnFire   int `json:"timeSpentOnFire"`
+				SoloKills         int `json:"soloKills"`
+				UltsUsed          int `json:"ultsUsed"`
+				UltsEarned        int `json:"ultsEarned"`
+				TimePlayed        int `json:"timePlayed"`
+				CriticalHits      int `json:"criticalHits"`
+				ShotsHit          int `json:"shotsHit"`
+				AccretionKills    int `json:"accretionKills"`
+				GraviticFluxKills int `json:"graviticFluxKills"`
+				KnockbackKills    int `json:"knockbackKills"`
+			} `json:"roadhog"`
+			Sigma struct {
+				HeroDamageDone             int `json:"heroDamageDone"`
+				DamageTaken                int `json:"damageTaken"`
+				FinalBlows                 int `json:"finalBlows"`
+				Eliminations               int `json:"eliminations"`
+				Deaths                     int `json:"deaths"`
+				TimeSpentOnFire            int `json:"timeSpentOnFire"`
+				SoloKills                  int `json:"soloKills"`
+				UltsUsed                   int `json:"ultsUsed"`
+				UltsEarned                 int `json:"ultsEarned"`
+				TimePlayed                 int `json:"timePlayed"`
+				CriticalHits               int `json:"criticalHits"`
+				ShotsHit                   int `json:"shotsHit"`
+				AccretionKills             int `json:"accretionKills"`
+				GraviticFluxKills          int `json:"graviticFluxKills"`
+				KnockbackKills             int `json:"knockbackKills"`
+				EnergyMax                  int `json:"energyMax"`
+				LifetimeEnergyAccumulation int `json:"lifetimeEnergyAccumulation"`
+			} `json:"sigma"`
 			Soldier76 struct {
 				CriticalHits     int `json:"criticalHits"`
 				DamageTaken      int `json:"damageTaken"`
@@ -209,6 +247,19 @@ type Player struct {
 				FinalBlows      int `json:"finalBlows"`
 				HeroDamageDone  int `json:"heroDamageDone"`
 			} `json:"winston"`
+			WreckingBall struct {
+				HeroDamageDone    int `json:"heroDamageDone"`
+				DamageTaken       int `json:"damageTaken"`
+				FinalBlows        int `json:"finalBlows"`
+				Eliminations      int `json:"eliminations"`
+				Deaths            int `json:"deaths"`
+				TimeSpentOnFire   int `json:"timeSpentOnFire"`
+				UltsUsed          int `json:"ultsUsed"`
+				UltsEarned        int `json:"ultsEarned"`
+				TimePlayed        int `json:"timePlayed"`
+				AccretionKills    int `json:"accretionKills"`
+				GraviticFluxKills int `json:"graviticFluxKills"`
+			} `json:"wrecking-ball"`
 			Zarya struct {
 				HeroDamageDone             int `json:"heroDamageDone"`
 				DamageTaken                int `json:"damageTaken"`
