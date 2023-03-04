@@ -284,7 +284,7 @@ fmt.Println(header.LastModified)
 
 ## Documentation
 
-See the [Blizzard API reference](https://develop.battle.net/documentation/guides) and the [Go reference](https://pkg.go.dev/github.com/FuzzyStatic/blizzard) for all the different datasets that can be acquired.
+See the [Blizzard API reference](https://develop.battle.net/documentation/guides) and the [Go reference](https://pkg.go.dev/github.com/FuzzyStatic/blizzard/v3) for all the different datasets that can be acquired. For questions and discussion about the blizzard API go to the [Blizzard API Forum](https://us.forums.blizzard.com/en/blizzard/c/api-discussion/18).
 
 ## Special Thanks
 
