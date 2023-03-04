@@ -29,3 +29,39 @@ func TestOWLPlayersAPI(t *testing.T) {
 		fmt.Printf("%+v\n", dat)
 	}
 }
+
+func TestOWLMatchesAPI(t *testing.T) {
+	dat, _, err := usClient.OWLMatchesAPI(context.Background(), 38971)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestOWLSegmentsAPI(t *testing.T) {
+	dat, _, err := usClient.OWLSegmentsAPI(context.Background(), "owl2-2022-kickoff-clash-qualifiers")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestOWLTeamsAPI(t *testing.T) {
+	dat, _, err := usClient.OWLTeamsAPI(context.Background(), 15170)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
