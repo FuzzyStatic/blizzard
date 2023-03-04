@@ -98,3 +98,30 @@ func (c *Client) OWLPlayersAPI(ctx context.Context, playerId int) (*owl.PlayersA
 	)
 	return dat.(*owl.PlayersAPI), header, err
 }
+
+// OWLMatchesAPI returns stats for a match.
+func (c *Client) OWLMatchesAPI(ctx context.Context, matchId int) (*owl.MatchesAPI, *Header, error) {
+	dat, header, err := c.getStructDataNoNamespace(ctx,
+		fmt.Sprintf("/owl/v1/matches/%d", matchId),
+		&owl.MatchesAPI{},
+	)
+	return dat.(*owl.MatchesAPI), header, err
+}
+
+// OWLSegmentsAPI returns stats for a segment.
+func (c *Client) OWLSegmentsAPI(ctx context.Context, segmentId string) (*owl.SegmentsAPI, *Header, error) {
+	dat, header, err := c.getStructDataNoNamespace(ctx,
+		fmt.Sprintf("/owl/v1/segments/%s", segmentId),
+		&owl.SegmentsAPI{},
+	)
+	return dat.(*owl.SegmentsAPI), header, err
+}
+
+// OWLTeamsAPI returns stats for a team.
+func (c *Client) OWLTeamsAPI(ctx context.Context, teamId int) (*owl.TeamsAPI, *Header, error) {
+	dat, header, err := c.getStructDataNoNamespace(ctx,
+		fmt.Sprintf("/owl/v1/teams/%d", teamId),
+		&owl.TeamsAPI{},
+	)
+	return dat.(*owl.TeamsAPI), header, err
+}
