@@ -295,7 +295,7 @@ type Heroes struct {
 	} `json:"zarya"`
 }
 
-// Stats sturcture
+// Stats structure
 type Stats struct {
 	HeroDamageDone             int `json:"heroDamageDone"`
 	DamageTaken                int `json:"damageTaken"`
