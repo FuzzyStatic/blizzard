@@ -9,6 +9,16 @@ import (
 	"github.com/FuzzyStatic/blizzard/v3/wowsearch"
 )
 
+// https://eu.api.blizzard.com/data/wow/connected-realm/4477/auctions/\?namespace\=dynamic-classic-eu
+func (c *Client) ClassicWoWAuctionHouseIndex(ctx context.Context, connectedRealmID int) (*wowcgd.AuctionHouseIndex, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/connected-realm/%d/auctions/index", connectedRealmID),
+		c.GetDynamicClassicNamespace(),
+		&wowcgd.AuctionHouseIndex{},
+	)
+	return dat.(*wowcgd.AuctionHouseIndex), header, err
+}
+
 // ClassicWoWConnectedRealmsIndex returns an index of connected realms.
 func (c *Client) ClassicWoWConnectedRealmsIndex(ctx context.Context) (*wowcgd.ConnectedRealmsIndex, *Header, error) {
 	dat, header, err := c.getStructData(ctx,
