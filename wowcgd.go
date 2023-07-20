@@ -9,6 +9,26 @@ import (
 	"github.com/FuzzyStatic/blizzard/v3/wowsearch"
 )
 
+// ClassicWoWAuctionHouseIndex returns an index of auction houses for a given realmID
+func (c *Client) ClassicWoWAuctionHouseIndex(ctx context.Context, connectedRealmID int) (*wowcgd.AuctionHouseIndex, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/connected-realm/%d/auctions/index", connectedRealmID),
+		c.GetDynamicClassicNamespace(),
+		&wowcgd.AuctionHouseIndex{},
+	)
+	return dat.(*wowcgd.AuctionHouseIndex), header, err
+}
+
+// ClassicWoWAuctions returns all auctions by realmID and auctionHouseID
+func (c *Client) ClassicWoWAuctions(ctx context.Context, connectedRealmID, auctionHouseID int) (*wowcgd.Auctions, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/connected-realm/%d/auctions/%d", connectedRealmID, auctionHouseID),
+		c.GetDynamicClassicNamespace(),
+		&wowcgd.Auctions{},
+	)
+	return dat.(*wowcgd.Auctions), header, err
+}
+
 // ClassicWoWConnectedRealmsIndex returns an index of connected realms.
 func (c *Client) ClassicWoWConnectedRealmsIndex(ctx context.Context) (*wowcgd.ConnectedRealmsIndex, *Header, error) {
 	dat, header, err := c.getStructData(ctx,
