@@ -1,5 +1,6 @@
 package wowcgd
 
+// AuctionHouseIndex structure
 type AuctionHouseIndex struct {
 	Links struct {
 		Self struct {
@@ -15,6 +16,7 @@ type AuctionHouseIndex struct {
 	} `json:"auctions"`
 }
 
+// Auctions structure
 type Auctions struct {
 	Linkds struct {
 		Self struct {
@@ -29,6 +31,7 @@ type Auctions struct {
 	Name     string    `json:"name"`
 }
 
+// Auction structure
 type Auction struct {
 	ID   int `json:"id"`
 	Item struct {
