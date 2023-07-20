@@ -10,20 +10,32 @@ type AuctionHouseIndex struct {
 		Key struct {
 			Href string `json:"href"`
 		} `json:"key"`
-		Name struct {
-			EnUS string `json:"en_US"`
-			EsMX string `json:"es_MX"`
-			PtBR string `json:"pt_BR"`
-			DeDE string `json:"de_DE"`
-			EnGB string `json:"en_GB"`
-			EsES string `json:"es_ES"`
-			FrFR string `json:"fr_FR"`
-			ItIT string `json:"it_IT"`
-			RuRU string `json:"ru_RU"`
-			KoKR string `json:"ko_KR"`
-			ZhTW string `json:"zh_TW"`
-			ZhCN string `json:"zh_CN"`
-		} `json:"name"`
-		ID int `json:"id"`
+		Name string `json:"name"`
+		ID   int    `json:"id"`
 	} `json:"auctions"`
+}
+
+type Auctions struct {
+	Linkds struct {
+		Self struct {
+			Href string `json:"href"`
+		} `json:"self"`
+	} `json:"_links"`
+	ConnectedRealm struct {
+		Href string `json:"href"`
+	} `json:"connected_realm"`
+	Auctions []Auction `json:"auctions"`
+	ID       int       `json:"id"`
+	Name     string    `json:"name"`
+}
+
+type Auction struct {
+	ID   int `json:"id"`
+	Item struct {
+		ID int `json:"id"`
+	} `json:"item"`
+	Bid      int    `json:"bid"`
+	Buyout   int    `json:"buyout"`
+	Quantity int    `json:"quantity"`
+	TimeLeft string `json:"time_left"`
 }
