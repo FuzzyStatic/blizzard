@@ -133,7 +133,7 @@ func (c *Client) WoWCovenantsIndex(ctx context.Context) (*wowgd.CovenantsIndex, 
 func (c *Client) WoWConnectedRealmSearch(ctx context.Context, opts ...wowsearch.Opt) (*wowgd.ConnectedRealmsSearch, *Header, error) {
 	dat, header, err := c.getStructData(ctx,
 		fmt.Sprintf("/data/wow/search/connected-realm%s", buildSearchParams(opts...)),
-		c.GetDynamicClassicNamespace(),
+		c.GetDynamicNamespace(),
 		&wowgd.ConnectedRealmsSearch{},
 	)
 	return dat.(*wowgd.ConnectedRealmsSearch), header, err
