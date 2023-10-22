@@ -170,7 +170,7 @@ func (c *Client) SetRegionParameters(region Region, locale Locale) error {
 
 	switch region {
 	case CN:
-		c.oauthHost = "https://www.battlenet.com.cn"
+		c.oauthHost = "https://oauth.battlenet.com.cn"
 		c.apiHost = "https://gateway.battlenet.com.cn"
 		c.dynamicNamespace = "dynamic-zh"
 		c.dynamicClassicNamespace = "dynamic-classic-zh"
@@ -178,7 +178,7 @@ func (c *Client) SetRegionParameters(region Region, locale Locale) error {
 		c.staticNamespace = "static-zh"
 		c.staticClassicNamespace = "static-classic-zh"
 	default:
-		c.oauthHost = fmt.Sprintf("https://%s.battle.net", region)
+		c.oauthHost = "https://oauth.battle.net"
 		c.apiHost = fmt.Sprintf("https://%s.api.blizzard.com", region)
 		c.dynamicNamespace = fmt.Sprintf("dynamic-%s", region)
 		c.dynamicClassicNamespace = fmt.Sprintf("dynamic-classic-%s", region)
@@ -187,7 +187,7 @@ func (c *Client) SetRegionParameters(region Region, locale Locale) error {
 		c.staticClassicNamespace = fmt.Sprintf("static-classic-%s", region)
 	}
 
-	c.clntCredCfg.TokenURL = c.oauthHost + "/oauth/token"
+	c.clntCredCfg.TokenURL = c.oauthHost + "/token"
 	c.httpClient = c.clntCredCfg.Client(
 		context.WithValue(context.TODO(), oauth2.HTTPClient, c.cfg.HTTPClient),
 	)

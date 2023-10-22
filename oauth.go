@@ -33,8 +33,8 @@ func (c *Client) AuthorizeConfig(redirectURI string, profiles ...oauth.Profile) 
 		Scopes:       scopes,
 		RedirectURL:  redirectURI,
 		Endpoint: oauth2.Endpoint{
-			AuthURL:  c.oauthHost + "/oauth/authorize",
-			TokenURL: c.oauthHost + "/oauth/token",
+			AuthURL:  c.oauthHost + "/authorize",
+			TokenURL: c.oauthHost + "/token",
 		},
 	}
 
@@ -50,7 +50,7 @@ func (c *Client) AccessTokenRequest(ctx context.Context) error {
 		err  error
 	)
 
-	req, err = http.NewRequestWithContext(ctx, "POST", c.oauthHost+"/oauth/token", strings.NewReader("grant_type=client_credentials"))
+	req, err = http.NewRequestWithContext(ctx, "POST", c.clntCredCfg.TokenURL, strings.NewReader("grant_type=client_credentials"))
 	if err != nil {
 		return err
 	}
@@ -92,7 +92,7 @@ func (c *Client) UserInfoHeader(token *oauth2.Token) (*oauth.UserInfo, []byte, e
 		err    error
 	)
 
-	req, err = http.NewRequest("GET", c.oauthHost+"/oauth/userinfo", nil)
+	req, err = http.NewRequest("GET", c.oauthHost+"/userinfo", nil)
 	if err != nil {
 		return &dat, b, err
 	}
@@ -128,7 +128,7 @@ func (c *Client) TokenValidation(ctx context.Context, token *oauth2.Token) (*oau
 		err error
 	)
 
-	req, err = http.NewRequestWithContext(ctx, "GET", c.oauthHost+fmt.Sprintf("/oauth/check_token?token=%s", token.AccessToken), nil)
+	req, err = http.NewRequestWithContext(ctx, "GET", c.oauthHost+fmt.Sprintf("/v2/check_token?token=%s", token.AccessToken), nil)
 	if err != nil {
 		return &dat, b, err
 	}
