@@ -10,13 +10,43 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/FuzzyStatic/blizzard/v3/wowp"
 	"github.com/FuzzyStatic/blizzard/v3/wowsearch"
+	"github.com/avast/retry-go"
 	"github.com/go-playground/validator/v10"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
+	"golang.org/x/time/rate"
 )
+
+// RateLimitConfig contains values for rate limiter configuration.
+type RateLimitConfig struct {
+	// Enabled whether the rate limiter is enabled.
+	Enabled bool
+	// Rate  how many requests per second can be made, before throttling occurs.
+	Rate rate.Limit
+	// Burst the maximum number of burst requests that are allowed before they too become subject to rate limiting.
+	Burst int
+}
+
+// BlizzardRateLimit rate limiter configuration fitting Blizzard's rate limits (36k/hour 100 burst)
+var BlizzardRateLimit = RateLimitConfig{
+	Enabled: true,
+	Rate:    10,
+	Burst:   100,
+}
+
+// RetriesConfig contains values for retry attempts when Blizzard's API returns 429 error.
+type RetriesConfig struct {
+	// Enabled whether the retry feature is enabled.
+	Enabled bool
+	// Attempts how many retries are attempted before the request fails with an error.
+	Attempts uint
+	// Delay how much time must pass before another try is attempted
+	Delay time.Duration
+}
 
 // Config contains values for Blizzard client creation
 type Config struct {
@@ -48,6 +78,16 @@ type Config struct {
 	// from region to region and align with those supported on Blizzard
 	// community sites.
 	Locale Locale `validate:"required"`
+
+	// RateLimit configures the rate limiter. It allows limiting outgoing
+	// requests to Blizzard's API before they get limited by Blizzard.
+	// The rate limiter is disabled by default.
+	RateLimit RateLimitConfig
+
+	// Retries configures request retries. It automatically retries a request
+	// when Blizzard's API responds with rate limiting (Error 429 Too Many Requests).
+	// Request retries are disabled by default.
+	Retries RetriesConfig
 }
 
 // Client regional API URLs, locale, client ID, client secret
@@ -64,6 +104,8 @@ type Client struct {
 	dynamicClassicNamespace, staticClassicNamespace string
 	region                                          Region
 	locale                                          Locale
+	ratelimiter                                     *rate.Limiter
+	retryopts                                       []retry.Option
 }
 
 //go:generate stringer -type=Region -linecomment
@@ -143,6 +185,22 @@ func NewClient(cfg Config) (*Client, error) {
 	err = c.SetRegionParameters(cfg.Region, cfg.Locale)
 	if err != nil {
 		return nil, err
+	}
+
+	if ratelimit := cfg.RateLimit; ratelimit.Enabled {
+		c.ratelimiter = rate.NewLimiter(ratelimit.Rate, ratelimit.Burst)
+	}
+
+	if retries := cfg.Retries; retries.Enabled {
+		c.retryopts = []retry.Option{
+			retry.Attempts(retries.Attempts),
+			retry.Delay(retries.Delay),
+			retry.DelayType(retry.BackOffDelay),
+			retry.MaxJitter(0),
+			retry.RetryIf(func(err error) bool {
+				return err.Error() == "429 Too Many Requests"
+			}),
+		}
 	}
 
 	return &c, nil
@@ -244,6 +302,41 @@ func buildSearchParams(opts ...wowsearch.Opt) string {
 	return "?" + strings.Join(params, "&")
 }
 
+// runHttpRequest runs the provided request, performs rate limiting and retries based on client configuration
+func (c *Client) runHttpRequest(ctx context.Context, request *http.Request) (*http.Response, error) {
+	if c.cfg.Retries.Enabled && ctx.Value("withRetries") != true {
+		subContext := context.WithValue(ctx, "withRetries", true)
+		options := []retry.Option{
+			retry.Context(subContext),
+		}
+		options = append(options, c.retryopts...)
+		var res *http.Response
+		err := retry.Do(func() (err error) {
+			res, err = c.runHttpRequest(subContext, request)
+
+			if err != nil && res != nil {
+				_ = res.Body.Close()
+			}
+
+			if res != nil && res.StatusCode >= 400 {
+				return errors.New(res.Status)
+			}
+
+			return
+		}, options...)
+
+		return res, err
+	}
+	if c.ratelimiter != nil {
+		err := c.ratelimiter.Wait(ctx)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	return c.httpClient.Do(request)
+}
+
 // getStructData processes simple GET request based on pathAndQuery an returns the structured data.
 func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace string, dat interface{}) (interface{}, *Header, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", c.apiHost+pathAndQuery, nil)
@@ -261,7 +354,7 @@ func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace stri
 		req.Header.Set("Battlenet-Namespace", namespace)
 	}
 
-	res, err := c.httpClient.Do(req)
+	res, err := c.runHttpRequest(ctx, req)
 	if err != nil {
 		return dat, nil, err
 	}
@@ -334,7 +427,7 @@ func (c *Client) getStructDataNoNamespace(ctx context.Context, pathAndQuery stri
 	q.Set("locale", c.locale.String())
 	req.URL.RawQuery = q.Encode()
 
-	res, err := c.httpClient.Do(req)
+	res, err := c.runHttpRequest(ctx, req)
 	if err != nil {
 		return dat, nil, err
 	}
@@ -371,7 +464,7 @@ func (c *Client) getStructDataNoNamespaceNoLocale(ctx context.Context, pathAndQu
 
 	req.Header.Set("Accept", "application/json")
 
-	res, err := c.httpClient.Do(req)
+	res, err := c.runHttpRequest(ctx, req)
 	if err != nil {
 		return dat, nil, err
 	}
