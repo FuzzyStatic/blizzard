@@ -298,6 +298,12 @@ type CharacterEquipmentSummary struct {
 				}
 				IsEquipped bool
 			}
+			Effects []struct {
+				DisplayString string
+				RequiredCount int
+				IsActive      bool
+			}
+			DisplayString string
 		}
 		Weapon struct {
 			Damage struct {
