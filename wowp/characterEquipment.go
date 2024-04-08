@@ -280,6 +280,25 @@ type CharacterEquipmentSummary struct {
 				DisplayString string `json:"display_string"`
 			} `json:"skill"`
 		} `json:"requirements,omitempty"`
+		Set struct {
+			ItemSet struct {
+				Key struct {
+					Href string `json:"href"`
+				}
+				Name string `json:"name"`
+				ID   int    `json:"id"`
+			}
+			Items []struct {
+				Item struct {
+					Key struct {
+						Href string `json:"href"`
+					}
+					Name string `json:"name"`
+					ID   int    `json:"id"`
+				}
+				IsEquipped bool
+			}
+		}
 		Weapon struct {
 			Damage struct {
 				MinValue      int    `json:"min_value"`
