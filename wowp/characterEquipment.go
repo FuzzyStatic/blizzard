@@ -284,26 +284,26 @@ type CharacterEquipmentSummary struct {
 			ItemSet struct {
 				Key struct {
 					Href string `json:"href"`
-				}
+				} `json:"key"`
 				Name string `json:"name"`
 				ID   int    `json:"id"`
-			}
+			} `json:"item_set"`
 			Items []struct {
 				Item struct {
 					Key struct {
 						Href string `json:"href"`
-					}
+					} `json:"key"`
 					Name string `json:"name"`
 					ID   int    `json:"id"`
-				}
-				IsEquipped bool
-			}
+				} `json:"item"`
+				IsEquipped bool `json:"is_equipped"`
+			} `json:"items"`
 			Effects []struct {
-				DisplayString string
-				RequiredCount int
-				IsActive      bool
-			}
-			DisplayString string
+				DisplayString string `json:"display_string"`
+				RequiredCount int    `json:"required_count"`
+				IsActive      bool   `json:"is_active"`
+			} `json:"effects"`
+			DisplayString string `json:"display_string"`
 		}
 		Weapon struct {
 			Damage struct {
