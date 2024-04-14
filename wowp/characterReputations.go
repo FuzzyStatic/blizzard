@@ -31,11 +31,12 @@ type CharacterReputationsSummary struct {
 			ID   int    `json:"id"`
 		} `json:"faction"`
 		Standing struct {
-			Raw   int    `json:"raw"`
-			Value int    `json:"value"`
-			Max   int    `json:"max"`
-			Tier  int    `json:"tier"`
-			Name  string `json:"name"`
+			Raw         int    `json:"raw"`
+			Value       int    `json:"value"`
+			Max         int    `json:"max"`
+			Tier        int    `json:"tier"`
+			Name        string `json:"name"`
+			RenownLevel int    `json:"renownLevel"`
 		} `json:"standing"`
 		Paragon struct {
 			Raw   int `json:"raw"`
