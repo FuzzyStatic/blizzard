@@ -29,6 +29,7 @@ type Mount struct {
 		Key struct {
 			Href string `json:"href"`
 		} `json:"key"`
+		ID int `json:"id"`
 	} `json:"creature_displays"`
 	Description string `json:"description"`
 	Source      struct {
