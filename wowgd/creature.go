@@ -87,6 +87,7 @@ type Creature struct {
 		Key struct {
 			Href string `json:"href"`
 		} `json:"key"`
+		ID int `json:"id"`
 	} `json:"creature_displays"`
 	IsTameable bool `json:"is_tameable"`
 }
