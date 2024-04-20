@@ -53,6 +53,13 @@ type AchievementCategory struct {
 		Name string `json:"name"`
 		ID   int    `json:"id"`
 	} `json:"subcategories"`
+	ParentCategory struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		Name string `json:"name"`
+		ID   int    `json:"id"`
+	}
 	IsGuildCategory     bool `json:"is_guild_category"`
 	AggregatesByFaction struct {
 		Alliance struct {
