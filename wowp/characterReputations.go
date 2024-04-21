@@ -36,7 +36,7 @@ type CharacterReputationsSummary struct {
 			Max         int    `json:"max"`
 			Tier        int    `json:"tier"`
 			Name        string `json:"name"`
-			RenownLevel int    `json:"renownLevel"`
+			RenownLevel int    `json:"renown_level"`
 		} `json:"standing"`
 		Paragon struct {
 			Raw   int `json:"raw"`
