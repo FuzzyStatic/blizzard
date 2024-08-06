@@ -65,6 +65,17 @@ func (c *Client) WoWCharacterCollectionsIndex(ctx context.Context,
 	return dat.(*wowp.CharacterCollectionsIndex), header, err
 }
 
+// WoWCharacterHeirloomsCollectionSummary returns a summary of the heirlooms a character has obtained.
+func (c *Client) WoWCharacterHeirloomsCollectionSummary(ctx context.Context,
+	realmSlug, characterName string) (*wowp.CharacterHeirloomsCollectionSummary, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/profile/wow/character/%s/%s/collections/heirlooms", realmSlug, strings.ToLower(characterName)),
+		c.GetProfileNamespace(),
+		&wowp.CharacterHeirloomsCollectionSummary{},
+	)
+	return dat.(*wowp.CharacterHeirloomsCollectionSummary), header, err
+}
+
 // WoWCharacterMountsCollectionSummary returns a summary of the mounts a character has obtained.
 func (c *Client) WoWCharacterMountsCollectionSummary(ctx context.Context,
 	realmSlug, characterName string) (*wowp.CharacterMountsCollectionSummary, *Header, error) {
@@ -76,7 +87,7 @@ func (c *Client) WoWCharacterMountsCollectionSummary(ctx context.Context,
 	return dat.(*wowp.CharacterMountsCollectionSummary), header, err
 }
 
-// WoWCharacterPetsCollectionSummary returns a summary of the mounts a character has obtained.
+// WoWCharacterPetsCollectionSummary returns a summary of the pets a character has obtained.
 func (c *Client) WoWCharacterPetsCollectionSummary(ctx context.Context,
 	realmSlug, characterName string) (*wowp.CharacterPetsCollectionSummary, *Header, error) {
 	dat, header, err := c.getStructData(ctx,
@@ -85,6 +96,28 @@ func (c *Client) WoWCharacterPetsCollectionSummary(ctx context.Context,
 		&wowp.CharacterPetsCollectionSummary{},
 	)
 	return dat.(*wowp.CharacterPetsCollectionSummary), header, err
+}
+
+// WoWCharacterToysCollectionSummary returns a summary of the toys a character has obtained.
+func (c *Client) WoWCharacterToysCollectionSummary(ctx context.Context,
+	realmSlug, characterName string) (*wowp.CharacterToysCollectionSummary, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/profile/wow/character/%s/%s/collections/toys", realmSlug, strings.ToLower(characterName)),
+		c.GetProfileNamespace(),
+		&wowp.CharacterToysCollectionSummary{},
+	)
+	return dat.(*wowp.CharacterToysCollectionSummary), header, err
+}
+
+// WoWCharacterTransmogsCollectionSummary returns a summary of the transmogs a character has obtained.
+func (c *Client) WoWCharacterTransmogsCollectionSummary(ctx context.Context,
+	realmSlug, characterName string) (*wowp.CharacterTransmogsCollectionSummary, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/profile/wow/character/%s/%s/collections/transmogs", realmSlug, strings.ToLower(characterName)),
+		c.GetProfileNamespace(),
+		&wowp.CharacterTransmogsCollectionSummary{},
+	)
+	return dat.(*wowp.CharacterTransmogsCollectionSummary), header, err
 }
 
 // WoWCharacterEncountersSummary returns a summary of a character's encounters.
