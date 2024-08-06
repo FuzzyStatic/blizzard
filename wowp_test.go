@@ -56,6 +56,18 @@ func TestWoWCharacterCollectionsIndex(t *testing.T) {
 	}
 }
 
+func TestWoWCharacterHeirloomsCollectionSummary(t *testing.T) {
+	dat, _, err := usClient.WoWCharacterHeirloomsCollectionSummary(context.Background(), "illidan", "covlol")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWCharacterMountsCollectionSummary(t *testing.T) {
 	dat, _, err := usClient.WoWCharacterMountsCollectionSummary(context.Background(), "illidan", "covlol")
 	if err != nil {
@@ -70,6 +82,30 @@ func TestWoWCharacterMountsCollectionSummary(t *testing.T) {
 
 func TestWoWCharacterPetsCollectionSummary(t *testing.T) {
 	dat, _, err := usClient.WoWCharacterPetsCollectionSummary(context.Background(), "illidan", "covlol")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCharacterToysCollectionSummary(t *testing.T) {
+	dat, _, err := usClient.WoWCharacterToysCollectionSummary(context.Background(), "illidan", "covlol")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWCharacterTransmogCollectionSummary(t *testing.T) {
+	dat, _, err := usClient.WoWCharacterTransmogsCollectionSummary(context.Background(), "illidan", "covlol")
 	if err != nil {
 		fmt.Println(err)
 		t.Fail()
