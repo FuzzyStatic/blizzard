@@ -461,6 +461,83 @@ func TestWoWJournalExpansionsIndex(t *testing.T) {
 	}
 }
 
+func TestWoWItemAppearance(t *testing.T) {
+	dat, _, err := usClient.WoWItemAppearance(context.Background(), 321)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWItemAppearanceSearch(t *testing.T) {
+	dat, _, err := usClient.WoWItemAppearanceSearch(context.Background(),
+		wowsearch.Page(1),
+		wowsearch.PageSize(5),
+		wowsearch.Field().
+			AND("slot.type", "HEAD"))
+
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWItemAppearanceSetsIndex(t *testing.T) {
+	dat, _, err := usClient.WoWItemAppearanceSetsIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWItemAppearanceSet(t *testing.T) {
+	dat, _, err := usClient.WoWItemAppearanceSet(context.Background(), 13)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWItemAppearanceSlotIndex(t *testing.T) {
+	dat, _, err := usClient.WoWItemAppearanceSlotIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWItemAppearanceSlot(t *testing.T) {
+	dat, _, err := usClient.WoWItemAppearanceSlot(context.Background(), "HEAD")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWJournalExpansion(t *testing.T) {
 	dat, _, err := usClient.WoWJournalExpansion(context.Background(), 396)
 	if err != nil {

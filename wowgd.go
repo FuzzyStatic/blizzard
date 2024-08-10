@@ -381,6 +381,68 @@ func (c *Client) WoWItemMedia(ctx context.Context, itemID int) (*wowgd.ItemMedia
 	return dat.(*wowgd.ItemMedia), header, err
 }
 
+// WoWItemAppearance returns an item appearance by ID.
+func (c *Client) WoWItemAppearance(ctx context.Context, appearanceID int) (*wowgd.ItemAppearance, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/item-appearance/%d", appearanceID),
+		c.GetStaticNamespace(),
+		&wowgd.ItemAppearance{},
+	)
+	return dat.(*wowgd.ItemAppearance), header, err
+}
+
+// WoWItemAppearanceSearch item appearance search data.
+func (c *Client) WoWItemAppearanceSearch(ctx context.Context, opts ...wowsearch.Opt) (*wowgd.ItemAppearanceSearch, *Header, error) {
+	dat, header, err := c.getStructData(
+		ctx,
+		fmt.Sprintf("/data/wow/search/item-appearance%s", buildSearchParams(opts...)),
+		c.GetStaticNamespace(),
+		&wowgd.ItemAppearanceSearch{},
+	)
+
+	return dat.(*wowgd.ItemAppearanceSearch), header, err
+}
+
+// WoWItemAppearanceSetsIndex returns an index of item appearance sets.
+func (c *Client) WoWItemAppearanceSetsIndex(ctx context.Context) (*wowgd.ItemAppearanceSetsIndex, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		"/data/wow/item-appearance/set/index",
+		c.GetStaticNamespace(),
+		&wowgd.ItemAppearanceSetsIndex{},
+	)
+	return dat.(*wowgd.ItemAppearanceSetsIndex), header, err
+}
+
+// WoWItemAppearanceSet returns an item appearance set by ID.
+func (c *Client) WoWItemAppearanceSet(ctx context.Context, itemAppearanceSetID int) (*wowgd.ItemAppearanceSet, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/item-appearance/set/%d", itemAppearanceSetID),
+		c.GetStaticNamespace(),
+		&wowgd.ItemAppearanceSet{},
+	)
+	return dat.(*wowgd.ItemAppearanceSet), header, err
+}
+
+// WoWItemAppearanceSlotIndex returns an index of item appearance slot.
+func (c *Client) WoWItemAppearanceSlotIndex(ctx context.Context) (*wowgd.ItemAppearanceSlotIndex, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		"/data/wow/item-appearance/slot/index",
+		c.GetStaticNamespace(),
+		&wowgd.ItemAppearanceSlotIndex{},
+	)
+	return dat.(*wowgd.ItemAppearanceSlotIndex), header, err
+}
+
+// WoWItemAppearanceSlot returns an item appearance slot by slot type.
+func (c *Client) WoWItemAppearanceSlot(ctx context.Context, itemAppearanceSlot string) (*wowgd.ItemAppearanceSlot, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/item-appearance/slot/%d", itemAppearanceSlot),
+		c.GetStaticNamespace(),
+		&wowgd.ItemAppearanceSlot{},
+	)
+	return dat.(*wowgd.ItemAppearanceSlot), header, err
+}
+
 // WoWJournalExpansionsIndex returns an index of journal expansions.
 func (c *Client) WoWJournalExpansionsIndex(ctx context.Context) (*wowgd.JournalExpansionsIndex, *Header, error) {
 	dat, header, err := c.getStructData(ctx,
