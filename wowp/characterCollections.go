@@ -141,4 +141,5 @@ type CharacterTransmogsCollectionSummarySlots struct {
 		} `json:"key"`
 		ID int `json:"id"`
 	} `json:"appearances"`
+
 }
