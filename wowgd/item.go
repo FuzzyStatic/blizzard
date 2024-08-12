@@ -130,6 +130,63 @@ type Item struct {
 	MaxCount      int  `json:"max_count"`
 	IsEquippable  bool `json:"is_equippable"`
 	IsStackable   bool `json:"is_stackable"`
+	PreviewItem   struct {
+		Item struct {
+			Key struct {
+				Href string `json:"href"`
+			} `json:"key"`
+			ID int `json:"id"`
+		} `json:"item"`
+		Quality struct {
+			Type string `json:"type"`
+			Name string `json:"name"`
+		} `json:"quality"`
+		Name  string `json:"name"`
+		Media struct {
+			Key struct {
+				Href string `json:"href"`
+			} `json:"key"`
+			ID int `json:"id"`
+		} `json:"media"`
+		ItemClass struct {
+			Key struct {
+				Href string `json:"href"`
+			} `json:"key"`
+			Name string `json:"name"`
+			ID   int    `json:"id"`
+		} `json:"item_class"`
+		ItemSubclass struct {
+			Key struct {
+				Href string `json:"href"`
+			} `json:"key"`
+			Name string `json:"name"`
+			ID   int    `json:"id"`
+		} `json:"item_subclass"`
+		InventoryType struct {
+			Type string `json:"type"`
+			Name string `json:"name"`
+		} `json:"inventory_type"`
+		Binding struct {
+			Type string `json:"type"`
+			Name string `json:"name"`
+		} `json:"binding"`
+		UniqueEquipped string `json:"unique_equipped"`
+		Spells         []struct {
+			Spell struct {
+				Key struct {
+					Href string `json:"href"`
+				} `json:"key"`
+				Name string `json:"name"`
+				ID   int    `json:"id"`
+			} `json:"spell"`
+			Description string `json:"description"`
+		} `json:"spells"`
+		IsSubclassHidden bool `json:"is_subclass_hidden"`
+		NameDescription  *struct {
+			DisplayString string `json:"display_string"`
+		} `json:"name_description"`
+	} `json:"preview_item"`
+	PurchaseQuantity int `json:"purchase_quantity"`
 }
 
 // ItemMedia structure
@@ -248,4 +305,137 @@ type ItemSearch struct {
 			ID            int  `json:"id"`
 		} `json:"data"`
 	} `json:"results"`
+}
+
+type ItemAppearance struct {
+	Links struct {
+		Self struct {
+			Href string `json:"href"`
+		} `json:"self"`
+	} `json:"_links"`
+	ID   int `json:"id"`
+	Slot struct {
+		Type string `json:"type"`
+		Name string `json:"name"`
+	} `json:"slot"`
+	ItemClass struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		Name string `json:"name"`
+		ID   int    `json:"id"`
+	} `json:"item_class"`
+	ItemSubclass struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		Name string `json:"name"`
+		ID   int    `json:"id"`
+	} `json:"item_subclass"`
+	ItemDisplayInfoID int `json:"item_display_info_id"`
+	Items             []struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		Name string `json:"name"`
+		ID   int    `json:"id"`
+	} `json:"items"`
+	Media struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		ID int `json:"id"`
+	} `json:"media"`
+}
+
+type ItemAppearanceSearch struct {
+	Page              int  `json:"page"`
+	PageSize          int  `json:"pageSize"`
+	MaxPageSize       int  `json:"maxPageSize"`
+	PageCount         int  `json:"pageCount"`
+	ResultCountCapped bool `json:"resultCountCapped"`
+	Results           []struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		Data struct {
+			ItemDisplayInfoID int `json:"item_display_info_id"`
+			ID                int `json:"id"`
+			Slot              struct {
+				Name struct {
+					ItIT string `json:"it_IT"`
+					RuRU string `json:"ru_RU"`
+					EnGB string `json:"en_GB"`
+					ZhTW string `json:"zh_TW"`
+					KoKR string `json:"ko_KR"`
+					EnUS string `json:"en_US"`
+					EsMX string `json:"es_MX"`
+					PtBR string `json:"pt_BR"`
+					EsES string `json:"es_ES"`
+					ZhCN string `json:"zh_CN"`
+					FrFR string `json:"fr_FR"`
+					DeDE string `json:"de_DE"`
+				} `json:"name"`
+				Type string `json:"type"`
+			} `json:"slot"`
+		} `json:"data"`
+	} `json:"results"`
+}
+
+type ItemAppearanceSetsIndex struct {
+	Links struct {
+		Self struct {
+			Href string `json:"href"`
+		} `json:"self"`
+	} `json:"_links"`
+	AppearanceSets []struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		Name string `json:"name"`
+		ID   int    `json:"id"`
+	} `json:"appearance_sets"`
+}
+
+type ItemAppearanceSet struct {
+	Links struct {
+		Self struct {
+			Href string `json:"href"`
+		} `json:"self"`
+	} `json:"_links"`
+	ID          int    `json:"id"`
+	SetName     string `json:"set_name"`
+	Appearances []struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		ID int `json:"id"`
+	} `json:"appearances"`
+}
+
+type ItemAppearanceSlotIndex struct {
+	Links struct {
+		Self struct {
+			Href string `json:"href"`
+		} `json:"self"`
+	} `json:"_links"`
+	Slots []struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+	} `json:"slots"`
+}
+
+type ItemAppearanceSlot struct {
+	Links struct {
+		Self struct {
+			Href string `json:"href"`
+		} `json:"self"`
+	} `json:"_links"`
+	Appearances []struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		ID int `json:"id"`
+	} `json:"appearances"`
 }

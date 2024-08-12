@@ -119,7 +119,7 @@ type CharacterTransmogsCollectionSummary struct {
 		Key struct {
 			Href string `json:"href"`
 		} `json:"key"`
-		Id   string `json:"id"`
+		Id   int    `json:"id"`
 		Name string `json:"name"`
 	} `json:"appearance_sets"`
 	Links struct {
@@ -127,16 +127,19 @@ type CharacterTransmogsCollectionSummary struct {
 			Href string `json:"href"`
 		} `json:"self"`
 	} `json:"_links"`
-	Slots []struct {
-		Slot struct {
-			Name string `json:"name"`
-			Type string `json:"type"`
-		} `json:"slot"`
-		Appearances []struct {
-			Key struct {
-				Href string `json:"href"`
-			} `json:"key"`
-			ID int `json:"id"`
-		} `json:"appearances"`
-	} `json:"slots"`
+	Slots []CharacterTransmogsCollectionSummarySlots `json:"slots"`
+}
+
+type CharacterTransmogsCollectionSummarySlots struct {
+	Slot struct {
+		Name string `json:"name"`
+		Type string `json:"type"`
+	} `json:"slot"`
+	Appearances []struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		ID int `json:"id"`
+	} `json:"appearances"`
+
 }
