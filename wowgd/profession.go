@@ -119,6 +119,16 @@ type Recipe struct {
 		Minimum float32 `json:"minimum"`
 		Maximum float32 `json:"maximum"`
 	} `json:"crafted_quantity"`
+	ModifiedCraftingSlots []struct {
+		SlotType struct {
+			Key struct {
+				Href string `json:"href"`
+			} `json:"key"`
+			Name string `json:"name"`
+			ID   int    `json:"id"`
+		} `json:"slot_type"`
+		DisplayOrder int `json:"display_order"`
+	} `json:"modified_crafting_slots"`
 }
 
 // RecipeMedia structure
