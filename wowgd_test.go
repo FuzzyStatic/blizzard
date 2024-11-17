@@ -81,6 +81,18 @@ func TestWoWAuctions(t *testing.T) {
 	}
 }
 
+func TestWoWAuctionCommodities(t *testing.T) {
+	dat, _, err := usClient.WoWAuctionCommodities(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWAzeriteEssenceIndex(t *testing.T) {
 	dat, _, err := usClient.WoWAzeriteEssenceIndex(context.Background())
 	if err != nil {
