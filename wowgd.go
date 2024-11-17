@@ -70,6 +70,18 @@ func (c *Client) WoWAuctions(ctx context.Context, connectedRealmID int) (*wowgd.
 	return dat.(*wowgd.AuctionHouse), header, err
 }
 
+// WoWAuctionCommodities returns all active auctions for commodity items for the entire game region.
+// Auction house data updates at a set interval. The value was initially set at 1 hour; however, it might change over time without notice.
+// Depending on the number of active auctions on the specified connected realm, the response from this endpoint may be rather large, sometimes exceeding 10 MB.
+func (c *Client) WoWAuctionCommodities(ctx context.Context) (*wowgd.AuctionHouseCommodities, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		"/data/wow/auctions/commodities",
+		c.GetDynamicNamespace(),
+		&wowgd.AuctionHouseCommodities{},
+	)
+	return dat.(*wowgd.AuctionHouseCommodities), header, err
+}
+
 // WoWAzeriteEssenceIndex returns an index of azerite essences.
 func (c *Client) WoWAzeriteEssenceIndex(ctx context.Context) (*wowgd.AzeriteEssenceIndex, *Header, error) {
 	dat, header, err := c.getStructData(ctx,
@@ -436,7 +448,7 @@ func (c *Client) WoWItemAppearanceSlotIndex(ctx context.Context) (*wowgd.ItemApp
 // WoWItemAppearanceSlot returns an item appearance slot by slot type.
 func (c *Client) WoWItemAppearanceSlot(ctx context.Context, itemAppearanceSlot string) (*wowgd.ItemAppearanceSlot, *Header, error) {
 	dat, header, err := c.getStructData(ctx,
-		fmt.Sprintf("/data/wow/item-appearance/slot/%d", itemAppearanceSlot),
+		fmt.Sprintf("/data/wow/item-appearance/slot/%s", itemAppearanceSlot),
 		c.GetStaticNamespace(),
 		&wowgd.ItemAppearanceSlot{},
 	)
