@@ -135,7 +135,7 @@ type PvPLeaderboards struct {
 		} `json:"character"`
 		Faction struct {
 			Type string `json:"type"`
-		} `json:"faction,omitempty"`
+		} `json:"faction"`
 		Rank                  int `json:"rank"`
 		Rating                int `json:"rating"`
 		SeasonMatchStatistics struct {
@@ -148,7 +148,7 @@ type PvPLeaderboards struct {
 				Href string `json:"href"`
 			} `json:"key"`
 			ID int `json:"id"`
-		} `json:"tier,omitempty"`
+		} `json:"tier"`
 	} `json:"entries"`
 }
 

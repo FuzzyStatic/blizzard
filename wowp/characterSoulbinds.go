@@ -45,7 +45,7 @@ type CharacterSoulbinds struct {
 				} `json:"key"`
 				Name string `json:"name"`
 				ID   int    `json:"id"`
-			} `json:"trait,omitempty"`
+			} `json:"trait"`
 			Tier          int `json:"tier"`
 			DisplayOrder  int `json:"display_order"`
 			ConduitSocket struct {
@@ -63,7 +63,7 @@ type CharacterSoulbinds struct {
 					} `json:"conduit"`
 					Rank int `json:"rank"`
 				} `json:"socket"`
-			} `json:"conduit_socket,omitempty"`
+			} `json:"conduit_socket"`
 		} `json:"traits"`
 		IsActive bool `json:"is_active,omitempty"`
 	} `json:"soulbinds"`

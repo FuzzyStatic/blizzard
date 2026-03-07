@@ -13,8 +13,8 @@ import (
 
 // TempData is used because the OWL structure is key by just ID numbers without a proper field key.
 type TempData struct {
-	Players map[string]interface{} `json:"players"`
-	Teams   map[string]interface{} `json:"teams"`
+	Players map[string]any `json:"players"`
+	Teams   map[string]any `json:"teams"`
 }
 
 // OWLSummaryData Returns a summary of OWL stats where you can get entity IDs (playerId, matchId, segmentId, and teamId).

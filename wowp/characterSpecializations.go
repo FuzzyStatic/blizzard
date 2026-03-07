@@ -31,12 +31,12 @@ type CharacterSpecializationsSummary struct {
 					Name string `json:"name"`
 					ID   int    `json:"id"`
 				} `json:"spell"`
-				Description string      `json:"description"`
-				CastTime    string      `json:"cast_time"`
-				PowerCost   interface{} `json:"power_cost"`
-				Range       string      `json:"range"`
-				Cooldown    string      `json:"cooldown"`
-			} `json:"spell_tooltip,omitempty"`
+				Description string `json:"description"`
+				CastTime    string `json:"cast_time"`
+				PowerCost   any    `json:"power_cost"`
+				Range       string `json:"range"`
+				Cooldown    string `json:"cooldown"`
+			} `json:"spell_tooltip"`
 		} `json:"talents"`
 		Glyphs []struct {
 			Key struct {

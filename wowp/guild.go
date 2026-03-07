@@ -129,7 +129,7 @@ type GuildActivity struct {
 				Name string `json:"name"`
 				ID   int    `json:"id"`
 			} `json:"achievement"`
-		} `json:"character_achievement,omitempty"`
+		} `json:"character_achievement"`
 		Activity struct {
 			Type string `json:"type"`
 		} `json:"activity"`
@@ -146,7 +146,7 @@ type GuildActivity struct {
 				Type string `json:"type"`
 				Name string `json:"name"`
 			} `json:"mode"`
-		} `json:"encounter_completed,omitempty"`
+		} `json:"encounter_completed"`
 	} `json:"activities"`
 }
 
@@ -192,7 +192,7 @@ type GuildAchievements struct {
 				Amount      float64 `json:"amount"`
 				IsCompleted bool    `json:"is_completed"`
 			} `json:"child_criteria"`
-		} `json:"criteria,omitempty"`
+		} `json:"criteria"`
 		CompletedTimestamp int64 `json:"completed_timestamp,omitempty"`
 	} `json:"achievements"`
 	CategoryProgress []struct {

@@ -42,6 +42,6 @@ type CharacterReputationsSummary struct {
 			Raw   int `json:"raw"`
 			Value int `json:"value"`
 			Max   int `json:"max"`
-		} `json:"paragon,omitempty"`
+		} `json:"paragon"`
 	} `json:"reputations"`
 }

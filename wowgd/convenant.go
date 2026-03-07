@@ -63,7 +63,7 @@ type Covenant struct {
 			PowerCost   string `json:"power_cost"`
 			Range       string `json:"range"`
 			Cooldown    string `json:"cooldown"`
-		} `json:"spell_tooltip,omitempty"`
+		} `json:"spell_tooltip"`
 	} `json:"class_abilities"`
 	Soulbinds []struct {
 		Key struct {

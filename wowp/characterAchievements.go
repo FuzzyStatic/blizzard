@@ -31,7 +31,7 @@ type CharacterAchievementsSummary struct {
 			Amount        float64       `json:"amount"`
 			IsCompleted   bool          `json:"is_completed"`
 			ChildCriteria ChildCriteria `json:"child_criteria,omitempty"`
-		} `json:"criteria,omitempty"`
+		} `json:"criteria"`
 		CompleteTimestamp int64 `json:"completed_timestamp"`
 	} `json:"achievements"`
 	CategoryProgress []struct {

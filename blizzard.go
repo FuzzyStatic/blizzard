@@ -245,7 +245,7 @@ func buildSearchParams(opts ...wowsearch.Opt) string {
 }
 
 // getStructData processes simple GET request based on pathAndQuery an returns the structured data.
-func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace string, dat interface{}) (interface{}, *Header, error) {
+func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace string, dat any) (any, *Header, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", c.apiHost+pathAndQuery, nil)
 	if err != nil {
 		return dat, nil, err
@@ -322,7 +322,7 @@ func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace stri
 
 // getStructDataNoNamespace processes simple GET request based on pathAndQuery an returns the structured data.
 // Does not use a namespace.
-func (c *Client) getStructDataNoNamespace(ctx context.Context, pathAndQuery string, dat interface{}) (interface{}, *Header, error) {
+func (c *Client) getStructDataNoNamespace(ctx context.Context, pathAndQuery string, dat any) (any, *Header, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", c.apiHost+pathAndQuery, nil)
 	if err != nil {
 		return dat, nil, err
@@ -363,7 +363,7 @@ func (c *Client) getStructDataNoNamespace(ctx context.Context, pathAndQuery stri
 
 // getStructDataNoNamespace processes simple GET request based on pathAndQuery an returns the structured data.
 // Does not use a namespace or Locale
-func (c *Client) getStructDataNoNamespaceNoLocale(ctx context.Context, pathAndQuery string, dat interface{}) (interface{}, *Header, error) {
+func (c *Client) getStructDataNoNamespaceNoLocale(ctx context.Context, pathAndQuery string, dat any) (any, *Header, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", c.apiHost+pathAndQuery, nil)
 	if err != nil {
 		return dat, nil, err
@@ -397,7 +397,7 @@ func (c *Client) getStructDataNoNamespaceNoLocale(ctx context.Context, pathAndQu
 // getStructDataOAuth processes simple GET request based on pathAndQuery an returns the structured data.
 // Uses OAuth2.
 func (c *Client) getStructDataOAuth(ctx context.Context, pathAndQuery, namespace string,
-	token *oauth2.Token, dat interface{}) (interface{}, *Header, error) {
+	token *oauth2.Token, dat any) (any, *Header, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", c.apiHost+pathAndQuery, nil)
 	if err != nil {
 		return dat, nil, err

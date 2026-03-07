@@ -1703,7 +1703,7 @@ type SegmentsAPI struct {
 			EnergyMax                  int `json:"energyMax"`
 			LifetimeEnergyAccumulation int `json:"lifetimeEnergyAccumulation"`
 			GravitonSurgeKills         int `json:"gravitonSurgeKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes struct {
 			Winston struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -1805,7 +1805,7 @@ type SegmentsAPI struct {
 				ShotsHit                   int `json:"shotsHit"`
 				GravitonSurgeKills         int `json:"gravitonSurgeKills"`
 			} `json:"zarya"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Logo               string `json:"logo"`
 		Icon               string `json:"icon"`
 		PrimaryColor       string `json:"primaryColor"`
@@ -1840,7 +1840,7 @@ type SegmentsAPI struct {
 			AmplificationMatrixAssists      int `json:"amplificationMatrixAssists"`
 			ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
 			PlayersResurrected              int `json:"playersResurrected"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes0 struct {
 			Lucio struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -1907,7 +1907,7 @@ type SegmentsAPI struct {
 				PlayersResurrected int `json:"playersResurrected"`
 				DamageAmplified    int `json:"damageAmplified"`
 			} `json:"mercy"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats1 struct {
 			HeroDamageDone   int `json:"heroDamageDone"`
 			HealingDone      int `json:"healingDone"`
@@ -1924,7 +1924,7 @@ type SegmentsAPI struct {
 			CriticalHits     int `json:"criticalHits"`
 			ShotsHit         int `json:"shotsHit"`
 			BlizzardKills    int `json:"blizzardKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes1 struct {
 			Genji struct {
 				HeroDamageDone   int `json:"heroDamageDone"`
@@ -1973,7 +1973,7 @@ type SegmentsAPI struct {
 				CriticalHits    int `json:"criticalHits"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"reaper"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats2 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -2000,7 +2000,7 @@ type SegmentsAPI struct {
 			EnemiesEMPd        int `json:"enemiesEMPd"`
 			ScopedHits         int `json:"scopedHits"`
 			ScopedCriticalHits int `json:"scopedCriticalHits"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes2 struct {
 			Genji struct {
 				HeroDamageDone   int `json:"heroDamageDone"`
@@ -2130,7 +2130,7 @@ type SegmentsAPI struct {
 				ScopedHits         int `json:"scopedHits"`
 				ScopedCriticalHits int `json:"scopedCriticalHits"`
 			} `json:"widowmaker"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats3 struct {
 			HeroDamageDone                  int `json:"heroDamageDone"`
 			HealingDone                     int `json:"healingDone"`
@@ -2152,7 +2152,7 @@ type SegmentsAPI struct {
 			DamageAmplified                 int `json:"damageAmplified"`
 			AmplificationMatrixAssists      int `json:"amplificationMatrixAssists"`
 			ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes3 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -2216,7 +2216,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"lucio"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats4 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -2241,7 +2241,7 @@ type SegmentsAPI struct {
 			EnemiesEMPd            int `json:"enemiesEMPd"`
 			PulseBombKills         int `json:"pulseBombKills"`
 			PulseBombsAttached     int `json:"pulseBombsAttached"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes4 struct {
 			Soldier76 struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -2367,7 +2367,7 @@ type SegmentsAPI struct {
 				EnemiesHacked   int `json:"enemiesHacked"`
 				EnemiesEMPd     int `json:"enemiesEMPd"`
 			} `json:"sombra"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats5 struct {
 			HeroDamageDone                  int `json:"heroDamageDone"`
 			HealingDone                     int `json:"healingDone"`
@@ -2389,7 +2389,7 @@ type SegmentsAPI struct {
 			DamageAmplified                 int `json:"damageAmplified"`
 			AmplificationMatrixAssists      int `json:"amplificationMatrixAssists"`
 			ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes5 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -2455,7 +2455,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"lucio"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats6 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -2474,7 +2474,7 @@ type SegmentsAPI struct {
 			OverhealthProvided int `json:"overhealthProvided"`
 			InspireUptime      int `json:"inspireUptime"`
 			DamageAmplified    int `json:"damageAmplified"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes6 struct {
 			Lucio struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -2522,7 +2522,7 @@ type SegmentsAPI struct {
 				TimePlayed      int `json:"timePlayed"`
 				DamageAmplified int `json:"damageAmplified"`
 			} `json:"mercy"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats7 struct {
 			HeroDamageDone    int `json:"heroDamageDone"`
 			HealingDone       int `json:"healingDone"`
@@ -2543,7 +2543,7 @@ type SegmentsAPI struct {
 			AbilityDamageDone int `json:"abilityDamageDone"`
 			EarthshatterKills int `json:"earthshatterKills"`
 			EarthshatterStuns int `json:"earthshatterStuns"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes7 struct {
 			Winston struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -2595,7 +2595,7 @@ type SegmentsAPI struct {
 				EarthshatterStuns int `json:"earthshatterStuns"`
 				KnockbackKills    int `json:"knockbackKills"`
 			} `json:"reinhardt"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats8 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -2620,7 +2620,7 @@ type SegmentsAPI struct {
 			DeathBlossomKills      int `json:"deathBlossomKills"`
 			PulseBombKills         int `json:"pulseBombKills"`
 			PulseBombsAttached     int `json:"pulseBombsAttached"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes8 struct {
 			Soldier76 struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -2706,7 +2706,7 @@ type SegmentsAPI struct {
 				CriticalHits       int `json:"criticalHits"`
 				ShotsHit           int `json:"shotsHit"`
 			} `json:"tracer"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats9 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -2729,7 +2729,7 @@ type SegmentsAPI struct {
 			AccretionKills             int `json:"accretionKills"`
 			GraviticFluxKills          int `json:"graviticFluxKills"`
 			KnockbackKills             int `json:"knockbackKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes9 struct {
 			Doomfist struct {
 				HeroDamageDone    int `json:"heroDamageDone"`
@@ -2797,7 +2797,7 @@ type SegmentsAPI struct {
 				ShotsHit        int `json:"shotsHit"`
 				KnockbackKills  int `json:"knockbackKills"`
 			} `json:"d-va"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats10 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -2821,7 +2821,7 @@ type SegmentsAPI struct {
 			LifetimeEnergyAccumulation int `json:"lifetimeEnergyAccumulation"`
 			AbilityDamageDone          int `json:"abilityDamageDone"`
 			CriticalHits               int `json:"criticalHits"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes10 struct {
 			Winston struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -2902,7 +2902,7 @@ type SegmentsAPI struct {
 				KnockbackKills    int `json:"knockbackKills"`
 				CriticalHits      int `json:"criticalHits"`
 			} `json:"doomfist"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats11 struct {
 			HeroDamageDone                  int `json:"heroDamageDone"`
 			HealingDone                     int `json:"healingDone"`
@@ -2923,7 +2923,7 @@ type SegmentsAPI struct {
 			DamageAmplified                 int `json:"damageAmplified"`
 			AmplificationMatrixAssists      int `json:"amplificationMatrixAssists"`
 			ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes11 struct {
 			Lucio struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -2975,7 +2975,7 @@ type SegmentsAPI struct {
 				AmplificationMatrixAssists      int `json:"amplificationMatrixAssists"`
 				ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
 			} `json:"baptiste"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats12 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -2995,7 +2995,7 @@ type SegmentsAPI struct {
 			ScopedHits         int `json:"scopedHits"`
 			CriticalHits       int `json:"criticalHits"`
 			DamageDiscordOrb   int `json:"damageDiscordOrb"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes12 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -3057,7 +3057,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"mercy"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats13 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -3085,7 +3085,7 @@ type SegmentsAPI struct {
 			ScopedHits             int `json:"scopedHits"`
 			ScopedCriticalHits     int `json:"scopedCriticalHits"`
 			ScopedCriticalHitKills int `json:"scopedCriticalHitKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes13 struct {
 			Reaper struct {
 				HeroDamageDone    int `json:"heroDamageDone"`
@@ -3246,7 +3246,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"pharah"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats14 struct {
 			HeroDamageDone    int `json:"heroDamageDone"`
 			HealingDone       int `json:"healingDone"`
@@ -3264,7 +3264,7 @@ type SegmentsAPI struct {
 			ShotsHit          int `json:"shotsHit"`
 			FocusingBeamKills int `json:"focusingBeamKills"`
 			StickyBombsKills  int `json:"stickyBombsKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes14 struct {
 			Genji struct {
 				HeroDamageDone   int `json:"heroDamageDone"`
@@ -3329,7 +3329,7 @@ type SegmentsAPI struct {
 				CriticalHits    int `json:"criticalHits"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"soldier-76"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats15 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -3355,7 +3355,7 @@ type SegmentsAPI struct {
 			BobKills               int `json:"bobKills"`
 			KnockbackKills         int `json:"knockbackKills"`
 			PulseBombsAttached     int `json:"pulseBombsAttached"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes15 struct {
 			Widowmaker struct {
 				HeroDamageDone         int `json:"heroDamageDone"`
@@ -3487,7 +3487,7 @@ type SegmentsAPI struct {
 				CriticalHits       int `json:"criticalHits"`
 				ShotsHit           int `json:"shotsHit"`
 			} `json:"tracer"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats16 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -3507,7 +3507,7 @@ type SegmentsAPI struct {
 			ShotsHit           int `json:"shotsHit"`
 			PrimalRageKills    int `json:"primalRageKills"`
 			PlayersKnockedBack int `json:"playersKnockedBack"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes16 struct {
 			Reinhardt struct {
 				HeroDamageDone    int `json:"heroDamageDone"`
@@ -3556,7 +3556,7 @@ type SegmentsAPI struct {
 				TimePlayed         int `json:"timePlayed"`
 				PlayersKnockedBack int `json:"playersKnockedBack"`
 			} `json:"wrecking-ball"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats17 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -3580,7 +3580,7 @@ type SegmentsAPI struct {
 			EnemiesHacked          int `json:"enemiesHacked"`
 			EnemiesEMPd            int `json:"enemiesEMPd"`
 			DeathBlossomKills      int `json:"deathBlossomKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes17 struct {
 			Mei struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -3694,7 +3694,7 @@ type SegmentsAPI struct {
 				CriticalHits      int `json:"criticalHits"`
 				ShotsHit          int `json:"shotsHit"`
 			} `json:"reaper"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats18 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -3722,7 +3722,7 @@ type SegmentsAPI struct {
 			PulseBombsAttached     int `json:"pulseBombsAttached"`
 			EnemiesHacked          int `json:"enemiesHacked"`
 			EnemiesEMPd            int `json:"enemiesEMPd"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes18 struct {
 			Soldier76 struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -3840,7 +3840,7 @@ type SegmentsAPI struct {
 				EnemiesHacked   int `json:"enemiesHacked"`
 				EnemiesEMPd     int `json:"enemiesEMPd"`
 			} `json:"sombra"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats19 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -3858,7 +3858,7 @@ type SegmentsAPI struct {
 			KnockbackKills     int `json:"knockbackKills"`
 			OverhealthProvided int `json:"overhealthProvided"`
 			InspireUptime      int `json:"inspireUptime"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes19 struct {
 			Lucio struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -3892,7 +3892,7 @@ type SegmentsAPI struct {
 				InspireUptime      int `json:"inspireUptime"`
 				KnockbackKills     int `json:"knockbackKills"`
 			} `json:"brigitte"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats20 struct {
 			HeroDamageDone                  int `json:"heroDamageDone"`
 			HealingDone                     int `json:"healingDone"`
@@ -3914,7 +3914,7 @@ type SegmentsAPI struct {
 			BioticGrenadeKills              int `json:"bioticGrenadeKills"`
 			ScopedHits                      int `json:"scopedHits"`
 			CoalescenseHealing              int `json:"coalescenseHealing"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes20 struct {
 			Baptiste struct {
 				HeroDamageDone                  int `json:"heroDamageDone"`
@@ -3965,7 +3965,7 @@ type SegmentsAPI struct {
 				TimePlayed         int `json:"timePlayed"`
 				CoalescenseHealing int `json:"coalescenseHealing"`
 			} `json:"moira"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats21 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -3983,7 +3983,7 @@ type SegmentsAPI struct {
 			LifetimeEnergyAccumulation int `json:"lifetimeEnergyAccumulation"`
 			CriticalHits               int `json:"criticalHits"`
 			ShotsHit                   int `json:"shotsHit"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes21 struct {
 			DVa struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -4017,7 +4017,7 @@ type SegmentsAPI struct {
 				LifetimeEnergyAccumulation int `json:"lifetimeEnergyAccumulation"`
 				ShotsHit                   int `json:"shotsHit"`
 			} `json:"zarya"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats22 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -4042,7 +4042,7 @@ type SegmentsAPI struct {
 			BarrageKills       int `json:"barrageKills"`
 			EnemiesFrozen      int `json:"enemiesFrozen"`
 			BlizzardKills      int `json:"blizzardKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes22 struct {
 			Symmetra struct {
 				HeroDamageDone    int `json:"heroDamageDone"`
@@ -4197,7 +4197,7 @@ type SegmentsAPI struct {
 				CriticalHits    int `json:"criticalHits"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"mei"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats23 struct {
 			HeroDamageDone                  int `json:"heroDamageDone"`
 			HealingDone                     int `json:"healingDone"`
@@ -4219,7 +4219,7 @@ type SegmentsAPI struct {
 			InspireUptime                   int `json:"inspireUptime"`
 			PlayersResurrected              int `json:"playersResurrected"`
 			ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes23 struct {
 			Lucio struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -4285,7 +4285,7 @@ type SegmentsAPI struct {
 				OverhealthProvided int `json:"overhealthProvided"`
 				InspireUptime      int `json:"inspireUptime"`
 			} `json:"brigitte"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats24 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -4308,7 +4308,7 @@ type SegmentsAPI struct {
 			LifetimeEnergyAccumulation int `json:"lifetimeEnergyAccumulation"`
 			AccretionKills             int `json:"accretionKills"`
 			GraviticFluxKills          int `json:"graviticFluxKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes24 struct {
 			Doomfist struct {
 				HeroDamageDone    int `json:"heroDamageDone"`
@@ -4376,7 +4376,7 @@ type SegmentsAPI struct {
 				ShotsHit        int `json:"shotsHit"`
 				KnockbackKills  int `json:"knockbackKills"`
 			} `json:"d-va"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats25 struct {
 			HeroDamageDone                  int `json:"heroDamageDone"`
 			HealingDone                     int `json:"healingDone"`
@@ -4398,7 +4398,7 @@ type SegmentsAPI struct {
 			DamageAmplified                 int `json:"damageAmplified"`
 			AmplificationMatrixAssists      int `json:"amplificationMatrixAssists"`
 			ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes25 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -4464,7 +4464,7 @@ type SegmentsAPI struct {
 				AmplificationMatrixAssists      int `json:"amplificationMatrixAssists"`
 				ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
 			} `json:"baptiste"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats26 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -4488,7 +4488,7 @@ type SegmentsAPI struct {
 			ScopedCriticalHits     int `json:"scopedCriticalHits"`
 			ScopedCriticalHitKills int `json:"scopedCriticalHitKills"`
 			DragonstrikeKills      int `json:"dragonstrikeKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes26 struct {
 			Tracer struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -4587,7 +4587,7 @@ type SegmentsAPI struct {
 				ScopedCriticalHits     int `json:"scopedCriticalHits"`
 				ScopedCriticalHitKills int `json:"scopedCriticalHitKills"`
 			} `json:"widowmaker"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats27 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -4607,7 +4607,7 @@ type SegmentsAPI struct {
 			OverhealthProvided int `json:"overhealthProvided"`
 			InspireUptime      int `json:"inspireUptime"`
 			KnockbackKills     int `json:"knockbackKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes27 struct {
 			Lucio struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -4657,7 +4657,7 @@ type SegmentsAPI struct {
 				InspireUptime      int `json:"inspireUptime"`
 				KnockbackKills     int `json:"knockbackKills"`
 			} `json:"brigitte"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats28 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -4677,7 +4677,7 @@ type SegmentsAPI struct {
 			OverhealthProvided int `json:"overhealthProvided"`
 			InspireUptime      int `json:"inspireUptime"`
 			KnockbackKills     int `json:"knockbackKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes28 struct {
 			Brigitte struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -4742,7 +4742,7 @@ type SegmentsAPI struct {
 				TimePlayed      int `json:"timePlayed"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"baptiste"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats29 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -4764,7 +4764,7 @@ type SegmentsAPI struct {
 			PlayersTeleported  int `json:"playersTeleported"`
 			DeathBlossomKills  int `json:"deathBlossomKills"`
 			DragonbladeKills   int `json:"dragonbladeKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes29 struct {
 			Tracer struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -4860,7 +4860,7 @@ type SegmentsAPI struct {
 				CriticalHits      int `json:"criticalHits"`
 				ShotsHit          int `json:"shotsHit"`
 			} `json:"reaper"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats30 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -4882,7 +4882,7 @@ type SegmentsAPI struct {
 			CriticalHits               int `json:"criticalHits"`
 			KnockbackKills             int `json:"knockbackKills"`
 			AbilityDamageDone          int `json:"abilityDamageDone"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes30 struct {
 			Reinhardt struct {
 				HeroDamageDone    int `json:"heroDamageDone"`
@@ -4946,7 +4946,7 @@ type SegmentsAPI struct {
 				TimePlayed        int `json:"timePlayed"`
 				AbilityDamageDone int `json:"abilityDamageDone"`
 			} `json:"doomfist"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats31 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -4963,7 +4963,7 @@ type SegmentsAPI struct {
 			EnemiesSlept       int `json:"enemiesSlept"`
 			BioticGrenadeKills int `json:"bioticGrenadeKills"`
 			ScopedHits         int `json:"scopedHits"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes31 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -4982,7 +4982,7 @@ type SegmentsAPI struct {
 				BioticGrenadeKills int `json:"bioticGrenadeKills"`
 				ScopedHits         int `json:"scopedHits"`
 			} `json:"ana"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats32 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -5009,7 +5009,7 @@ type SegmentsAPI struct {
 			FocusingBeamKills      int `json:"focusingBeamKills"`
 			StickyBombsKills       int `json:"stickyBombsKills"`
 			KnockbackKills         int `json:"knockbackKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes32 struct {
 			Soldier76 struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -5184,7 +5184,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"pharah"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats33 struct {
 			HeroDamageDone                  int `json:"heroDamageDone"`
 			HealingDone                     int `json:"healingDone"`
@@ -5204,7 +5204,7 @@ type SegmentsAPI struct {
 			DamageAmplified                 int `json:"damageAmplified"`
 			ScopedHits                      int `json:"scopedHits"`
 			ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes33 struct {
 			Baptiste struct {
 				HeroDamageDone                  int `json:"heroDamageDone"`
@@ -5266,7 +5266,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"mercy"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats34 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -5295,7 +5295,7 @@ type SegmentsAPI struct {
 			EnemiesHacked      int `json:"enemiesHacked"`
 			BlizzardKills      int `json:"blizzardKills"`
 			EnemiesEMPd        int `json:"enemiesEMPd"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes34 struct {
 			Pharah struct {
 				HeroDamageDone   int `json:"heroDamageDone"`
@@ -5458,7 +5458,7 @@ type SegmentsAPI struct {
 				CriticalHits    int `json:"criticalHits"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"hanzo"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats35 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -5482,7 +5482,7 @@ type SegmentsAPI struct {
 			BobKills               int `json:"bobKills"`
 			KnockbackKills         int `json:"knockbackKills"`
 			DeathBlossomKills      int `json:"deathBlossomKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes35 struct {
 			Hanzo struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -5597,7 +5597,7 @@ type SegmentsAPI struct {
 				CriticalHits    int `json:"criticalHits"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"tracer"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats36 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -5614,7 +5614,7 @@ type SegmentsAPI struct {
 			EnergyMax                  int `json:"energyMax"`
 			LifetimeEnergyAccumulation int `json:"lifetimeEnergyAccumulation"`
 			ShotsHit                   int `json:"shotsHit"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes36 struct {
 			Zarya struct {
 				HeroDamageDone             int `json:"heroDamageDone"`
@@ -5633,7 +5633,7 @@ type SegmentsAPI struct {
 				LifetimeEnergyAccumulation int `json:"lifetimeEnergyAccumulation"`
 				ShotsHit                   int `json:"shotsHit"`
 			} `json:"zarya"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats37 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -5654,7 +5654,7 @@ type SegmentsAPI struct {
 			LifetimeEnergyAccumulation int `json:"lifetimeEnergyAccumulation"`
 			CriticalHits               int `json:"criticalHits"`
 			AbilityDamageDone          int `json:"abilityDamageDone"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes37 struct {
 			Winston struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -5718,7 +5718,7 @@ type SegmentsAPI struct {
 				ShotsHit          int `json:"shotsHit"`
 				AbilityDamageDone int `json:"abilityDamageDone"`
 			} `json:"doomfist"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats38 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -5741,7 +5741,7 @@ type SegmentsAPI struct {
 			KnockbackKills             int `json:"knockbackKills"`
 			MeteorStrikeKills          int `json:"meteorStrikeKills"`
 			GravitonSurgeKills         int `json:"gravitonSurgeKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes38 struct {
 			Zarya struct {
 				HeroDamageDone             int `json:"heroDamageDone"`
@@ -5808,7 +5808,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"roadhog"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats39 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -5827,7 +5827,7 @@ type SegmentsAPI struct {
 			PulseBombKills     int `json:"pulseBombKills"`
 			PulseBombsAttached int `json:"pulseBombsAttached"`
 			PlayersTeleported  int `json:"playersTeleported"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes39 struct {
 			Genji struct {
 				HeroDamageDone   int `json:"heroDamageDone"`
@@ -5918,7 +5918,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"hanzo"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats40 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -5943,7 +5943,7 @@ type SegmentsAPI struct {
 			PlayersTeleported  int `json:"playersTeleported"`
 			DragonbladeKills   int `json:"dragonbladeKills"`
 			RocketDirectHits   int `json:"rocketDirectHits"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes40 struct {
 			Genji struct {
 				HeroDamageDone   int `json:"heroDamageDone"`
@@ -6085,7 +6085,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"junkrat"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats41 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -6109,7 +6109,7 @@ type SegmentsAPI struct {
 			PlayersTeleported      int `json:"playersTeleported"`
 			BobKills               int `json:"bobKills"`
 			KnockbackKills         int `json:"knockbackKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes41 struct {
 			Tracer struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -6237,7 +6237,7 @@ type SegmentsAPI struct {
 				TimePlayed        int `json:"timePlayed"`
 				PlayersTeleported int `json:"playersTeleported"`
 			} `json:"symmetra"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats42 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -6259,7 +6259,7 @@ type SegmentsAPI struct {
 			MeteorStrikeKills          int `json:"meteorStrikeKills"`
 			KnockbackKills             int `json:"knockbackKills"`
 			SelfdestructKills          int `json:"selfdestructKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes42 struct {
 			Winston struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -6340,7 +6340,7 @@ type SegmentsAPI struct {
 				ShotsHit          int `json:"shotsHit"`
 				KnockbackKills    int `json:"knockbackKills"`
 			} `json:"d-va"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats43 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -6360,7 +6360,7 @@ type SegmentsAPI struct {
 			OverhealthProvided int `json:"overhealthProvided"`
 			InspireUptime      int `json:"inspireUptime"`
 			KnockbackKills     int `json:"knockbackKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes43 struct {
 			Brigitte struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -6440,7 +6440,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"zenyatta"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats44 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -6460,7 +6460,7 @@ type SegmentsAPI struct {
 			CoalescenseHealing int `json:"coalescenseHealing"`
 			DamageDiscordOrb   int `json:"damageDiscordOrb"`
 			CriticalHits       int `json:"criticalHits"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes44 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -6522,7 +6522,7 @@ type SegmentsAPI struct {
 				DamageDiscordOrb int `json:"damageDiscordOrb"`
 				CriticalHits     int `json:"criticalHits"`
 			} `json:"zenyatta"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats45 struct {
 			HeroDamageDone  int `json:"heroDamageDone"`
 			HealingDone     int `json:"healingDone"`
@@ -6539,7 +6539,7 @@ type SegmentsAPI struct {
 			BlizzardKills   int `json:"blizzardKills"`
 			CriticalHits    int `json:"criticalHits"`
 			ShotsHit        int `json:"shotsHit"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes45 struct {
 			Mei struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -6558,7 +6558,7 @@ type SegmentsAPI struct {
 				CriticalHits    int `json:"criticalHits"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"mei"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats46 struct {
 			HeroDamageDone                  int `json:"heroDamageDone"`
 			HealingDone                     int `json:"healingDone"`
@@ -6579,7 +6579,7 @@ type SegmentsAPI struct {
 			KnockbackKills                  int `json:"knockbackKills"`
 			AmplificationMatrixAssists      int `json:"amplificationMatrixAssists"`
 			ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes46 struct {
 			Lucio struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -6647,7 +6647,7 @@ type SegmentsAPI struct {
 				AmplificationMatrixAssists      int `json:"amplificationMatrixAssists"`
 				ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
 			} `json:"baptiste"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats47 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -6673,7 +6673,7 @@ type SegmentsAPI struct {
 			TacticalVisorKills     int `json:"tacticalVisorKills"`
 			DragonstrikeKills      int `json:"dragonstrikeKills"`
 			StormArrowKills        int `json:"stormArrowKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes47 struct {
 			Tracer struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -6803,7 +6803,7 @@ type SegmentsAPI struct {
 				TimePlayed      int `json:"timePlayed"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"sojourn"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats48 struct {
 			HeroDamageDone    int `json:"heroDamageDone"`
 			HealingDone       int `json:"healingDone"`
@@ -6825,7 +6825,7 @@ type SegmentsAPI struct {
 			HelixRocketKills  int `json:"helixRocketKills"`
 			DragonbladeKills  int `json:"dragonbladeKills"`
 			ScopedHits        int `json:"scopedHits"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes48 struct {
 			Tracer struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -6953,7 +6953,7 @@ type SegmentsAPI struct {
 				CriticalHits    int `json:"criticalHits"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"reaper"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats49 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -6973,7 +6973,7 @@ type SegmentsAPI struct {
 			ScopedHits         int `json:"scopedHits"`
 			CriticalHits       int `json:"criticalHits"`
 			DamageDiscordOrb   int `json:"damageDiscordOrb"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes49 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -7022,7 +7022,7 @@ type SegmentsAPI struct {
 				ShotsHit         int `json:"shotsHit"`
 				DamageDiscordOrb int `json:"damageDiscordOrb"`
 			} `json:"zenyatta"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats50 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -7051,7 +7051,7 @@ type SegmentsAPI struct {
 			EarthshatterKills          int `json:"earthshatterKills"`
 			EnemiesChainHooked         int `json:"enemiesChainHooked"`
 			ChainHooksAttempted        int `json:"chainHooksAttempted"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes50 struct {
 			Winston struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -7168,7 +7168,7 @@ type SegmentsAPI struct {
 				CriticalHits        int `json:"criticalHits"`
 				ShotsHit            int `json:"shotsHit"`
 			} `json:"roadhog"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats51 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -7194,7 +7194,7 @@ type SegmentsAPI struct {
 			PulseBombsAttached     int `json:"pulseBombsAttached"`
 			TacticalVisorKills     int `json:"tacticalVisorKills"`
 			PlayersTeleported      int `json:"playersTeleported"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes51 struct {
 			Soldier76 struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -7298,7 +7298,7 @@ type SegmentsAPI struct {
 				TimePlayed        int `json:"timePlayed"`
 				PlayersTeleported int `json:"playersTeleported"`
 			} `json:"symmetra"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats52 struct {
 			HeroDamageDone                  int `json:"heroDamageDone"`
 			HealingDone                     int `json:"healingDone"`
@@ -7320,7 +7320,7 @@ type SegmentsAPI struct {
 			AmplificationMatrixAssists      int `json:"amplificationMatrixAssists"`
 			ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
 			CoalescenseHealing              int `json:"coalescenseHealing"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes52 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -7384,7 +7384,7 @@ type SegmentsAPI struct {
 				TimePlayed         int `json:"timePlayed"`
 				CoalescenseHealing int `json:"coalescenseHealing"`
 			} `json:"moira"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats53 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -7410,7 +7410,7 @@ type SegmentsAPI struct {
 			PlayersTeleported  int `json:"playersTeleported"`
 			FocusingBeamKills  int `json:"focusingBeamKills"`
 			StickyBombsKills   int `json:"stickyBombsKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes53 struct {
 			Soldier76 struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -7554,7 +7554,7 @@ type SegmentsAPI struct {
 				FocusingBeamKills int `json:"focusingBeamKills"`
 				StickyBombsKills  int `json:"stickyBombsKills"`
 			} `json:"echo"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats54 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -7571,7 +7571,7 @@ type SegmentsAPI struct {
 			EnemiesSlept       int `json:"enemiesSlept"`
 			BioticGrenadeKills int `json:"bioticGrenadeKills"`
 			ScopedHits         int `json:"scopedHits"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes54 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -7603,7 +7603,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"moira"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats55 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -7625,7 +7625,7 @@ type SegmentsAPI struct {
 			DragonbladeKills   int `json:"dragonbladeKills"`
 			PlayersTeleported  int `json:"playersTeleported"`
 			DeathBlossomKills  int `json:"deathBlossomKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes55 struct {
 			Echo struct {
 				HeroDamageDone    int `json:"heroDamageDone"`
@@ -7707,7 +7707,7 @@ type SegmentsAPI struct {
 				CriticalHits      int `json:"criticalHits"`
 				ShotsHit          int `json:"shotsHit"`
 			} `json:"reaper"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats56 struct {
 			HeroDamageDone  int `json:"heroDamageDone"`
 			HealingDone     int `json:"healingDone"`
@@ -7723,7 +7723,7 @@ type SegmentsAPI struct {
 			CriticalHits    int `json:"criticalHits"`
 			ShotsHit        int `json:"shotsHit"`
 			KnockbackKills  int `json:"knockbackKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes56 struct {
 			Lucio struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -7741,7 +7741,7 @@ type SegmentsAPI struct {
 				ShotsHit        int `json:"shotsHit"`
 				KnockbackKills  int `json:"knockbackKills"`
 			} `json:"lucio"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats57 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -7759,7 +7759,7 @@ type SegmentsAPI struct {
 			KnockbackKills     int `json:"knockbackKills"`
 			OverhealthProvided int `json:"overhealthProvided"`
 			InspireUptime      int `json:"inspireUptime"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes57 struct {
 			Lucio struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -7793,7 +7793,7 @@ type SegmentsAPI struct {
 				InspireUptime      int `json:"inspireUptime"`
 				KnockbackKills     int `json:"knockbackKills"`
 			} `json:"brigitte"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats58 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -7815,7 +7815,7 @@ type SegmentsAPI struct {
 			PrimalRageKills            int `json:"primalRageKills"`
 			CriticalHits               int `json:"criticalHits"`
 			AbilityDamageDone          int `json:"abilityDamageDone"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes58 struct {
 			Winston struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -7897,7 +7897,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"wrecking-ball"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats59 struct {
 			HeroDamageDone    int `json:"heroDamageDone"`
 			HealingDone       int `json:"healingDone"`
@@ -7919,7 +7919,7 @@ type SegmentsAPI struct {
 			EarthshatterKills int `json:"earthshatterKills"`
 			EarthshatterStuns int `json:"earthshatterStuns"`
 			MeteorStrikeKills int `json:"meteorStrikeKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes59 struct {
 			Winston struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -7972,7 +7972,7 @@ type SegmentsAPI struct {
 				EarthshatterStuns int `json:"earthshatterStuns"`
 				KnockbackKills    int `json:"knockbackKills"`
 			} `json:"reinhardt"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats60 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -8000,7 +8000,7 @@ type SegmentsAPI struct {
 			PlayersTeleported      int `json:"playersTeleported"`
 			FocusingBeamKills      int `json:"focusingBeamKills"`
 			StickyBombsKills       int `json:"stickyBombsKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes60 struct {
 			Tracer struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -8159,7 +8159,7 @@ type SegmentsAPI struct {
 				CriticalHits    int `json:"criticalHits"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"reaper"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats61 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -8180,7 +8180,7 @@ type SegmentsAPI struct {
 			ScopedCriticalHitKills int `json:"scopedCriticalHitKills"`
 			PlayersTeleported      int `json:"playersTeleported"`
 			TacticalVisorKills     int `json:"tacticalVisorKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes61 struct {
 			Soldier76 struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -8246,7 +8246,7 @@ type SegmentsAPI struct {
 				CriticalHits    int `json:"criticalHits"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"tracer"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats62 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -8265,7 +8265,7 @@ type SegmentsAPI struct {
 			ShotsHit                   int `json:"shotsHit"`
 			AccretionKills             int `json:"accretionKills"`
 			GraviticFluxKills          int `json:"graviticFluxKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes62 struct {
 			DVa struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -8313,7 +8313,7 @@ type SegmentsAPI struct {
 				AccretionKills    int `json:"accretionKills"`
 				GraviticFluxKills int `json:"graviticFluxKills"`
 			} `json:"sigma"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats63 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -8332,7 +8332,7 @@ type SegmentsAPI struct {
 			OverhealthProvided int `json:"overhealthProvided"`
 			InspireUptime      int `json:"inspireUptime"`
 			KnockbackKills     int `json:"knockbackKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes63 struct {
 			Lucio struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -8379,7 +8379,7 @@ type SegmentsAPI struct {
 				InspireUptime      int `json:"inspireUptime"`
 				KnockbackKills     int `json:"knockbackKills"`
 			} `json:"brigitte"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats64 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -8397,7 +8397,7 @@ type SegmentsAPI struct {
 			InspireUptime      int `json:"inspireUptime"`
 			KnockbackKills     int `json:"knockbackKills"`
 			CriticalHits       int `json:"criticalHits"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes64 struct {
 			Brigitte struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -8444,7 +8444,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"mercy"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats65 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -8469,7 +8469,7 @@ type SegmentsAPI struct {
 			BobKills               int `json:"bobKills"`
 			KnockbackKills         int `json:"knockbackKills"`
 			EnemiesHacked          int `json:"enemiesHacked"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes65 struct {
 			Soldier76 struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -8602,7 +8602,7 @@ type SegmentsAPI struct {
 				CriticalHits    int `json:"criticalHits"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"tracer"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats66 struct {
 			HeroDamageDone    int `json:"heroDamageDone"`
 			HealingDone       int `json:"healingDone"`
@@ -8624,7 +8624,7 @@ type SegmentsAPI struct {
 			CriticalHits      int `json:"criticalHits"`
 			AbilityDamageDone int `json:"abilityDamageDone"`
 			MeteorStrikeKills int `json:"meteorStrikeKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes66 struct {
 			Winston struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -8676,7 +8676,7 @@ type SegmentsAPI struct {
 				MeteorStrikeKills int `json:"meteorStrikeKills"`
 				KnockbackKills    int `json:"knockbackKills"`
 			} `json:"doomfist"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats67 struct {
 			HeroDamageDone                  int `json:"heroDamageDone"`
 			HealingDone                     int `json:"healingDone"`
@@ -8697,7 +8697,7 @@ type SegmentsAPI struct {
 			DamageAmplified                 int `json:"damageAmplified"`
 			ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
 			DamageDiscordOrb                int `json:"damageDiscordOrb"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes67 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -8749,7 +8749,7 @@ type SegmentsAPI struct {
 				ShotsHit         int `json:"shotsHit"`
 				DamageDiscordOrb int `json:"damageDiscordOrb"`
 			} `json:"zenyatta"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats68 struct {
 			HeroDamageDone      int `json:"heroDamageDone"`
 			HealingDone         int `json:"healingDone"`
@@ -8773,7 +8773,7 @@ type SegmentsAPI struct {
 			DragonbladeKills    int `json:"dragonbladeKills"`
 			HelixRocketKills    int `json:"helixRocketKills"`
 			TacticalVisorKills  int `json:"tacticalVisorKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes68 struct {
 			Tracer struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -8884,7 +8884,7 @@ type SegmentsAPI struct {
 				CriticalHits       int `json:"criticalHits"`
 				ShotsHit           int `json:"shotsHit"`
 			} `json:"soldier-76"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats69 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -8902,7 +8902,7 @@ type SegmentsAPI struct {
 			PulseBombKills     int `json:"pulseBombKills"`
 			PulseBombsAttached int `json:"pulseBombsAttached"`
 			PlayersTeleported  int `json:"playersTeleported"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes69 struct {
 			Hanzo struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -8980,7 +8980,7 @@ type SegmentsAPI struct {
 				CriticalHits    int `json:"criticalHits"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"mei"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats70 struct {
 			HeroDamageDone  int `json:"heroDamageDone"`
 			HealingDone     int `json:"healingDone"`
@@ -8997,7 +8997,7 @@ type SegmentsAPI struct {
 			PrimalRageKills int `json:"primalRageKills"`
 			ShotsHit        int `json:"shotsHit"`
 			KnockbackKills  int `json:"knockbackKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes70 struct {
 			Winston struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -9016,7 +9016,7 @@ type SegmentsAPI struct {
 				ShotsHit        int `json:"shotsHit"`
 				KnockbackKills  int `json:"knockbackKills"`
 			} `json:"winston"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats71 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -9033,7 +9033,7 @@ type SegmentsAPI struct {
 			EnemiesSlept       int `json:"enemiesSlept"`
 			BioticGrenadeKills int `json:"bioticGrenadeKills"`
 			ScopedHits         int `json:"scopedHits"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes71 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -9052,7 +9052,7 @@ type SegmentsAPI struct {
 				BioticGrenadeKills int `json:"bioticGrenadeKills"`
 				ScopedHits         int `json:"scopedHits"`
 			} `json:"ana"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats72 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -9074,7 +9074,7 @@ type SegmentsAPI struct {
 			FocusingBeamKills  int `json:"focusingBeamKills"`
 			StickyBombsKills   int `json:"stickyBombsKills"`
 			DeathBlossomKills  int `json:"deathBlossomKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes72 struct {
 			Tracer struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -9182,7 +9182,7 @@ type SegmentsAPI struct {
 				CriticalHits      int `json:"criticalHits"`
 				ShotsHit          int `json:"shotsHit"`
 			} `json:"reaper"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats73 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -9204,7 +9204,7 @@ type SegmentsAPI struct {
 			FocusingBeamKills  int `json:"focusingBeamKills"`
 			StickyBombsKills   int `json:"stickyBombsKills"`
 			DeathBlossomKills  int `json:"deathBlossomKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes73 struct {
 			Genji struct {
 				HeroDamageDone   int `json:"heroDamageDone"`
@@ -9325,7 +9325,7 @@ type SegmentsAPI struct {
 				CriticalHits      int `json:"criticalHits"`
 				ShotsHit          int `json:"shotsHit"`
 			} `json:"reaper"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats74 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -9345,7 +9345,7 @@ type SegmentsAPI struct {
 			InspireUptime      int `json:"inspireUptime"`
 			PlayersResurrected int `json:"playersResurrected"`
 			DamageAmplified    int `json:"damageAmplified"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes74 struct {
 			Lucio struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -9396,7 +9396,7 @@ type SegmentsAPI struct {
 				CriticalHits       int `json:"criticalHits"`
 				ShotsHit           int `json:"shotsHit"`
 			} `json:"mercy"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats75 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -9424,7 +9424,7 @@ type SegmentsAPI struct {
 			StormArrowKills        int `json:"stormArrowKills"`
 			DeathBlossomKills      int `json:"deathBlossomKills"`
 			DragonstrikeKills      int `json:"dragonstrikeKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes75 struct {
 			Tracer struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -9560,7 +9560,7 @@ type SegmentsAPI struct {
 				StormArrowKills   int `json:"stormArrowKills"`
 				DragonstrikeKills int `json:"dragonstrikeKills"`
 			} `json:"hanzo"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats76 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -9579,7 +9579,7 @@ type SegmentsAPI struct {
 			CriticalHits       int `json:"criticalHits"`
 			ShotsHit           int `json:"shotsHit"`
 			DeathBlossomKills  int `json:"deathBlossomKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes76 struct {
 			Soldier76 struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -9641,7 +9641,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"widowmaker"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats77 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -9660,7 +9660,7 @@ type SegmentsAPI struct {
 			ScopedHits         int `json:"scopedHits"`
 			CriticalHits       int `json:"criticalHits"`
 			DamageDiscordOrb   int `json:"damageDiscordOrb"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes77 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -9708,7 +9708,7 @@ type SegmentsAPI struct {
 				ShotsHit         int `json:"shotsHit"`
 				DamageDiscordOrb int `json:"damageDiscordOrb"`
 			} `json:"zenyatta"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats78 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -9728,7 +9728,7 @@ type SegmentsAPI struct {
 			InspireUptime      int `json:"inspireUptime"`
 			PlayersResurrected int `json:"playersResurrected"`
 			DamageAmplified    int `json:"damageAmplified"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes78 struct {
 			Lucio struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -9778,7 +9778,7 @@ type SegmentsAPI struct {
 				ShotsHit           int `json:"shotsHit"`
 				DamageAmplified    int `json:"damageAmplified"`
 			} `json:"mercy"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats79 struct {
 			HeroDamageDone      int `json:"heroDamageDone"`
 			HealingDone         int `json:"healingDone"`
@@ -9801,7 +9801,7 @@ type SegmentsAPI struct {
 			MeteorStrikeKills   int `json:"meteorStrikeKills"`
 			PiledriverKills     int `json:"piledriverKills"`
 			PlayersKnockedBack  int `json:"playersKnockedBack"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes79 struct {
 			Winston struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -9869,7 +9869,7 @@ type SegmentsAPI struct {
 				PlayersKnockedBack int `json:"playersKnockedBack"`
 				KnockbackKills     int `json:"knockbackKills"`
 			} `json:"wrecking-ball"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats80 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -9896,7 +9896,7 @@ type SegmentsAPI struct {
 			HelixRocketKills       int `json:"helixRocketKills"`
 			TacticalVisorKills     int `json:"tacticalVisorKills"`
 			DragonstrikeKills      int `json:"dragonstrikeKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes80 struct {
 			Sojourn struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -10058,7 +10058,7 @@ type SegmentsAPI struct {
 				CriticalHits       int `json:"criticalHits"`
 				ShotsHit           int `json:"shotsHit"`
 			} `json:"soldier-76"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats81 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -10078,7 +10078,7 @@ type SegmentsAPI struct {
 			CriticalHits               int `json:"criticalHits"`
 			AbilityDamageDone          int `json:"abilityDamageDone"`
 			KnockbackKills             int `json:"knockbackKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes81 struct {
 			Zarya struct {
 				HeroDamageDone             int `json:"heroDamageDone"`
@@ -10127,7 +10127,7 @@ type SegmentsAPI struct {
 				TimePlayed        int `json:"timePlayed"`
 				AbilityDamageDone int `json:"abilityDamageDone"`
 			} `json:"doomfist"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats82 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -10148,7 +10148,7 @@ type SegmentsAPI struct {
 			KnockbackKills             int `json:"knockbackKills"`
 			GravitonSurgeKills         int `json:"gravitonSurgeKills"`
 			AbilityDamageDone          int `json:"abilityDamageDone"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes82 struct {
 			DVa struct {
 				HeroDamageDone    int `json:"heroDamageDone"`
@@ -10201,7 +10201,7 @@ type SegmentsAPI struct {
 				ShotsHit                   int `json:"shotsHit"`
 				GravitonSurgeKills         int `json:"gravitonSurgeKills"`
 			} `json:"zarya"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats83 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -10230,7 +10230,7 @@ type SegmentsAPI struct {
 			BarrageKills       int `json:"barrageKills"`
 			HelixRocketKills   int `json:"helixRocketKills"`
 			TacticalVisorKills int `json:"tacticalVisorKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes83 struct {
 			Echo struct {
 				HeroDamageDone    int `json:"heroDamageDone"`
@@ -10392,7 +10392,7 @@ type SegmentsAPI struct {
 				BarrageKills     int `json:"barrageKills"`
 				ShotsHit         int `json:"shotsHit"`
 			} `json:"pharah"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats84 struct {
 			HeroDamageDone                  int `json:"heroDamageDone"`
 			HealingDone                     int `json:"healingDone"`
@@ -10413,7 +10413,7 @@ type SegmentsAPI struct {
 			InspireUptime                   int `json:"inspireUptime"`
 			ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
 			PlayersResurrected              int `json:"playersResurrected"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes84 struct {
 			Lucio struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -10479,7 +10479,7 @@ type SegmentsAPI struct {
 				PlayersResurrected int `json:"playersResurrected"`
 				DamageAmplified    int `json:"damageAmplified"`
 			} `json:"mercy"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats85 struct {
 			HeroDamageDone    int `json:"heroDamageDone"`
 			HealingDone       int `json:"healingDone"`
@@ -10497,7 +10497,7 @@ type SegmentsAPI struct {
 			AbilityDamageDone int `json:"abilityDamageDone"`
 			MeteorStrikeKills int `json:"meteorStrikeKills"`
 			KnockbackKills    int `json:"knockbackKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes85 struct {
 			Doomfist struct {
 				HeroDamageDone    int `json:"heroDamageDone"`
@@ -10517,7 +10517,7 @@ type SegmentsAPI struct {
 				MeteorStrikeKills int `json:"meteorStrikeKills"`
 				KnockbackKills    int `json:"knockbackKills"`
 			} `json:"doomfist"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats86 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -10535,7 +10535,7 @@ type SegmentsAPI struct {
 			ShotsHit           int `json:"shotsHit"`
 			PulseBombKills     int `json:"pulseBombKills"`
 			PulseBombsAttached int `json:"pulseBombsAttached"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes86 struct {
 			Tracer struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -10568,7 +10568,7 @@ type SegmentsAPI struct {
 				TimePlayed        int `json:"timePlayed"`
 				PlayersTeleported int `json:"playersTeleported"`
 			} `json:"symmetra"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats87 struct {
 			HeroDamageDone                  int `json:"heroDamageDone"`
 			HealingDone                     int `json:"healingDone"`
@@ -10590,7 +10590,7 @@ type SegmentsAPI struct {
 			AmplificationMatrixAssists      int `json:"amplificationMatrixAssists"`
 			ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
 			DamageDiscordOrb                int `json:"damageDiscordOrb"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes87 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -10656,7 +10656,7 @@ type SegmentsAPI struct {
 				ShotsHit         int `json:"shotsHit"`
 				DamageDiscordOrb int `json:"damageDiscordOrb"`
 			} `json:"zenyatta"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats88 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -10683,7 +10683,7 @@ type SegmentsAPI struct {
 			ScopedCriticalHitKills int `json:"scopedCriticalHitKills"`
 			BobKills               int `json:"bobKills"`
 			KnockbackKills         int `json:"knockbackKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes88 struct {
 			Symmetra struct {
 				HeroDamageDone      int `json:"heroDamageDone"`
@@ -10817,7 +10817,7 @@ type SegmentsAPI struct {
 				BobKills           int `json:"bobKills"`
 				KnockbackKills     int `json:"knockbackKills"`
 			} `json:"ashe"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats89 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -10840,7 +10840,7 @@ type SegmentsAPI struct {
 			ShotsHit                   int `json:"shotsHit"`
 			SelfdestructKills          int `json:"selfdestructKills"`
 			KnockbackKills             int `json:"knockbackKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes89 struct {
 			Reinhardt struct {
 				HeroDamageDone    int `json:"heroDamageDone"`
@@ -10905,7 +10905,7 @@ type SegmentsAPI struct {
 				LifetimeEnergyAccumulation int `json:"lifetimeEnergyAccumulation"`
 				ShotsHit                   int `json:"shotsHit"`
 			} `json:"zarya"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats90 struct {
 			HeroDamageDone      int `json:"heroDamageDone"`
 			HealingDone         int `json:"healingDone"`
@@ -10926,7 +10926,7 @@ type SegmentsAPI struct {
 			ChainHooksAttempted int `json:"chainHooksAttempted"`
 			CriticalHits        int `json:"criticalHits"`
 			AbilityDamageDone   int `json:"abilityDamageDone"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes90 struct {
 			Winston struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -10978,7 +10978,7 @@ type SegmentsAPI struct {
 				ShotsHit          int `json:"shotsHit"`
 				KnockbackKills    int `json:"knockbackKills"`
 			} `json:"doomfist"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats91 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -11001,7 +11001,7 @@ type SegmentsAPI struct {
 			DeathBlossomKills      int `json:"deathBlossomKills"`
 			PlayersTeleported      int `json:"playersTeleported"`
 			EnemiesHacked          int `json:"enemiesHacked"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes91 struct {
 			Soldier76 struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -11112,7 +11112,7 @@ type SegmentsAPI struct {
 				CriticalHits    int `json:"criticalHits"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"tracer"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats92 struct {
 			HeroDamageDone                  int `json:"heroDamageDone"`
 			HealingDone                     int `json:"healingDone"`
@@ -11132,7 +11132,7 @@ type SegmentsAPI struct {
 			InspireUptime                   int `json:"inspireUptime"`
 			DamageAmplified                 int `json:"damageAmplified"`
 			ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes92 struct {
 			Lucio struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -11196,7 +11196,7 @@ type SegmentsAPI struct {
 				DamageAmplified                 int `json:"damageAmplified"`
 				ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
 			} `json:"baptiste"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats93 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -11217,7 +11217,7 @@ type SegmentsAPI struct {
 			PlayersTeleported  int `json:"playersTeleported"`
 			FocusingBeamKills  int `json:"focusingBeamKills"`
 			StickyBombsKills   int `json:"stickyBombsKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes93 struct {
 			Tracer struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -11325,7 +11325,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"hanzo"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats94 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -11344,7 +11344,7 @@ type SegmentsAPI struct {
 			ScopedHits         int `json:"scopedHits"`
 			CriticalHits       int `json:"criticalHits"`
 			DamageDiscordOrb   int `json:"damageDiscordOrb"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes94 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -11405,7 +11405,7 @@ type SegmentsAPI struct {
 				ShotsHit         int `json:"shotsHit"`
 				DamageDiscordOrb int `json:"damageDiscordOrb"`
 			} `json:"zenyatta"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats95 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -11428,7 +11428,7 @@ type SegmentsAPI struct {
 			PulseBombsAttached int `json:"pulseBombsAttached"`
 			ScopedHits         int `json:"scopedHits"`
 			PulseBombKills     int `json:"pulseBombKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes95 struct {
 			Genji struct {
 				HeroDamageDone   int `json:"heroDamageDone"`
@@ -11553,7 +11553,7 @@ type SegmentsAPI struct {
 				ShotsHit        int `json:"shotsHit"`
 				ScopedHits      int `json:"scopedHits"`
 			} `json:"widowmaker"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats96 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -11573,7 +11573,7 @@ type SegmentsAPI struct {
 			ShotsHit           int `json:"shotsHit"`
 			FocusingBeamKills  int `json:"focusingBeamKills"`
 			StickyBombsKills   int `json:"stickyBombsKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes96 struct {
 			Soldier76 struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -11636,7 +11636,7 @@ type SegmentsAPI struct {
 				FocusingBeamKills int `json:"focusingBeamKills"`
 				StickyBombsKills  int `json:"stickyBombsKills"`
 			} `json:"echo"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats97 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -11660,7 +11660,7 @@ type SegmentsAPI struct {
 			KnockbackKills             int `json:"knockbackKills"`
 			JumpPackKills              int `json:"jumpPackKills"`
 			PrimalRageKills            int `json:"primalRageKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes97 struct {
 			Zarya struct {
 				HeroDamageDone             int `json:"heroDamageDone"`
@@ -11755,7 +11755,7 @@ type SegmentsAPI struct {
 				CriticalHits    int `json:"criticalHits"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"d-va"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats98 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -11779,7 +11779,7 @@ type SegmentsAPI struct {
 			ScopedCriticalHits     int `json:"scopedCriticalHits"`
 			ScopedCriticalHitKills int `json:"scopedCriticalHitKills"`
 			PlayersTeleported      int `json:"playersTeleported"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes98 struct {
 			Reaper struct {
 				HeroDamageDone    int `json:"heroDamageDone"`
@@ -11863,7 +11863,7 @@ type SegmentsAPI struct {
 				TimePlayed        int `json:"timePlayed"`
 				PlayersTeleported int `json:"playersTeleported"`
 			} `json:"symmetra"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats99 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -11882,7 +11882,7 @@ type SegmentsAPI struct {
 			ScopedHits         int `json:"scopedHits"`
 			CriticalHits       int `json:"criticalHits"`
 			DamageDiscordOrb   int `json:"damageDiscordOrb"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes99 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -11930,7 +11930,7 @@ type SegmentsAPI struct {
 				ShotsHit         int `json:"shotsHit"`
 				DamageDiscordOrb int `json:"damageDiscordOrb"`
 			} `json:"zenyatta"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats100 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -11950,7 +11950,7 @@ type SegmentsAPI struct {
 			InspireUptime      int `json:"inspireUptime"`
 			PlayersResurrected int `json:"playersResurrected"`
 			DamageAmplified    int `json:"damageAmplified"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes100 struct {
 			Lucio struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -11999,7 +11999,7 @@ type SegmentsAPI struct {
 				PlayersResurrected int `json:"playersResurrected"`
 				DamageAmplified    int `json:"damageAmplified"`
 			} `json:"mercy"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats101 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -12018,7 +12018,7 @@ type SegmentsAPI struct {
 			ScopedCriticalHits     int `json:"scopedCriticalHits"`
 			ScopedCriticalHitKills int `json:"scopedCriticalHitKills"`
 			PlayersTeleported      int `json:"playersTeleported"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes101 struct {
 			Widowmaker struct {
 				HeroDamageDone         int `json:"heroDamageDone"`
@@ -12052,7 +12052,7 @@ type SegmentsAPI struct {
 				TimePlayed        int `json:"timePlayed"`
 				PlayersTeleported int `json:"playersTeleported"`
 			} `json:"symmetra"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats102 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -12076,7 +12076,7 @@ type SegmentsAPI struct {
 			EnemiesHacked          int `json:"enemiesHacked"`
 			EnemiesEMPd            int `json:"enemiesEMPd"`
 			BobKills               int `json:"bobKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes102 struct {
 			Widowmaker struct {
 				HeroDamageDone         int `json:"heroDamageDone"`
@@ -12231,7 +12231,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"echo"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats103 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -12263,7 +12263,7 @@ type SegmentsAPI struct {
 			BlizzardKills          int `json:"blizzardKills"`
 			FocusingBeamKills      int `json:"focusingBeamKills"`
 			StickyBombsKills       int `json:"stickyBombsKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes103 struct {
 			Symmetra struct {
 				HeroDamageDone    int `json:"heroDamageDone"`
@@ -12427,7 +12427,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"widowmaker"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats104 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -12446,7 +12446,7 @@ type SegmentsAPI struct {
 			ScopedHits         int `json:"scopedHits"`
 			CriticalHits       int `json:"criticalHits"`
 			DamageDiscordOrb   int `json:"damageDiscordOrb"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes104 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -12495,7 +12495,7 @@ type SegmentsAPI struct {
 				TimePlayed      int `json:"timePlayed"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"baptiste"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats105 struct {
 			HeroDamageDone                  int `json:"heroDamageDone"`
 			HealingDone                     int `json:"healingDone"`
@@ -12516,7 +12516,7 @@ type SegmentsAPI struct {
 			PlayersResurrected              int `json:"playersResurrected"`
 			DamageAmplified                 int `json:"damageAmplified"`
 			ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes105 struct {
 			Brigitte struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -12596,7 +12596,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"moira"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats106 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -12623,7 +12623,7 @@ type SegmentsAPI struct {
 			PlayersKnockedBack         int `json:"playersKnockedBack"`
 			EarthshatterKills          int `json:"earthshatterKills"`
 			EarthshatterStuns          int `json:"earthshatterStuns"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes106 struct {
 			Winston struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -12737,7 +12737,7 @@ type SegmentsAPI struct {
 				ShotsHit        int `json:"shotsHit"`
 				KnockbackKills  int `json:"knockbackKills"`
 			} `json:"d-va"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats107 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -12759,7 +12759,7 @@ type SegmentsAPI struct {
 			KnockbackKills             int `json:"knockbackKills"`
 			EarthshatterKills          int `json:"earthshatterKills"`
 			EarthshatterStuns          int `json:"earthshatterStuns"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes107 struct {
 			Zarya struct {
 				HeroDamageDone             int `json:"heroDamageDone"`
@@ -12841,7 +12841,7 @@ type SegmentsAPI struct {
 				EarthshatterStuns int `json:"earthshatterStuns"`
 				KnockbackKills    int `json:"knockbackKills"`
 			} `json:"reinhardt"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats108 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -12865,7 +12865,7 @@ type SegmentsAPI struct {
 			PlayersTeleported      int `json:"playersTeleported"`
 			BobKills               int `json:"bobKills"`
 			KnockbackKills         int `json:"knockbackKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes108 struct {
 			Soldier76 struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -12981,7 +12981,7 @@ type SegmentsAPI struct {
 				TimePlayed      int `json:"timePlayed"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"bastion"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats109 struct {
 			HeroDamageDone                  int `json:"heroDamageDone"`
 			HealingDone                     int `json:"healingDone"`
@@ -13002,7 +13002,7 @@ type SegmentsAPI struct {
 			DamageAmplified                 int `json:"damageAmplified"`
 			AmplificationMatrixAssists      int `json:"amplificationMatrixAssists"`
 			ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes109 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -13039,7 +13039,7 @@ type SegmentsAPI struct {
 				AmplificationMatrixAssists      int `json:"amplificationMatrixAssists"`
 				ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
 			} `json:"baptiste"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats110 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -13068,7 +13068,7 @@ type SegmentsAPI struct {
 			BlizzardKills      int `json:"blizzardKills"`
 			MoltenCoreKills    int `json:"moltenCoreKills"`
 			TurretKills        int `json:"turretKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes110 struct {
 			Reaper struct {
 				HeroDamageDone    int `json:"heroDamageDone"`
@@ -13214,7 +13214,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"hanzo"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats111 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -13234,7 +13234,7 @@ type SegmentsAPI struct {
 			InspireUptime      int `json:"inspireUptime"`
 			PlayersResurrected int `json:"playersResurrected"`
 			DamageAmplified    int `json:"damageAmplified"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes111 struct {
 			Lucio struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -13285,7 +13285,7 @@ type SegmentsAPI struct {
 				ShotsHit           int `json:"shotsHit"`
 				CriticalHits       int `json:"criticalHits"`
 			} `json:"mercy"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats112 struct {
 			HeroDamageDone    int `json:"heroDamageDone"`
 			HealingDone       int `json:"healingDone"`
@@ -13304,7 +13304,7 @@ type SegmentsAPI struct {
 			KnockbackKills    int `json:"knockbackKills"`
 			EarthshatterKills int `json:"earthshatterKills"`
 			EarthshatterStuns int `json:"earthshatterStuns"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes112 struct {
 			Winston struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -13352,7 +13352,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"doomfist"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats113 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -13376,7 +13376,7 @@ type SegmentsAPI struct {
 			ScopedCriticalHits     int `json:"scopedCriticalHits"`
 			TurretKills            int `json:"turretKills"`
 			ScopedCriticalHitKills int `json:"scopedCriticalHitKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes113 struct {
 			Symmetra struct {
 				HeroDamageDone    int `json:"heroDamageDone"`
@@ -13533,7 +13533,7 @@ type SegmentsAPI struct {
 				CriticalHits    int `json:"criticalHits"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"echo"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats114 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -13554,7 +13554,7 @@ type SegmentsAPI struct {
 			LifetimeEnergyAccumulation int `json:"lifetimeEnergyAccumulation"`
 			EarthshatterKills          int `json:"earthshatterKills"`
 			EarthshatterStuns          int `json:"earthshatterStuns"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes114 struct {
 			Winston struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -13604,7 +13604,7 @@ type SegmentsAPI struct {
 				EarthshatterKills int `json:"earthshatterKills"`
 				EarthshatterStuns int `json:"earthshatterStuns"`
 			} `json:"reinhardt"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats115 struct {
 			HeroDamageDone                  int `json:"heroDamageDone"`
 			HealingDone                     int `json:"healingDone"`
@@ -13625,7 +13625,7 @@ type SegmentsAPI struct {
 			CriticalHits                    int `json:"criticalHits"`
 			DamageAmplified                 int `json:"damageAmplified"`
 			ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes115 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -13689,7 +13689,7 @@ type SegmentsAPI struct {
 				TimePlayed      int `json:"timePlayed"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"lucio"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats116 struct {
 			HeroDamageDone    int `json:"heroDamageDone"`
 			HealingDone       int `json:"healingDone"`
@@ -13712,7 +13712,7 @@ type SegmentsAPI struct {
 			FocusingBeamKills int `json:"focusingBeamKills"`
 			StickyBombsKills  int `json:"stickyBombsKills"`
 			DragonbladeKills  int `json:"dragonbladeKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes116 struct {
 			Doomfist struct {
 				HeroDamageDone    int `json:"heroDamageDone"`
@@ -13797,7 +13797,7 @@ type SegmentsAPI struct {
 				FocusingBeamKills int `json:"focusingBeamKills"`
 				StickyBombsKills  int `json:"stickyBombsKills"`
 			} `json:"echo"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats117 struct {
 			HeroDamageDone    int `json:"heroDamageDone"`
 			HealingDone       int `json:"healingDone"`
@@ -13817,7 +13817,7 @@ type SegmentsAPI struct {
 			AbilityDamageDone int `json:"abilityDamageDone"`
 			MeteorStrikeKills int `json:"meteorStrikeKills"`
 			KnockbackKills    int `json:"knockbackKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes117 struct {
 			Winston struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -13867,7 +13867,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"wrecking-ball"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats118 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -13888,7 +13888,7 @@ type SegmentsAPI struct {
 			HelixRocketKills   int `json:"helixRocketKills"`
 			TacticalVisorKills int `json:"tacticalVisorKills"`
 			PlayersTeleported  int `json:"playersTeleported"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes118 struct {
 			Genji struct {
 				HeroDamageDone   int `json:"heroDamageDone"`
@@ -13984,7 +13984,7 @@ type SegmentsAPI struct {
 				CriticalHits    int `json:"criticalHits"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"reaper"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats119 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -14007,7 +14007,7 @@ type SegmentsAPI struct {
 			KnockbackKills             int `json:"knockbackKills"`
 			AccretionKills             int `json:"accretionKills"`
 			GraviticFluxKills          int `json:"graviticFluxKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes119 struct {
 			Zarya struct {
 				HeroDamageDone             int `json:"heroDamageDone"`
@@ -14075,7 +14075,7 @@ type SegmentsAPI struct {
 				AccretionKills    int `json:"accretionKills"`
 				GraviticFluxKills int `json:"graviticFluxKills"`
 			} `json:"sigma"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats120 struct {
 			HeroDamageDone                  int `json:"heroDamageDone"`
 			HealingDone                     int `json:"healingDone"`
@@ -14097,7 +14097,7 @@ type SegmentsAPI struct {
 			InspireUptime                   int `json:"inspireUptime"`
 			AmplificationMatrixAssists      int `json:"amplificationMatrixAssists"`
 			ImmortalityFieldDeathsPrevented int `json:"immortalityFieldDeathsPrevented"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes120 struct {
 			Lucio struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -14177,7 +14177,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"zenyatta"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats121 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -14199,7 +14199,7 @@ type SegmentsAPI struct {
 			DragonbladeKills   int `json:"dragonbladeKills"`
 			PulseBombKills     int `json:"pulseBombKills"`
 			PulseBombsAttached int `json:"pulseBombsAttached"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes121 struct {
 			Echo struct {
 				HeroDamageDone    int `json:"heroDamageDone"`
@@ -14307,7 +14307,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"pharah"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats122 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -14326,7 +14326,7 @@ type SegmentsAPI struct {
 			ShotsHit           int `json:"shotsHit"`
 			DeathBlossomKills  int `json:"deathBlossomKills"`
 			PulseBombKills     int `json:"pulseBombKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes122 struct {
 			Soldier76 struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -14377,7 +14377,7 @@ type SegmentsAPI struct {
 				CriticalHits    int `json:"criticalHits"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"tracer"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats123 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -14397,7 +14397,7 @@ type SegmentsAPI struct {
 			CoalescenseHealing int `json:"coalescenseHealing"`
 			CriticalHits       int `json:"criticalHits"`
 			KnockbackKills     int `json:"knockbackKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes123 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -14459,7 +14459,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"mercy"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats124 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -14483,7 +14483,7 @@ type SegmentsAPI struct {
 			GraviticFluxKills          int `json:"graviticFluxKills"`
 			JumpPackKills              int `json:"jumpPackKills"`
 			PrimalRageKills            int `json:"primalRageKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes124 struct {
 			DVa struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -14567,7 +14567,7 @@ type SegmentsAPI struct {
 				ShotsHit        int `json:"shotsHit"`
 				KnockbackKills  int `json:"knockbackKills"`
 			} `json:"winston"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats125 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -14586,7 +14586,7 @@ type SegmentsAPI struct {
 			ScopedHits         int `json:"scopedHits"`
 			CriticalHits       int `json:"criticalHits"`
 			DamageDiscordOrb   int `json:"damageDiscordOrb"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes125 struct {
 			Ana struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -14621,7 +14621,7 @@ type SegmentsAPI struct {
 				ShotsHit         int `json:"shotsHit"`
 				DamageDiscordOrb int `json:"damageDiscordOrb"`
 			} `json:"zenyatta"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats126 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -14641,7 +14641,7 @@ type SegmentsAPI struct {
 			ScopedCriticalHitKills int `json:"scopedCriticalHitKills"`
 			HelixRocketKills       int `json:"helixRocketKills"`
 			TacticalVisorKills     int `json:"tacticalVisorKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes126 struct {
 			Widowmaker struct {
 				HeroDamageDone         int `json:"heroDamageDone"`
@@ -14706,7 +14706,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"reaper"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats127 struct {
 			HeroDamageDone  int `json:"heroDamageDone"`
 			HealingDone     int `json:"healingDone"`
@@ -14724,7 +14724,7 @@ type SegmentsAPI struct {
 			ShotsHit        int `json:"shotsHit"`
 			KnockbackKills  int `json:"knockbackKills"`
 			EnergyMax       int `json:"energyMax"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes127 struct {
 			Winston struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -14757,7 +14757,7 @@ type SegmentsAPI struct {
 				TimePlayed      int `json:"timePlayed"`
 				EnergyMax       int `json:"energyMax"`
 			} `json:"zarya"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats128 struct {
 			HeroDamageDone    int `json:"heroDamageDone"`
 			HealingDone       int `json:"healingDone"`
@@ -14775,7 +14775,7 @@ type SegmentsAPI struct {
 			AbilityDamageDone int `json:"abilityDamageDone"`
 			KnockbackKills    int `json:"knockbackKills"`
 			MeteorStrikeKills int `json:"meteorStrikeKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes128 struct {
 			Doomfist struct {
 				HeroDamageDone    int `json:"heroDamageDone"`
@@ -14795,7 +14795,7 @@ type SegmentsAPI struct {
 				KnockbackKills    int `json:"knockbackKills"`
 				MeteorStrikeKills int `json:"meteorStrikeKills"`
 			} `json:"doomfist"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats129 struct {
 			HeroDamageDone     int `json:"heroDamageDone"`
 			HealingDone        int `json:"healingDone"`
@@ -14818,7 +14818,7 @@ type SegmentsAPI struct {
 			DeathBlossomKills  int `json:"deathBlossomKills"`
 			EnemiesFrozen      int `json:"enemiesFrozen"`
 			BlizzardKills      int `json:"blizzardKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes129 struct {
 			Soldier76 struct {
 				HeroDamageDone     int `json:"heroDamageDone"`
@@ -14916,7 +14916,7 @@ type SegmentsAPI struct {
 				CriticalHits    int `json:"criticalHits"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"mei"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats130 struct {
 			HeroDamageDone             int `json:"heroDamageDone"`
 			HealingDone                int `json:"healingDone"`
@@ -14940,7 +14940,7 @@ type SegmentsAPI struct {
 			KnockbackKills             int `json:"knockbackKills"`
 			JumpPackKills              int `json:"jumpPackKills"`
 			PrimalRageKills            int `json:"primalRageKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes130 struct {
 			Zarya struct {
 				HeroDamageDone             int `json:"heroDamageDone"`
@@ -15008,7 +15008,7 @@ type SegmentsAPI struct {
 				ShotsHit        int `json:"shotsHit"`
 				KnockbackKills  int `json:"knockbackKills"`
 			} `json:"winston"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats131 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -15028,7 +15028,7 @@ type SegmentsAPI struct {
 			ScopedHits             int `json:"scopedHits"`
 			ScopedCriticalHits     int `json:"scopedCriticalHits"`
 			ScopedCriticalHitKills int `json:"scopedCriticalHitKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes131 struct {
 			Reaper struct {
 				HeroDamageDone    int `json:"heroDamageDone"`
@@ -15122,7 +15122,7 @@ type SegmentsAPI struct {
 				UltsEarned      int `json:"ultsEarned"`
 				TimePlayed      int `json:"timePlayed"`
 			} `json:"sojourn"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats132 struct {
 			HeroDamageDone    int `json:"heroDamageDone"`
 			HealingDone       int `json:"healingDone"`
@@ -15139,7 +15139,7 @@ type SegmentsAPI struct {
 			ShotsHit          int `json:"shotsHit"`
 			FocusingBeamKills int `json:"focusingBeamKills"`
 			StickyBombsKills  int `json:"stickyBombsKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes132 struct {
 			Widowmaker struct {
 				HeroDamageDone  int `json:"heroDamageDone"`
@@ -15186,7 +15186,7 @@ type SegmentsAPI struct {
 				CriticalHits    int `json:"criticalHits"`
 				ShotsHit        int `json:"shotsHit"`
 			} `json:"tracer"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 		Stats133 struct {
 			HeroDamageDone         int `json:"heroDamageDone"`
 			HealingDone            int `json:"healingDone"`
@@ -15205,7 +15205,7 @@ type SegmentsAPI struct {
 			ScopedHits             int `json:"scopedHits"`
 			ScopedCriticalHits     int `json:"scopedCriticalHits"`
 			ScopedCriticalHitKills int `json:"scopedCriticalHitKills"`
-		} `json:"stats,omitempty"`
+		} `json:"stats"`
 		Heroes133 struct {
 			Soldier76 struct {
 				HeroDamageDone   int `json:"heroDamageDone"`
@@ -15241,7 +15241,7 @@ type SegmentsAPI struct {
 				ScopedCriticalHits     int `json:"scopedCriticalHits"`
 				ScopedCriticalHitKills int `json:"scopedCriticalHitKills"`
 			} `json:"widowmaker"`
-		} `json:"heroes,omitempty"`
+		} `json:"heroes"`
 	} `json:"players"`
 	Teams []struct {
 		ID        int `json:"id"`
@@ -15273,50 +15273,50 @@ type SegmentsAPI struct {
 				ID   string `json:"id"`
 				Rank int    `json:"rank"`
 			} `json:"west"`
-		} `json:"divisions,omitempty"`
+		} `json:"divisions"`
 		Points     int `json:"points"`
 		Divisions0 struct {
 			East struct {
 				ID   string `json:"id"`
 				Rank int    `json:"rank"`
 			} `json:"east"`
-		} `json:"divisions,omitempty"`
+		} `json:"divisions"`
 		Divisions1 struct {
 			East struct {
 				ID   string `json:"id"`
 				Rank int    `json:"rank"`
 			} `json:"east"`
-		} `json:"divisions,omitempty"`
+		} `json:"divisions"`
 		Divisions2 struct {
 			East struct {
 				ID   string `json:"id"`
 				Rank int    `json:"rank"`
 			} `json:"east"`
-		} `json:"divisions,omitempty"`
+		} `json:"divisions"`
 		Divisions3 struct {
 			East struct {
 				ID   string `json:"id"`
 				Rank int    `json:"rank"`
 			} `json:"east"`
-		} `json:"divisions,omitempty"`
+		} `json:"divisions"`
 		Divisions4 struct {
 			East struct {
 				ID   string `json:"id"`
 				Rank int    `json:"rank"`
 			} `json:"east"`
-		} `json:"divisions,omitempty"`
+		} `json:"divisions"`
 		Divisions5 struct {
 			East struct {
 				ID   string `json:"id"`
 				Rank int    `json:"rank"`
 			} `json:"east"`
-		} `json:"divisions,omitempty"`
+		} `json:"divisions"`
 		Divisions6 struct {
 			East struct {
 				ID   string `json:"id"`
 				Rank int    `json:"rank"`
 			} `json:"east"`
-		} `json:"divisions,omitempty"`
+		} `json:"divisions"`
 	} `json:"standings"`
 	FirstMatchStart   int64 `json:"firstMatchStart"`
 	LastMatchStart    int64 `json:"lastMatchStart"`

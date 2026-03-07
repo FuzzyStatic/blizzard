@@ -26,14 +26,14 @@ type StaticProfile struct {
 		UIOrderHint       int    `json:"uiOrderHint"`
 	} `json:"criteria"`
 	Categories []struct {
-		ChildrenCategoryIds   []interface{} `json:"childrenCategoryIds"`
-		FeaturedAchievementID string        `json:"featuredAchievementId"`
-		ID                    string        `json:"id"`
-		Name                  string        `json:"name"`
-		ParentCategoryID      string        `json:"parentCategoryId"`
-		Points                int           `json:"points"`
-		UIOrderHint           int           `json:"uiOrderHint"`
-		MedalTiers            []int         `json:"medalTiers,omitempty"`
+		ChildrenCategoryIds   []any  `json:"childrenCategoryIds"`
+		FeaturedAchievementID string `json:"featuredAchievementId"`
+		ID                    string `json:"id"`
+		Name                  string `json:"name"`
+		ParentCategoryID      string `json:"parentCategoryId"`
+		Points                int    `json:"points"`
+		UIOrderHint           int    `json:"uiOrderHint"`
+		MedalTiers            []int  `json:"medalTiers,omitempty"`
 	} `json:"categories"`
 	Rewards []struct {
 		Flags          int    `json:"flags"`
@@ -74,53 +74,53 @@ type Profile struct {
 	Snapshot struct {
 		SeasonSnapshot struct {
 			OneV1 struct {
-				Rank       int         `json:"rank"`
-				LeagueName interface{} `json:"leagueName"`
-				TotalGames int         `json:"totalGames"`
-				TotalWins  int         `json:"totalWins"`
+				Rank       int `json:"rank"`
+				LeagueName any `json:"leagueName"`
+				TotalGames int `json:"totalGames"`
+				TotalWins  int `json:"totalWins"`
 			} `json:"1v1"`
 			TwoV2 struct {
-				Rank       int         `json:"rank"`
-				LeagueName interface{} `json:"leagueName"`
-				TotalGames int         `json:"totalGames"`
-				TotalWins  int         `json:"totalWins"`
+				Rank       int `json:"rank"`
+				LeagueName any `json:"leagueName"`
+				TotalGames int `json:"totalGames"`
+				TotalWins  int `json:"totalWins"`
 			} `json:"2v2"`
 			ThreeV3 struct {
-				Rank       int         `json:"rank"`
-				LeagueName interface{} `json:"leagueName"`
-				TotalGames int         `json:"totalGames"`
-				TotalWins  int         `json:"totalWins"`
+				Rank       int `json:"rank"`
+				LeagueName any `json:"leagueName"`
+				TotalGames int `json:"totalGames"`
+				TotalWins  int `json:"totalWins"`
 			} `json:"3v3"`
 			FourV4 struct {
-				Rank       int         `json:"rank"`
-				LeagueName interface{} `json:"leagueName"`
-				TotalGames int         `json:"totalGames"`
-				TotalWins  int         `json:"totalWins"`
+				Rank       int `json:"rank"`
+				LeagueName any `json:"leagueName"`
+				TotalGames int `json:"totalGames"`
+				TotalWins  int `json:"totalWins"`
 			} `json:"4v4"`
 			Archon struct {
-				Rank       int         `json:"rank"`
-				LeagueName interface{} `json:"leagueName"`
-				TotalGames int         `json:"totalGames"`
-				TotalWins  int         `json:"totalWins"`
+				Rank       int `json:"rank"`
+				LeagueName any `json:"leagueName"`
+				TotalGames int `json:"totalGames"`
+				TotalWins  int `json:"totalWins"`
 			} `json:"Archon"`
 		} `json:"seasonSnapshot"`
 		TotalRankedSeasonGamesPlayed int `json:"totalRankedSeasonGamesPlayed"`
 	} `json:"snapshot"`
 	Career struct {
-		TerranWins                int         `json:"terranWins"`
-		ZergWins                  int         `json:"zergWins"`
-		ProtossWins               int         `json:"protossWins"`
-		TotalCareerGames          int         `json:"totalCareerGames"`
-		TotalGamesThisSeason      int         `json:"totalGamesThisSeason"`
-		Current1V1LeagueName      interface{} `json:"current1v1LeagueName"`
-		CurrentBestTeamLeagueName interface{} `json:"currentBestTeamLeagueName"`
+		TerranWins                int `json:"terranWins"`
+		ZergWins                  int `json:"zergWins"`
+		ProtossWins               int `json:"protossWins"`
+		TotalCareerGames          int `json:"totalCareerGames"`
+		TotalGamesThisSeason      int `json:"totalGamesThisSeason"`
+		Current1V1LeagueName      any `json:"current1v1LeagueName"`
+		CurrentBestTeamLeagueName any `json:"currentBestTeamLeagueName"`
 		Best1V1Finish             struct {
 			LeagueName    string `json:"leagueName"`
 			TimesAchieved int    `json:"timesAchieved"`
 		} `json:"best1v1Finish"`
 		BestTeamFinish struct {
-			LeagueName    interface{} `json:"leagueName"`
-			TimesAchieved int         `json:"timesAchieved"`
+			LeagueName    any `json:"leagueName"`
+			TimesAchieved int `json:"timesAchieved"`
 		} `json:"bestTeamFinish"`
 	} `json:"career"`
 	SwarmLevels struct {
@@ -175,14 +175,14 @@ type Profile struct {
 
 // LadderSummary structure
 type LadderSummary struct {
-	ShowCaseEntries      []interface{} `json:"showCaseEntries"`
-	PlacementMatches     []interface{} `json:"placementMatches"`
-	AllLadderMemberships []interface{} `json:"allLadderMemberships"`
+	ShowCaseEntries      []any `json:"showCaseEntries"`
+	PlacementMatches     []any `json:"placementMatches"`
+	AllLadderMemberships []any `json:"allLadderMemberships"`
 }
 
 // Ladder structure
 type Ladder struct {
-	LadderTeams          []interface{} `json:"ladderTeams"`
-	AllLadderMemberships []interface{} `json:"allLadderMemberships"`
-	RanksAndPools        []interface{} `json:"ranksAndPools"`
+	LadderTeams          []any `json:"ladderTeams"`
+	AllLadderMemberships []any `json:"allLadderMemberships"`
+	RanksAndPools        []any `json:"ranksAndPools"`
 }

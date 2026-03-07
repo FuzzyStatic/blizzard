@@ -107,7 +107,7 @@ type LegacyProfileLadders struct {
 			Showcase         bool   `json:"showcase"`
 			Wins             int    `json:"wins"`
 		} `json:"ladder"`
-		NonRanked []interface{} `json:"nonRanked"`
+		NonRanked []any `json:"nonRanked"`
 	} `json:"currentSeason"`
 	PreviousSeason []struct {
 		Characters []struct {
@@ -145,7 +145,7 @@ type LegacyProfileLadders struct {
 			Realm       int    `json:"realm"`
 			Region      int    `json:"region"`
 		} `json:"characters"`
-		Ladder    []interface{} `json:"ladder"`
+		Ladder    []any `json:"ladder"`
 		NonRanked []struct {
 			GamesPlayed int    `json:"gamesPlayed"`
 			Mmq         string `json:"mmq"`

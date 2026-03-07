@@ -33,7 +33,7 @@ type Item struct {
 			TextHTML string `json:"textHtml"`
 			Text     string `json:"text"`
 		} `json:"secondary"`
-		Other []interface{} `json:"other"`
+		Other []any `json:"other"`
 	} `json:"attributes"`
 	RandomAffixes []struct {
 		OneOf []struct {

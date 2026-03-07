@@ -12,10 +12,10 @@ type Player struct {
 	PreferredSlot int    `json:"preferredSlot"`
 	GivenName     string `json:"givenName"`
 	Teams         []struct {
-		ID            interface{} `json:"id"`
-		EarliestMatch int64       `json:"earliestMatch,omitempty"`
-		Stats         Stats       `json:"stats,omitempty"`
-		Heroes        Heroes      `json:"heroes,omitempty"`
+		ID            any    `json:"id"`
+		EarliestMatch int64  `json:"earliestMatch,omitempty"`
+		Stats         Stats  `json:"stats"`
+		Heroes        Heroes `json:"heroes"`
 	} `json:"teams"`
 	Name         string   `json:"name"`
 	FamilyName   string   `json:"familyName"`

@@ -75,7 +75,7 @@ type CharacterEquipmentSummary struct {
 					Description string `json:"description"`
 					CastTime    string `json:"cast_time"`
 					Range       string `json:"range"`
-				} `json:"main_spell_tooltip,omitempty"`
+				} `json:"main_spell_tooltip"`
 				PassiveSpellTooltip struct {
 					Spell struct {
 						Key struct {
@@ -105,7 +105,7 @@ type CharacterEquipmentSummary struct {
 				Value         int    `json:"value"`
 				DisplayString string `json:"display_string"`
 			} `json:"level"`
-		} `json:"azerite_details,omitempty"`
+		} `json:"azerite_details"`
 		Media struct {
 			Key struct {
 				Href string `json:"href"`
@@ -145,7 +145,7 @@ type CharacterEquipmentSummary struct {
 					A float32 `json:"a"`
 				} `json:"color"`
 			} `json:"display"`
-		} `json:"armor,omitempty"`
+		} `json:"armor"`
 		Stats []struct {
 			Type struct {
 				Type string `json:"type"`
@@ -177,11 +177,11 @@ type CharacterEquipmentSummary struct {
 			} `json:"item"`
 			DisplayString            string `json:"display_string"`
 			ItemModifiedAppearanceID int    `json:"item_modified_appearance_id"`
-		} `json:"transmog,omitempty"`
+		} `json:"transmog"`
 		Durability struct {
 			Value         int    `json:"value"`
 			DisplayString string `json:"display_string"`
-		} `json:"durability,omitempty"`
+		} `json:"durability"`
 		NameDescription struct {
 			DisplayString string `json:"display_string"`
 			Color         struct {
@@ -190,7 +190,7 @@ type CharacterEquipmentSummary struct {
 				B int     `json:"b"`
 				A float64 `json:"a"`
 			} `json:"color"`
-		} `json:"name_description,omitempty"`
+		} `json:"name_description"`
 		UniqueEquipped string `json:"unique_equipped,omitempty"`
 		Spells         []struct {
 			Spell struct {
@@ -238,7 +238,7 @@ type CharacterEquipmentSummary struct {
 				Silver string `json:"silver"`
 				Copper string `json:"copper"`
 			} `json:"display_strings"`
-		} `json:"sell_price,omitempty"`
+		} `json:"sell_price"`
 		IsCorrupted  bool `json:"is_corrupted,omitempty"`
 		Enchantments []struct {
 			DisplayString string `json:"display_string"`
@@ -279,7 +279,7 @@ type CharacterEquipmentSummary struct {
 				Level         int    `json:"level"`
 				DisplayString string `json:"display_string"`
 			} `json:"skill"`
-		} `json:"requirements,omitempty"`
+		} `json:"requirements"`
 		Set struct {
 			ItemSet struct {
 				Key struct {
@@ -323,6 +323,6 @@ type CharacterEquipmentSummary struct {
 				Value         float64 `json:"value"`
 				DisplayString string  `json:"display_string"`
 			} `json:"dps"`
-		} `json:"weapon,omitempty"`
+		} `json:"weapon"`
 	} `json:"equipped_items"`
 }

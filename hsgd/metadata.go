@@ -55,9 +55,9 @@ type Rarity struct {
 
 // Class structure
 type Class struct {
-	ID   interface{} `json:"id"`
-	Slug string      `json:"slug"`
-	Name string      `json:"name"`
+	ID   any    `json:"id"`
+	Slug string `json:"slug"`
+	Name string `json:"name"`
 }
 
 // MinionType structure

@@ -8,8 +8,8 @@ type PlayersAPI struct {
 	Teams         []struct {
 		ID             int    `json:"id"`
 		EarliestMatch  int64  `json:"earliestMatch,omitempty"`
-		Stats          Stats  `json:"stats,omitempty"`
-		Heroes         Heroes `json:"heroes,omitempty"`
+		Stats          Stats  `json:"stats"`
+		Heroes         Heroes `json:"heroes"`
 		Logo           string `json:"logo,omitempty"`
 		Icon           string `json:"icon,omitempty"`
 		PrimaryColor   string `json:"primaryColor,omitempty"`

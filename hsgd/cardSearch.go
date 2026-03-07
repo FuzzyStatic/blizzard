@@ -28,7 +28,7 @@ type Card struct {
 		UpgradeID int    `json:"upgradeId"`
 		Image     string `json:"image"`
 		ImageGold string `json:"imageGold"`
-	} `json:"battlegrounds,omitempty"`
+	} `json:"battlegrounds"`
 }
 
 // CardSearch structure

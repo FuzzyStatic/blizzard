@@ -98,18 +98,18 @@ type ChildCriteria []struct {
 	Faction     struct {
 		Type string `json:"type"`
 		Name string `json:"name"`
-	} `json:"faction,omitempty"`
+	} `json:"faction"`
 	Achievement struct {
 		Key struct {
 			Href string `json:"href"`
 		} `json:"key"`
 		Name string `json:"name"`
 		ID   int    `json:"id"`
-	} `json:"achievement,omitempty"`
+	} `json:"achievement"`
 	Operator struct {
 		Type string `json:"type"`
 		Name string `json:"name"`
-	} `json:"operator,omitempty"`
+	} `json:"operator"`
 	ChildCriteria ChildCriteria `json:"child_criteria,omitempty"`
 }
 
@@ -139,7 +139,7 @@ type Achievement struct {
 		Faction     struct {
 			Type string `json:"type"`
 			Name string `json:"name"`
-		} `json:"faction,omitempty"`
+		} `json:"faction"`
 		Operator struct {
 			Type string `json:"type"`
 			Name string `json:"name"`
