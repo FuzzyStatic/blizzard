@@ -17,6 +17,7 @@
     - [Fetching World of Warcraft Classic Data](#fetching-world-of-warcraft-classic-data)
   - [Authorization for User Data](#authorization-for-user-data)
     - [Fetching OAuth Data](#fetching-oauth-data)
+    - [Streaming Provider Service (Playable Titles)](#streaming-provider-service-playable-titles)
   - [Header Information](#header-information)
   - [Documentation](#documentation)
   - [Special Thanks](#special-thanks)
