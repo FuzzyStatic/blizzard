@@ -1373,6 +1373,26 @@ func (c *Client) WoWTitle(ctx context.Context, titleID int) (*wowgd.Title, *Head
 	return dat.(*wowgd.Title), header, err
 }
 
+// WoWToyIndex returns an index of toys.
+func (c *Client) WoWToyIndex(ctx context.Context) (*wowgd.ToyIndex, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		"/data/wow/toy/index",
+		c.GetStaticNamespace(),
+		&wowgd.ToyIndex{},
+	)
+	return dat.(*wowgd.ToyIndex), header, err
+}
+
+// WoWToy returns a toy by ID.
+func (c *Client) WoWToy(ctx context.Context, toyID int) (*wowgd.Toy, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/data/wow/toy/%d", toyID),
+		c.GetStaticNamespace(),
+		&wowgd.Toy{},
+	)
+	return dat.(*wowgd.Toy), header, err
+}
+
 // WoWToken returns the WoW Token index
 func (c *Client) WoWToken(ctx context.Context) (*wowgd.Token, *Header, error) {
 	dat, header, err := c.getStructData(ctx,

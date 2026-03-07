@@ -22,6 +22,9 @@ type CharacterCollectionsIndex struct {
 	Transmog struct {
 		Href string `json:"href"`
 	} `json:"transmog"`
+	Decor struct {
+		Href string `json:"href"`
+	} `json:"decor"`
 }
 
 // CharacterHeirloomsCollectionSummary structure
@@ -130,6 +133,7 @@ type CharacterTransmogsCollectionSummary struct {
 	Slots []CharacterTransmogsCollectionSummarySlots `json:"slots"`
 }
 
+// CharacterTransmogsCollectionSummarySlots structure
 type CharacterTransmogsCollectionSummarySlots struct {
 	Slot struct {
 		Name string `json:"name"`
@@ -141,5 +145,25 @@ type CharacterTransmogsCollectionSummarySlots struct {
 		} `json:"key"`
 		ID int `json:"id"`
 	} `json:"appearances"`
+}
 
+// CharacterDecorCollectionSummary structure
+type CharacterDecorCollectionSummary struct {
+	Links struct {
+		Self struct {
+			Href string `json:"href"`
+		} `json:"self"`
+	} `json:"_links"`
+	Decor []struct {
+		Decor struct {
+			Key struct {
+				Href string `json:"href"`
+			} `json:"key"`
+			Name string `json:"name"`
+			ID   int    `json:"id"`
+		} `json:"decor"`
+		Quantity   int  `json:"quantity"`
+		IsFavorite bool `json:"is_favorite,omitempty"`
+	} `json:"decor_collected"`
+	
 }

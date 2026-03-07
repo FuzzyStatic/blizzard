@@ -1630,6 +1630,30 @@ func TestWoWTitle(t *testing.T) {
 	}
 }
 
+func TestWoWToyIndex(t *testing.T) {
+	dat, _, err := usClient.WoWToyIndex(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
+func TestWoWToy(t *testing.T) {
+	dat, _, err := usClient.WoWToy(context.Background(), 30)
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWToken(t *testing.T) {
 	dat, _, err := usClient.WoWToken(context.Background())
 	if err != nil {

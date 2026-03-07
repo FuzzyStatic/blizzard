@@ -267,6 +267,29 @@ if err != nil {
 fmt.Printf("%+v\n", dat)
 ```
 
+### Streaming Provider Service (Playable Titles)
+
+Cloud‑gaming partners can ask Blizzard which titles a given user is allowed to launch.  To do this, request the `streaming.titles` and `openid` scopes when building the authorization URL.  After the user completes the OAuth flow you will have an access token suitable for SPS.
+
+Use the new `SPSPlayableTitles` helper to call the service:
+
+```go
+pts, hdr, err := usBlizzClient.SPSPlayableTitles(ctx, token)
+if err != nil {
+    fmt.Println(err)
+}
+
+for _, t := range pts.Titles {
+    fmt.Printf("%d: %s\n", t.ID, t.Name)
+}
+```
+
+The response contains every eligible title or sub‑title available to the
+account.
+
+For a complete runnable example, see [examples/sps](./examples/sps).
+
+
 ## Header Information
 
 Each API call will return HTTP response header information, if any. Use the second return variable to get a structure containing the response header information.

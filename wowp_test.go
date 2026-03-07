@@ -56,6 +56,18 @@ func TestWoWCharacterCollectionsIndex(t *testing.T) {
 	}
 }
 
+func TestWoWCharacterDecorCollectionSummary(t *testing.T) {
+	dat, _, err := usClient.WoWCharacterDecorCollectionSummary(context.Background(), "illidan", "covlol")
+	if err != nil {
+		fmt.Println(err)
+		t.Fail()
+	}
+
+	if printOutput != "" {
+		fmt.Printf("%+v\n", dat)
+	}
+}
+
 func TestWoWCharacterHeirloomsCollectionSummary(t *testing.T) {
 	dat, _, err := usClient.WoWCharacterHeirloomsCollectionSummary(context.Background(), "illidan", "covlol")
 	if err != nil {
