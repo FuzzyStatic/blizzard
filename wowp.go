@@ -65,6 +65,17 @@ func (c *Client) WoWCharacterCollectionsIndex(ctx context.Context,
 	return dat.(*wowp.CharacterCollectionsIndex), header, err
 }
 
+// WoWCharacterDecorCollectionSummary returns a summary of the decor a character has obtained.
+func (c *Client) WoWCharacterDecorCollectionSummary(ctx context.Context,
+	realmSlug, characterName string) (*wowp.CharacterDecorCollectionSummary, *Header, error) {
+	dat, header, err := c.getStructData(ctx,
+		fmt.Sprintf("/profile/wow/character/%s/%s/collections/decor", realmSlug, strings.ToLower(characterName)),
+		c.GetProfileNamespace(),
+		&wowp.CharacterDecorCollectionSummary{},
+	)
+	return dat.(*wowp.CharacterDecorCollectionSummary), header, err
+}
+
 // WoWCharacterHeirloomsCollectionSummary returns a summary of the heirlooms a character has obtained.
 func (c *Client) WoWCharacterHeirloomsCollectionSummary(ctx context.Context,
 	realmSlug, characterName string) (*wowp.CharacterHeirloomsCollectionSummary, *Header, error) {
