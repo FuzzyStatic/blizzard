@@ -52,18 +52,23 @@ type Config struct {
 
 // Client regional API URLs, locale, client ID, client secret
 type Client struct {
-	cfg                                             Config
-	httpClient                                      *http.Client
-	clntCredCfg                                     clientcredentials.Config
-	authorizedCfg                                   oauth2.Config
-	oauth                                           OAuth
-	oauthHost                                       string
-	apiHost                                         string
-	dynamicNamespace, staticNamespace               string
-	profileNamespace                                string
-	dynamicClassicNamespace, staticClassicNamespace string
-	region                                          Region
-	locale                                          Locale
+	cfg                                                   Config
+	httpClient                                            *http.Client
+	clntCredCfg                                           clientcredentials.Config
+	authorizedCfg                                         oauth2.Config
+	oauth                                                 OAuth
+	oauthHost                                             string
+	apiHost                                               string
+	dynamicNamespace, staticNamespace                     string
+	profileNamespace                                      string
+	dynamicClassicNamespace, staticClassicNamespace       string
+	profileClassicNamespace                               string
+	dynamicClassic1xNamespace, staticClassic1xNamespace   string
+	profileClassic1xNamespace                             string
+	dynamicClassicAnnNamespace, staticClassicAnnNamespace string
+	profileClassicAnnNamespace                            string
+	region                                                Region
+	locale                                                Locale
 }
 
 //go:generate stringer -type=Region -linecomment
@@ -175,16 +180,30 @@ func (c *Client) SetRegionParameters(region Region, locale Locale) error {
 		c.dynamicNamespace = "dynamic-zh"
 		c.dynamicClassicNamespace = "dynamic-classic-zh"
 		c.profileNamespace = "profile-zh"
+		c.profileClassicNamespace = "profile-classic-zh"
 		c.staticNamespace = "static-zh"
 		c.staticClassicNamespace = "static-classic-zh"
+		c.dynamicClassic1xNamespace = "dynamic-classic1x-zh"
+		c.staticClassic1xNamespace = "static-classic1x-zh"
+		c.profileClassic1xNamespace = "profile-classic1x-zh"
+		c.dynamicClassicAnnNamespace = "dynamic-classicann-zh"
+		c.staticClassicAnnNamespace = "static-classicann-zh"
+		c.profileClassicAnnNamespace = "profile-classicann-zh"
 	default:
 		c.oauthHost = "https://oauth.battle.net"
 		c.apiHost = fmt.Sprintf("https://%s.api.blizzard.com", region)
 		c.dynamicNamespace = fmt.Sprintf("dynamic-%s", region)
 		c.dynamicClassicNamespace = fmt.Sprintf("dynamic-classic-%s", region)
 		c.profileNamespace = fmt.Sprintf("profile-%s", region)
+		c.profileClassicNamespace = fmt.Sprintf("profile-classic-%s", region)
 		c.staticNamespace = fmt.Sprintf("static-%s", region)
 		c.staticClassicNamespace = fmt.Sprintf("static-classic-%s", region)
+		c.dynamicClassic1xNamespace = fmt.Sprintf("dynamic-classic1x-%s", region)
+		c.staticClassic1xNamespace = fmt.Sprintf("static-classic1x-%s", region)
+		c.profileClassic1xNamespace = fmt.Sprintf("profile-classic1x-%s", region)
+		c.dynamicClassicAnnNamespace = fmt.Sprintf("dynamic-classicann-%s", region)
+		c.staticClassicAnnNamespace = fmt.Sprintf("static-classicann-%s", region)
+		c.profileClassicAnnNamespace = fmt.Sprintf("profile-classicann-%s", region)
 	}
 
 	c.clntCredCfg.TokenURL = c.oauthHost + "/token"
@@ -228,6 +247,41 @@ func (c *Client) GetStaticNamespace() string {
 // GetStaticClassicNamespace returns the classic static namespace of the client
 func (c *Client) GetStaticClassicNamespace() string {
 	return c.staticClassicNamespace
+}
+
+// GetProfileClassicNamespace returns the classic profile namespace of the client
+func (c *Client) GetProfileClassicNamespace() string {
+	return c.profileClassicNamespace
+}
+
+// GetDynamicClassic1xNamespace returns the classic1x dynamic namespace of the client
+func (c *Client) GetDynamicClassic1xNamespace() string {
+	return c.dynamicClassic1xNamespace
+}
+
+// GetStaticClassic1xNamespace returns the classic1x static namespace of the client
+func (c *Client) GetStaticClassic1xNamespace() string {
+	return c.staticClassic1xNamespace
+}
+
+// GetProfileClassic1xNamespace returns the classic1x profile namespace of the client
+func (c *Client) GetProfileClassic1xNamespace() string {
+	return c.profileClassic1xNamespace
+}
+
+// GetDynamicClassicAnnNamespace returns the classicann dynamic namespace of the client
+func (c *Client) GetDynamicClassicAnnNamespace() string {
+	return c.dynamicClassicAnnNamespace
+}
+
+// GetStaticClassicAnnNamespace returns the classicann static namespace of the client
+func (c *Client) GetStaticClassicAnnNamespace() string {
+	return c.staticClassicAnnNamespace
+}
+
+// GetProfileClassicAnnNamespace returns the classicann profile namespace of the client
+func (c *Client) GetProfileClassicAnnNamespace() string {
+	return c.profileClassicAnnNamespace
 }
 
 // buildSearchParams builds params for searches
