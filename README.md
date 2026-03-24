@@ -149,7 +149,31 @@ fmt.Printf("%+v\n", dat)
 
 ### Fetching World of Warcraft Classic Data
 
-You can use the functions prefixed with "ClassicWoW" to acquire World of Warcraft Classic information. For example, you can get information about WoW Classic creature data:
+You can use the functions prefixed with "ClassicWoW" to acquire World of Warcraft Classic information. Blizzard provides data for three Classic versions: Era (the original Classic experience), Anniversary (the enhanced Classic edition), and Progression (the current Classic progression).
+
+For example, you can get information about WoW Classic Era creature data:
+
+```go
+dat, _, err := usBlizzClient.ClassicWoWEraCreature(ctx, 30)
+if err != nil {
+  fmt.Println(err)
+}
+
+fmt.Printf("%+v\n", dat)
+```
+
+Or get information about WoW Classic Anniversary creature data:
+
+```go
+dat, _, err := usBlizzClient.ClassicWoWAnniversaryCreature(ctx, 30)
+if err != nil {
+  fmt.Println(err)
+}
+
+fmt.Printf("%+v\n", dat)
+```
+
+Or get information about WoW Classic Progression creature data:
 
 ```go
 dat, _, err := usBlizzClient.ClassicWoWCreature(ctx, 30)
